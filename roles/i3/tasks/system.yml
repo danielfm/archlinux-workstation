@@ -42,7 +42,7 @@
     group: root
     mode: '0644'
 
-- name: Disable internal speaker beep
+- name: Disable internal speaker beep by default
   become: yes
   copy:
     content: blacklist pcspkr
@@ -50,3 +50,10 @@
     owner: root
     group: root
     mode: '0644'
+
+- name: Load module-echo-cancel PulseAudio module by default
+  become: yes
+  lineinfile:
+    path: /etc/pulse/default.pa
+    regexp: '^load-module module-echo-cancel'
+    line: load-module module-echo-cancel
