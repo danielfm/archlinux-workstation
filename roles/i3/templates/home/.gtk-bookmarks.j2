@@ -1,0 +1,3 @@
+{% for item in gtk_bookmarks -%}
+file://{{ item.path }} {{ item.name }}
+{% endfor %}

@@ -1,0 +1,7 @@
+! Xautolock configuration
+Xautolock.time: 10
+Xautolock.corners: +-00
+Xautolock.cornersize: 10
+Xautolock.cornerdelay: 5
+Xautolock.cornerredelay: 10
+

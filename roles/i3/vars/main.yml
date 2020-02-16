@@ -1,0 +1,8 @@
+# Directories to be displayed as bookmarks in file managers, such as Thunar
+gtk_bookmarks:
+  - name: Downloads
+    path: "/home/{{ user.name }}/Downloads"
+  - name: Dropbox
+    path: "/home/{{ user.name }}/Dropbox"
+  - name: Projects
+    path: "/home/{{ user.name }}/Projects"

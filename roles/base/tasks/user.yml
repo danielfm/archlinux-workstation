@@ -1,0 +1,56 @@
+- name: Ensure {{ user.group }} group exists
+  become: yes
+  group:
+    name: '{{ user.group }}'
+    state: present
+
+- name: Ensure {{ user.name }} user exists
+  become: yes
+  user:
+    name: '{{ user.name }}'
+    password: '{{ user.password }}'
+    groups:
+      - '{{ user.group }}'
+      - audio
+      - lp
+      - network
+      - power
+      - rfkill
+      - sys
+      - video
+      - wheel
+    append: yes
+    group: '{{ user.group }}'
+    uid: '{{ user.uid }}'
+    shell: '/bin/zsh'
+
+- name: Ensure the ~/.ssh directory exists for {{ user.name }}
+  become: yes
+  become_user: '{{ user.name }}'
+  file:
+    path: '/home/{{ user.name }}/.ssh'
+    state: directory
+    owner: '{{ user.name }}'
+    group: '{{ user.group }}'
+    mode: '0700'
+  when:
+    - user.create_ssh_keypair|bool
+
+- name: Generate SSH keypair for {{ user.name }}
+  become: yes
+  become_user: '{{ user.name }}'
+  openssh_keypair:
+    path: '/home/{{ user.name }}/.ssh/id_rsa'
+  when:
+    - user.create_ssh_keypair|bool
+
+- name: Add user to sudoers file
+  become: yes
+  lineinfile:
+    path: '/etc/sudoers.d/{{ user.name }}'
+    line: '{{ user.name }} ALL=(ALL) ALL'
+    state: present
+    mode: '0400'
+    create: yes
+    validate: 'visudo -cf %s'
+

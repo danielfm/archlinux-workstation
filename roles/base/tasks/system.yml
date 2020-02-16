@@ -1,0 +1,25 @@
+- name: Set timezone to {{ system.timezone }}
+  become: yes
+  timezone:
+    name: '{{ system.timezone }}'
+
+- name: Ensure the locale {{ system.locale }} exists
+  become: yes
+  locale_gen:
+    name: '{{ system.locale }}'
+
+- name: Add /usr/local/bin files
+  become: yes
+  copy:
+    src: usr/local/bin/
+    dest: /usr/local/bin/
+    owner: 'root'
+    group: 'root'
+    mode: '0755'
+
+- name: Enable NetworkManager service
+  become: yes
+  service:
+    name: NetworkManager
+    state: started
+    enabled: yes

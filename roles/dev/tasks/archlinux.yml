@@ -1,0 +1,27 @@
+- name: Install packages
+  become: yes
+  pacman:
+    state: present
+    update_cache: yes
+    name:
+      - dnsutils
+      - docker
+      - emacs
+      - git-lfs
+      - gnupg
+      - gopass
+      - nano
+      - tmux
+
+- name: Install AUR packages
+  aur:
+    upgrade: no
+    skip_installed: yes
+    name:
+      - cfssl
+      - chef-dk
+      - google-cloud-sdk
+      - kail
+      # - kubernetes-helm2
+      # - kubernetes-helmfile-bin
+      - pyenv-virtualenv

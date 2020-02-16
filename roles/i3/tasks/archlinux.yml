@@ -1,0 +1,73 @@
+- name: Install rxvt-unicode-pixbuf from AUR
+  aur:
+    upgrade: no
+    skip_installed: yes
+    name:
+      - rxvt-unicode-pixbuf
+
+- name: Install packages
+  become: yes
+  pacman:
+    state: present
+    update_cache: yes
+    name:
+      - archlinux-wallpaper
+      - dunst
+      - gnome-keyring
+      - gsimplecal
+      - gvfs
+      - hsetroot
+      - i3-gaps
+      - libappindicator-gtk2
+      - libappindicator-gtk3
+      - lightdm
+      - lightdm-gtk-greeter
+      - lxappearance
+      - maim
+      - nitrogen
+      - pantheon-calculator
+      - papirus-icon-theme
+      - polkit-gnome
+      - python-pywal
+      - qt5ct
+      - ranger
+      - rofi
+      - thunar
+      - vlc
+      - volumeicon
+      - w3m
+      - xautolock
+      - xfce4-power-manager
+      - xorg-apps
+      - xorg-xinit
+      - urxvt-perls
+
+- name: Install AUR packages
+  aur:
+    upgrade: no
+    skip_installed: yes
+    name:
+      - clipit
+      - dropbox
+      - i3lock-color-git
+      - i3-scrot
+      - lightdm-settings
+      - lightdm-slick-greeter
+      - matcha-gtk-theme
+      - picom-git
+      - polybar
+      - slack-desktop
+      - spotify
+      - ttf-font-icons
+      - xcursor-breeze
+      - urxvt-font-size
+      - urxvt-resize-font-git
+      - terminess-powerline-font-git
+      - nerd-fonts-terminus
+
+- name: Enable lightdm service
+  become: true
+  systemd:
+    name: lightdm
+    enabled: yes
+

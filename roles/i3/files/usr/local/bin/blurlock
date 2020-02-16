@@ -1,0 +1,36 @@
+#!/bin/bash
+
+# Custom i3lock wrapper for leveraging color scheme generated via pywal.
+
+# Generated via pywal
+. ~/.cache/wal/colors.sh
+
+font_name="Noto Sans"
+font_size="100"
+
+i3lock --color=${background}              \
+       --insidevercolor=${background}FF   \
+       --insidewrongcolor=${background}FF \
+       --insidecolor=${background}FF      \
+       --ringvercolor=${color2}FF         \
+       --ringwrongcolor=${color2}FF       \
+       --ringcolor=${color3}FF            \
+       --line-uses-ring                   \
+       --separatorcolor=${color1}FF       \
+       --verifcolor=${color2}FF           \
+       --wrongcolor=${color2}FF           \
+       --keyhlcolor=${color1}FF           \
+       --bshlcolor=${color1}FF            \
+       --pass-media-keys                  \
+       --indicator                        \
+       --radius=100                       \
+       --ring-width=20                    \
+       --veriftext="..."                  \
+       --wrongtext="!"                    \
+       --noinputtext="!"                  \
+       --locktext="..."                   \
+       --lockfailedtext="!"               \
+       --verif-font="${font_name}"        \
+       --wrong-font="${font_name}"        \
+       --verifsize=${font_size}           \
+       --wrongsize=${font_size}

@@ -1,0 +1,61 @@
+- name: Add user configuration templates
+  become: yes
+  become_user: '{{ user.name }}'
+  template:
+    src: home/{{ item }}.j2
+    dest: '/home/{{ user.name }}/{{ item }}'
+    owner: '{{ user.name }}'
+    group: '{{ user.group }}'
+    mode: '0644'
+  with_items:
+    - .bash_env
+    - .gitconfig
+
+- name: Add user configuration files
+  become: yes
+  become_user: '{{ user.name }}'
+  copy:
+    src: 'home/{{ item }}'
+    dest: '/home/{{ user.name }}/'
+    owner: '{{ user.name }}'
+    group: '{{ user.group }}'
+    mode: '0644'
+  with_items:
+    - .bash_aliases
+    - .bash_completions
+    - .bash_logout
+    - .bash_profile
+    - .bashrc
+    - .gitignore_global
+    - .nanorc
+    - .tmux.conf
+    - .vimrc
+    - .zshrc
+
+- name: Ensure {{ user.name }} is in the 'docker' group
+  become: yes
+  user:
+    name: '{{ user.name }}'
+    groups:
+      - docker
+    append: yes
+
+- name: Install oh-my-zsh
+  become: yes
+  become_user: '{{ user.name }}'
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: '/home/{{ user.name }}/.oh-my-zsh'
+
+- name: Add extra directories
+  become: yes
+  become_user: '{{ user.name }}'
+  file:
+    path: '/home/{{ user.name }}/{{ item }}'
+    state: directory
+    owner: '{{ user.name }}'
+    group: '{{ user.group }}'
+    mode: '0755'
+  with_items:
+    - Projects
+

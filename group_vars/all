@@ -1,0 +1,18 @@
+user:
+  name: danielfm
+  uid: 1000
+  group: danielfm
+  create_ssh_keypair: yes
+
+  # Ref: ansible all -i localhost, -m debug -a "msg={{ 'some_password' | password_hash('sha512', 'my_secret_salt') }}"
+  password: $6$aa2cc88978b44f81$VpfoeScTyT2cvboIUrXsMXQgFH9WGO5xqi18q6b/pybUKPWQ9To77qZs/KtADVGJOHJkadJ0lqt6UC7zueEnV/
+
+  full_name: Daniel Martins
+  email: daniel.tritone@gmail.com
+  github_username: danielfm
+  irc_nickname: caninha
+  git_gpg_signing_key: 5BA3A7CF9E6F1E70
+
+system:
+  timezone: America/Sao_Paulo
+  locale: en_US.UTF-8

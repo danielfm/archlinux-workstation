@@ -1,0 +1,35 @@
+- name: Add system bin scripts
+  become: yes
+  copy:
+    src: usr/local/bin/
+    dest: /usr/local/bin/
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Switch to lightdm-slick-greeter
+  become: yes
+  lineinfile:
+    path: /etc/lightdm/lightdm.conf
+    insertafter: '\[Seat:\*\]'
+    regexp: '^greeter-session='
+    line: greeter-session=lightdm-slick-greeter
+
+- name: Copy lightdm-slick-greeter background
+  become: yes
+  copy:
+    src: usr/share/backgrounds/lightdm-background.png
+    dest: /usr/share/backgrounds/lightdm-background.png
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Add lightdm-slick-greeter configuration file
+  become: yes
+  copy:
+    src: etc/lightdm/slick-greeter.conf
+    dest: /etc/lightdm/slick-greeter.conf
+    owner: root
+    group: root
+    mode: '0644'
+
