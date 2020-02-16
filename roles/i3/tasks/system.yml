@@ -41,3 +41,12 @@
     owner: root
     group: root
     mode: '0644'
+
+- name: Disable internal speaker beep
+  become: yes
+  copy:
+    content: blacklist pcspkr
+    dest: /etc/modprobe.d/nobeep.conf
+    owner: root
+    group: root
+    mode: '0644'
