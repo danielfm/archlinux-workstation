@@ -33,3 +33,11 @@
     group: root
     mode: '0644'
 
+- name: Add X11 configuration files
+  become: yes
+  copy:
+    src: etc/X11/xorg.conf.d/
+    dest: /etc/X11/xorg.conf.d/
+    owner: root
+    group: root
+    mode: '0644'
