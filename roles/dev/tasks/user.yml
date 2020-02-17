@@ -72,3 +72,10 @@
   git:
     repo: https://github.com/VundleVim/Vundle.vim.git
     dest: '/home/{{ user.name }}/.vim/bundle/vundle'
+
+- name: Install emacs configuration
+  become: yes
+  become_user: '{{ user.name }}'
+  git:
+    repo: https://github.com/danielfm/dotfiles-emacs.git
+    dest: '/home/{{ user.name }}/.emacs.d'
