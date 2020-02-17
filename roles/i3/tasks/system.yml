@@ -7,6 +7,13 @@
     group: root
     mode: '0755'
 
+- name: Change default cursor
+  become: yes
+  lineinfile:
+    path: /usr/share/icons/default/index.theme
+    regexp: '^Inherits='
+    line: Inherits=Breeze
+
 - name: Switch to lightdm-slick-greeter
   become: yes
   lineinfile:
