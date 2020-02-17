@@ -19,6 +19,6 @@ system:
 
   # Which sensor temperature to display in polybar
   polybar:
-    # temperature:
-    #   temperature_thermal_zone: 0
-    #   temperature_hwmon_path: /sys/devices/platform/coretemp.0/hwmon/hwmon8/temp1_input
+    temperature:
+      temperature_thermal_zone: 0
+      temperature_hwmon_path: /sys/devices/platform/coretemp.0/hwmon/hwmon8/temp1_input
