@@ -1,6 +1,8 @@
 ---
 - hosts: all
   roles:
-  - base
-  - i3
-  - dev
+    - base
+    - i3
+    - dev
+  vars_files:
+    - vars/main.yml
