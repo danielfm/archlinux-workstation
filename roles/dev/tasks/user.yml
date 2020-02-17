@@ -59,3 +59,16 @@
   with_items:
     - Projects
 
+- name: Install tmux plugin manager
+  become: yes
+  become_user: '{{ user.name }}'
+  git:
+    repo: https://github.com/tmux-plugins/tpm
+    dest: '/home/{{ user.name }}/.tmux/plugins/tpm'
+
+- name: Install vundle plugin manager
+  become: yes
+  become_user: '{{ user.name }}'
+  git:
+    repo: https://github.com/VundleVim/Vundle.vim.git
+    dest: '/home/{{ user.name }}/.vim/bundle/vundle'
