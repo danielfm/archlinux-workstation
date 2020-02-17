@@ -117,6 +117,11 @@ label = %temperature-c%
 [module/xwindow]
 type = internal/xwindow
 
+{% if system.polybar.temperature %}
+thermal-zone = {{ system.polybar.temperature.thermal_zone }}
+hwmon-path = {{ system.polybar.temperature.hwmon_path }}
+{% endif %}
+
 format =  <label>
 label = %title%
 

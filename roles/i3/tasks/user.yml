@@ -13,19 +13,6 @@
     - .gtkrc-2.0
     - .config
 
-- name: Add GTK bookmarks
-  become: yes
-  become_user: '{{ user.name }}'
-  template:
-    src: home/.gtk-bookmarks.j2
-    dest: '/home/{{ user.name }}/{{ item }}'
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
-    mode: '0644'
-  with_items:
-    - .gtk-bookmarks
-    - .config/gtk-3.0/bookmarks
-
 - name: Add user bin scripts
   become: yes
   become_user: '{{ user.name }}'
@@ -35,3 +22,17 @@
     owner: '{{ user.name }}'
     group: '{{ user.group }}'
     mode: '0755'
+
+- name: Add templated user config files
+  become: yes
+  become_user: '{{ user.name }}'
+  template:
+    src: 'home/{{ item }}.j2'
+    dest: '/home/{{ user.name }}/{{ item }}'
+    owner: '{{ user.name }}'
+    group: '{{ user.group}}'
+    mode: '0644'
+  with_items:
+    - .config/polybar/config
+    - .gtk-bookmarks
+    - .config/gtk-3.0/bookmarks
