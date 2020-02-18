@@ -17,6 +17,7 @@
       - gsimplecal
       - gvfs
       - hsetroot
+      - htop
       - i3-gaps
       - libappindicator-gtk2
       - libappindicator-gtk3
