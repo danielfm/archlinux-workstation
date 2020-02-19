@@ -5,8 +5,8 @@
     update_cache: yes
     name:
       - aspell
+      - aspell-en
       - aspell-pt
-      - aspell-us
       - dnsutils
       - docker
       - emacs
