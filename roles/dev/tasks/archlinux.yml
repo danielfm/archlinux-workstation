@@ -4,11 +4,13 @@
     state: present
     update_cache: yes
     name:
+      - aspell
       - dnsutils
       - docker
       - emacs
       - git-lfs
       - gnupg
+      - go
       - gopass
       - nano
       - tmux
