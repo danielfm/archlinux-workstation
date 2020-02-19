@@ -13,6 +13,7 @@
     name:
       - archlinux-wallpaper
       - dunst
+      - file-roller
       - gnome-keyring
       - gsimplecal
       - gvfs
@@ -34,6 +35,9 @@
       - ranger
       - rofi
       - thunar
+      - thunar-archive-plugin
+      - thunar-media-tags-plugin
+      - thunar-volman
       - vlc
       - volumeicon
       - w3m
