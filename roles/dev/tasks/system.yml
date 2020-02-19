@@ -3,3 +3,10 @@
   group:
     name: docker
     state: present
+
+- name: Enable the Docker service
+  become: yes
+  service:
+    name: docker
+    state: started
+    enabled: yes
