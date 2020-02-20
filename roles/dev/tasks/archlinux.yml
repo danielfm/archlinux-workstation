@@ -27,6 +27,5 @@
       - chef-dk
       - google-cloud-sdk
       - kail
-      # - kubernetes-helm2
-      # - kubernetes-helmfile-bin
       - pyenv-virtualenv
+      - zoom
