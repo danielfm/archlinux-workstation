@@ -23,3 +23,13 @@
     name: NetworkManager
     state: started
     enabled: yes
+
+- name: Ensure pulseaudio supports bluetooth
+  become: yes
+  lineinfile:
+    path: /etc/pulse/system.pa
+    regexp: '^load-module {{ item }}'
+    line: 'load-module {{ item }}'
+  with_item:
+    - module-bluetooth-policy
+    - module-bluetooth-discover
