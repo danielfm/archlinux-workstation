@@ -40,6 +40,7 @@
       - alsa-plugins
       - alsa-utils
       - arandr
+      - bluez-utils
       - base-devel
       - firefox
       - linux-headers
@@ -54,6 +55,7 @@
       - playerctl
       - pulseaudio
       - pulseaudio-alsa
+      - pulseaudio-bluetooth
       - vim
       - which
       - xclip
