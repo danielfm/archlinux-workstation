@@ -71,3 +71,10 @@
     path: /etc/pulse/default.pa
     regexp: '^load-module module-echo-cancel'
     line: load-module module-echo-cancel
+
+- name: Enable bluetooth service
+  become: yes
+  service:
+    name: bluetooth
+    state: started
+    enabled: yes

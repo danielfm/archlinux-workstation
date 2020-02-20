@@ -278,6 +278,7 @@ bindsym $mod+9 exec --no-startup-id i3exit lock
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id nm-applet
 exec --no-startup-id xfce4-power-manager
+exec --no-startup-id blueman-applet
 exec --no-startup-id pamac-tray
 exec --no-startup-id volumeicon
 exec --no-startup-id clipit

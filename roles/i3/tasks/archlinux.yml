@@ -12,6 +12,8 @@
     update_cache: yes
     name:
       - archlinux-wallpaper
+      - blueman
+      - bluez-utils
       - dunst
       - file-roller
       - evince
