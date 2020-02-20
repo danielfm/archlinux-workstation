@@ -1,4 +1,4 @@
-# Arch Linux Development Environment
+# Arch Linux Workstation
 
 [Ansible](https://www.ansible.com/) playbook for configuring my main work
 machine on top of a clean [Arch Linux](https://www.archlinux.org/) installation.
@@ -57,13 +57,13 @@ Clone this playbook in your home directory, edit the `vars/main.yml` file to
 your liking and then run the following command to apply the Ansible playbook:
 
 ```sh
-git clone https://github.com/danielfm/ansible-work-machine.git
-cd ansible-work-machine
+git clone https://github.com/danielfm/archlinux-workstation.git
+cd archlinux-workstation
 ansible-playbook playbook.yml
 ```
 
 Don't leave the machine unattended as you'll probably have to re-enter the user
-password a few times along the process when installing the required packages.
+password a few times throughout the process when installing the required packages.
 
 #### Troubleshooting: AUR Issues
 
