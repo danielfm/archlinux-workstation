@@ -25,14 +25,11 @@
 - name: Copy background images
   become: yes
   copy:
-    src: "usr/share/backgrounds/{{ item }}"
-    dest: "/usr/share/backgrounds/{{ item }}"
+    src: "usr/share/backgrounds/"
+    dest: "/usr/share/backgrounds/"
     owner: root
     group: root
     mode: '0644'
-  with_items:
-    - lightdm-background.png
-    - background.png
 
 - name: Add lightdm-slick-greeter configuration file
   become: yes
