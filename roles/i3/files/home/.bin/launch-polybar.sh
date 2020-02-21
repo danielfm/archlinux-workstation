@@ -4,6 +4,9 @@
 hsetroot -solid "#dadee3"
 wal --theme base16-classic -l
 
+# Set background image
+nitrogen --restore
+
 # Terminate already running bar instances
 killall -q polybar
 
