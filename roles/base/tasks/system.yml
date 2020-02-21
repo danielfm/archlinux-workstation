@@ -30,6 +30,6 @@
     path: /etc/pulse/system.pa
     regexp: '^load-module {{ item }}'
     line: 'load-module {{ item }}'
-  with_item:
+  with_items:
     - module-bluetooth-policy
     - module-bluetooth-discover
