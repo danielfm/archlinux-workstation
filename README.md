@@ -14,8 +14,8 @@ to bootstrap the base system.
 I also use
 [full disk encryption](https://wiki.archlinux.org/index.php/Dm-crypt), as I
 always need to keep some credentials and other sensitive information stored in
-the local disk. This protects my files from being accessed in case someone
-steals my work machine and tries to access the disk.
+the local disk. This protects my files from being accessed in case my work
+machine gets stolen.
 
 ### Pre-Installation
 
