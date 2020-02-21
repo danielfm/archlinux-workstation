@@ -22,14 +22,17 @@
     regexp: '^greeter-session='
     line: greeter-session=lightdm-slick-greeter
 
-- name: Copy lightdm-slick-greeter background
+- name: Copy background images
   become: yes
   copy:
-    src: usr/share/backgrounds/lightdm-background.png
-    dest: /usr/share/backgrounds/lightdm-background.png
+    src: "usr/share/backgrounds/{{ item }}"
+    dest: "/usr/share/backgrounds/{{ item }}"
     owner: root
     group: root
     mode: '0644'
+  with_items:
+    - lightdm-background.png
+    - background.png
 
 - name: Add lightdm-slick-greeter configuration file
   become: yes
