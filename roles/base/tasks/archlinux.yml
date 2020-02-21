@@ -50,6 +50,7 @@
       - network-manager-applet
       - networkmanager
       - networkmanager-openvpn
+      - ntfs-3g
       - noto-fonts
       - pavucontrol
       - playerctl
