@@ -41,6 +41,8 @@
       - thunar-archive-plugin
       - thunar-media-tags-plugin
       - thunar-volman
+      - tumbler
+      - viewnior
       - vlc
       - volumeicon
       - w3m
