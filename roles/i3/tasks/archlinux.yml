@@ -17,6 +17,7 @@
       - file-roller
       - evince
       - gnome-keyring
+      - gparted
       - gsimplecal
       - gvfs
       - hsetroot
