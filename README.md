@@ -3,7 +3,7 @@
 [Ansible](https://www.ansible.com/) playbook for configuring my main work
 machine on top of a clean [Arch Linux](https://www.archlinux.org/) installation.
 
-TODO: screenshot
+![screenshot](./screenshot.png)
 
 ## Instructions
 
