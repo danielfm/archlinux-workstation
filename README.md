@@ -61,13 +61,13 @@ Logout and then login as the new `ansible` user.
 
 ### Running the Ansible Playbook
 
-Clone this playbook in your home directory, edit the `vars/main.yml` file to
+Clone this playbook in your home directory, edit the `vars/custom.yml` file to
 your liking and then run the following command to apply the Ansible playbook:
 
 ```sh
 git clone https://github.com/danielfm/archlinux-workstation.git
 cd archlinux-workstation
-ansible-playbook playbook.yml
+ansible-playbook playbook.yml -e "@vars/custom.yml"
 ```
 
 Don't leave the machine unattended as you'll probably have to re-enter the user
