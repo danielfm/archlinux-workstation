@@ -27,10 +27,6 @@ machine gets stolen.
 
 ### Pre-Installation
 
-Make sure you have internet connectivity and run the following commands as
-the `root` user to install the required software for the `ansible-playbook`
-command to work:
-
 #### Install the Required Packages
 
 Run the following command as `root` to install the packages required to
@@ -61,8 +57,9 @@ Logout and then login as the new `ansible` user.
 
 ### Running the Ansible Playbook
 
-Clone this playbook in your home directory, edit the `vars/custom.yml` file to
-your liking and then run the following command to apply the Ansible playbook:
+Clone this playbook in your home directory, override the desired variables
+defined in `vars/custom.yml` (see the available vars in `vars/main.yml`) and
+then run the following command to apply the Ansible playbook:
 
 ```sh
 git clone https://github.com/danielfm/archlinux-workstation.git
