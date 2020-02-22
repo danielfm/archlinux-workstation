@@ -3,7 +3,15 @@
 [Ansible](https://www.ansible.com/) playbook for configuring my main work
 machine on top of a clean [Arch Linux](https://www.archlinux.org/) installation.
 
+This configuration sets up a desktop environment based on
+[i3-gaps](https://github.com/Airblader/i3), a popular fork of the
+[i3](https://i3wm.org/) tiling window manager.
+
 ![screenshot](./screenshot.png)
+
+**Note:** Since this is used in different hardware, it does not try to set up
+hardware-specific drivers and configuration; these should be done manually
+in each machine.
 
 ## Instructions
 
