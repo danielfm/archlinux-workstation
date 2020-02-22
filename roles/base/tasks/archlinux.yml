@@ -40,7 +40,6 @@
       - alsa-plugins
       - alsa-utils
       - arandr
-      - bluez-utils
       - base-devel
       - firefox
       - linux-headers
@@ -56,12 +55,21 @@
       - playerctl
       - pulseaudio
       - pulseaudio-alsa
-      - pulseaudio-bluetooth
       - vim
       - which
       - xclip
       - xterm
       - zsh
+
+- name: Install packages required for bluetooth support
+  become: yes
+  pacman:
+    state: present
+    name:
+      - bluez-utils
+      - pulseaudio-bluetooth
+  when:
+    - system.bluetooth|bool
 
 - name: Install AUR packages
   aur:

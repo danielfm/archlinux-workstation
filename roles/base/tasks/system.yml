@@ -33,3 +33,5 @@
   with_items:
     - module-bluetooth-policy
     - module-bluetooth-discover
+  when:
+    - system.bluetooth|bool

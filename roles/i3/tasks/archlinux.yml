@@ -9,10 +9,8 @@
   become: yes
   pacman:
     state: present
-    update_cache: yes
     name:
       - archlinux-wallpaper
-      - blueman
       - dunst
       - file-roller
       - evince
@@ -52,6 +50,15 @@
       - xorg-xinit
       - urxvt-perls
 
+- name: Install packages required for bluetooth support
+  become: yes
+  pacman:
+    state: present
+    name:
+      - blueman
+  when:
+    - system.bluetooth|bool
+
 - name: Install AUR packages
   aur:
     upgrade: no
@@ -74,10 +81,4 @@
       - urxvt-resize-font-git
       - terminess-powerline-font-git
       - nerd-fonts-terminus
-
-- name: Enable lightdm service
-  become: true
-  systemd:
-    name: lightdm
-    enabled: yes
 

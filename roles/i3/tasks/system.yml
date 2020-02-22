@@ -72,6 +72,12 @@
     regexp: '^load-module module-echo-cancel'
     line: load-module module-echo-cancel
 
+- name: Enable lightdm service
+  become: true
+  systemd:
+    name: lightdm
+    enabled: yes
+
 - name: Enable bluetooth service
   become: yes
   service:
