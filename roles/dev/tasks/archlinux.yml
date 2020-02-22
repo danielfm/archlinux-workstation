@@ -2,7 +2,6 @@
   become: yes
   pacman:
     state: present
-    update_cache: yes
     name:
       - aspell
       - aspell-en
