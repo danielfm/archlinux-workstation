@@ -9,9 +9,9 @@ This configuration sets up a desktop environment based on
 
 ![screenshot](./screenshot.png)
 
-**Note:** Since this is used in different hardware, it does not try to set up
-hardware-specific drivers and configuration; these should be done manually
-in each machine.
+**Note:** Since this is used in different machines with different hardware, it
+does not try to set up hardware-specific drivers and configuration; these should
+be done manually in each machine.
 
 ## Instructions
 
