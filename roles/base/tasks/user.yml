@@ -3,6 +3,7 @@
   group:
     name: '{{ user.group }}'
     state: present
+    gid: '{{ user.gid }}'
 
 - name: Ensure {{ user.name }} user exists
   become: yes

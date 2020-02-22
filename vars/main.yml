@@ -1,7 +1,8 @@
 user:
   name: danielfm
-  uid: 1000
   group: danielfm
+  uid: 1000
+  gid: 1000
   create_ssh_keypair: yes
 
   # Ref: ansible all -i localhost, -m debug -a "msg={{ 'some_password' | password_hash('sha512', 'my_secret_salt') }}"
