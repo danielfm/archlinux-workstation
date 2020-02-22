@@ -2,9 +2,6 @@
 
 set -x
 
-# Script for setting up external monitors according to my personal setup. You
-# can move this to /usr/local/bin to be able to reuse it across accounts.
-
 MONITORS=$(xrandr -q | grep '.* connected' | awk '{ print $1 }')
 N_MONITORS=$(echo "$MONITORS" | wc -l)
 
