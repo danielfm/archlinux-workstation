@@ -40,13 +40,6 @@
     group: root
     mode: '0644'
 
-- name: Hide the ansible user from the login screen
-  become: yes
-  lineinfile:
-    path: /etc/lightdm/users.conf
-    regexp: '^hidden-users='
-    line: 'hidden-users=ansible nobody nobody4 noaccess'
-
 - name: Add X11 configuration files
   become: yes
   copy:

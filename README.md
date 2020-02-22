@@ -45,8 +45,8 @@ Run the following commands as root to create a new `ansible` user:
 
 ```sh
 # Create a 'ansible' group and user:
-groupadd -g 2000 ansible
-useradd -m -u 2000 -g ansible -G wheel ansible
+groupadd -r ansible
+useradd -m -r -g ansible -G wheel ansible
 passwd ansible <password>
 
 # Make sure the ansible user is allowed to sudo:
