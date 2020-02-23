@@ -33,7 +33,7 @@ Run the following command as `root` to install the packages required to
 complete the rest of the installation:
 
 ```sh
-pacman -S ansible git git-lfs base-devel makepkg nano
+pacman -S ansible git git-lfs base-devel makepkg sudo nano
 ```
 
 ### Create User for Running the Ansible Playbook
