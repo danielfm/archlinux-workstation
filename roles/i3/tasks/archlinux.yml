@@ -27,6 +27,7 @@
       - lightdm-gtk-greeter
       - lxappearance
       - maim
+      - mesa-demos
       - nitrogen
       - pantheon-calculator
       - papirus-icon-theme
