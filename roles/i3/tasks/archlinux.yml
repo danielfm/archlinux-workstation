@@ -32,6 +32,7 @@
       - lightdm-gtk-greeter
       - lxappearance
       - maim
+      - mediainfo
       - mesa-demos
       - nitrogen
       - pantheon-calculator
@@ -46,6 +47,7 @@
       - thunar-archive-plugin
       - thunar-media-tags-plugin
       - thunar-volman
+      - transmission-gtk
       - tumbler
       - viewnior
       - vlc
