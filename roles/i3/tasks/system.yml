@@ -22,6 +22,14 @@
     regexp: '^greeter-session='
     line: greeter-session=lightdm-slick-greeter
 
+- name: Run setup-displays.sh script in lightdm
+  become: yes
+  lineinfile:
+    path: /etc/lightdm/lightdm.conf
+    insertafter: '\[Seat:\*\]'
+    regexp: '^display-setup-script='
+    line: display-setup-script=setup-displays.sh
+
 - name: Copy background images
   become: yes
   copy:
