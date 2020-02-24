@@ -22,6 +22,7 @@
       - gst-plugins-good
       - gst-plugins-ugly
       - gvfs
+      - highlight
       - hsetroot
       - htop
       - i3-gaps
