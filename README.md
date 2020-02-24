@@ -5,7 +5,8 @@ machine on top of a clean [Arch Linux](https://www.archlinux.org/) installation.
 
 This configuration sets up a desktop environment based on
 [i3-gaps](https://github.com/Airblader/i3), a popular fork of the
-[i3](https://i3wm.org/) tiling window manager.
+[i3](https://i3wm.org/) tiling window manager. (See a potentially outdated
+screenshot below)
 
 ![screenshot](./screenshot.png)
 
