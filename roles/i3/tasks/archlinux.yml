@@ -17,6 +17,10 @@
       - gnome-keyring
       - gparted
       - gsimplecal
+      - gst-libav
+      - gst-plugins-bad
+      - gst-plugins-good
+      - gst-plugins-ugly
       - gvfs
       - hsetroot
       - htop
@@ -35,6 +39,7 @@
       - python-pywal
       - qt5ct
       - ranger
+      - rhythmbox
       - rofi
       - thunar
       - thunar-archive-plugin
