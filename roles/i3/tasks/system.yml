@@ -28,7 +28,7 @@
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
     regexp: '^display-setup-script='
-    line: display-setup-script=setup-displays.sh
+    line: display-setup-script=/usr/local/bin/setup-displays.sh
 
 - name: Copy background images
   become: yes
