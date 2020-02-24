@@ -47,6 +47,7 @@
       - w3m
       - xautolock
       - xfce4-power-manager
+      - xfce4-session
       - xorg-apps
       - xorg-xinit
       - urxvt-perls
