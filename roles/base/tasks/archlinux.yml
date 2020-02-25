@@ -55,6 +55,7 @@
       - playerctl
       - pulseaudio
       - pulseaudio-alsa
+      - realtime-privileges
       - vim
       - which
       - xclip

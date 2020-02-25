@@ -12,6 +12,7 @@
     password: '{{ user.password }}'
     groups:
       - '{{ user.group }}'
+      - realtime
       - audio
       - lp
       - network
