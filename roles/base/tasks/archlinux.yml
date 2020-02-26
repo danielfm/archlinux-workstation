@@ -41,6 +41,7 @@
       - alsa-utils
       - arandr
       - base-devel
+      - efitools
       - firefox
       - flatpak
       - linux-headers
@@ -57,6 +58,7 @@
       - pulseaudio
       - pulseaudio-alsa
       - realtime-privileges
+      - sbsigntools
       - vim
       - which
       - xclip
