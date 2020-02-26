@@ -21,10 +21,11 @@ First, follow the
 to bootstrap the base system.
 
 I also use
-[full disk encryption](https://wiki.archlinux.org/index.php/Dm-crypt), as I
-always need to keep some credentials and other sensitive information stored in
-the local disk. This protects my files from being accessed in case my work
-machine gets stolen.
+[full disk encryption](https://wiki.archlinux.org/index.php/Dm-crypt) and enable
+[Secure Boot](https://wiki.archlinux.org/index.php/Secure_Boot) (only possible
+in more recent hardware), as I  always need to keep some credentials and other
+sensitive information stored in the local disk. This protects my files from
+being accessed in case my work machine gets stolen.
 
 ### Pre-Installation
 
