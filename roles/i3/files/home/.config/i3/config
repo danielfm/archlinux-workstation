@@ -55,8 +55,8 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 # bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+
 # bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%-
 
-# For some reason, muting and unmuting via volumeicon doesn't work as expected
-bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle
+# If for some reason muting and unmuting via volumeicon doesn't work as expected:
+# bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle
 
 bindsym $mod+Shift+F1 exec xdg-open ~
 bindsym $mod+F1  exec $term -e 'ranger'
