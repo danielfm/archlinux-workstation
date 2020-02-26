@@ -42,6 +42,7 @@
       - arandr
       - base-devel
       - firefox
+      - flatpak
       - linux-headers
       - man-db
       - man-pages
