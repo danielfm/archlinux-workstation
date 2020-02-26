@@ -56,3 +56,10 @@
     create: yes
     validate: 'visudo -cf %s'
 
+- name: Add flathub remote to the user flatpak installation
+  become: yes
+  become_user: '{{ user.name }}'
+  flatpak_remote:
+    name: flathub
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
