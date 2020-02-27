@@ -40,14 +40,6 @@
       - docker
     append: yes
 
-- name: Install oh-my-zsh
-  become: yes
-  become_user: '{{ user.name }}'
-  git:
-    repo: https://github.com/ohmyzsh/ohmyzsh.git
-    dest: '/home/{{ user.name }}/.oh-my-zsh'
-    remote: readonly
-
 - name: Add extra directories
   become: yes
   become_user: '{{ user.name }}'
@@ -60,6 +52,16 @@
   with_items:
     - Projects
 
+- name: Install oh-my-zsh
+  become: yes
+  become_user: '{{ user.name }}'
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: '/home/{{ user.name }}/.oh-my-zsh'
+    remote: readonly
+    accept_hostkey: yes
+    track_submodules: yes
+
 - name: Install tmux plugin manager
   become: yes
   become_user: '{{ user.name }}'
@@ -67,6 +69,8 @@
     repo: https://github.com/tmux-plugins/tpm
     dest: '/home/{{ user.name }}/.tmux/plugins/tpm'
     remote: readonly
+    accept_hostkey: yes
+    track_submodules: yes
 
 - name: Install vundle plugin manager
   become: yes
@@ -75,6 +79,8 @@
     repo: https://github.com/VundleVim/Vundle.vim.git
     dest: '/home/{{ user.name }}/.vim/bundle/vundle'
     remote: readonly
+    accept_hostkey: yes
+    track_submodules: yes
 
 - name: Install emacs configuration
   become: yes
@@ -83,3 +89,5 @@
     repo: https://github.com/danielfm/dotfiles-emacs.git
     dest: '/home/{{ user.name }}/.emacs.d'
     remote: readonly
+    accept_hostkey: yes
+    track_submodules: yes
