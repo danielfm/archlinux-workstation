@@ -30,6 +30,14 @@
     regexp: '^display-setup-script='
     line: display-setup-script=/usr/local/bin/setup-displays.sh
 
+- name: Hide the user list in lightdm
+  become: yes
+  lineinfile:
+    path: /etc/lightdm/lightdm.conf
+    insertafter: '\[Seat:\*\]'
+    regexp: '^greeter-hide-users'
+    line: greeter-hide-users=true
+
 - name: Copy background images
   become: yes
   copy:
