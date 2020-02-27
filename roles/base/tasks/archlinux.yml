@@ -32,7 +32,6 @@
 
 - name: Ensure yay AUR helper package is up to date
   aur:
-    upgrade: yes
     name:
       - yay
 
