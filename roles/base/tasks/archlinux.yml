@@ -60,6 +60,8 @@
       - pulseaudio-alsa
       - realtime-privileges
       - sbsigntools
+      - time
+      - tree
       - vim
       - which
       - xclip
