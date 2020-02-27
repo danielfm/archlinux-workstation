@@ -46,6 +46,7 @@
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     dest: '/home/{{ user.name }}/.oh-my-zsh'
+    remote: readonly
 
 - name: Add extra directories
   become: yes
@@ -65,6 +66,7 @@
   git:
     repo: https://github.com/tmux-plugins/tpm
     dest: '/home/{{ user.name }}/.tmux/plugins/tpm'
+    remote: readonly
 
 - name: Install vundle plugin manager
   become: yes
@@ -72,6 +74,7 @@
   git:
     repo: https://github.com/VundleVim/Vundle.vim.git
     dest: '/home/{{ user.name }}/.vim/bundle/vundle'
+    remote: readonly
 
 - name: Install emacs configuration
   become: yes
@@ -79,3 +82,4 @@
   git:
     repo: https://github.com/danielfm/dotfiles-emacs.git
     dest: '/home/{{ user.name }}/.emacs.d'
+    remote: readonly
