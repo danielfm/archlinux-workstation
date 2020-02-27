@@ -60,7 +60,6 @@
     dest: '/home/{{ user.name }}/.oh-my-zsh'
     remote: readonly
     accept_hostkey: yes
-    track_submodules: yes
 
 - name: Install tmux plugin manager
   become: yes
@@ -70,7 +69,6 @@
     dest: '/home/{{ user.name }}/.tmux/plugins/tpm'
     remote: readonly
     accept_hostkey: yes
-    track_submodules: yes
 
 - name: Install vundle plugin manager
   become: yes
@@ -80,7 +78,6 @@
     dest: '/home/{{ user.name }}/.vim/bundle/vundle'
     remote: readonly
     accept_hostkey: yes
-    track_submodules: yes
 
 - name: Install emacs configuration
   become: yes
@@ -90,4 +87,3 @@
     dest: '/home/{{ user.name }}/.emacs.d'
     remote: readonly
     accept_hostkey: yes
-    track_submodules: yes
