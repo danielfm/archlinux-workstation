@@ -47,6 +47,7 @@
       - alsa-utils
       - arandr
       - base-devel
+      - curl
       - efitools
       - firefox
       - flatpak
@@ -69,6 +70,7 @@
       - time
       - tree
       - vim
+      - wget
       - which
       - xclip
       - xterm
