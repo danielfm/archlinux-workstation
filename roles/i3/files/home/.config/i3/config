@@ -42,20 +42,18 @@ bindsym $mod+Shift+m exec $term -e 'alsamixer'
 # to switch between the layouts
 exec --no-startup-id setxkbmap -model pc105 -layout us,br -variant intl,thinkpad -option grp:shifts_toggle
 
-# Backlight buttons
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
-
 # Media buttons
 bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
-# Volume icons, controlled via volumeicon
+# In case reason backlight buttons via xfce4-power-manager doesn't work:
+# bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10
+# bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 10
+
+# In case volume keys via volumeicon doesn't work:
 # bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+
 # bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%-
-
-# If for some reason muting and unmuting via volumeicon doesn't work as expected:
 # bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle
 
 bindsym $mod+Shift+F1 exec xdg-open ~
