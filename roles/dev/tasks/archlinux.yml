@@ -3,6 +3,7 @@
   pacman:
     state: present
     name:
+      - android-tools
       - aspell
       - aspell-en
       - aspell-pt
