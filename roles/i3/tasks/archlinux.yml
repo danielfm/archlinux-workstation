@@ -12,8 +12,9 @@
     name:
       - archlinux-wallpaper
       - dunst
-      - file-roller
       - evince
+      - file-roller
+      - firefox
       - gnome-keyring
       - gnucash
       - gnucash-docs
@@ -51,6 +52,7 @@
       - thunar-volman
       - transmission-gtk
       - tumbler
+      - urxvt-perls
       - viewnior
       - vlc
       - volumeicon
@@ -59,7 +61,6 @@
       - xfce4-power-manager
       - xorg-apps
       - xorg-xinit
-      - urxvt-perls
 
 - name: Install packages required for bluetooth support
   become: yes

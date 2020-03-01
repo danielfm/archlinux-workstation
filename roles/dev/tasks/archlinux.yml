@@ -10,14 +10,12 @@
       - dnsutils
       - docker
       - emacs
-      - git-lfs
       - gnupg
       - go
       - gopass
       - k9s
       - keybase-gui
       - kubectl
-      - nano
       - tmux
 
 - name: Install AUR packages

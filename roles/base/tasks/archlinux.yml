@@ -49,24 +49,28 @@
       - base-devel
       - curl
       - efitools
-      - firefox
       - flatpak
       - fwupd
+      - git
+      - git-lfs
       - linux-headers
       - man-db
       - man-pages
+      - nano
       - neofetch
       - network-manager-applet
       - networkmanager
       - networkmanager-openvpn
       - ntfs-3g
       - noto-fonts
+      - openssh
       - pavucontrol
       - playerctl
       - pulseaudio
       - pulseaudio-alsa
       - realtime-privileges
       - sbsigntools
+      - sudo
       - time
       - tree
       - vim
