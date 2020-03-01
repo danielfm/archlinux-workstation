@@ -11,6 +11,7 @@
     state: present
     name:
       - archlinux-wallpaper
+      - deja-dup
       - dunst
       - evince
       - file-roller
