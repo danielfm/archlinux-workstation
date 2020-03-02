@@ -46,13 +46,17 @@
       - alsa-plugins
       - alsa-utils
       - arandr
+      - avahi
       - base-devel
+      - cups
       - curl
       - efitools
       - flatpak
+      - foomatic-db-gutenprint-ppds
       - fwupd
       - git
       - git-lfs
+      - gutenprint
       - linux-headers
       - man-db
       - man-pages
@@ -61,6 +65,7 @@
       - network-manager-applet
       - networkmanager
       - networkmanager-openvpn
+      - nss-mdns
       - ntfs-3g
       - noto-fonts
       - openssh
