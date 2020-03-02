@@ -11,7 +11,18 @@
     - .Xresources
     - .Xresources.d
     - .gtkrc-2.0
+    - .dmrc
     - .config
+
+- name: Add user to autologin group
+  become: yes
+  user:
+    name: '{{ user.name }}'
+    groups:
+      - autologin
+    append: yes
+  when:
+    - user.autologin|bool
 
 - name: Add user bin scripts
   become: yes

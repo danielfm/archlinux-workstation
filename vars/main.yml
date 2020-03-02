@@ -5,6 +5,10 @@ user:
   gid: 1000
   create_ssh_keypair: yes
 
+  # Only use this if you have some sort of security mechanism in place
+  # prior to the login, i.e., disk encryption password prompt
+  autologin: no
+
   # Ref: ansible all -i localhost, -m debug -a "msg={{ 'some_password' | password_hash('sha512', 'my_secret_salt') }}"
   password: $6$aa2cc88978b44f81$VpfoeScTyT2cvboIUrXsMXQgFH9WGO5xqi18q6b/pybUKPWQ9To77qZs/KtADVGJOHJkadJ0lqt6UC7zueEnV/
 
