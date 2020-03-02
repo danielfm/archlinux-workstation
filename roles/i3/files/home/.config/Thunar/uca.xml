@@ -23,4 +23,13 @@
 	<text-files/>
 	<video-files/>
 </action>
+<action>
+	<icon></icon>
+	<name>Restore missing</name>
+	<unique-id>1583188764573906-2</unique-id>
+	<command>deja-dup --restore-missing %f</command>
+	<description>Restore missing files from the current directory</description>
+	<patterns>*</patterns>
+	<directories/>
+</action>
 </actions>
