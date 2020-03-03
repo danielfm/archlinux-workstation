@@ -70,3 +70,22 @@
     name: ufw
     state: started
     enabled: yes
+
+- name: Enable ufw with default incoming deny policy
+  become: yes
+  ufw:
+    state: enabled
+    policy: deny
+    direction: incoming
+
+- name: Enable ufw with default outgoing allow policy
+  become: yes
+  ufw:
+    state: enabled
+    policy: allow
+    direction: outgoing
+
+- name: Enable ufw logging
+  become: yes
+  ufw:
+    logging: low
