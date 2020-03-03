@@ -57,36 +57,16 @@
   when:
     - system.bluetooth|bool
 
-- name: Enable ufw service
-  become: yes
-  service:
-    name: ufw
-    state: started
-    enabled: yes
-
-- name: Set ufw default policy
-  become: yes
-  ufw:
-    state: enabled
-    policy: deny
-    logging: 'on'
-
-- name: Rate limit SSH connections via ufw
-  become: yes
-  ufw:
-    rule: limit
-    port: ssh
-    proto: tcp
-
-- name: Allow connections to Transmission port via ufw
-  become: yes
-  ufw:
-    rule: allow
-    name: Transmission
-
 - name: Set ufw default forward policy
   become: yes
   lineinfile:
     path: /etc/default/ufw
     regex: '^DEFAULT_FORWARD_POLICY='
     line: 'DEFAULT_FORWARD_POLICY="ACCEPT"'
+
+- name: Enable ufw service
+  become: yes
+  service:
+    name: ufw
+    state: started
+    enabled: yes
