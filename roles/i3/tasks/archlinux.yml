@@ -25,6 +25,7 @@
       - gst-plugins-bad
       - gst-plugins-good
       - gst-plugins-ugly
+      - gufw
       - gvfs
       - highlight
       - hsetroot
