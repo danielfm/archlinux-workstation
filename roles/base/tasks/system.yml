@@ -8,15 +8,6 @@
   locale_gen:
     name: '{{ system.locale }}'
 
-- name: Add /usr/local/bin files
-  become: yes
-  copy:
-    src: usr/local/bin/
-    dest: /usr/local/bin/
-    owner: 'root'
-    group: 'root'
-    mode: '0755'
-
 - name: Set up avahi local hostname resolution
   become: yes
   lineinfile:
