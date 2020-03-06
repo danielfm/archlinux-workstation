@@ -76,7 +76,7 @@ nano vars/custom.yml
 ansible-playbook playbook.yml -e "@vars/custom.yml"
 ```
 
-Don't leave the machine unattended as you'll probably have to re-enter the user
+Don't leave the machine unattended as you'll might have to re-enter the user
 password a few times throughout the process when installing the required packages.
 
 #### Troubleshooting: AUR Issues
