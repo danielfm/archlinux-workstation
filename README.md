@@ -60,12 +60,19 @@ Logout and then login as the new `ansible` user.
 ### Running the Ansible Playbook
 
 Clone this playbook in your home directory, override the desired variables
-defined in `vars/custom.yml` (see the available vars in `vars/main.yml`) and
+in a new file `vars/custom.yml` (see the available vars in `vars/main.yml`) and
 then run the following command to apply the Ansible playbook:
 
 ```sh
+# Clone the repository:
 git clone https://github.com/danielfm/archlinux-workstation.git
 cd archlinux-workstation
+
+# Change some variables (i.e. the user password hash):
+cp vars/main.yml vars/custom.yml
+nano vars/custom.yml
+
+# Run the playbook:
 ansible-playbook playbook.yml -e "@vars/custom.yml"
 ```
 
