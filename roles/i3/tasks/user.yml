@@ -57,3 +57,12 @@
     - .config/polybar/config
     - .gtk-bookmarks
     - .config/gtk-3.0/bookmarks
+
+- name: Add templated system config files
+  become: yes
+  template:
+    src: '{{ item }}.j2'
+    dest: '/{{ item }}'
+    mode: '0644'
+  with_items:
+    - etc/udev/rules.d/90-setup-displays.rules
