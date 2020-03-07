@@ -54,6 +54,7 @@
       - ranger
       - rhythmbox
       - rofi
+      - shotwell
       - thunar
       - thunar-archive-plugin
       - thunar-media-tags-plugin
