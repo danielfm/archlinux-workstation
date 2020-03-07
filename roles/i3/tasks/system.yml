@@ -92,6 +92,18 @@
     group: root
     mode: '0644'
 
+- name: Ensure pulseaudio supports bluetooth
+  become: yes
+  lineinfile:
+    path: /etc/pulse/system.pa
+    regexp: '^load-module {{ item }}'
+    line: 'load-module {{ item }}'
+  with_items:
+    - module-bluetooth-policy
+    - module-bluetooth-discover
+  when:
+    - system.bluetooth|bool
+
 - name: Load module-echo-cancel PulseAudio module by default
   become: yes
   lineinfile:

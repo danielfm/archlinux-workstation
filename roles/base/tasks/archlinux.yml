@@ -45,7 +45,6 @@
       - alsa-lib
       - alsa-plugins
       - alsa-utils
-      - arandr
       - avahi
       - base-devel
       - cups
@@ -62,17 +61,13 @@
       - man-pages
       - nano
       - neofetch
-      - network-manager-applet
       - networkmanager
       - networkmanager-openvpn
       - nss-mdns
       - ntfs-3g
-      - noto-fonts
       - openssh
       - pavucontrol
       - playerctl
-      - pulseaudio
-      - pulseaudio-alsa
       - realtime-privileges
       - sbsigntools
       - sudo
@@ -92,7 +87,6 @@
     state: present
     name:
       - bluez-utils
-      - pulseaudio-bluetooth
   when:
     - system.bluetooth|bool
 

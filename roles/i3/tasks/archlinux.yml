@@ -10,6 +10,7 @@
   pacman:
     state: present
     name:
+      - arandr
       - archlinux-wallpaper
       - deja-dup
       - dunst
@@ -39,10 +40,14 @@
       - maim
       - mediainfo
       - mesa-demos
+      - network-manager-applet
       - nitrogen
+      - noto-fonts
       - pantheon-calculator
       - papirus-icon-theme
       - polkit-gnome
+      - pulseaudio
+      - pulseaudio-alsa
       - python-pywal
       - qt5ct
       - ranger
@@ -70,6 +75,7 @@
     state: present
     name:
       - blueman
+      - pulseaudio-bluetooth
   when:
     - system.bluetooth|bool
 
