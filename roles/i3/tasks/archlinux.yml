@@ -45,6 +45,7 @@
       - noto-fonts
       - pantheon-calculator
       - papirus-icon-theme
+      - pavucontrol
       - polkit-gnome
       - pulseaudio
       - pulseaudio-alsa
@@ -86,18 +87,20 @@
     name:
       - clipit
       - dropbox
-      - i3lock-color-git
       - i3-scrot
+      - i3lock-color-git
       - lightdm-settings
       - lightdm-slick-greeter
       - matcha-gtk-theme
+      - nerd-fonts-terminus
+      - pamac-aur
       - picom-git
       - polybar
       - slack-desktop
       - spotify
+      - terminess-powerline-font-git
       - ttf-font-icons
-      - xcursor-breeze
+      - ttf-ms-fonts
       - urxvt-font-size
       - urxvt-resize-font-git
-      - terminess-powerline-font-git
-      - nerd-fonts-terminus
+      - xcursor-breeze
