@@ -95,3 +95,4 @@
     skip_installed: yes
     name:
       - pamac-cli
+      - pamac-zsh-completions
