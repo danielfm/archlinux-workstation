@@ -94,6 +94,7 @@
       - matcha-gtk-theme
       - nerd-fonts-terminus
       - pamac-aur
+      - pamac-zsh-completions
       - picom-git
       - polybar
       - slack-desktop
