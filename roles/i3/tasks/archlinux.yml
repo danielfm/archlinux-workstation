@@ -41,6 +41,7 @@
       - maim
       - mediainfo
       - mesa-demos
+      - mousepad
       - network-manager-applet
       - nitrogen
       - noto-fonts
