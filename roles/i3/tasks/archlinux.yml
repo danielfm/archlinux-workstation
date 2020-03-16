@@ -16,7 +16,6 @@
       - dunst
       - evince
       - file-roller
-      - firefox
       - gimp
       - gnome-keyring
       - gnucash
@@ -88,6 +87,7 @@
     upgrade: no
     skip_installed: yes
     name:
+      - brave-bin
       - clipit
       - dropbox
       - i3-scrot
