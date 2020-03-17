@@ -44,6 +44,7 @@
       - network-manager-applet
       - nitrogen
       - noto-fonts
+      - noto-fonts-emoji
       - pantheon-calculator
       - papirus-icon-theme
       - pavucontrol
