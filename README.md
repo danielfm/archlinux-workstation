@@ -16,6 +16,18 @@ be done manually in each machine.
 **Note:** This setup is constantly evolving, so the screenshot will most likely
 be outdated.
 
+## Modules
+
+This installation contains the following modules:
+
+- `base`, for setting up the base system
+- `i3`, for setting up [i3 window manager](https://i3wm.org/) and other
+  software I use in the desktop environment
+- `dev`, for setting up text editors and other software I used for my current
+  software engineering job
+- `audio`, for setting up the software I used for audio recording, which is
+  something I've been experimenting with as a hobby
+
 ## Instructions
 
 First, follow the

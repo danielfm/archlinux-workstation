@@ -1,0 +1,13 @@
+- name: Install packages
+  become: yes
+  pacman:
+    state: present
+    name:
+      - ardour
+      - cadence
+      - calf
+      - carla
+      - guitarix
+      - jack2
+      - pulseaudio-jack
+      - python-dbus

@@ -4,5 +4,6 @@
     - base
     - i3
     - dev
+    - audio
   vars_files:
     - vars/main.yml
