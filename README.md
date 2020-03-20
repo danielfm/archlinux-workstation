@@ -23,7 +23,7 @@ This installation contains the following modules:
 - `base`, for setting up the base system
 - `i3`, for setting up [i3 window manager](https://i3wm.org/) and other
   software I use in the desktop environment
-- `dev`, for setting up text editors and other software I used for my current
+- `dev`, for setting up text editors and other software I use for my current
   software engineering job
 - `audio`, for setting up the software I use for audio recording, which is
   my current hobby :)
