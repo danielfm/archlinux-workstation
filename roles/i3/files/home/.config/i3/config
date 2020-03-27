@@ -5,8 +5,8 @@
 set $mod Mod4
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border none
-default_floating_border none
+default_border pixel 1
+default_floating_border pixel 1
 
 # Hide borders
 hide_edge_borders none
@@ -69,9 +69,6 @@ bindsym $mod+F12 exec arandr
 
 # Shortcut for copying passwords from gopass
 bindsym $mod+backslash exec --no-startup-id bash -c 'gopass ls --flat | rofi -dmenu -p Gopass | xargs --no-run-if-empty gopass show -c'
-
-# Run compositor
-exec --no-startup-id picom -b
 
 # Shortcuts for common utilities
 bindsym $mod+Ctrl+b exec $term -e 'bmenu'
@@ -312,11 +309,11 @@ set_from_resource $term_color14 color14    #EA5BD1
 set_from_resource $term_color15 color15    #8bbabb
 
 # class                 border       backgr.      text        indicator     child_border
-client.focused          $bg          $bg          $foreground $term_color1  $term_color3
-client.focused_inactive $bg          $bg          $foreground $term_color1  $bg
-client.unfocused        $fg          $fg          $foreground $term_color1  $bg
+client.focused          $bg          $bg          $foreground $term_color1  #999999
+client.focused_inactive $bg          $bg          $foreground $term_color1  #999999
+client.unfocused        $fg          $fg          $foreground $term_color1  #CCCCCC
 client.urgent           $fg          $fg          $foreground $term_color1  $term_color1
-client.placeholder      $fg          $fg          $foreground $term_color1  $bg
+client.placeholder      $fg          $fg          $foreground $term_color1  #999999
 client.background       $bg
 
 # Start program launcher
