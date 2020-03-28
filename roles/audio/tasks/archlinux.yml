@@ -11,3 +11,11 @@
       - jack2
       - pulseaudio-jack
       - python-dbus
+
+- name: Install realtime kernel patchset
+  aur:
+    upgrade: no
+    skip_installed: yes
+    name:
+      - linux-rt
+      - linux-rt-lts
