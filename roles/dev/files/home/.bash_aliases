@@ -26,3 +26,8 @@ alias token="dd if=/dev/random bs=1 count=64 2>/dev/null | base64 | tr -d '=\n'"
 
 # Password management
 alias pass='gopass'
+
+# Display qrcode
+qr() {
+  qrencode -o - "$1" | feh -F -
+}

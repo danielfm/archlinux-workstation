@@ -16,6 +16,7 @@
       - k9s
       - keybase-gui
       - kubectl
+      - qrencode
       - tmux
 
 - name: Install AUR packages
