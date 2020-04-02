@@ -50,6 +50,7 @@
       - cups
       - curl
       - efitools
+      - exfat-utils
       - flatpak
       - foomatic-db-gutenprint-ppds
       - fwupd
