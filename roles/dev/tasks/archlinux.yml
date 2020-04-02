@@ -19,6 +19,7 @@
       - kubectl
       - qrencode
       - tmux
+      - yubikey-personalization-gui
 
 - name: Install AUR packages
   aur:
