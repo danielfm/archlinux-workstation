@@ -20,6 +20,7 @@
       - kubectl
       - qrencode
       - tmux
+      - wireshark-qt
       - yubikey-personalization-gui
 
 - name: Install AUR packages
