@@ -7,6 +7,7 @@
       - aspell
       - aspell-en
       - aspell-pt
+      - browserpass-chromium
       - dnsutils
       - docker
       - emacs
