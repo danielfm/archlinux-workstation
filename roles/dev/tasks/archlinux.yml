@@ -18,6 +18,8 @@
       - k9s
       - keybase-gui
       - kubectl
+      - libusb-compat
+      - opensc
       - qrencode
       - tmux
       - wireshark-qt

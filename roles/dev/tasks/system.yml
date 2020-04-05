@@ -10,3 +10,10 @@
     name: docker
     state: started
     enabled: yes
+
+- name: Enable the pcscd service
+  become: yes
+  service:
+    name: pcscd
+    state: started
+    enabled: yes
