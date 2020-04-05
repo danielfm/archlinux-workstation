@@ -21,6 +21,7 @@
       - qrencode
       - tmux
       - wireshark-qt
+      - yubikey-manager
       - yubikey-personalization-gui
       - yubioath-desktop
 
