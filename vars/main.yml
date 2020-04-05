@@ -16,7 +16,7 @@ user:
   email: daniel.tritone@gmail.com
   github_username: danielfm
   irc_nickname: caninha
-  git_gpg_signing_key: 5BA3A7CF9E6F1E70
+  git_gpg_signing_key: 45A25E75E57C632A
 
 system:
   bluetooth: yes
