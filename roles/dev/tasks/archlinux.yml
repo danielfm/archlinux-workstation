@@ -22,6 +22,7 @@
       - tmux
       - wireshark-qt
       - yubikey-personalization-gui
+      - yubioath-desktop
 
 - name: Install AUR packages
   aur:
