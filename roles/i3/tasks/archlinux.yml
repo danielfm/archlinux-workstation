@@ -64,6 +64,10 @@
       - thunar-media-tags-plugin
       - thunar-volman
       - transmission-gtk
+      - ttf-arphic-uming
+      - ttf-baekmuk
+      - ttf-freefont
+      - ttf-indic-otf
       - tumbler
       - urxvt-perls
       - viewnior
