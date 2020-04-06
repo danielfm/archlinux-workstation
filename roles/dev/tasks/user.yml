@@ -26,6 +26,7 @@
     - .bash_logout
     - .bash_profile
     - .bashrc
+    - .config
     - .gitignore_global
     - .nanorc
     - .tmux.conf
