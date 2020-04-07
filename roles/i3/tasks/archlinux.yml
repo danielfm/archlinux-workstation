@@ -109,6 +109,7 @@
       - slack-desktop
       - spotify
       - terminess-powerline-font-git
+      - thunar-dropbox
       - ttf-font-icons
       - ttf-ms-fonts
       - urxvt-font-size
