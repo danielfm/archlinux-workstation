@@ -3,7 +3,7 @@
 
         # Personal account
         email = {{ user.email }}
-        signingkey = {{ user.git_gpg_signing_key }}
+        signingkey = {{ user.gnupg_key_id }}
 
 [commit]
         gpgsign = true
