@@ -21,6 +21,8 @@
       - libusb-compat
       - opensc
       - qrencode
+      - ruby-bundler
+      - rubygems
       - tmux
       - wireshark-qt
       - yubikey-manager
