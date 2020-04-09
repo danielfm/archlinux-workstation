@@ -20,9 +20,9 @@ HDMI_MONITOR=$(echo "$MONITORS" | grep '^HDMI')
 HDMI_MONITOR=${HDMI_MONITOR:-unknown}
 
 # Extra xrandr parameters for each monitor
-EDP_ARGS='--mode 1366x768 --pos 0x749'
-DP_ARGS='--mode 1920x1200 --rotate left --pos 1366x0'
-HDMI_ARGS='--mode 2560x1080 --pos 2566x706'
+EDP_ARGS='--mode 1366x768'
+DP_ARGS='--mode 1920x1200 --rotate left'
+HDMI_ARGS='--mode 2560x1080'
 
 # Set primary monitor giving priority to the external displays
 if [ $HDMI_MONITOR != 'unknown' ]; then
@@ -47,7 +47,7 @@ case $N_MONITORS in
   3)
     echo Dual external monitors detected
     xrandr --auto --output $EDP_MONITOR $EDP_ARGS \
-           --output $DP_MONITOR $DP_ARGS \
-           --output $HDMI_MONITOR $HDMI_ARGS
+           --output $DP_MONITOR $DP_ARGS --right-of $EDP_MONITOR \
+           --output $HDMI_MONITOR $HDMI_ARGS --right-of $DP_MONITOR
     ;;
 esac
