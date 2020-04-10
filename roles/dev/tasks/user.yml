@@ -31,6 +31,16 @@
     group: '{{ user.group }}'
     mode: '0600'
 
+- name: Add Dirmngr configuration file
+  become: yes
+  become_user: '{{ user.name }}'
+  copy:
+    src: home/.gnupg/dirmngr.conf
+    dest: '/home/{{ user.name }}/.gnupg/dirmngr.conf'
+    owner: '{{ user.name }}'
+    group: '{{ user.group }}'
+    mode: '0600'
+
 - name: Add user configuration files
   become: yes
   become_user: '{{ user.name }}'

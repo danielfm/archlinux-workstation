@@ -4,16 +4,13 @@
     name: docker
     state: present
 
-- name: Enable the Docker service
+- name: Enable services
   become: yes
   service:
-    name: docker
+    name: '{{ item }}'
     state: started
     enabled: yes
-
-- name: Enable the pcscd service
-  become: yes
-  service:
-    name: pcscd
-    state: started
-    enabled: yes
+  with_items:
+    - docker
+    - pcscd
+    - tor

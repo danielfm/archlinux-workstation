@@ -24,6 +24,9 @@
       - ruby-bundler
       - rubygems
       - tmux
+      - tor
+      - torbrowser-launcher
+      - torsocks
       - wireshark-qt
       - yubikey-manager
       - yubikey-personalization-gui
