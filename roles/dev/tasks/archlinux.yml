@@ -41,6 +41,7 @@
       - chef-dk
       - google-cloud-sdk
       - kail
+      - parcimonie-sh-git
       - pyenv-virtualenv
       - zoom
       - zsa-wally

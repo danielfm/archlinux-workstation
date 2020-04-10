@@ -12,5 +12,6 @@
     enabled: yes
   with_items:
     - docker
+    - parcimonie.sh@all-users
     - pcscd
     - tor
