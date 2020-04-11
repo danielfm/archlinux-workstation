@@ -63,12 +63,13 @@
     - .vimrc
     - .zshrc
 
-- name: Ensure {{ user.name }} is in the 'docker' group
+- name: Ensure {{ user.name }} is in the required groups
   become: yes
   user:
     name: '{{ user.name }}'
     groups:
       - docker
+      - vboxusers
     append: yes
 
 - name: Add extra directories

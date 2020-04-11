@@ -27,6 +27,8 @@
       - tor
       - torbrowser-launcher
       - torsocks
+      - virtualbox-host-dkms
+      - virtualbox-guest-iso
       - wireshark-qt
       - yubikey-manager
       - yubikey-personalization-gui
@@ -44,4 +46,5 @@
       - parcimonie-sh-git
       - pyenv-virtualenv
       - zoom
+      - virtualbox-ext-oracle
       - zsa-wally
