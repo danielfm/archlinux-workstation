@@ -1,0 +1,42 @@
+- name: Ensure the .gnupg directory exists
+  become: yes
+  become_user: '{{ user.name }}'
+  file:
+    path: '/home/{{ user.name }}/.gnupg'
+    state: directory
+    owner: '{{ user.name }}'
+    group: '{{ user.group }}'
+    mode: '0700'
+
+- name: Add GPG configuration file
+  become: yes
+  become_user: '{{ user.name }}'
+  template:
+    src: home/.gnupg/gpg.conf.j2
+    dest: '/home/{{ user.name }}/.gnupg/gpg.conf'
+    owner: '{{ user.name }}'
+    group: '{{ user.group }}'
+    mode: '0600'
+
+- name: Add Dirmngr configuration file
+  become: yes
+  become_user: '{{ user.name }}'
+  copy:
+    src: home/.gnupg/dirmngr.conf
+    dest: '/home/{{ user.name }}/.gnupg/dirmngr.conf'
+    owner: '{{ user.name }}'
+    group: '{{ user.group }}'
+    mode: '0600'
+
+- name: Add user configuration files
+  become: yes
+  become_user: '{{ user.name }}'
+  copy:
+    src: 'home/{{ item }}'
+    dest: '/home/{{ user.name }}/'
+    owner: '{{ user.name }}'
+    group: '{{ user.group }}'
+    mode: '0644'
+  with_items:
+    - .bash_aliases.d
+    - .config

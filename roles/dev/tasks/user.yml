@@ -1,46 +1,3 @@
-- name: Add user configuration templates
-  become: yes
-  become_user: '{{ user.name }}'
-  template:
-    src: home/{{ item }}.j2
-    dest: '/home/{{ user.name }}/{{ item }}'
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
-    mode: '0644'
-  with_items:
-    - .bash_env
-    - .gitconfig
-
-- name: Ensure the .gnupg directory exists
-  become: yes
-  become_user: '{{ user.name }}'
-  file:
-    path: '/home/{{ user.name }}/.gnupg'
-    state: directory
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
-    mode: '0700'
-
-- name: Add GPG configuration file
-  become: yes
-  become_user: '{{ user.name }}'
-  template:
-    src: home/.gnupg/gpg.conf.j2
-    dest: '/home/{{ user.name }}/.gnupg/gpg.conf'
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
-    mode: '0600'
-
-- name: Add Dirmngr configuration file
-  become: yes
-  become_user: '{{ user.name }}'
-  copy:
-    src: home/.gnupg/dirmngr.conf
-    dest: '/home/{{ user.name }}/.gnupg/dirmngr.conf'
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
-    mode: '0600'
-
 - name: Add user configuration files
   become: yes
   become_user: '{{ user.name }}'
@@ -51,17 +8,30 @@
     group: '{{ user.group }}'
     mode: '0644'
   with_items:
-    - .bash_aliases
-    - .bash_completions
+    - .bash_aliases.d
+    - .bash_completions.d
+    - .bash_env.d
     - .bash_logout
     - .bash_profile
     - .bashrc
-    - .config
     - .gitignore_global
     - .nanorc
     - .tmux.conf
     - .vimrc
     - .zshrc
+
+- name: Add user configuration templates
+  become: yes
+  become_user: '{{ user.name }}'
+  template:
+    src: home/{{ item }}.j2
+    dest: '/home/{{ user.name }}/{{ item }}'
+    owner: '{{ user.name }}'
+    group: '{{ user.group }}'
+    mode: '0644'
+  with_items:
+    - .bash_env.d/11-emacs.sh
+    - .gitconfig
 
 - name: Ensure {{ user.name }} is in the required groups
   become: yes

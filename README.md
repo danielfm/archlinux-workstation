@@ -25,6 +25,7 @@ This installation contains the following modules:
   software I use in the desktop environment
 - `dev`, for setting up text editors and other software I use for my current
   software engineering job
+- `sec`, for setting up security packages and configuration
 - `audio`, for setting up the software I use for audio recording, which is
   my current hobby :)
 

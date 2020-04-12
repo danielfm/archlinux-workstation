@@ -19,30 +19,20 @@ case "$TERM" in
     xterm-color) color_prompt=yes;;
 esac
 
-# Use gpg-agent for unlocking ssh passwords; add keys to the agent
-# via the ssh-add command.
-unset SSH_AGENT_PID
-if [ "${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-fi
-
-export GPG_TTY=$(tty)
-gpg-connect-agent updatestartuptty /bye >/dev/null
-
 # Alias definitions
-if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
-fi
+for f in ~/.bash_aliases.d/*; do
+  source $f;
+done
 
 # Environment vars
-if [ -f ~/.bash_env ]; then
-  . ~/.bash_env
-fi
+for f in ~/.bash_env.d/*; do
+  source $f;
+done
 
 # Completions
-if [ -f ~/.bash_completions ]; then
-  . ~/.bash_completions
-fi
+for f in ~/.bash_completions.d/*; do
+  source $f;
+done
 
 # Dynamic theming via pywal, if available
 if [ -f ~/.cache/wal/sequences ]; then
