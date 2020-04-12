@@ -46,6 +46,34 @@
   when:
     - user.create_ssh_keypair|bool
 
+- name: Ensure bash directories exist for {{ user.name }}
+  become: yes
+  become_user: '{{ user.name }}'
+  file:
+    path: '/home/{{ user.name }}/{{ item }}'
+    state: directory
+    owner: '{{ user.name }}'
+    group: '{{ user.group }}'
+    mode: '0755'
+  with_items:
+    - .bash_aliases.d
+    - .bash_env.d
+    - .bash_completions.d
+
+- name: Add user configuration files
+  become: yes
+  become_user: '{{ user.name }}'
+  copy:
+    src: 'home/{{ item }}'
+    dest: '/home/{{ user.name }}/'
+    owner: '{{ user.name }}'
+    group: '{{ user.group }}'
+    mode: '0644'
+  with_items:
+    - .bash_logout
+    - .bash_profile
+    - .bashrc
+
 - name: Add user to sudoers file
   become: yes
   lineinfile:

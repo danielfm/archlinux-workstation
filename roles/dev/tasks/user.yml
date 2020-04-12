@@ -11,9 +11,6 @@
     - .bash_aliases.d
     - .bash_completions.d
     - .bash_env.d
-    - .bash_logout
-    - .bash_profile
-    - .bashrc
     - .gitignore_global
     - .nanorc
     - .tmux.conf
