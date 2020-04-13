@@ -10,6 +10,7 @@
       - dnsutils
       - docker
       - emacs
+      - gcolor3
       - go
       - jq
       - k9s
