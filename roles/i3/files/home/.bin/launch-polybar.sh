@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # Set color scheme
-hsetroot -solid "#dadee3"
 wal --theme base16-classic -l
 
 # Set background image
+# hsetroot -solid "#dadee3"
 nitrogen --restore
 
 # Terminate already running bar instances
