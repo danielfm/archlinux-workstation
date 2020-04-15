@@ -16,7 +16,7 @@ user:
   email: daniel.tritone@gmail.com
   github_username: danielfm
   irc_nickname: caninha
-  gnupg_key_id: 0x45A25E75E57C632A
+  gnupg_key_id: '0x45A25E75E57C632A'
 
 system:
   bluetooth: yes
