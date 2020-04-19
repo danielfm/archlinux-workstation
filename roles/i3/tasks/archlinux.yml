@@ -47,7 +47,10 @@
       - network-manager-applet
       - nitrogen
       - noto-fonts
+      - noto-fonts-cjk
       - noto-fonts-emoji
+      - noto-fonts-extra
+      - otf-ipafont
       - pantheon-calculator
       - papirus-icon-theme
       - pavucontrol
