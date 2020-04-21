@@ -12,6 +12,7 @@
     name:
       - arandr
       - archlinux-wallpaper
+      - dconf-editor
       - deja-dup
       - discord
       - dunst

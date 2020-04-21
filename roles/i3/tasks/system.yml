@@ -98,7 +98,7 @@
     path: /etc/pulse/system.pa
     regexp: '^load-module {{ item }}'
     line: 'load-module {{ item }}'
-  with_items:
+  loop:
     - module-bluetooth-policy
     - module-bluetooth-discover
   when:

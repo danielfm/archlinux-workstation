@@ -55,7 +55,7 @@
     owner: '{{ user.name }}'
     group: '{{ user.group }}'
     mode: '0755'
-  with_items:
+  loop:
     - .bash_aliases.d
     - .bash_env.d
     - .bash_completions.d
@@ -69,7 +69,7 @@
     owner: '{{ user.name }}'
     group: '{{ user.group }}'
     mode: '0644'
-  with_items:
+  loop:
     - .bash_logout
     - .bash_profile
     - .bashrc

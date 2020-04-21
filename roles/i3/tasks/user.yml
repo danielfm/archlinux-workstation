@@ -7,7 +7,7 @@
     owner: '{{ user.name }}'
     group: '{{ user.group}}'
     mode: '0644'
-  with_items:
+  loop:
     - .Xresources
     - .Xresources.d
     - .gtkrc-2.0
@@ -53,7 +53,7 @@
     owner: '{{ user.name }}'
     group: '{{ user.group}}'
     mode: '0644'
-  with_items:
+  loop:
     - .config/polybar/config
     - .gtk-bookmarks
     - .config/gtk-3.0/bookmarks
@@ -64,5 +64,32 @@
     src: '{{ item }}.j2'
     dest: '/{{ item }}'
     mode: '0644'
-  with_items:
+  loop:
     - etc/udev/rules.d/90-setup-displays.rules
+
+- name: Set DejaDup configuration
+  become: yes
+  become_user: '{{ user.name }}'
+  dconf:
+    key: '/org/gnome/deja-dup/{{ item.key }}'
+    value: '{{ item.value | string }}'
+    state: present
+  loop:
+    - key: delete-after
+      value: 180
+    - key: allow-metered
+      value: 'false'
+    - key: backend
+      value: "'google'"
+    - key: periodic
+      value: 'true'
+    - key: periodic-period
+      value: 7
+    - key: full-backup-period
+      value: 30
+    - key: google/folder
+      value: "'Backups/$HOSTNAME'"
+    - key: include-list
+      value: ['$HOME']
+    - key: exclude-list
+      value: ['$HOME/.ansible', '$HOME/.bundle', '$HOME/.cache', '$HOME/.config', '$HOME/.emacs.d', '$TRASH', '$HOME/.mozilla', '$HOME/.oh-my-zsh', '$HOME/.tmux', '$HOME/.vim', '$HOME/.Xresources.d', '$HOME/.bash_aliases.d', '$HOME/.bash_completions.d', '$HOME/.bash_env.d', '$HOME/.zoom', '$HOME/.dropbox', '$HOME/.dropbox-dist', '$HOME/Dropbox']

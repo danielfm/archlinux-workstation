@@ -37,7 +37,7 @@
     owner: '{{ user.name }}'
     group: '{{ user.group }}'
     mode: '0644'
-  with_items:
+  loop:
     - .bash_aliases.d
     - .bash_env.d
     - .config
