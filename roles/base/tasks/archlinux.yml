@@ -49,11 +49,9 @@
       - base-devel
       - cups
       - curl
-      - efitools
       - exfat-utils
       - flatpak
       - foomatic-db-gutenprint-ppds
-      - fwupd
       - git
       - git-lfs
       - gutenprint
@@ -69,8 +67,6 @@
       - openssh
       - playerctl
       - realtime-privileges
-      - sbsigntools
-      - smartmontools
       - sudo
       - time
       - tree
@@ -90,4 +86,3 @@
       - bluez-utils
   when:
     - system.bluetooth|bool
-

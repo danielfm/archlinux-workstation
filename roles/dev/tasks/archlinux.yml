@@ -19,6 +19,7 @@
       - opensc
       - ruby-bundler
       - rubygems
+      - smartmontools
       - tmux
       - virtualbox-host-dkms
       - virtualbox-guest-iso

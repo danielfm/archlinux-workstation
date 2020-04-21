@@ -5,11 +5,14 @@
     name:
       - browserpass-chromium
       - browserpass-firefox
+      - efitools
+      - fwupd
       - gnupg
       - gopass
       - keybase-gui
       - opensc
       - qrencode
+      - sbsigntools
       - tor
       - torbrowser-launcher
       - torsocks

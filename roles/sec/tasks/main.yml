@@ -5,5 +5,10 @@
 - name: System-wide configuration
   import_tasks: system.yml
 
+- name: Secure boot configuration
+  import_tasks: system_secureboot.yml
+  when:
+    - system.secure_boot|bool
+
 - name: 'Configuration for {{ user.name }} user'
   import_tasks: user.yml
