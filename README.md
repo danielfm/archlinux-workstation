@@ -16,18 +16,16 @@ be done manually in each machine.
 **Note:** This setup is constantly evolving, so the screenshot will most likely
 be outdated.
 
-## Modules
+## Roles
 
-This installation contains the following modules:
+This installation contains the following roles:
 
-- `base`, for setting up the base system
-- `i3`, for setting up [i3 window manager](https://i3wm.org/) and other
-  software I use in the desktop environment
-- `dev`, for setting up text editors and other software I use for my current
-  software engineering job
-- `sec`, for setting up security-related packages and configuration
-- `audio`, for setting up the software I use for audio recording, which is
-  my current hobby :)
+| Role    | Description                                                         |
+|---------|---------------------------------------------------------------------|
+| `base`  | Sets up the base system configuration                               |
+| `i3`    | Sets up [i3 window manager](https://i3wm.org/) desktop environment  |
+| `sec`   | Sets up security-related packages and configuration                 |
+| `audio` | Sets up the software I use for audio recording, my current hobby :) |
 
 ## Instructions
 
