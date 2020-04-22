@@ -17,33 +17,49 @@
     group: root
     mode: '0600'
 
-- name: Generate secure boot platform key .key and .crt files
+- name: Generate secure boot .key and .crt files
   become: yes
   command:
     chdir: '{{ secure_boot_keys_dir }}'
-    cmd: openssl req -newkey rsa:4096 -nodes -keyout PK.key -new -x509 -sha256 -days 3650 -subj "/CN=Danielfm Platform Key/" -out PK.crt
-    creates: PK.crt
+    cmd: 'openssl req -newkey rsa:4096 -nodes -keyout {{ item }}.key -new -x509 -sha256 -days 3650 -subj "/CN=Danielfm Platform Key/" -out {{ item }}.crt'
+    creates: '{{ item }}.crt'
+  loop:
+    - PK
+    - KEK
+    - db
 
-- name: Generate secure boot platform key .cer file
+- name: Generate secure boot .cer files
   become: yes
   command:
     chdir: '{{ secure_boot_keys_dir }}'
-    cmd: openssl x509 -outform DER -in PK.crt -out PK.cer
-    creates: PK.cer
+    cmd: 'openssl x509 -outform DER -in {{ item }}.crt -out {{ item }}.cer'
+    creates: '{{ item }}.cer'
+  loop:
+    - PK
+    - KEK
+    - db
 
-- name: Generate secure boot platform key .esl file
+- name: Generate secure boot .esl files
   become: yes
   command:
     chdir: '{{ secure_boot_keys_dir }}'
-    cmd: cert-to-efi-sig-list -g "$(< GUID.txt)" PK.crt PK.esl
-    creates: PK.esl
+    cmd: 'cert-to-efi-sig-list -g "$(< GUID.txt)" {{ item }}.crt {{ item }}.esl'
+    creates: '{{ item }}.esl'
+  loop:
+    - PK
+    - KEK
+    - db
 
-- name: Generate secure boot platform key .auth file
+- name: Generate secure boot .auth files
   become: yes
   command:
     chdir: '{{ secure_boot_keys_dir }}'
-    cmd: sign-efi-sig-list -g "$(< GUID.txt)" -k PK.key -c PK.crt PK PK.esl PK.auth
-    creates: PK.auth
+    cmd: 'sign-efi-sig-list -g "$(< GUID.txt)" -k {{ item }}.key -c {{ item }}.crt {{ item }} {{ item }}.esl {{ item }}.auth'
+    creates: '{{ item }}.auth'
+  loop:
+    - PK
+    - KEK
+    - db
 
 - name: Sign empty file to allow removing the secure boot key when in User Mode
   become: yes
@@ -51,64 +67,6 @@
     chdir: '{{ secure_boot_keys_dir }}'
     cmd: sign-efi-sig-list -g "$(< GUID.txt)" -c PK.crt -k PK.key PK /dev/null rm_PK.auth
     creates: rm_PK.auth
-
-- name: Generate secure boot key exchange .key and .crt files
-  become: yes
-  command:
-    chdir: '{{ secure_boot_keys_dir }}'
-    cmd: openssl req -newkey rsa:4096 -nodes -keyout KEK.key -new -x509 -sha256 -days 3650 -subj "/CN=Danielfm Key Exchange Key/" -out KEK.crt
-    creates: KEK.crt
-
-- name: Generate secure boot key exchange .cer file
-  become: yes
-  command:
-    chdir: '{{ secure_boot_keys_dir }}'
-    cmd: openssl x509 -outform DER -in KEK.crt -out KEK.cer
-    creates: KEK.cer
-  when:
-    - system.secure_boot|bool
-
-- name: Generate secure boot key exchange .esl file
-  become: yes
-  command:
-    chdir: '{{ secure_boot_keys_dir }}'
-    cmd: cert-to-efi-sig-list -g "$(< GUID.txt)" KEK.crt KEK.esl
-    creates: KEK.esl
-
-- name: Generate secure boot key exchange .auth file
-  become: yes
-  command:
-    chdir: '{{ secure_boot_keys_dir }}'
-    cmd: sign-efi-sig-list -g "$(< GUID.txt)" -k PK.key -c PK.crt KEK KEK.esl KEK.auth
-    creates: KEK.auth
-
-- name: Generate secure boot signature database .key and .crt files
-  become: yes
-  command:
-    chdir: '{{ secure_boot_keys_dir }}'
-    cmd: openssl req -newkey rsa:4096 -nodes -keyout db.key -new -x509 -sha256 -days 3650 -subj "/CN=Danielfm Signature Database key/" -out db.crt
-    creates: db.crt
-
-- name: Generate secure boot signature database .cer file
-  become: yes
-  command:
-    chdir: '{{ secure_boot_keys_dir }}'
-    cmd: openssl x509 -outform DER -in db.crt -out db.cer
-    creates: db.cer
-
-- name: Generate secure boot signature database .esl file
-  become: yes
-  command:
-    chdir: '{{ secure_boot_keys_dir }}'
-    cmd: cert-to-efi-sig-list -g "$(< GUID.txt)" db.crt db.esl
-    creates: db.esl
-
-- name: Generate secure boot signature database .auth file
-  become: yes
-  command:
-    chdir: '{{ secure_boot_keys_dir }}'
-    cmd: sign-efi-sig-list -g "$(< GUID.txt)" -k KEK.key -c KEK.crt db db.esl db.auth
-    creates: db.auth
 
 - name: Add pacman hooks for secure boot signing
   become: yes
