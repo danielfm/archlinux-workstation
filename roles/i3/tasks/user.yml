@@ -90,6 +90,6 @@
     - key: google/folder
       value: "'Backups/$HOSTNAME'"
     - key: include-list
-      value: ['$HOME']
+      value: ['$HOME/.chef', '$HOME/.chef-workstation', '$HOME/.config', '$HOME/.gnupg', '$HOME/.ssh', '$HOME/Desktop', '$HOME/Documents', '$HOME/Music', '$HOME/Pictures', '$HOME/Projects', '$HOME/Public', '$HOME/Templates', '$HOME/Videos']
     - key: exclude-list
-      value: ['$HOME/.ansible', '$HOME/.bundle', '$HOME/.cache', '$HOME/.config', '$HOME/.emacs.d', '$TRASH', '$HOME/.mozilla', '$HOME/.oh-my-zsh', '$HOME/.tmux', '$HOME/.vim', '$HOME/.Xresources.d', '$HOME/.bash_aliases.d', '$HOME/.bash_completions.d', '$HOME/.bash_env.d', '$HOME/.zoom', '$HOME/.dropbox', '$HOME/.dropbox-dist', '$HOME/Dropbox']
+      value: ['$HOME/.config/Brave', '$HOME/.config/chromium', '$HOME/.config/discord', '$HOME/.config/Slack']
