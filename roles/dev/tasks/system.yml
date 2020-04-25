@@ -1,8 +1,11 @@
-- name: Ensure Docker group exists
+- name: Ensure groups exist
   become: yes
   group:
-    name: docker
+    name: '{{ item }}'
     state: present
+  loop:
+    - docker
+    - libvirt
 
 - name: Enable services
   become: yes

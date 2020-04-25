@@ -7,8 +7,12 @@
       - aspell
       - aspell-en
       - aspell-pt
+      - bridge-utils
+      - dmidecode
+      - dnsmasq
       - dnsutils
       - docker
+      - ebtables
       - emacs
       - gcolor3
       - go
@@ -16,13 +20,15 @@
       - k9s
       - kubectl
       - libusb-compat
+      - ovmf
+      - openbsd-netcat
       - opensc
+      - qemu
       - ruby-bundler
       - rubygems
       - smartmontools
       - tmux
-      - virtualbox-host-dkms
-      - virtualbox-guest-iso
+      - virt-manager
       - wireshark-qt
 
 - name: Install AUR packages
@@ -36,5 +42,4 @@
       - kail
       - pyenv-virtualenv
       - zoom
-      - virtualbox-ext-oracle
       - zsa-wally

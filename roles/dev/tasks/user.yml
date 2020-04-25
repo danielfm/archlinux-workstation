@@ -36,6 +36,7 @@
     name: '{{ user.name }}'
     groups:
       - docker
+      - libvirt
       - vboxusers
     append: yes
 
