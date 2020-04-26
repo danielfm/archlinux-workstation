@@ -17,6 +17,7 @@
       - gcolor3
       - go
       - jq
+      - jre-openjdk
       - k9s
       - kubectl
       - libusb-compat
