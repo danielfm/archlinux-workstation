@@ -267,6 +267,8 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id volumeicon
 exec --no-startup-id clipit
 exec --no-startup-id dropbox
+exec --no-startup-id optimus-manager-qt
+exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id /usr/lib/deja-dup/deja-dup-monitor
 
 # Start polybar
