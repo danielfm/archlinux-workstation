@@ -7,14 +7,10 @@ set $mod Mod4
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 3
 default_floating_border pixel 3
+for_window [class=".*"] border pixel 3
 
 # Hide borders
 hide_edge_borders none
-
-# Change borders
-bindsym $mod+u border none
-bindsym $mod+y border pixel 1
-bindsym $mod+n border normal
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -195,8 +191,6 @@ for_window [title="alsamixer"] floating enable
 for_window [title="File Transfer*"] floating enable
 for_window [title="i3_help"] floating enable sticky enable
 for_window [title="nmtui"] floating enable
-for_window [class="Pcmanfm"] floating enable
-for_window [class="fpakman"] floating enable
 for_window [class="Nm-connection-editor"] floating enable
 for_window [class="Lightdm-settings"] floating enable
 for_window [class="Lxappearance"] floating enable sticky enable
@@ -205,8 +199,6 @@ for_window [class="Gcolor[2|3]"] floating enable sticky enable
 for_window [class="qt5ct"] floating enable sticky enable
 for_window [class="Qtconfig-qt4"] floating enable sticky enable
 for_window [class="(?i)System-config-printer.py"] floating enable
-for_window [class="(?i)virtualbox"] floating enable
-for_window [class="QjackCtl"] floating enable
 
 # Switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
