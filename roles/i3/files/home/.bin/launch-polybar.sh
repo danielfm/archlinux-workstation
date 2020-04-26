@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set color scheme
-wal --theme base16-classic -l
+wal -l --theme base16-harmonic
 
 # Set background image
 # hsetroot -solid "#dadee3"

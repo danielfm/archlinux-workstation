@@ -302,11 +302,11 @@ set_from_resource $term_color14 color14    #EA5BD1
 set_from_resource $term_color15 color15    #8bbabb
 
 # class                 border       backgr.      text        indicator     child_border
-client.focused          $bg          $bg          $foreground $term_color3  $term_color6
-client.focused_inactive $bg          $bg          $foreground $term_color4  $term_color3
-client.unfocused        $fg          $fg          $foreground $term_color6  $term_color4
-client.urgent           $fg          $fg          $foreground $term_color1  $term_color5
-client.placeholder      $fg          $fg          $foreground $term_color2  $term_color3
+client.focused          $bg          $bg          $foreground $term_color3  $term_color5
+client.focused_inactive $bg          $bg          $foreground $term_color4  $term_color6
+client.unfocused        $fg          $fg          $foreground $term_color6  $term_color7
+client.urgent           $fg          $fg          $foreground $term_color1  $term_color4
+client.placeholder      $fg          $fg          $foreground $term_color2  $term_color1
 client.background       $bg
 
 # Start program launcher
