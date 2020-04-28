@@ -15,27 +15,6 @@
     regexp: '^hosts:'
     line: 'hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns'
 
-- name: Enable NetworkManager service
-  become: yes
-  service:
-    name: NetworkManager
-    state: started
-    enabled: yes
-
-- name: Enable avahi service
-  become: yes
-  service:
-    name: avahi-daemon
-    state: started
-    enabled: yes
-
-- name: Enable org.cups.cupsd service
-  become: yes
-  service:
-    name: org.cups.cupsd
-    state: started
-    enabled: yes
-
 - name: Set ufw default forward policy
   become: yes
   lineinfile:
@@ -43,12 +22,18 @@
     regex: '^DEFAULT_FORWARD_POLICY='
     line: 'DEFAULT_FORWARD_POLICY="ACCEPT"'
 
-- name: Enable ufw service
+- name: Enable services
   become: yes
   service:
-    name: ufw
+    name: '{{ item }}'
     state: started
     enabled: yes
+  loop:
+    - NetworkManager
+    - avahi-daemon
+    - ntpd
+    - org.cups.cupsd
+    - ufw
 
 - name: Enable ufw with default incoming deny policy
   become: yes
