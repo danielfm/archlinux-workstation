@@ -27,6 +27,8 @@ system:
 
   # Which sensor temperature to display in polybar
   polybar:
+    wifi:
+      interface: wlan1
     temperature:
       thermal_zone: 0
       hwmon_path: /sys/devices/platform/coretemp.0/hwmon/hwmon8/temp1_input
