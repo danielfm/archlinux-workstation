@@ -45,8 +45,8 @@
       - mediainfo
       - mesa-demos
       - mousepad
-      - network-manager-applet
       - nitrogen
+      - nm-connection-editor
       - noto-fonts
       - noto-fonts-cjk
       - noto-fonts-emoji
@@ -100,7 +100,6 @@
     skip_installed: yes
     name:
       - brave-bin
-      - clipit
       - dropbox
       - i3-scrot
       - i3lock-color-git

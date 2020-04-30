@@ -252,16 +252,12 @@ bindsym $mod+9 exec --no-startup-id i3exit lock
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec --no-startup-id nm-applet
-exec --no-startup-id xfce4-power-manager
-exec --no-startup-id blueman-applet
-exec --no-startup-id pamac-tray
-exec --no-startup-id volumeicon
-exec --no-startup-id clipit
-exec --no-startup-id dropbox
-exec --no-startup-id optimus-manager-qt
-exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id /usr/lib/deja-dup/deja-dup-monitor
+exec --no-startup-id nvidia-settings --load-config-only
+
+exec --no-startup-id volumeicon
+exec --no-startup-id dropbox
+exec --no-startup-id xfce4-power-manager
 
 # Start polybar
 exec_always --no-startup-id ~/.bin/launch-polybar.sh
