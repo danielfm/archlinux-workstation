@@ -1,3 +1,12 @@
+- name: Enable multilib repository
+  become: yes
+  ini_file:
+    path: /etc/pacman.conf
+    create: no
+    section: multilib
+    option: Include
+    value: /etc/pacman.d/mirrorlist
+
 - name: Update system packages
   become: yes
   pacman:
