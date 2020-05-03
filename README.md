@@ -112,3 +112,10 @@ yay -S <package> --editmenu
 
 If the `ansible-playbook` command finishes successfully, reboot the system to
 access your new environment!
+
+## References
+
+### Yubikey + GnuPG Setup
+
+- https://github.com/drduh/YubiKey-Guide
+- https://www.esev.com/blog/post/2015-01-pgp-ssh-key-on-yubikey-neo/
