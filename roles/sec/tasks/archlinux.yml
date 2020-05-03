@@ -10,6 +10,7 @@
       - gnupg
       - gopass
       - keybase-gui
+      - networkmanager-openvpn
       - opensc
       - qrencode
       - sbsigntools
