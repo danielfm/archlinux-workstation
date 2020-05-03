@@ -92,4 +92,4 @@
     - key: include-list
       value: ['$HOME/.chef', '$HOME/.chef-workstation', '$HOME/.config', '$HOME/.gnupg', '$HOME/.ssh', '$HOME/Desktop', '$HOME/Documents', '$HOME/Music', '$HOME/Pictures', '$HOME/Projects', '$HOME/Public', '$HOME/Templates', '$HOME/Videos']
     - key: exclude-list
-      value: ['$HOME/.config/Brave', '$HOME/.config/chromium', '$HOME/.config/discord', '$HOME/.config/Slack']
+      value: ['$HOME/.config/discord', '$HOME/.config/Slack']

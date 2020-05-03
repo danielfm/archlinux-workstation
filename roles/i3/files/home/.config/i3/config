@@ -55,7 +55,7 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym $mod+Shift+F1 exec xdg-open ~
 bindsym $mod+F1  exec $term -e 'ranger'
 bindsym $mod+F2  exec --no-startup-id emacs
-bindsym $mod+F3  exec brave
+bindsym $mod+F3  exec firefox
 bindsym $mod+F4  exec --no-startup-id slack
 bindsym $mod+F5  exec --no-startup-id spotify
 bindsym $mod+F9  exec gsimplecal

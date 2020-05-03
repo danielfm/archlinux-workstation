@@ -99,7 +99,6 @@
     upgrade: no
     skip_installed: yes
     name:
-      - brave-bin
       - dropbox
       - i3-scrot
       - i3lock-color-git
