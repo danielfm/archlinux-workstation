@@ -1,3 +1,10 @@
+- name: Set ufw default forward policy
+  become: yes
+  lineinfile:
+    path: /etc/default/ufw
+    regex: '^DEFAULT_FORWARD_POLICY='
+    line: 'DEFAULT_FORWARD_POLICY="ACCEPT"'
+
 - name: Enable services
   become: yes
   service:
@@ -8,3 +15,23 @@
     - parcimonie.sh@all-users
     - pcscd
     - tor
+    - ufw
+
+- name: Enable ufw with default incoming deny policy
+  become: yes
+  ufw:
+    state: enabled
+    policy: deny
+    direction: incoming
+
+- name: Enable ufw with default outgoing allow policy
+  become: yes
+  ufw:
+    state: enabled
+    policy: allow
+    direction: outgoing
+
+- name: Enable ufw logging
+  become: yes
+  ufw:
+    logging: low

@@ -81,7 +81,6 @@
       - sudo
       - time
       - tree
-      - ufw
       - vim
       - wget
       - which

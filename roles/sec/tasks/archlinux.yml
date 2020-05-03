@@ -16,6 +16,7 @@
       - tor
       - torbrowser-launcher
       - torsocks
+      - ufw
       - yubikey-manager
       - yubikey-personalization-gui
       - yubioath-desktop
