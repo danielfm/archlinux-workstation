@@ -45,7 +45,7 @@ font-1 = "icons:pixelsize=12;4"
 
 modules-left = cpu memory temperature
 modules-center = i3
-modules-right = wifi keyboard date
+modules-right = pulseaudio wifi keyboard date
 
 cursor-click = pointer
 cursor-scroll = ns-resize
@@ -125,8 +125,17 @@ interface = {{ system.polybar.wifi.interface }}
 format-connected = <label-connected>
 format-disconnected = <label-disconnected>
 
-label-connected =  %essid% (%signal%%)   %downspeed%  %upspeed%
+label-connected =  %essid%
 label-disconnected = not connected
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume =  <label-volume>
+format-muted = <label-muted>
+
+label-volume = %percentage%%
+label-muted = muted
 
 [settings]
 screenchange-reload = true
