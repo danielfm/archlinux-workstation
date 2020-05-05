@@ -72,6 +72,7 @@
       - transmission-gtk
       - ttf-arphic-uming
       - ttf-baekmuk
+      - ttf-fantasque-sans-mono
       - ttf-freefont
       - ttf-indic-otf
       - tumbler
@@ -114,6 +115,7 @@
       - terminess-powerline-font-git
       - thunar-dropbox
       - ttf-font-icons
+      - ttf-material-icons-git
       - ttf-ms-fonts
       - urxvt-font-size
       - urxvt-resize-font-git
