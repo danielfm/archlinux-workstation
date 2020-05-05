@@ -258,7 +258,7 @@ exec --no-startup-id dropbox
 exec --no-startup-id xfce4-power-manager
 
 # Start polybar
-exec_always --no-startup-id ~/.bin/launch-polybar.sh
+exec_always --no-startup-id ~/.bin/polybar/launch.sh
 
 # Start notification daemon
 exec_always --no-startup-id dunst -config ~/.cache/wal/dunstrc
