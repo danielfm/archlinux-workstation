@@ -189,6 +189,7 @@ exec = $HOME/.bin/polybar/updates.sh
 ;exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
 ;label = %{A1:termite -e "aurman -Syyu" & disown:} %{A3:termite -e "aurman -Syyu" & disown:}%output%%{A} %{A}
 tail = true
+click-left = pamac-manager &
 
 [module/battery]
 type = internal/battery
