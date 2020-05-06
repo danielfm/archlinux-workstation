@@ -83,7 +83,7 @@ scroll-down = i3wm-wsprev
 
 ;== Module Location ========================================================
 
-modules-left = menu workspaces term files browser settings
+modules-left = menu workspaces term files browser chat monitors
 modules-right = pkg volume battery network date powermenu
  
 ;== Modules ========================================================
@@ -154,12 +154,19 @@ content-padding = 1
 content-foreground = ${color.fg-alt}
 click-left = firefox &
 
-[module/settings]
+[module/chat]
 type = custom/text
-content = 
+content = 
 content-padding = 1
 content-foreground = ${color.fg-alt}
-click-left = lxappearance &
+click-left = slack &
+
+[module/monitors]
+type = custom/text
+content = 
+content-padding = 1
+content-foreground = ${color.fg-alt}
+click-left = arandr &
 
 ;==========================================================
 
