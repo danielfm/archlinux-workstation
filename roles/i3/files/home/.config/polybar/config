@@ -100,39 +100,34 @@ click-middle = $HOME/.bin/polybar/menu_full
 click-right = $HOME/.bin/polybar/color-switch.sh
 
 [module/workspaces]
-type = internal/xworkspaces
-pin-workspaces = false
-enable-click = true
+type = internal/i3
 enable-scroll = false
 format-padding = 0
 
-icon-0 = 1;
-icon-1 = 2;
-icon-2 = 3;
-icon-3 = 4;
-icon-4 = 5;
-icon-5 = 6;
-icon-default = 
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-default = 
 
 format = <label-state>
-label-active = %icon%
-label-occupied = %icon%
+label-focused = %icon%
+label-unfocused = %icon%
+label-visible = %icon%
 label-urgent = %icon%
-label-empty = %icon%
 
-label-occupied-padding = 2
-label-empty-padding = 2
+label-focused-padding = 2
+label-unfocused-padding = 2
+label-visible-padding = 2
 label-urgent-padding = 2
-label-active-padding = 2
 
-label-active-foreground = ${color.acolor}
+label-focused-foreground = ${color.acolor}
+label-visible-foreground = ${color.coccupied}
 label-urgent-foreground = ${color.curgent}
-label-empty-foreground = ${color.fg}
-label-occupied-foreground = ${color.coccupied}
 
-label-active-underline = ${color.acolor}
-label-urgent-underline = ${color.curgent}
-label-occupied-underline = ${color.coccupied}
+label-focused-underline = ${color.acolor}
 
 [module/term]
 type = custom/text
