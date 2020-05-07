@@ -51,12 +51,13 @@ MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'System :' \
 -color-normal "$BACKGROUND_ALT,$FOREGROUND,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
 -color-active "$BACKGROUND,$MAGENTA,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
 -color-urgent "$BACKGROUND,$YELLOW,$BACKGROUND_ALT,$HIGHLIGHT_BACKGROUND,$HIGHLIGHT_FOREGROUND" \
-<<< "  Lock|  Logout|  Reboot|  Shutdown")"
+<<< "Lock|Logout|Suspend|Reboot|Shutdown")"
 case "$MENU" in
-  *Lock) i3lock ;;
-  *Logout) openbox --exit;;
-  *Reboot) systemctl reboot ;;
-  *Shutdown) systemctl -i poweroff
+  *Lock) i3exit lock ;;
+  *Logout) i3exit logout ;;
+  *Suspend) i3exit suspend ;;
+  *Reboot) i3exit reboot ;;
+  *Shutdown) i3exit shutdown
 esac
 
 # More Options
