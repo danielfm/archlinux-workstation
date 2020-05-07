@@ -58,7 +58,7 @@ line-size = 2
 background = ${color.bg}
 foreground = ${color.fg}
 
-border-size = 3
+border-size = 0
 border-color = ${color.bg}
 
 module-margin-left = 1
