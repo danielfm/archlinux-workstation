@@ -67,7 +67,9 @@ bindsym $mod+backslash exec --no-startup-id bash -c 'gopass ls --flat | rofi -dm
 
 # Shortcuts for common utilities
 bindsym $mod+Ctrl+b exec $term -e 'bmenu'
-bindsym $mod+Control+P --release exec --no-startup-id bash -c 'maim -s | xclip -selection clipboard -t image/png'
+
+bindsym $mod+Control+p --release exec --no-startup-id bash -c 'maim -us | xclip -selection clipboard -t image/png'
+bindsym $mod+Shift+p --release exec --no-startup-id bash -c 'maim -us ~/Pictures/$(date +%s).png'
 
 focus_follows_mouse no
 
