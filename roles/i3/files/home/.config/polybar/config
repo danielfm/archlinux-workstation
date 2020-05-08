@@ -53,7 +53,7 @@ offset-x = 5%
 offset-y = 2%
 bottom = true
 fixed-center = false
-line-size = 2
+line-size = 3
 
 background = ${color.bg}
 foreground = ${color.fg}
@@ -84,7 +84,7 @@ scroll-down = i3wm-wsprev
 ;== Module Location ========================================================
 
 modules-left = menu workspaces term files browser chat monitors
-modules-right = pkg volume battery network date powermenu
+modules-right = pkg keyboard volume battery network date powermenu
  
 ;== Modules ========================================================
 
@@ -245,6 +245,15 @@ type = custom/script
 exec = $HOME/.bin/polybar/check-network
 click-left = urxvt -e 'nmtui' &
 tail = true
+
+[module/keyboard]
+type = internal/xkeyboard
+
+format =  <label-layout> <label-indicator>
+
+blacklist-0 = num lock
+blacklist-1 = scroll lock
+blacklist-2 = caps lock
 
 [module/date]
 type = internal/date
