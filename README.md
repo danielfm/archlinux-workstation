@@ -23,7 +23,7 @@ This installation contains the following roles:
 | Role    | Description                                                         |
 |---------|---------------------------------------------------------------------|
 | `base`  | Sets up the base system configuration                               |
-| `i3`    | Sets up [i3 window manager](https://i3wm.org/) desktop environment  |
+| `i3`    | Sets up i3 window manager desktop environment                       |
 | `sec`   | Sets up security-related packages and configuration                 |
 | `audio` | Sets up the software I use for audio recording, my current hobby :) |
 
