@@ -20,6 +20,7 @@
       - ufw
       - yubikey-manager
       - yubikey-personalization-gui
+      - yubikey-touch-detector
       - yubioath-desktop
 
 - name: Install AUR packages

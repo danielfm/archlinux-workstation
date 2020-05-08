@@ -42,3 +42,13 @@
     - .bash_env.d
     - .config
 
+- name: Enable user services
+  become: yes
+  become_user: '{{ user.name }}'
+  systemd:
+    name: '{{ item }}'
+    state: started
+    scope: user
+    enabled: yes
+  loop:
+    - yubikey-touch-detector
