@@ -124,10 +124,12 @@ label-visible-padding = 2
 label-urgent-padding = 2
 
 label-focused-foreground = ${color.acolor}
-label-visible-foreground = ${color.coccupied}
-label-urgent-foreground = ${color.curgent}
+label-unfocused-foreground = ${color.fg}
+label-visible-foreground = ${color.acolor}
+label-urgent-foreground = ${color.fg}
 
 label-focused-underline = ${color.acolor}
+label-urgent-underline = ${color.curgent}
 
 [module/term]
 type = custom/text
