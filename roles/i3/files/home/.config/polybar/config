@@ -84,7 +84,7 @@ scroll-down = i3wm-wsprev
 ;== Module Location ========================================================
 
 modules-left = menu workspaces term files browser chat monitors
-modules-right = pkg keyboard volume bat0 bat1 network date powermenu
+modules-right = pkg keyboard presentation-mode volume bat0 bat1 network date powermenu
  
 ;== Modules ========================================================
 
@@ -190,7 +190,7 @@ click-left = pamac-manager &
 
 [module/bat0]
 type = internal/battery
-full-at = 96
+full-at = 99
 time-format = %H:%M
 battery = BAT0
 adapter = AC
@@ -223,7 +223,7 @@ animation-charging-framerate = 750
 
 [module/bat1]
 type = internal/battery
-full-at = 96
+full-at = 99
 time-format = %H:%M
 battery = BAT1
 adapter = AC
@@ -272,6 +272,12 @@ ramp-volume-3 = 
 ramp-volume-4 = 
 ramp-volume-5 = 
 ramp-volume-6 = 
+
+[module/presentation-mode]
+type = custom/script
+exec = $HOME/.bin/polybar/power-manager-presentation-mode
+click-left = $HOME/.bin/polybar/power-manager-toggle-presentation-mode
+tail = true
 
 [module/network]
 type = custom/script

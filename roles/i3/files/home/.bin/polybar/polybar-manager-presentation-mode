@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+icon=""
+prop="/xfce4-power-manager/presentation-mode"
+
+while true; do
+  presentation_mode=$(xfconf-query -c xfce4-power-manager -p "$prop")
+
+  if [ "$presentation_mode" = "true" ]; then
+    echo "$icon on"
+  else
+    echo "$icon off"
+  fi
+
+  sleep 0.5
+done
