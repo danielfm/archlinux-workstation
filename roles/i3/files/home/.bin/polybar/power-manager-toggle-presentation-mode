@@ -4,6 +4,8 @@ prop="/xfce4-power-manager/presentation-mode"
 
 if [ "$(xfconf-query -c xfce4-power-manager -p "$prop")" = "true" ]; then
    xfconf-query -c xfce4-power-manager -p "$prop" -s false
+   notify-send "Disabled presentation mode"
 else
    xfconf-query -c xfce4-power-manager -p "$prop" -s true
+   notify-send "Enabled presentation mode"
 fi
