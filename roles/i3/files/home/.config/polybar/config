@@ -97,7 +97,7 @@ content-background = ${color.acolor}
 content-foreground = ${color.fg}
 click-left = $HOME/.bin/polybar/menu
 click-middle = $HOME/.bin/polybar/menu_full
-click-right = $HOME/.bin/polybar/color-switch.sh
+click-right = $HOME/.bin/polybar/color-switch
 
 [module/workspaces]
 type = internal/i3
@@ -182,7 +182,7 @@ label-song-ellipsis = true
 
 [module/pkg]
 type = custom/script
-exec = $HOME/.bin/polybar/updates.sh
+exec = $HOME/.bin/polybar/updates
 ;exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
 ;label = %{A1:termite -e "aurman -Syyu" & disown:} %{A3:termite -e "aurman -Syyu" & disown:}%output%%{A} %{A}
 tail = true

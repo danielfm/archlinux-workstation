@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-icon=""
+icon=""
 prop="/xfce4-power-manager/presentation-mode"
 
 while true; do

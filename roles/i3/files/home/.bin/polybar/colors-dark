@@ -15,7 +15,7 @@ sed -i -e 's/acolor = .*/acolor = #ffb300/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ffb300"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ffb300"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ffb300"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ffb300"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#ffb300"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -28,7 +28,7 @@ sed -i -e 's/acolor = .*/acolor = #1e88e5/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#1e88e5"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#1e88e5"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#1e88e5"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#1e88e5"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#1e88e5"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -41,7 +41,7 @@ sed -i -e 's/acolor = .*/acolor = #546e7a/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#546e7a"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#546e7a"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#546e7a"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#546e7a"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#546e7a"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -54,7 +54,7 @@ sed -i -e 's/acolor = .*/acolor = #6d4c41/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#6d4c41"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#6d4c41"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#6d4c41"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#6d4c41"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#6d4c41"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -67,7 +67,7 @@ sed -i -e 's/acolor = .*/acolor = #00acc1/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#00acc1"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#00acc1"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#00acc1"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#00acc1"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#00acc1"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -80,7 +80,7 @@ sed -i -e 's/acolor = .*/acolor = #f4511e/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#f4511e"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#f4511e"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#f4511e"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#f4511e"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#f4511e"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -93,7 +93,7 @@ sed -i -e 's/acolor = .*/acolor = #5e35b1/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#5e35b1"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#5e35b1"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#5e35b1"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#5e35b1"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#5e35b1"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -106,7 +106,7 @@ sed -i -e 's/acolor = .*/acolor = #43a047/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#43a047"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#43a047"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#43a047"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#43a047"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#43a047"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -119,7 +119,7 @@ sed -i -e 's/acolor = .*/acolor = #757575/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#757575"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#757575"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#757575"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#757575"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#757575"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -132,7 +132,7 @@ sed -i -e 's/acolor = .*/acolor = #3949ab/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#3949ab"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#3949ab"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#3949ab"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#3949ab"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#3949ab"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -145,7 +145,7 @@ sed -i -e 's/acolor = .*/acolor = #039be5/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#039be5"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#039be5"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#039be5"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#039be5"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#039be5"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -158,7 +158,7 @@ sed -i -e 's/acolor = .*/acolor = #7cb342/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#7cb342"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#7cb342"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#7cb342"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#7cb342"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#7cb342"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -171,7 +171,7 @@ sed -i -e 's/acolor = .*/acolor = #c0ca33/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#c0ca33"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#c0ca33"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#c0ca33"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#c0ca33"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#c0ca33"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -184,7 +184,7 @@ sed -i -e 's/acolor = .*/acolor = #fb8c00/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fb8c00"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fb8c00"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fb8c00"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fb8c00"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fb8c00"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -197,7 +197,7 @@ sed -i -e 's/acolor = .*/acolor = #d81b60/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#d81b60"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#d81b60"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#d81b60"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#d81b60"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#d81b60"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -210,7 +210,7 @@ sed -i -e 's/acolor = .*/acolor = #8e24aa/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#8e24aa"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#8e24aa"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#8e24aa"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#8e24aa"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#8e24aa"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -223,7 +223,7 @@ sed -i -e 's/acolor = .*/acolor = #e53935/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#e53935"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#e53935"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#e53935"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#e53935"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#e53935"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -236,7 +236,7 @@ sed -i -e 's/acolor = .*/acolor = #00897b/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#00897b"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#00897b"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#00897b"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#00897b"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#00897b"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
@@ -249,7 +249,7 @@ sed -i -e 's/acolor = .*/acolor = #fdd835/g' $PDIR/config
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fdd835"/g' $HOME/.bin/polybar/menu
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fdd835"/g' $HOME/.bin/polybar/menu_full
 sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fdd835"/g' $HOME/.bin/polybar/sysmenu
-sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fdd835"/g' $HOME/.bin/polybar/color-switch.sh
+sed -i -e 's/HIGHLIGHT_BACKGROUND=.*/HIGHLIGHT_BACKGROUND="#fdd835"/g' $HOME/.bin/polybar/color-switch
 # Restarting polybar
 $LAUNCH &
 
