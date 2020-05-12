@@ -18,7 +18,7 @@ fg = #FFFFFF
 fg-alt = #A9ABB0
 
 acolor = #039be5
-curgent = #e53935
+curgent = #f05959
 coccupied = #1e88e5
 
 ## Material Colors
