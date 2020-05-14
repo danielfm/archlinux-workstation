@@ -13,11 +13,11 @@
 
 [color]
 
-bg = #313131
+bg = #1F1F1F
 fg = #FFFFFF
 fg-alt = #A9ABB0
 
-acolor = #039be5
+acolor = #1e88e5
 curgent = #f05959
 coccupied = #1e88e5
 
@@ -58,7 +58,7 @@ line-size = 3
 background = ${color.bg}
 foreground = ${color.fg}
 
-border-size = 0
+border-size = 1
 border-color = ${color.bg}
 
 module-margin-left = 1
