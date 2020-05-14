@@ -284,8 +284,8 @@ set_from_resource $term_color14 color14    #EA5BD1
 set_from_resource $term_color15 color15    #8bbabb
 
 # class                 border       backgr.      text        indicator     child_border
-client.focused          $bg          $bg          $foreground $term_color3  $term_color5
-client.focused_inactive $bg          $bg          $foreground $term_color4  $term_color6
+client.focused          $bg          $bg          $foreground $term_color2  $term_color6
+client.focused_inactive $bg          $bg          $foreground $term_color6  $term_color7
 client.unfocused        $fg          $fg          $foreground $term_color6  $term_color7
 client.urgent           $fg          $fg          $foreground $term_color1  $term_color4
 client.placeholder      $fg          $fg          $foreground $term_color2  $term_color1
@@ -300,7 +300,7 @@ bindsym $mod+Shift+d exec --no-startup-id $HOME/.bin/polybar/menu_full
 #############################
 
 # Set inner/outer gaps
-set $default_inner 10
+set $default_inner 20
 set $default_outer 0
 
 gaps inner $default_inner
@@ -312,11 +312,11 @@ gaps outer $default_outer
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+# smart_gaps on
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
+# smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
