@@ -1,12 +1,12 @@
-- name: Set timezone to {{ system.timezone }}
+- name: Set timezone to {{ system_timezone }}
   become: yes
   timezone:
-    name: '{{ system.timezone }}'
+    name: '{{ system_timezone }}'
 
-- name: Ensure the locale {{ system.locale }} exists
+- name: Ensure the locale {{ system_locale }} exists
   become: yes
   locale_gen:
-    name: '{{ system.locale }}'
+    name: '{{ system_locale }}'
 
 - name: Set up avahi local hostname resolution
   become: yes

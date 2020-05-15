@@ -5,11 +5,6 @@ user_group: danielfm
 user_uid: 1000
 user_gid: 1000
 
-user_full_name: Daniel Martins
-user_email: daniel.tritone@gmail.com
-user_github_username: danielfm
-user_irc_nickname: caninha
-
 user_create_ssh_keypair: yes
 user_gnupg_key_id: '0x7105CE6355472DCA'
 
@@ -26,4 +21,3 @@ system_timezone: America/Sao_Paulo
 system_locale: en_US.UTF-8
 
 system_bluetooth: yes
-system_secure_boot: no

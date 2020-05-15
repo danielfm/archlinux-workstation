@@ -5,5 +5,5 @@
 - name: System-wide configuration
   import_tasks: system.yml
 
-- name: 'Configuration for {{ user.name }} user'
+- name: 'Configuration for {{ user_name }} user'
   import_tasks: user.yml

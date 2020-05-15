@@ -1,9 +1,9 @@
 [user]
-        name = {{ user.full_name }}
+        name = {{ user_full_name }}
 
         # Personal account
-        email = {{ user.email }}
-        signingkey = {{ user.gnupg_key_id }}
+        email = {{ user_email }}
+        signingkey = {{ user_gnupg_key_id }}
 
 [commit]
         gpgsign = true
@@ -20,7 +20,7 @@
         lg = log --graph --all
 
 [github]
-        user = {{ user.github_username }}
+        user = {{ user_github_username }}
 
 [core]
         excludesfile = ~/.gitignore_global

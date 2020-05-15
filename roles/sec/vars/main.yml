@@ -1,1 +1,12 @@
+# User data
+
+user_name: john-doe
+user_group: john-doe
+
+user_gnupg_key_key: '0x123456789'
+
+# System data
+
+system_secure_boot: no
+
 secure_boot_keys_dir: /root/.secure-boot-keys

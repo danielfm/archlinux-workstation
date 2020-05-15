@@ -81,7 +81,7 @@
     - 96-secureboot-linux.hook
     - 97-secureboot-fwupd.hook
   when:
-    - system.secure_boot|bool
+    - system_secure_boot|bool
 
 - name: Instruct fwupd to use own keys for secure boot
   become: yes
@@ -92,4 +92,4 @@
     value: 'true'
     mode: '0644'
   when:
-    - system.secure_boot|bool
+    - system_secure_boot|bool

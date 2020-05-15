@@ -62,7 +62,7 @@
     name: autologin
     state: present
   when:
-    - user.autologin|bool
+    - user_autologin|bool
 
 - name: Enable auto-login in lightdm
   become: yes
@@ -70,9 +70,9 @@
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
     regexp: '^autologin-user='
-    line: 'autologin-user={{ user.name }}'
+    line: 'autologin-user={{ user_name }}'
   when:
-    - user.autologin|bool
+    - user_autologin|bool
 
 - name: Add X11 configuration files
   become: yes
@@ -102,7 +102,7 @@
     - module-bluetooth-policy
     - module-bluetooth-discover
   when:
-    - system.bluetooth|bool
+    - system_bluetooth|bool
 
 - name: Load module-echo-cancel PulseAudio module by default
   become: yes

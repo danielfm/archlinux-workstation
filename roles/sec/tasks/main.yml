@@ -8,7 +8,7 @@
 - name: Secure boot configuration
   import_tasks: system_secureboot.yml
   when:
-    - system.secure_boot|bool
+    - system_secure_boot|bool
 
-- name: 'Configuration for {{ user.name }} user'
+- name: 'Configuration for {{ user_name }} user'
   import_tasks: user.yml

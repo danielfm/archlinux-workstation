@@ -95,4 +95,4 @@
     name:
       - bluez-utils
   when:
-    - system.bluetooth|bool
+    - system_bluetooth|bool

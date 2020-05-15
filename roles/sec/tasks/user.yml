@@ -1,41 +1,41 @@
 - name: Ensure the .gnupg directory exists
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   file:
-    path: '/home/{{ user.name }}/.gnupg'
+    path: '/home/{{ user_name }}/.gnupg'
     state: directory
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
     mode: '0700'
 
 - name: Add GPG configuration file
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   template:
     src: home/.gnupg/gpg.conf.j2
-    dest: '/home/{{ user.name }}/.gnupg/gpg.conf'
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
+    dest: '/home/{{ user_name }}/.gnupg/gpg.conf'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
     mode: '0600'
 
 - name: Add Dirmngr configuration file
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   copy:
     src: home/.gnupg/dirmngr.conf
-    dest: '/home/{{ user.name }}/.gnupg/dirmngr.conf'
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
+    dest: '/home/{{ user_name }}/.gnupg/dirmngr.conf'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
     mode: '0600'
 
 - name: Add user configuration files
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   copy:
     src: 'home/{{ item }}'
-    dest: '/home/{{ user.name }}/'
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
+    dest: '/home/{{ user_name }}/'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
     mode: '0644'
   loop:
     - .bash_aliases.d
@@ -44,7 +44,7 @@
 
 - name: Enable user services
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   systemd:
     name: '{{ item }}'
     state: started

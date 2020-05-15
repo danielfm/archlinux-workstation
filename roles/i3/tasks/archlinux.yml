@@ -94,7 +94,7 @@
       - blueman
       - pulseaudio-bluetooth
   when:
-    - system.bluetooth|bool
+    - system_bluetooth|bool
 
 - name: Install AUR packages
   aur:

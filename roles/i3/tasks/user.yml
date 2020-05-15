@@ -1,11 +1,11 @@
 - name: Add user config files
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   copy:
     src: 'home/{{ item }}'
-    dest: '/home/{{ user.name }}/'
-    owner: '{{ user.name }}'
-    group: '{{ user.group}}'
+    dest: '/home/{{ user_name }}/'
+    owner: '{{ user_name }}'
+    group: '{{ user_group}}'
     mode: '0644'
   loop:
     - .Xresources
@@ -17,31 +17,31 @@
 - name: Add user to autologin group
   become: yes
   user:
-    name: '{{ user.name }}'
+    name: '{{ user_name }}'
     groups:
       - autologin
     append: yes
   when:
-    - user.autologin|bool
+    - user_autologin|bool
 
 - name: Add user bin scripts
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   copy:
     src: home/.bin/
-    dest: '/home/{{ user.name }}/.bin/'
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
+    dest: '/home/{{ user_name }}/.bin/'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
     mode: '0755'
 
 - name: Add templated user config files
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   template:
     src: 'home/{{ item }}.j2'
-    dest: '/home/{{ user.name }}/{{ item }}'
-    owner: '{{ user.name }}'
-    group: '{{ user.group}}'
+    dest: '/home/{{ user_name }}/{{ item }}'
+    owner: '{{ user_name }}'
+    group: '{{ user_group}}'
     mode: '0644'
   loop:
     - .gtk-bookmarks
@@ -58,7 +58,7 @@
 
 - name: Set DejaDup configuration
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   dconf:
     key: '/org/gnome/deja-dup/{{ item.key }}'
     value: '{{ item.value | string }}'

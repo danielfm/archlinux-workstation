@@ -1,11 +1,11 @@
 - name: Add user configuration files
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   copy:
     src: 'home/{{ item }}'
-    dest: '/home/{{ user.name }}/'
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
+    dest: '/home/{{ user_name }}/'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
     mode: '0644'
   loop:
     - .bash_aliases.d
@@ -19,21 +19,21 @@
 
 - name: Add user configuration templates
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   template:
     src: home/{{ item }}.j2
-    dest: '/home/{{ user.name }}/{{ item }}'
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
+    dest: '/home/{{ user_name }}/{{ item }}'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
     mode: '0644'
   loop:
     - .bash_env.d/11-emacs.sh
     - .gitconfig
 
-- name: Ensure {{ user.name }} is in the required groups
+- name: Ensure {{ user_name }} is in the required groups
   become: yes
   user:
-    name: '{{ user.name }}'
+    name: '{{ user_name }}'
     groups:
       - docker
       - libvirt
@@ -42,48 +42,48 @@
 
 - name: Add extra directories
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   file:
-    path: '/home/{{ user.name }}/{{ item }}'
+    path: '/home/{{ user_name }}/{{ item }}'
     state: directory
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
     mode: '0755'
   loop:
     - Projects
 
 - name: Install oh-my-zsh
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
-    dest: '/home/{{ user.name }}/.oh-my-zsh'
+    dest: '/home/{{ user_name }}/.oh-my-zsh'
     remote: readonly
     accept_hostkey: yes
 
 - name: Install tmux plugin manager
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   git:
     repo: https://github.com/tmux-plugins/tpm
-    dest: '/home/{{ user.name }}/.tmux/plugins/tpm'
+    dest: '/home/{{ user_name }}/.tmux/plugins/tpm'
     remote: readonly
     accept_hostkey: yes
 
 - name: Install vundle plugin manager
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   git:
     repo: https://github.com/VundleVim/Vundle.vim.git
-    dest: '/home/{{ user.name }}/.vim/bundle/vundle'
+    dest: '/home/{{ user_name }}/.vim/bundle/vundle'
     remote: readonly
     accept_hostkey: yes
 
 - name: Install emacs configuration
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   git:
     repo: https://github.com/danielfm/dotfiles-emacs.git
-    dest: '/home/{{ user.name }}/.emacs.d'
+    dest: '/home/{{ user_name }}/.emacs.d'
     remote: readonly
     accept_hostkey: yes

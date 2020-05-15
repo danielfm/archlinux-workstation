@@ -1,17 +1,17 @@
-- name: Ensure {{ user.group }} group exists
+- name: Ensure {{ user_group }} group exists
   become: yes
   group:
-    name: '{{ user.group }}'
+    name: '{{ user_group }}'
     state: present
-    gid: '{{ user.gid }}'
+    gid: '{{ user_gid }}'
 
-- name: Ensure {{ user.name }} user exists
+- name: Ensure {{ user_name }} user exists
   become: yes
   user:
-    name: '{{ user.name }}'
-    password: '{{ user.password }}'
+    name: '{{ user_name }}'
+    password: '{{ user_password }}'
     groups:
-      - '{{ user.group }}'
+      - '{{ user_group }}'
       - realtime
       - audio
       - lp
@@ -22,38 +22,38 @@
       - video
       - wheel
     append: yes
-    group: '{{ user.group }}'
-    uid: '{{ user.uid }}'
+    group: '{{ user_group }}'
+    uid: '{{ user_uid }}'
     shell: '/bin/zsh'
 
-- name: Ensure the ~/.ssh directory exists for {{ user.name }}
+- name: Ensure the ~/.ssh directory exists for {{ user_name }}
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   file:
-    path: '/home/{{ user.name }}/.ssh'
+    path: '/home/{{ user_name }}/.ssh'
     state: directory
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
     mode: '0700'
   when:
-    - user.create_ssh_keypair|bool
+    - user_create_ssh_keypair|bool
 
-- name: Generate SSH keypair for {{ user.name }}
+- name: Generate SSH keypair for {{ user_name }}
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   openssh_keypair:
-    path: '/home/{{ user.name }}/.ssh/id_rsa'
+    path: '/home/{{ user_name }}/.ssh/id_rsa'
   when:
-    - user.create_ssh_keypair|bool
+    - user_create_ssh_keypair|bool
 
-- name: Ensure bash directories exist for {{ user.name }}
+- name: Ensure bash directories exist for {{ user_name }}
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   file:
-    path: '/home/{{ user.name }}/{{ item }}'
+    path: '/home/{{ user_name }}/{{ item }}'
     state: directory
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
     mode: '0755'
   loop:
     - .bash_aliases.d
@@ -62,12 +62,12 @@
 
 - name: Add user configuration files
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   copy:
     src: 'home/{{ item }}'
-    dest: '/home/{{ user.name }}/'
-    owner: '{{ user.name }}'
-    group: '{{ user.group }}'
+    dest: '/home/{{ user_name }}/'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
     mode: '0644'
   loop:
     - .bash_logout
@@ -77,8 +77,8 @@
 - name: Add user to sudoers file
   become: yes
   lineinfile:
-    path: '/etc/sudoers.d/{{ user.name }}'
-    line: '{{ user.name }} ALL=(ALL) ALL'
+    path: '/etc/sudoers.d/{{ user_name }}'
+    line: '{{ user_name }} ALL=(ALL) ALL'
     state: present
     mode: '0400'
     create: yes
@@ -86,7 +86,7 @@
 
 - name: Add flathub remote to the user flatpak installation
   become: yes
-  become_user: '{{ user.name }}'
+  become_user: '{{ user_name }}'
   flatpak_remote:
     name: flathub
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo

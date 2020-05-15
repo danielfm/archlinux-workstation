@@ -1,8 +1,23 @@
+# User data
+
+user_name: john-doe
+user_group: john-doe
+
+# Only use this if you have some sort of security mechanism in place
+# prior to the login, i.e., disk encryption password prompt
+user_autologin: no
+
+# System data
+
+system_bluetooth: yes
+
+# Application data
+
 # Directories to be displayed as bookmarks in file managers, such as Thunar
 gtk_bookmarks:
   - name: Downloads
-    path: "/home/{{ user.name }}/Downloads"
+    path: "/home/{{ user_name }}/Downloads"
   - name: Dropbox
-    path: "/home/{{ user.name }}/Dropbox"
+    path: "/home/{{ user_name }}/Dropbox"
   - name: Projects
-    path: "/home/{{ user.name }}/Projects"
+    path: "/home/{{ user_name }}/Projects"
