@@ -9,7 +9,6 @@
   become: yes
   user:
     name: '{{ user_name }}'
-    password: '{{ user_password }}'
     groups:
       - '{{ user_group }}'
       - realtime

@@ -51,24 +51,19 @@ complete the rest of the installation:
 pacman -S ansible git git-lfs base-devel sudo nano openssh
 ```
 
-### Create User for Running the Ansible Playbook
+### Create User
 
-Running Ansible as root is probably a bad idea (I'm not sure it's even possible!),
-so I recommend you creating a separate user for running this Ansible playbook.
-
-Run the following commands as root to create a new `ansible` user:
+Run the following commands as root to create a new user:
 
 ```sh
-# Create a 'ansible' group and user:
-groupadd -r ansible
-useradd -m -r -g ansible -G wheel ansible
-passwd ansible <password>
+# Create a group and user (replace <user>/<group> by the desired values):
+groupadd <user>
+useradd -m -g <group> -G wheel <user>
+passwd <user>
 
-# Make sure the ansible user is allowed to sudo:
+# Make sure the  user is allowed to sudo:
 EDITOR=nano visudo
 ```
-
-Logout and then login as the new `ansible` user.
 
 ### Running the Ansible Playbook
 
