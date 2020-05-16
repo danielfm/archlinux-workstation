@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Force prime-offload execution, which is required for optimus-manager to work
+if [ $(which prime-offload) ]; then
+  prime-offload
+fi
+
 set -x
 
 MONITORS=$(xrandr -q | grep '.* connected' | awk '{ print $1 }')
