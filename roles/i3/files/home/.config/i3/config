@@ -62,12 +62,7 @@ bindsym $mod+F10 exec io.elementary.calculator
 bindsym $mod+F11 exec $term -e 'nmtui'
 bindsym $mod+F12 exec arandr
 
-# Shortcut for copying passwords from gopass
-bindsym $mod+backslash exec --no-startup-id bash -c 'gopass ls --flat | rofi -dmenu -p Gopass | xargs --no-run-if-empty gopass show -c'
-
-# Shortcuts for common utilities
-bindsym $mod+Ctrl+b exec $term -e 'bmenu'
-
+# Screenshot shortcuts
 bindsym $mod+Control+p --release exec --no-startup-id bash -c 'maim -us | xclip -selection clipboard -t image/png'
 bindsym $mod+Shift+p --release exec --no-startup-id bash -c 'maim -us ~/Pictures/$(date +%s).png'
 
