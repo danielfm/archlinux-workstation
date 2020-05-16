@@ -244,7 +244,7 @@ exec_always --no-startup-id ~/.bin/polybar/launch
 bindsym $mod+p exec --no-startup-id polybar-msg cmd toggle
 
 # Start notification daemon
-exec_always --no-startup-id dunst -config ~/.cache/wal/dunstrc
+exec_always --no-startup-id dunst
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
