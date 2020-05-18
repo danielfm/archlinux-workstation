@@ -80,8 +80,6 @@
     - 95-secureboot-grub.hook
     - 96-secureboot-linux.hook
     - 97-secureboot-fwupd.hook
-  when:
-    - system_secure_boot|bool
 
 - name: Instruct fwupd to use own keys for secure boot
   become: yes
@@ -91,5 +89,3 @@
     option: DisableShimForSecureBoot
     value: 'true'
     mode: '0644'
-  when:
-    - system_secure_boot|bool

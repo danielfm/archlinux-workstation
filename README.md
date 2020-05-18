@@ -41,6 +41,18 @@ in more recent hardware), as I always need to keep some private information
 stored in the local disk. This protects my files from being accessed in case my
 work machine gets stolen.
 
+### Full Disk Encryption Setup
+
+I'm currently using
+[LVM on LUKS](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
+scheme.
+
+### Secure Boot Setup
+
+This configuration generates the required keys for enrolling into the firmware
+if the `system_secure_boot: on` variable is set. Follow the Arch wiki for
+instructions on how to proceed.
+
 ### Pre-Installation
 
 #### Install the Required Packages
