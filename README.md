@@ -32,7 +32,7 @@ This installation contains the following roles:
 
 First, follow the
 [official installation guide](https://wiki.archlinux.org/index.php/installation_guide)
-to bootstrap the base system.
+to bootstrap the bare-bones, bootable system.
 
 I also use
 [full disk encryption](https://wiki.archlinux.org/index.php/Dm-crypt) and enable

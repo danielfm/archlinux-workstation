@@ -5,7 +5,7 @@
     src: 'home/{{ item }}'
     dest: '/home/{{ user_name }}/'
     owner: '{{ user_name }}'
-    group: '{{ user_group}}'
+    group: '{{ user_group }}'
     mode: '0644'
   loop:
     - .Xresources
@@ -41,7 +41,7 @@
     src: 'home/{{ item }}.j2'
     dest: '/home/{{ user_name }}/{{ item }}'
     owner: '{{ user_name }}'
-    group: '{{ user_group}}'
+    group: '{{ user_group }}'
     mode: '0644'
   loop:
     - .gtk-bookmarks
@@ -79,6 +79,8 @@
     - key: google/folder
       value: "'Backups/$HOSTNAME'"
     - key: include-list
-      value: ['$HOME/.chef', '$HOME/.chef-workstation', '$HOME/.config', '$HOME/.gnupg', '$HOME/.ssh', '$HOME/Desktop', '$HOME/Documents', '$HOME/Music', '$HOME/Pictures', '$HOME/Projects', '$HOME/Public', '$HOME/Templates', '$HOME/Videos']
+      value: ['$HOME/.chef', '$HOME/.chef-workstation', '$HOME/.config', '$HOME/.gnupg',
+              '$HOME/.ssh', '$HOME/Desktop', '$HOME/Documents', '$HOME/Music', '$HOME/Pictures',
+              '$HOME/Projects', '$HOME/Public', '$HOME/Templates', '$HOME/Videos']
     - key: exclude-list
       value: ['$HOME/.config/discord', '$HOME/.config/Slack']

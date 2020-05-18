@@ -57,6 +57,7 @@
   become_user: '{{ user_name }}'
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
+    version: master
     dest: '/home/{{ user_name }}/.oh-my-zsh'
     remote: readonly
     accept_hostkey: yes
@@ -66,6 +67,7 @@
   become_user: '{{ user_name }}'
   git:
     repo: https://github.com/tmux-plugins/tpm
+    version: master
     dest: '/home/{{ user_name }}/.tmux/plugins/tpm'
     remote: readonly
     accept_hostkey: yes
@@ -75,6 +77,7 @@
   become_user: '{{ user_name }}'
   git:
     repo: https://github.com/VundleVim/Vundle.vim.git
+    version: master
     dest: '/home/{{ user_name }}/.vim/bundle/vundle'
     remote: readonly
     accept_hostkey: yes
@@ -84,6 +87,7 @@
   become_user: '{{ user_name }}'
   git:
     repo: https://github.com/danielfm/dotfiles-emacs.git
+    version: master
     dest: '/home/{{ user_name }}/.emacs.d'
     remote: readonly
     accept_hostkey: yes

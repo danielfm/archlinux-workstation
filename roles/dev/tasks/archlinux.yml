@@ -4,6 +4,7 @@
     state: present
     name:
       - android-tools
+      - ansible-lint
       - aspell
       - aspell-en
       - aspell-pt
