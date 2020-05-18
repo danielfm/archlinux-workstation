@@ -66,7 +66,7 @@ useradd -m -g <group> -G wheel <user>
 passwd <user>
 
 # Make sure the  user is allowed to sudo:
-EDITOR=nano visudo
+EDITOR=nano visudo -f /etc/sudoers.d/<user>
 ```
 
 ### Running the Ansible Playbook
