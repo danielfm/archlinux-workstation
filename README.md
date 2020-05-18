@@ -36,14 +36,13 @@ to bootstrap the bare-bones, bootable system.
 
 I also use
 [full disk encryption](https://wiki.archlinux.org/index.php/Dm-crypt/Encrypting_an_entire_system#LVM_on_LUKS)
-and enable [Secure Boot](https://wiki.archlinux.org/index.php/Secure_Boot)
-(only possible in more recent hardware), as I always need to keep some private
-information stored in the local disk. This protects my files from being
-accessed in case my work machine gets stolen.
+as I always need to keep some private information stored in the local disk. This
+protects my files from being accessed in case my work machine gets stolen.
 
 This configuration generates the required keys for enrolling into the firmware
-if the `system_secure_boot: on` variable is set. Follow the Arch wiki for
-instructions on how to proceed.
+if the `system_secure_boot: on` variable is set. Follow the
+[Arch wiki](https://wiki.archlinux.org/index.php/Secure_Boot) for instructions
+on how to proceed.
 
 ### Pre-Installation
 
