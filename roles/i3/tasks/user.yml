@@ -79,8 +79,12 @@
     - key: google/folder
       value: "'Backups/$HOSTNAME'"
     - key: include-list
-      value: ['$HOME/.chef', '$HOME/.chef-workstation', '$HOME/.config', '$HOME/.gnupg',
-              '$HOME/.ssh', '$HOME/Desktop', '$HOME/Documents', '$HOME/Music', '$HOME/Pictures',
-              '$HOME/Projects', '$HOME/Public', '$HOME/Templates', '$HOME/Videos']
+      value: ['/home/{{ user_name }}/.chef', '/home/{{ user_name }}/.chef-workstation',
+              '/home/{{ user_name }}/.config', '/home/{{ user_name }}/.gnupg',
+              '/home/{{ user_name }}/.ssh', '/home/{{ user_name }}/Desktop',
+              '/home/{{ user_name }}/Documents', '/home/{{ user_name }}/Music',
+              '/home/{{ user_name }}/Pictures', '/home/{{ user_name }}/Projects',
+              '/home/{{ user_name }}/Public', '/home/{{ user_name }}/Templates',
+              '/home/{{ user_name }}/Videos']
     - key: exclude-list
-      value: ['$HOME/.config/discord', '$HOME/.config/Slack']
+      value: ['/home/{{ user_name }}/.config/discord', '/home/{{ user_name }}/.config/Slack']
