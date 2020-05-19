@@ -20,10 +20,11 @@
       - gcolor3
       - go
       - jq
-      - jre-openjdk
+      - jdk8-openjdk
       - k9s
       - kubectl
       - libusb-compat
+      - maven
       - ovmf
       - openbsd-netcat
       - opensc
