@@ -53,6 +53,6 @@ case $N_MONITORS in
     echo Dual external monitors detected
     xrandr --auto --output $EDP_MONITOR $EDP_ARGS \
            --output $DP_MONITOR $DP_ARGS --right-of $EDP_MONITOR \
-           --output $HDMI_MONITOR $HDMI_ARGS --right-of $DP_MONITOR
+           --output $HDMI_MONITOR $HDMI_ARGS --left-of $EDP_MONITOR
     ;;
 esac
