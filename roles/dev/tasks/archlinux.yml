@@ -46,7 +46,7 @@
       - chef-dk
       - google-cloud-sdk
       - kail
-      - kind
+      - kind-bin
       - pyenv-virtualenv
       - zoom
       - zsa-wally
