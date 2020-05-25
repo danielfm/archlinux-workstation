@@ -26,3 +26,23 @@
     - avahi-daemon
     - ntpd
     - org.cups.cupsd
+
+- name: Install packages required for bluetooth support
+  become: yes
+  pacman:
+    state: present
+    name:
+      - bluez-utils
+  when:
+    - system_bluetooth|bool
+
+- name: Disable bluetooth Enhanced Retransmission Mode (ERTM)
+  become: yes
+  copy:
+    src: etc/modprobe.d/xbox_bt.conf
+    dest: /etc/modprobe.d/xbox_bt.conf
+    owner: root
+    group: root
+    mode: 0644
+  when:
+    - system_bluetooth|bool
