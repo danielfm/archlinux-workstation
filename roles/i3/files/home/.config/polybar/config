@@ -46,7 +46,7 @@ blue-gray = #546e7a
 ;==========================================================
 
 [bar/main]
-monitor = 
+monitor = ${env:MONITOR:}
 width = 100%
 height = 40
 offset-x = 5%
