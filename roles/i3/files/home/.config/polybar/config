@@ -84,7 +84,7 @@ scroll-down = i3wm-wsprev
 ;== Module Location ========================================================
 
 modules-left = menu workspaces term files browser chat monitors
-modules-right = pkg keyboard presentation-mode volume bat0 bat1 network date powermenu
+modules-right = keyboard presentation-mode volume bat0 bat1 network date powermenu
  
 ;== Modules ========================================================
 
@@ -178,14 +178,6 @@ label-song-maxlen = 25
 label-song-ellipsis = true
 
 ;==========================================================
-
-[module/pkg]
-type = custom/script
-exec = $HOME/.bin/polybar/updates
-;exec-if = "ping -q -w 2 -c 1 176.34.135.167 > /dev/null"
-;label = %{A1:termite -e "aurman -Syyu" & disown:} %{A3:termite -e "aurman -Syyu" & disown:}%output%%{A} %{A}
-tail = true
-click-left = pamac-manager &
 
 [module/bat0]
 type = internal/battery
