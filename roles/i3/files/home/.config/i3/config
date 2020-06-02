@@ -38,6 +38,9 @@ bindsym $mod+Shift+m exec $term -e 'alsamixer'
 # to switch between the layouts
 exec --no-startup-id setxkbmap -model pc105 -layout us,br -variant intl,thinkpad -option grp:shifts_toggle
 
+# Map capslock to ctrl
+exec --no-startup-id setxkbmap -option caps:ctrl_modifier
+
 # Media buttons
 bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
 bindsym XF86AudioNext exec --no-startup-id playerctl next
