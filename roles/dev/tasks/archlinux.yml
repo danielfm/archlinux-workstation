@@ -28,7 +28,7 @@
       - ovmf
       - openbsd-netcat
       - opensc
-      - python-pip
+      - python-pipenv
       - qemu
       - ruby-bundler
       - rubygems
