@@ -28,6 +28,7 @@
       - ovmf
       - openbsd-netcat
       - opensc
+      - packer
       - python-pipenv
       - qemu
       - ruby-bundler
@@ -48,5 +49,6 @@
       - kail
       - kind-bin
       - pyenv-virtualenv
+      - ruby-rubocop
       - zoom
       - zsa-wally
