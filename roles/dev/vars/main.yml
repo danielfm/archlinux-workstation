@@ -4,11 +4,12 @@ user_name: john-doe
 user_group: john-doe
 
 user_full_name: John Doe
-user_email: john.doe@email.com
 user_github_username: jdoe
 user_irc_nickname: jdoe
 
 user_gnupg_key_id: '0x123456789'
+
+github_user_email: john.doe@email.com
 
 # System data
 
