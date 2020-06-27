@@ -34,6 +34,7 @@
       - ruby-bundler
       - rubygems
       - smartmontools
+      - terraform
       - tmux
       - virt-manager
       - wireshark-qt
