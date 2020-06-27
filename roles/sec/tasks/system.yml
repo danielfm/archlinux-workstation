@@ -35,3 +35,24 @@
   become: yes
   ufw:
     logging: low
+
+- name: Enable YubiKey support for login and system auth
+  become: yes
+  lineinfile:
+    path: '{{ item }}'
+    regex: '^auth .+ pam_yubico.so'
+    line: 'auth sufficient pam_yubico.so mode=challenge-response authfile=/etc/yubikey_mappings'
+    insertbefore: '^auth .+'
+    firstmatch: yes
+  loop:
+    - /etc/pam.d/login
+    - /etc/pam.d/system-auth
+
+- name: Add YubiKey mapping file
+  become: yes
+  template:
+    src: etc/yubikey_mappings.j2
+    dest: /etc/yubikey_mappings
+    owner: root
+    group: root
+    mode: '0600'

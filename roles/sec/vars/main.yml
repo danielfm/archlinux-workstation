@@ -4,6 +4,8 @@ user_name: john-doe
 user_group: john-doe
 
 user_gnupg_key_key: '0x123456789'
+user_yubikey_ids:
+  - ccc...
 
 # System data
 
