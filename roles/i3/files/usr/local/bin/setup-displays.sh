@@ -1,16 +1,14 @@
 #!/bin/bash
 
+set -x
+
 # Force prime-offload execution, which is required for optimus-manager to work
 if [ $(which prime-offload) ]; then
   prime-offload
 fi
 
-set -x
-
 MONITORS=$(xrandr -q | grep '.* connected' | awk '{ print $1 }')
 N_MONITORS=$(echo "$MONITORS" | wc -l)
-
-echo "Detected $N_MONITORS connected monitor(s):" $MONITORS
 
 # Built-in monitor
 EDP_MONITOR=$(echo "$MONITORS" | grep '^eDP')
@@ -25,9 +23,9 @@ HDMI_MONITOR=$(echo "$MONITORS" | grep '^HDMI')
 HDMI_MONITOR=${HDMI_MONITOR:-unknown}
 
 # Extra xrandr parameters for each monitor
-EDP_ARGS='--mode 1366x768'
-DP_ARGS='--mode 1920x1200 --rotate left'
-HDMI_ARGS='--mode 2560x1080'
+EDP_ARGS=''
+DP_ARGS=''
+HDMI_ARGS=''
 
 # Set primary monitor giving priority to the external displays
 if [ $HDMI_MONITOR != 'unknown' ]; then
@@ -38,21 +36,12 @@ else
   xrandr --output $EDP_MONITOR --primary
 fi
 
-case $N_MONITORS in
-  1)
-    echo No external monitors detected
-    xrandr --auto
-    ;;
-  2)
-    echo Single external monitor detected
-    xrandr --auto --output $EDP_MONITOR $EDP_ARGS \
-           --output $DP_MONITOR $DP_ARGS --above $EDP_MONITOR \
-           --output $HDMI_MONITOR $HDMI_ARGS --above $EDP_MONITOR
-    ;;
-  3)
-    echo Dual external monitors detected
-    xrandr --auto --output $EDP_MONITOR $EDP_ARGS \
-           --output $DP_MONITOR $DP_ARGS --right-of $EDP_MONITOR \
-           --output $HDMI_MONITOR $HDMI_ARGS --left-of $EDP_MONITOR
-    ;;
-esac
+# Disable built-in displays if two external displays are connected
+if [ $HDMI_MONITOR != 'unknown' ] && [ $DP_MONITOR != 'unknown' ]; then
+  xrandr --output $EDP_MONITOR --off
+else
+  xrandr --output $EDP_MONITOR --auto $EDP_ARGS
+fi
+
+xrandr --output $DP_MONITOR $DP_ARGS --right-of $EDP_MONITOR \
+       --output $HDMI_MONITOR $HDMI_ARGS --right-of $DP_MONITOR
