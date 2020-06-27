@@ -107,14 +107,26 @@ Some commands that might be useful:
 yay -S <package> --editmenu
 ```
 
+### Post-Installation
+
+#### YubiKey + PAM
+
+If you want to be able to authenticate your login and use `sudo` with YubiKey,
+set your key IDs in `{{ user_yubikey_ids }}` and run the following commands
+with both `root` and `{{ user_name }}` to generate the initial
+challenge-response file:
+
+```sh
+# Generate the challenge-response file for slot 2
+ykpamcfg -2 -v
+```
+
+#### YubiKey + GnuPG Setup
+
+- https://github.com/drduh/YubiKey-Guide
+- https://www.esev.com/blog/post/2015-01-pgp-ssh-key-on-yubikey-neo/
+
 ### That's It!
 
 If the `ansible-playbook` command finishes successfully, reboot the system to
 access your new environment!
-
-## References
-
-### Yubikey + GnuPG Setup
-
-- https://github.com/drduh/YubiKey-Guide
-- https://www.esev.com/blog/post/2015-01-pgp-ssh-key-on-yubikey-neo/
