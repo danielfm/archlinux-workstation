@@ -68,6 +68,15 @@
     cmd: sign-efi-sig-list -g "$(< GUID.txt)" -c PK.crt -k PK.key PK /dev/null rm_PK.auth
     creates: rm_PK.auth
 
+- name: Ensure pacman hooks directory exist
+  become: yes    
+  file:
+    path: /etc/pacman.d/hooks
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
 - name: Add pacman hooks for secure boot signing
   become: yes
   template:
