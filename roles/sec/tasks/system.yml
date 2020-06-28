@@ -39,14 +39,21 @@
 - name: Enable YubiKey support for login and sudo
   become: yes
   lineinfile:
-    path: '{{ item }}'
+    path: /etc/pam.d/system-auth
     regex: '^auth required pam_u2f.so'
     line: 'auth required pam_u2f.so'
     insertbefore: '^auth'
     firstmatch: yes
-  loop:
-    - /etc/pam.d/login
-    - /etc/pam.d/sudo
   when:
     - (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
     - (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
+
+- name: Disable YubiKey support for system-auth
+  become: yes
+  lineinfile:
+    state: absent
+    path: /etc/pam.d/system-auth
+    regex: '^auth required pam_u2f.so'
+  when:
+    - not (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
+    - not (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)

@@ -21,8 +21,6 @@
     groups:
       - autologin
     append: yes
-  when:
-    - user_autologin|bool
 
 - name: Add user bin scripts
   become: yes

@@ -61,8 +61,6 @@
   group:
     name: autologin
     state: present
-  when:
-    - user_autologin|bool
 
 - name: Enable auto-login in lightdm
   become: yes
@@ -73,6 +71,15 @@
     line: 'autologin-user={{ user_name }}'
   when:
     - user_autologin|bool
+
+- name: Disable auto-login in lightdm
+  become: yes
+  lineinfile:
+    path: /etc/lightdm/lightdm.conf
+    state: absent
+    regexp: '^autologin-user='
+  when:
+    - not (user_autologin|bool)
 
 - name: Add X11 configuration files
   become: yes
