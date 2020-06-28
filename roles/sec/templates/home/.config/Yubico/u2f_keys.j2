@@ -1,0 +1,3 @@
+{%- if user_pam_u2f_main_key and user_pam_u2f_backup_key -%}
+{{ user_name }}:{{ user_pam_u2f_main_key }}:{{ user_pam_u2f_backup_key }}
+{%- endif -%}

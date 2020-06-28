@@ -109,19 +109,33 @@ yay -S <package> --editmenu
 
 ### Post-Installation
 
-#### YubiKey + PAM
+#### Local 2FA With YubiKey + PAM
 
-If you want to be able to authenticate your login and use `sudo` with YubiKey,
-set your key IDs in `{{ user_yubikey_ids }}` and run the following commands
-with both `root` and `{{ user_name }}` to generate the initial
-challenge-response file:
+This setup supports configuring local 2FA with U2F keys (such as YubiKeys).
 
-```sh
-# Generate the challenge-response file for slot 2
-ykpamcfg -2 -v
+Run `pam2fcfg` and press the blinking button on each key in order to output a
+string in the following format:
+
+```
+# [ First part  ] [      Second part      ]
+<local-user-name>:<key-handle>,<public-key>
 ```
 
+Copy the `Second part` of the output for each key (main and backup) to the
+`{{ user_pam_u2f_main_key }}` and `{{ user_pam_u2f_backup_key }}` variables,
+respectively. It will only be activated if you provide data for both security
+keys. Then, re-run the playbook to apply the configuration.
+
+More information:
+
+- https://infosec-handbook.eu/blog/yubikey-2fa-pam/
+
 #### YubiKey + GnuPG Setup
+
+Some YubiKeys can be used as a GPG smart card, allowing us to store GPG
+encryption, signing and authentication keys in it.
+
+More information:
 
 - https://github.com/drduh/YubiKey-Guide
 - https://www.esev.com/blog/post/2015-01-pgp-ssh-key-on-yubikey-neo/

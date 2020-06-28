@@ -52,3 +52,16 @@
     enabled: yes
   loop:
     - yubikey-touch-detector
+
+- name: Add U2F key data
+  become: yes
+  become_user: '{{ user_name }}'
+  template:
+    src: 'home/.config/Yubico/u2f_keys.j2'
+    dest: '/home/{{ user_name }}/.config/Yubico/u2f_keys'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: '0600'
+  when:
+    - (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
+    - (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)

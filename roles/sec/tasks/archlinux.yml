@@ -13,6 +13,7 @@
       - keepassxc
       - networkmanager-openvpn
       - opensc
+      - pam-u2f
       - qrencode
       - sbsigntools
       - tor

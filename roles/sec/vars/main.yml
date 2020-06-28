@@ -4,11 +4,12 @@ user_name: john-doe
 user_group: john-doe
 
 user_gnupg_key_key: '0x123456789'
-user_yubikey_ids:
-  - ccc...
+
+# Format: '<key-handle>,<public-key>'
+user_pam_u2f_main_key: ''
+user_pam_u2f_backup_key: ''
 
 # System data
 
 system_secure_boot: no
-
 secure_boot_keys_dir: /root/.secure-boot-keys
