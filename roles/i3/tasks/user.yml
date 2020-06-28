@@ -87,4 +87,4 @@
               '/home/{{ user_name }}/Public',    '/home/{{ user_name }}/Templates',
               '/home/{{ user_name }}/Videos']
     - key: exclude-list
-      value: ['/home/{{ user_name }}/.config/discord', '/home/{{ user_name }}/.config/Slack']
+      value: ['/home/{{ user_name }}/.config/Slack']
