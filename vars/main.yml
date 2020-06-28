@@ -9,7 +9,7 @@ user_full_name: Daniel Martins
 user_github_username: danielfm
 user_irc_nickname: caninha
 
-user_create_ssh_keypair: yes
+user_create_ssh_keypair: no
 user_gnupg_key_id: '0x7105CE6355472DCA'
 
 github_user_email: 29534+danielfm@users.noreply.github.com
