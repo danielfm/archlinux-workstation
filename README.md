@@ -116,7 +116,7 @@ This setup supports configuring local 2FA with U2F keys (such as YubiKeys).
 Run `pam2fcfg` and press the blinking button on each key in order to output a
 string in the following format:
 
-```
+```sh
 # Run this command and press the blinking key, if asked:
 pamu2fcfg | cut -d ':' -f 2
 ```
