@@ -117,14 +117,18 @@ Run `pam2fcfg` and press the blinking button on each key in order to output a
 string in the following format:
 
 ```
-# [ First part  ] [      Second part      ]
-<local-user-name>:<key-handle>,<public-key>
+# Run this command and press the blinking key, if asked:
+pamu2fcfg | cut -d ':' -f 2
 ```
 
-Copy the `Second part` of the output for each key (main and backup) to the
+Copy the output for this command, for each key (main and backup), to the
 `{{ user_pam_u2f_main_key }}` and `{{ user_pam_u2f_backup_key }}` variables,
-respectively. It will only be activated if you provide data for both security
-keys. Then, re-run the playbook to apply the configuration.
+respectively.
+
+Then, re-run the playbook to apply the configuration.
+
+**Note:** This setup will only be activated if you provide data for both
+security keys, so you have a backup in case you lose your main key.
 
 More information:
 
