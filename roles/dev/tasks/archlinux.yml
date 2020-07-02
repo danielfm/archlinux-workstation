@@ -23,6 +23,7 @@
       - jdk8-openjdk
       - k9s
       - kubectl
+      - kubectx
       - libusb-compat
       - maven
       - ovmf
