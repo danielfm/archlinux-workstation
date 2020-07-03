@@ -52,5 +52,6 @@
       - kind-bin
       - pyenv-virtualenv
       - ruby-rubocop
+      - velero-bin
       - zoom
       - zsa-wally
