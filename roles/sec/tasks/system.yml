@@ -40,10 +40,7 @@
   become: yes
   lineinfile:
     path: /etc/pam.d/system-auth
-    regex: '^auth required pam_u2f.so'
     line: 'auth required pam_u2f.so'
-    insertbefore: '^auth'
-    firstmatch: yes
   when:
     - (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
     - (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
