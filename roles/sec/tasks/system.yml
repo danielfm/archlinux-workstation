@@ -39,8 +39,24 @@
 - name: Enable YubiKey support for login and sudo
   become: yes
   lineinfile:
-    path: /etc/pam.d/system-auth
-    line: 'auth required pam_u2f.so'
+    path: '{{ item }}'
+    firstmatch: yes
+    insertbefore: '^auth'
+    line: 'auth sufficient pam_u2f.so authfile=/etc/u2f_mappings nouserok'
+  loop:
+    - /etc/pam.d/sudo
+    - /etc/pam.d/system-local-login
+  when:
+    - (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
+    - (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
+
+- name: Add U2F key mapping for user
+  become: yes
+  lineinfile:
+    path: /etc/u2f_mappings
+    line: '{{ user_name }}:{{ user_pam_u2f_main_key }}:{{ user_pam_u2f_backup_key }}'
+    mode: '0400'
+    create: yes
   when:
     - (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
     - (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
@@ -49,8 +65,21 @@
   become: yes
   lineinfile:
     state: absent
-    path: /etc/pam.d/system-auth
+    path: '{{ item }}'
     regex: '^auth required pam_u2f.so'
+  loop:
+    - /etc/pam.d/sudo
+    - /etc/pam.d/system-local-login
+  when:
+    - not (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
+    - not (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
+
+- name: Remove U2F key mapping file for user
+  become: yes
+  lineinfile:
+    state: absent
+    regex: '^{{ user_name }}:.+$'
+    path: /etc/u2f_mappings
   when:
     - not (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
     - not (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)

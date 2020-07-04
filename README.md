@@ -109,9 +109,9 @@ yay -S <package> --editmenu
 
 ### Post-Installation
 
-#### Local 2FA With YubiKey + PAM
+#### Local Auth With YubiKey + PAM
 
-This setup supports configuring local 2FA with U2F keys (such as YubiKeys).
+This setup supports configuring local auth with U2F keys (such as YubiKeys).
 
 Run `pam2fcfg` and press the blinking button on each key in order to output a
 string in the following format:

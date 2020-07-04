@@ -7,11 +7,11 @@
     option: Include
     value: /etc/pacman.d/mirrorlist
 
-- name: Update system packages
+- name: Update system package definition
   become: yes
   pacman:
     update_cache: yes
-    upgrade: yes
+    upgrade: no
 
 - name: Check if yay AUR helper is available
   stat:
