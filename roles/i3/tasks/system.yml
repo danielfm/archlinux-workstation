@@ -30,17 +30,6 @@
     regexp: '^display-setup-script='
     line: display-setup-script=/usr/local/bin/setup-displays
 
-- name: Add udev rule to run setup-displays when connected displays change
-  become: yes
-  copy:
-    src: '{{ item }}'
-    dest: '/{{ item }}'
-    owner: root
-    group: root
-    mode: '0644'
-  loop:
-    - etc/udev/rules.d/90-setup-displays.rules
-
 - name: Hide the user list in lightdm
   become: yes
   lineinfile:
