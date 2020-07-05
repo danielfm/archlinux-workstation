@@ -41,6 +41,25 @@
   lineinfile:
     path: /etc/pam.d/system-local-login
     regex: '^auth .+ pam_u2f.so .+'
+    insertafter: '^auth .+'
+    line: 'auth required pam_u2f.so authfile=/etc/u2f_mappings nouserok'
+  when:
+    - (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
+    - (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
+
+# Ref: https://github.com/i3/i3lock/issues/198
+- name: i3lock U2F PAM workaround
+  become: yes
+  file:
+    path: /usr/bin/i3lock
+    mode: u+s
+
+- name: Enable i3lock 2FA with YubiKey
+  become: yes
+  lineinfile:
+    path: /etc/pam.d/i3lock
+    regex: '^auth .+ pam_u2f.so .+'
+    insertbefore: '^auth .+'
     line: 'auth required pam_u2f.so authfile=/etc/u2f_mappings nouserok'
   when:
     - (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
@@ -74,10 +93,20 @@
   lineinfile:
     state: absent
     path: '{{ item }}'
-    regex: '^auth required pam_u2f.so'
+    regex: '^auth .+ pam_u2f.so'
   loop:
     - /etc/pam.d/sudo
     - /etc/pam.d/system-local-login
+  when:
+    - not (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
+    - not (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
+
+- name: Disable i3lock 2FA with YubiKey
+  become: yes
+  lineinfile:
+    state: absent
+    regex: '^auth .+ pam_u2f.so .+'
+    path: /etc/pam.d/i3lock
   when:
     - not (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
     - not (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
@@ -86,7 +115,7 @@
   become: yes
   lineinfile:
     state: absent
-    regex: '^{{ user_name }}:.+$'
+    regex: '^{{ user_name }}:.+'
     path: /etc/u2f_mappings
   when:
     - not (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
