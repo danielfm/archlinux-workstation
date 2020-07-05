@@ -1,0 +1,1 @@
+KERNEL=="card0", SUBSYSTEM=="drm", RUN+="/usr/bin/bash -c 'sleep 5; /usr/local/bin/setup-displays'"

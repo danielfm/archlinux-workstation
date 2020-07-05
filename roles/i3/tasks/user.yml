@@ -45,15 +45,6 @@
     - .gtk-bookmarks
     - .config/gtk-3.0/bookmarks
 
-- name: Add templated system config files
-  become: yes
-  template:
-    src: '{{ item }}.j2'
-    dest: '/{{ item }}'
-    mode: '0644'
-  loop:
-    - etc/udev/rules.d/90-setup-displays.rules
-
 - name: Set DejaDup configuration
   become: yes
   become_user: '{{ user_name }}'

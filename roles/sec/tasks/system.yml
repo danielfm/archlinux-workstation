@@ -83,3 +83,14 @@
   when:
     - not (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
     - not (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
+
+- name: Configure udev to lock screen when YubiKey is removed
+  become: yes
+  copy:
+    src: '{{ item }}'
+    dest: '/{{ item }}'
+    owner: root
+    group: root
+    mode: '0644'
+  loop:
+    - etc/udev/rules.d/90-yubikey.rules

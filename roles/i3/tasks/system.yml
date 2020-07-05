@@ -22,13 +22,24 @@
     regexp: '^greeter-session='
     line: greeter-session=lightdm-slick-greeter
 
-- name: Run setup-displays.sh script in lightdm
+- name: Run setup-displays script in lightdm
   become: yes
   lineinfile:
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
     regexp: '^display-setup-script='
-    line: display-setup-script=/usr/local/bin/setup-displays.sh
+    line: display-setup-script=/usr/local/bin/setup-displays
+
+- name: Add udev rule to run setup-displays when connected displays change
+  become: yes
+  copy:
+    src: '{{ item }}'
+    dest: '/{{ item }}'
+    owner: root
+    group: root
+    mode: '0644'
+  loop:
+    - etc/udev/rules.d/90-setup-displays.rules
 
 - name: Hide the user list in lightdm
   become: yes
@@ -41,20 +52,24 @@
 - name: Copy background images
   become: yes
   copy:
-    src: "usr/share/backgrounds/"
-    dest: "/usr/share/backgrounds/"
+    src: '{{ item }}'
+    dest: "/{{ item }}"
     owner: root
     group: root
     mode: '0644'
+  loop: 
+    - usr/share/backgrounds/
 
 - name: Add lightdm-slick-greeter configuration file
   become: yes
   copy:
-    src: etc/lightdm/slick-greeter.conf
-    dest: /etc/lightdm/slick-greeter.conf
+    src: '{{ item }}'
+    dest: '/{{ item }}'
     owner: root
     group: root
     mode: '0644'
+  loop:
+    - etc/lightdm/slick-greeter.conf
 
 - name: Ensure the group autologin exists
   become: yes
@@ -84,11 +99,13 @@
 - name: Add X11 configuration files
   become: yes
   copy:
-    src: etc/X11/xorg.conf.d/
-    dest: /etc/X11/xorg.conf.d/
+    src: '{{ item }}'
+    dest: '/{{ item }}'
     owner: root
     group: root
     mode: '0644'
+  loop:
+    - etc/X11/xorg.conf.d/
 
 - name: Disable internal speaker beep by default
   become: yes

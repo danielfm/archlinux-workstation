@@ -1,5 +1,26 @@
 #!/bin/bash
 
+# Export XAUTHORITY and DISPLAY for the current user
+getXuser() {
+  user=`pinky| grep -m1 ":$displaynum" | awk '{print $1}'`
+ 
+  if [ x"$user" != x"" ]; then
+    userhome=`getent passwd $user | cut -d: -f6`
+    export XAUTHORITY="$userhome/.Xauthority"
+  else
+    export XAUTHORITY=""
+  fi
+}
+
+for x in /tmp/.X11-unix/*; do
+  displaynum=`echo $x | sed s#/tmp/.X11-unix/X##`
+  getXuser
+  if [ x"$XAUTHORITY" != x"" ]; then
+    # extract current state
+    export DISPLAY=":$displaynum"
+  fi
+done
+
 set -x
 
 # Force prime-offload execution, which is required for optimus-manager to work

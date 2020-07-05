@@ -1,1 +1,0 @@
-KERNEL=="card0", SUBSYSTEM=="drm", ENV{DISPLAY}=":0", ENV{XAUTHORITY}="/home/{{ user_name }}/.Xauthority", RUN+="/usr/bin/bash -c 'sleep 5; /usr/local/bin/setup-displays.sh'"
