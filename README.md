@@ -111,10 +111,15 @@ yay -S <package> --editmenu
 
 #### Local Auth With YubiKey + PAM
 
-This setup supports configuring local auth with U2F keys (such as YubiKeys).
+This setup allows you to configure PAM to enhance the local security and convenience
+via the use of U2F keys, such as YubiKeys:
 
-Run `pam2fcfg` and press the blinking button on each key in order to output a
-string in the following format:
+- Requiring a U2F key to system login (2FA)
+- Allowing U2F key to authenticate `sudo` commands instead of typing a
+  password
+
+To proceed with this configuration, run `pam2fcfg` and press the blinking button
+on each key in order to output a string in the following format:
 
 ```sh
 # Run this command and press the blinking key, if asked:

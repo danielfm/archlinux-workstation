@@ -36,16 +36,24 @@
   ufw:
     logging: low
 
-- name: Enable YubiKey support for login and sudo
+- name: Enable login 2FA with YubiKey
   become: yes
   lineinfile:
-    path: '{{ item }}'
+    path: /etc/pam.d/system-local-login
+    regex: '^auth .+ pam_u2f.so .+'
+    line: 'auth required pam_u2f.so authfile=/etc/u2f_mappings nouserok'
+  when:
+    - (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
+    - (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
+
+- name: Enable passwordless sudo with YubiKey
+  become: yes
+  lineinfile:
+    path: /etc/pam.d/sudo
     firstmatch: yes
     insertbefore: '^auth'
-    line: 'auth sufficient pam_u2f.so authfile=/etc/u2f_mappings nouserok'
-  loop:
-    - /etc/pam.d/sudo
-    - /etc/pam.d/system-local-login
+    regex: '^auth .+ pam_u2f.so .+'
+    line: 'auth sufficient pam_u2f.so authfile=/etc/u2f_mappings'
   when:
     - (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
     - (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
