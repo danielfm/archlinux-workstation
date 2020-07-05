@@ -21,4 +21,4 @@ for x in /tmp/.X11-unix/*; do
   fi
 done
 
-su "$user" -c "/usr/local/bin/blurlock"
+su "$user" -c "/usr/local/bin/blurlock --no-fork"
