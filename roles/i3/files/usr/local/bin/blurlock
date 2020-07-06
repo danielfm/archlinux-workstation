@@ -33,4 +33,4 @@ i3lock --color=${background}              \
        --verif-font="${font_name}"        \
        --wrong-font="${font_name}"        \
        --verifsize=${font_size}           \
-       --wrongsize=${font_size} "$@"
+       --wrongsize=${font_size}
