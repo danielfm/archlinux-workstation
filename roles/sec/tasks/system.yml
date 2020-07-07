@@ -39,13 +39,16 @@
 - name: Enable login 2FA with YubiKey
   become: yes
   lineinfile:
-    path: /etc/pam.d/system-local-login
+    path: '{{ item }}'
     regex: '^auth .+ pam_u2f.so .+'
     insertafter: '^auth .+'
     line: 'auth required pam_u2f.so authfile=/etc/u2f_mappings nouserok'
   when:
     - (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
     - (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
+  loop:
+    - /etc/pam.d/system-local-login
+    - /etc/pam.d/lightdm
 
 # Ref: https://github.com/i3/i3lock/issues/198
 - name: i3lock U2F PAM workaround
