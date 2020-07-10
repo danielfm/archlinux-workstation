@@ -21,7 +21,7 @@ floating_modifier $mod
 
 # Start a terminal
 set $term urxvt
-bindsym $mod+Return exec $term
+bindsym $mod+Return exec $HOME/.bin/term.sh $term
 
 # Kill windows
 bindsym $mod+Shift+q kill
