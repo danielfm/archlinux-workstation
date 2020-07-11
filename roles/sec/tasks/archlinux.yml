@@ -31,3 +31,4 @@
     skip_installed: yes
     name:
       - parcimonie-sh-git
+      - protonmail-bridge-bin

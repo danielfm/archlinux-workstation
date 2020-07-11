@@ -241,6 +241,7 @@ exec --no-startup-id nvidia-settings --load-config-only
 
 exec --no-startup-id dropbox
 exec --no-startup-id xfce4-power-manager
+exec --no-startup-id protonmail-bridge --no-window
 
 # Start polybar
 exec_always --no-startup-id ~/.bin/polybar/launch
