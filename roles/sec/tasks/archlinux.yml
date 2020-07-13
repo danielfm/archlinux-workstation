@@ -30,5 +30,7 @@
     upgrade: no
     skip_installed: yes
     name:
+      - mullvad-vpn-bin
       - parcimonie-sh-git
       - protonmail-bridge-bin
+      - protonvpn-linux-gui
