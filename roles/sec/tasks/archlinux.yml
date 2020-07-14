@@ -10,7 +10,6 @@
       - gnupg
       - gopass
       - hopenpgp-tools
-      - keepassxc
       - networkmanager-openvpn
       - opensc
       - pam-u2f

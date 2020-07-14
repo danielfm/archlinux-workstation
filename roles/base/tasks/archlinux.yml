@@ -60,7 +60,6 @@
       - cups
       - curl
       - exfat-utils
-      - flatpak
       - foomatic-db-gutenprint-ppds
       - git
       - git-lfs
