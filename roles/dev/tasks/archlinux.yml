@@ -24,6 +24,7 @@
       - k9s
       - kubectl
       - kubectx
+      - leiningen
       - libusb-compat
       - maven
       - ovmf
@@ -31,6 +32,8 @@
       - opensc
       - packer
       - python-pipenv
+      - python-wheel
+      - twine
       - qemu
       - ruby-bundler
       - rubygems
@@ -50,6 +53,7 @@
       - google-cloud-sdk
       - kail
       - kind-bin
+      - pip-tools
       - pyenv-virtualenv
       - ruby-rubocop
       - velero-bin
