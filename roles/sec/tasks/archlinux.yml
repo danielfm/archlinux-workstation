@@ -13,6 +13,7 @@
       - networkmanager-openvpn
       - opensc
       - pam-u2f
+      - pinentry
       - qrencode
       - sbsigntools
       - tor
