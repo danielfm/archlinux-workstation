@@ -25,7 +25,7 @@ HDMI_MONITOR=${HDMI_MONITOR:-unknown}
 # Extra xrandr parameters for each monitor
 EDP_ARGS=''
 DP_ARGS=''
-HDMI_ARGS=''
+HDMI_ARGS='--mode 2560x1080'
 
 # Set primary monitor giving priority to the external displays
 if [ $HDMI_MONITOR != 'unknown' ]; then
