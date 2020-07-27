@@ -17,6 +17,111 @@
     - tor
     - ufw
 
+- name: Allow mDNS outgoing traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '5353'
+    proto: udp
+    direction: out
+
+- name: Allow mDNS incoming traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '5353'
+    proto: udp
+    direction: in
+
+- name: Allow WHOIS outgoing traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '43'
+    proto: tcp
+    direction: out
+
+- name: Allow NTP incoming/outgoing traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '123'
+    proto: udp
+    direction: '{{ item }}'
+  loop:
+    - in
+    - out
+
+- name: Allow DHCP incoming/outgoing traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '68'
+    proto: udp
+    direction: '{{ item }}'
+  loop:
+    - in
+    - out
+
+- name: Allow DNS outgoing traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '53'
+    proto: '{{ item }}'
+    direction: out
+  loop:
+    - tcp
+    - udp
+
+- name: Allow HTTP outgoing traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '80'
+    proto: tcp
+    direction: out
+
+- name: Allow HTTPS outgoing traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '443'
+    proto: tcp
+    direction: out
+
+- name: Allow SSH outgoing traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '22'
+    proto: tcp
+    direction: out
+
+- name: Allow Mullvad OpenVPN outgoing traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '{{ item.port }}'
+    proto: '{{ item.proto }}'
+    direction: out
+  loop:
+    - {port: 1401, proto: tcp}
+    - {port: 1194, proto: udp}
+    - {port: 1195, proto: udp}
+    - {port: 1196, proto: udp}
+    - {port: 1197, proto: udp}
+    - {port: 1301, proto: udp}
+    - {port: 1301, proto: udp}
+    - {port: 1302, proto: udp}
+    - {port: 1303, proto: udp}
+    - {port: 1400, proto: udp}
+
+- name: Enable ufw logging
+  become: yes
+  ufw:
+    logging: low
+
 - name: Enable ufw with default incoming deny policy
   become: yes
   ufw:
@@ -24,17 +129,12 @@
     policy: deny
     direction: incoming
 
-- name: Enable ufw with default outgoing allow policy
+- name: Enable ufw with default outgoing deny policy
   become: yes
   ufw:
     state: enabled
-    policy: allow
+    policy: deny
     direction: outgoing
-
-- name: Enable ufw logging
-  become: yes
-  ufw:
-    logging: low
 
 - name: Enable login 2FA with YubiKey
   become: yes
