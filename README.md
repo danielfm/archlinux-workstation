@@ -107,6 +107,12 @@ Some commands that might be useful:
 yay -S <package> --editmenu
 ```
 
+The installation of AUR packages might also fail when packages try to check
+PGP-signed packages when you don't have the corresponding public keys in your
+keyring.
+
+Check the comments for the package in the AUR website to see what do to.
+
 ### Post-Installation
 
 #### Local Auth With YubiKey + PAM
