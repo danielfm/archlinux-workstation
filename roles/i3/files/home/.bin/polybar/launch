@@ -1,15 +1,16 @@
 #!/bin/bash
 
 # Set color scheme
-wal --theme base16-harmonic
+wal --theme base16-harmonic -l
 
 # Set background image
-# hsetroot -solid "#dadee3"
 nitrogen --restore
 
+# Set solid background color
+# hsetroot -solid "#dadee3"
+
 # Terminate already running bar instances
-killall -q polybar
-killall -q picom
+killall -q polybar; killall -q picom
 
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
