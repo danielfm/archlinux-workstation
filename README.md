@@ -39,11 +39,6 @@ I also use
 as I always need to keep some private information stored in the local disk. This
 protects my files from being accessed in case my work machine gets stolen.
 
-This configuration generates the required keys for enrolling into the firmware
-if the `system_secure_boot: on` variable is set. Follow the
-[Arch wiki](https://wiki.archlinux.org/index.php/Secure_Boot) for instructions
-on how to proceed.
-
 ### Pre-Installation
 
 #### Install the Required Packages
@@ -114,6 +109,13 @@ keyring.
 Check the comments for the package in the AUR website to see what do to.
 
 ### Post-Installation
+
+### Secure Boot
+
+This configuration generates the required keys for enrolling into the firmware
+if the `system_secure_boot: on` variable is set. Follow the
+[Arch wiki](https://wiki.archlinux.org/index.php/Secure_Boot) for instructions
+on how to proceed if you wish to enable secure boot.
 
 #### Local Auth With YubiKey + PAM
 
