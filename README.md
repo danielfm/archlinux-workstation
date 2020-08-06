@@ -110,7 +110,7 @@ Check the comments for the package in the AUR website to see what do to.
 
 ### Post-Installation
 
-### Secure Boot
+#### Secure Boot
 
 This configuration generates the required keys for enrolling into the firmware
 if the `system_secure_boot: on` variable is set. Follow the
