@@ -197,6 +197,7 @@ for_window [class="Nitrogen"] floating enable sticky enable
 for_window [class="Gcolor[2|3]"] floating enable sticky enable
 for_window [class="qt5ct"] floating enable sticky enable
 for_window [class="Qtconfig-qt4"] floating enable sticky enable
+for_window [class="Org.gnome.DejaDup"] floating enable
 for_window [class="(?i)System-config-printer.py"] floating enable
 
 # Switch to workspace with urgent window automatically
