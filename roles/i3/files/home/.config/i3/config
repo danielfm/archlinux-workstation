@@ -239,7 +239,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 exec --no-startup-id /usr/lib/deja-dup/deja-dup-monitor
 exec --no-startup-id nvidia-settings --load-config-only
 
-exec --no-startup-id dropbox
+exec --no-startup-id nextcloud --background
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id protonmail-bridge --no-window
 

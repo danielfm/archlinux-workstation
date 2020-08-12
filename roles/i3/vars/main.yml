@@ -17,7 +17,7 @@ system_bluetooth: yes
 gtk_bookmarks:
   - name: Downloads
     path: "/home/{{ user_name }}/Downloads"
-  - name: Dropbox
-    path: "/home/{{ user_name }}/Dropbox"
+  - name: Nextcloud
+    path: "/home/{{ user_name }}/Nextcloud"
   - name: Projects
     path: "/home/{{ user_name }}/Projects"

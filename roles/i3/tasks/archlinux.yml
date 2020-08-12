@@ -46,6 +46,7 @@
       - mediainfo
       - mesa-demos
       - mousepad
+      - nextcloud-client
       - nitrogen
       - nm-connection-editor
       - noto-fonts
@@ -100,7 +101,6 @@
     upgrade: no
     skip_installed: yes
     name:
-      - dropbox
       - i3-scrot
       - i3lock-color-git
       - lightdm-settings
@@ -113,7 +113,6 @@
       - slack-desktop
       - spotify
       - terminess-powerline-font-git
-      - thunar-dropbox
       - ttf-font-icons
       - ttf-material-icons-git
       - ttf-ms-fonts
