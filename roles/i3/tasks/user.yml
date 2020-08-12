@@ -53,30 +53,26 @@
     value: '{{ item.value | string }}'
     state: present
   loop:
-    - key: delete-after
-      value: 180
     - key: allow-metered
       value: 'false'
-    - key: backend
-      value: "'google'"
     - key: periodic
       value: 'true'
+    - key: backend
+      value: "'remote'"
+    - key: delete-after
+      value: '{{ backup_retention_days }}'
     - key: periodic-period
-      value: 7
+      value: '{{ backup_period_days }}'
     - key: full-backup-period
-      value: 30
-    - key: google/folder
-      value: "'Backups/$HOSTNAME'"
+      value: '{{ backup_full_period_days }}'
+    - key: remote/uri
+      value: "'{{ backup_storage_uri }}'"
+    - key: remote/folder
+      value: "'{{ backup_storage_folder }}'"
     - key: include-list
-      value: ['/home/{{ user_name }}/.chef',     '/home/{{ user_name }}/.chef-workstation',
-              '/home/{{ user_name }}/.config',   '/home/{{ user_name }}/.gnupg',
-              '/home/{{ user_name }}/.ssh',      '/home/{{ user_name }}/Desktop',
-              '/home/{{ user_name }}/Documents', '/home/{{ user_name }}/Music',
-              '/home/{{ user_name }}/Pictures',  '/home/{{ user_name }}/Projects',
-              '/home/{{ user_name }}/Public',    '/home/{{ user_name }}/Templates',
-              '/home/{{ user_name }}/Videos']
+      value: '{{ backup_include }}'
     - key: exclude-list
-      value: ['/home/{{ user_name }}/.config/Slack', '/home/{{ user_name }}/Music/Collection']
+      value: '{{ backup_exclude }}'
 
 - name: Create Firefox profile directory
   become: yes

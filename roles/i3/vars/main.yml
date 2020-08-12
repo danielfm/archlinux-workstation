@@ -13,6 +13,17 @@ system_bluetooth: yes
 
 # Application data
 
+# Deja Dup settings
+backup_retention_days: 30
+backup_period_days: 1
+backup_full_period_days: 7
+
+backup_storage_uri: ''
+backup_storage_folder: '$HOSTNAME'
+
+backup_include: []
+backup_exclude: []
+
 # Directories to be displayed as bookmarks in file managers, such as Thunar
 gtk_bookmarks:
   - name: Downloads
