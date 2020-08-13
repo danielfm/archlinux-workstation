@@ -28,7 +28,5 @@ backup_exclude: []
 gtk_bookmarks:
   - name: Downloads
     path: "/home/{{ user_name }}/Downloads"
-  - name: Nextcloud
-    path: "/home/{{ user_name }}/Nextcloud"
   - name: Projects
     path: "/home/{{ user_name }}/Projects"
