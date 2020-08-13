@@ -58,17 +58,21 @@
     - key: periodic
       value: 'true'
     - key: backend
-      value: "'remote'"
+      value: "'{{ backup_backend }}'"
     - key: delete-after
       value: '{{ backup_retention_days }}'
     - key: periodic-period
       value: '{{ backup_period_days }}'
     - key: full-backup-period
       value: '{{ backup_full_period_days }}'
+    - key: local/folder
+      value: "'{{ backup_local_folder }}'"
     - key: remote/uri
-      value: "'{{ backup_storage_uri }}'"
+      value: "'{{ backup_remote_storage_uri }}'"
     - key: remote/folder
-      value: "'{{ backup_storage_folder }}'"
+      value: "'{{ backup_remote_storage_folder }}'"
+    - key: google/folder
+      value: "'{{ backup_google_folder }}'"
     - key: include-list
       value: '{{ backup_include }}'
     - key: exclude-list

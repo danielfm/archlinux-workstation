@@ -14,12 +14,17 @@ system_bluetooth: yes
 # Application data
 
 # Deja Dup settings
+backup_backend: remote      # Options: remote, google, local
 backup_retention_days: 30
 backup_period_days: 1
 backup_full_period_days: 7
 
-backup_storage_uri: ''
-backup_storage_folder: '$HOSTNAME'
+backup_local_folder: ''
+
+backup_google_folder: ''
+
+backup_remote_storage_uri: ''
+backup_remote_storage_folder: '$HOSTNAME'
 
 backup_include: []
 backup_exclude: []
