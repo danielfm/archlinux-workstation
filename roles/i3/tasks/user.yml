@@ -10,9 +10,19 @@
   loop:
     - .Xresources
     - .Xresources.d
-    - .gtkrc-2.0
-    - .dmrc
     - .config
+    - .dmrc
+    - .gtkrc-2.0
+
+- name: Add user-specific application launchers
+  become: yes
+  become_user: '{{ user_name }}'
+  copy:
+    src: 'home/.local/share/applications/'
+    dest: '/home/{{ user_name }}/.local/share/applications/'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: '0755'
 
 - name: Add user to autologin group
   become: yes
