@@ -63,6 +63,18 @@
     - in
     - out
 
+- name: Allow IRC SSL outgoing traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '{{ item }}'
+    proto: tcp
+    direction: out
+  loop:
+    - 6697
+    - 7000
+    - 7070
+
 - name: Allow DNS outgoing traffic
   become: yes
   ufw:
