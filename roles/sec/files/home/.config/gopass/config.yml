@@ -1,17 +1,11 @@
-root:
-  askformore: false
-  autoclip: true
-  autoprint: false
-  autoimport: true
-  autosync: true
-  check_recipient_hash: false
-  cliptimeout: 60
-  concurrency: 2
-  editrecipients: false
-  nocolor: false
-  noconfirm: false
-  nopager: true
-  notifications: true
-  safecontent: true
-  usesymbols: false
+autoclip: true
+autoimport: true
+cliptimeout: 60
+exportkeys: false
+mime: false
+nocolor: false
+nopager: true
+notifications: true
+path: .password-store
+safecontent: true
 mounts: {}
