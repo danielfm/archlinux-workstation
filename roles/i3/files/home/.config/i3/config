@@ -300,7 +300,7 @@ bindsym $mod+Shift+d exec --no-startup-id $HOME/.bin/polybar/menu_full
 #############################
 
 # Set inner/outer gaps
-set $default_inner 20
+set $default_inner 10
 set $default_outer 0
 
 gaps inner $default_inner
