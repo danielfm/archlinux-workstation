@@ -41,3 +41,5 @@ URxvt.keysym.Control-=:  resize-font:reset
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.kfeysym.M-s: perl:keyboard-select:search
 
+! Fade unfocused terminal windows
+Rxvt.fading: 20
