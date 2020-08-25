@@ -1,6 +1,6 @@
 URxvt.iso14755: false
 
-URxvt.font:                       xft:monospace:size=12
+URxvt.font:                       xft:monospace:size=10
 URxvt*scrollBar:                  false
 URxvt*mouseWheelScrollPage:       false
 URxvt*cursorBlink:                true
@@ -40,6 +40,3 @@ URxvt.keysym.Control-=:  resize-font:reset
 ! Select text with the keyboard
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 URxvt.kfeysym.M-s: perl:keyboard-select:search
-
-! Fade unfocused terminal windows
-Rxvt.fading: 20
