@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set color scheme
-wal --theme base16-harmonic
+wal --theme base16-nord
 
 # Set background image
 nitrogen --restore
