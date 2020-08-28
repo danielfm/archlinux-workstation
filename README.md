@@ -132,7 +132,7 @@ via the use of U2F keys, such as YubiKeys:
   password
 
 To proceed with this configuration, run `pam2fcfg` and press the blinking button
-on each key in order to output a string in the following format:
+on each key in order to output a key:
 
 ```sh
 # Run this command and press the blinking key, if asked:
