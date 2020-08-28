@@ -1,7 +1,7 @@
 - name: Ensure the secure boot keys directory exists
   become: yes
   file:
-    path: '{{ secure_boot_keys_dir }}'
+    path: '{{ system_secure_boot_keys_dir }}'
     state: directory
     owner: root
     group: root
@@ -11,7 +11,7 @@
   become: yes
   copy:
     content: '{{ 999999999999999999999 | random | to_uuid }}'
-    dest: '{{ secure_boot_keys_dir }}/GUID.txt'
+    dest: '{{ system_secure_boot_keys_dir }}/GUID.txt'
     force: no
     owner: root
     group: root
@@ -20,7 +20,7 @@
 - name: Generate secure boot .key and .crt files
   become: yes
   command:
-    chdir: '{{ secure_boot_keys_dir }}'
+    chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: 'openssl req -newkey rsa:4096 -nodes -keyout {{ item }}.key -new -x509 -sha256 -days 3650 -subj "/CN=Danielfm Platform Key/" -out {{ item }}.crt'
     creates: '{{ item }}.crt'
   loop:
@@ -31,7 +31,7 @@
 - name: Generate secure boot .cer files
   become: yes
   command:
-    chdir: '{{ secure_boot_keys_dir }}'
+    chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: 'openssl x509 -outform DER -in {{ item }}.crt -out {{ item }}.cer'
     creates: '{{ item }}.cer'
   loop:
@@ -42,7 +42,7 @@
 - name: Generate secure boot .esl files
   become: yes
   command:
-    chdir: '{{ secure_boot_keys_dir }}'
+    chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: 'cert-to-efi-sig-list -g "$(< GUID.txt)" {{ item }}.crt {{ item }}.esl'
     creates: '{{ item }}.esl'
   loop:
@@ -53,7 +53,7 @@
 - name: Generate secure boot .auth files
   become: yes
   command:
-    chdir: '{{ secure_boot_keys_dir }}'
+    chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: 'sign-efi-sig-list -g "$(< GUID.txt)" -k {{ item }}.key -c {{ item }}.crt {{ item }} {{ item }}.esl {{ item }}.auth'
     creates: '{{ item }}.auth'
   loop:
@@ -64,7 +64,7 @@
 - name: Sign empty file to allow removing the secure boot key when in User Mode
   become: yes
   command:
-    chdir: '{{ secure_boot_keys_dir }}'
+    chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: sign-efi-sig-list -g "$(< GUID.txt)" -c PK.crt -k PK.key PK /dev/null rm_PK.auth
     creates: rm_PK.auth
 

@@ -67,8 +67,8 @@ EDITOR=nano visudo -f /etc/sudoers.d/<user>
 ### Running the Ansible Playbook
 
 Clone this playbook in your home directory, override the desired variables
-in a new file `vars/custom.yml` (see the available vars in `vars/main.yml` in
-all roles) and then run the following command to apply the Ansible playbook:
+in a new file `vars/custom.yml` (see the available vars in `vars/main.yml`)
+and then run the following command to apply the Ansible playbook:
 
 ```sh
 # Clone the repository:

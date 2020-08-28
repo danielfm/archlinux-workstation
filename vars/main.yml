@@ -1,4 +1,6 @@
+#
 # User data
+#
 
 user_name: danielfm
 user_group: danielfm
@@ -18,14 +20,54 @@ github_user_email: 29534+danielfm@users.noreply.github.com
 # prior to the login, i.e., disk encryption password prompt
 user_autologin: no
 
+# 2FA support with a U2F security key (i.e. YubiKey)
 # Format: '<key-handle>,<public-key>'
 user_pam_u2f_main_key: ''
 user_pam_u2f_backup_key: ''
 
+#
 # System data
+#
 
 system_timezone: America/Sao_Paulo
 system_locale: en_US.UTF-8
 
 system_bluetooth: yes
+
 system_secure_boot: no
+system_secure_boot_keys_dir: /root/.secure-boot-keys
+
+#
+# Application settings
+#
+
+# DejaDup
+
+backup_backend: remote # Other options: google, local
+backup_retention_days: 30
+backup_period_days: 1
+backup_full_period_days: 7
+
+backup_local_folder: ''
+
+backup_google_folder: ''
+
+backup_remote_storage_uri: ''
+backup_remote_storage_folder: '$HOSTNAME'
+
+backup_include:
+  - '/home/{{ user_name }}'
+
+backup_exclude:
+  - '/home/{{ user_name }}/.bundle'
+  - '/home/{{ user_name }}/.cache'
+  - '/home/{{ user_name }}/Downloads'
+
+
+# Thunar
+
+gtk_bookmarks:
+  - name: Downloads
+    path: "/home/{{ user_name }}/Downloads"
+  - name: Projects
+    path: "/home/{{ user_name }}/Projects"
