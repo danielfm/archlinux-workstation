@@ -59,4 +59,4 @@
       - ruby-rubocop
       - velero-bin
       - zoom
-      - zsa-wally
+      - zsa-wally-cli
