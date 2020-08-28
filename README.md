@@ -67,8 +67,8 @@ EDITOR=nano visudo -f /etc/sudoers.d/<user>
 ### Running the Ansible Playbook
 
 Clone this playbook in your home directory, override the desired variables
-in a new file `vars/custom.yml` (see the available vars in `vars/main.yml`) and
-then run the following command to apply the Ansible playbook:
+in a new file `vars/custom.yml` (see the available vars in `vars/main.yml` in
+all roles) and then run the following command to apply the Ansible playbook:
 
 ```sh
 # Clone the repository:
@@ -110,7 +110,12 @@ Check the comments for the package in the AUR website to see what do to.
 
 ### Post-Installation
 
-#### Secure Boot
+#### Set User Password
+
+This playbook does not try to force a specific password for your user, so
+don't forget to run `sudo passwd {{ user_name }}` to change the password.
+
+#### Secure Boot Configuration
 
 This configuration generates the required keys for enrolling into the firmware
 if the `system_secure_boot: on` variable is set. Follow the
