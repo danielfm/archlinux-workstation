@@ -1,0 +1,10 @@
+[Trigger]
+Operation = Install
+Operation = Upgrade
+Type = Package
+Target = i3lock-color-git
+[Action]
+Depends = i3lock-color-git
+Depends = yubico-pam
+When = PostTransaction
+Exec = /bin/chmod u+s /usr/bin/i3lock

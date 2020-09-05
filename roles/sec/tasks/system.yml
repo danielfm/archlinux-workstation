@@ -67,7 +67,7 @@
   become: yes
   ufw:
     rule: allow
-    port: '{{ item }}'
+    port: '"{{ item }}"'
     proto: tcp
     direction: out
   loop:
@@ -162,7 +162,27 @@
     - /etc/pam.d/system-local-login
     - /etc/pam.d/lightdm
 
+- name: Ensure pacman hooks directory exist
+  become: yes    
+  file:
+    path: /etc/pacman.d/hooks
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
 # Ref: https://github.com/i3/i3lock/issues/198
+- name: Add pacman hooks for the i3lock U2F PAM workaround
+  become: yes
+  copy:
+    src: 'etc/pacman.d/hooks/{{ item }}'
+    dest: '/etc/pacman.d/hooks/{{ item }}'
+    owner: root
+    group: root
+    mode: '0644'
+  loop:
+    - 90-i3lock-u2f-pam-workaround.hook
+
 - name: i3lock U2F PAM workaround
   become: yes
   file:
