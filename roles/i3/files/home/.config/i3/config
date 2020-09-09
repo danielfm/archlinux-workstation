@@ -5,9 +5,8 @@
 set $mod Mod4
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 3
-default_floating_border pixel 3
-for_window [class=".*"] border pixel 3
+default_border none
+default_floating_border none
 
 # Hide borders
 hide_edge_borders none
