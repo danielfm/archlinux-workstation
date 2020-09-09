@@ -74,3 +74,6 @@ set laststatus=2
 " Filetype aware
 filetype plugin on
 filetype plugin indent on
+
+" Avoid leaking gopass secrets
+au BufNewFile,BufRead /dev/shm/gopass.* setlocal noswapfile nobackup noundofile
