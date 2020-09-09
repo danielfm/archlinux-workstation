@@ -64,6 +64,8 @@ bindsym $mod+F10 exec io.elementary.calculator
 bindsym $mod+F11 exec $term -e 'nmtui'
 bindsym $mod+F12 exec arandr
 
+bindsym $mod+backslash exec --no-startup-id $HOME/.bin/polybar/menu_gopass
+
 # Screenshot shortcuts
 bindsym $mod+Control+p --release exec --no-startup-id "maim -u -s -n -l -c 0.157,0.333,0.466,0.4 | xclip -selection clipboard -t image/png"
 bindsym $mod+Shift+p --release exec --no-startup-id "maim -u -s -n -l -c 0.157,0.333,0.466,0.4 -o ~/Pictures/Screenshots/$(date +%s).png"
@@ -292,7 +294,6 @@ client.background       $bg
 
 # Start program launcher
 bindsym $mod+d exec --no-startup-id $HOME/.bin/polybar/menu
-bindsym $mod+Shift+d exec --no-startup-id $HOME/.bin/polybar/menu_full
 
 #############################
 ### settings for i3-gaps: ###
