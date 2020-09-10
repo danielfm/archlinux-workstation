@@ -83,7 +83,7 @@ scroll-down = i3wm-wsprev
 
 ;== Module Location ========================================================
 
-modules-left = menu workspaces term files browser chat monitors
+modules-left = menu workspaces term files browser chat monitors calendar
 modules-right = keyboard presentation-mode volume bat0 bat1 network date powermenu
  
 ;== Modules ========================================================
@@ -163,6 +163,13 @@ content = 
 content-padding = 1
 content-foreground = ${color.fg-alt}
 click-left = arandr &
+
+[module/calendar]
+type = custom/text
+content = 
+content-padding = 1
+content-foreground = ${color.fg-alt}
+click-left = gsimplecal &
 
 ;==========================================================
 
