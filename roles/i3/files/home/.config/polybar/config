@@ -83,7 +83,7 @@ scroll-down = i3wm-wsprev
 
 ;== Module Location ========================================================
 
-modules-left = menu workspaces term files browser chat monitors
+modules-left = menu workspaces
 modules-right = keyboard presentation-mode volume bat0 bat1 network date powermenu
  
 ;== Modules ========================================================
@@ -129,40 +129,6 @@ label-visible-foreground = ${color.acolor}
 label-urgent-foreground = ${color.curgent}
 
 label-focused-underline = ${color.acolor}
-
-[module/term]
-type = custom/text
-content = 
-content-foreground = ${color.fg-alt}
-click-left = urxvt &
-
-[module/files]
-type = custom/text
-content = 
-content-padding = 1
-content-foreground = ${color.fg-alt}
-click-left = thunar &
-
-[module/browser]
-type = custom/text
-content = 
-content-padding = 1
-content-foreground = ${color.fg-alt}
-click-left = firefox &
-
-[module/chat]
-type = custom/text
-content = 
-content-padding = 1
-content-foreground = ${color.fg-alt}
-click-left = slack &
-
-[module/monitors]
-type = custom/text
-content = 
-content-padding = 1
-content-foreground = ${color.fg-alt}
-click-left = arandr &
 
 ;==========================================================
 
