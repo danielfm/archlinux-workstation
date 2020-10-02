@@ -49,6 +49,7 @@
     upgrade: no
     skip_installed: yes
     name:
+      - apache-spark
       - cfssl
       - chef-dk
       - google-cloud-sdk
