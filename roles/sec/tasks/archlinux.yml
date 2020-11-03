@@ -11,6 +11,7 @@
       - gopass
       - hopenpgp-tools
       - networkmanager-openvpn
+      - nmap
       - opensc
       - pam-u2f
       - pinentry

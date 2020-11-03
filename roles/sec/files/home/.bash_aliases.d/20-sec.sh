@@ -13,5 +13,8 @@ text2qrcode() {
 # Display the qrcode for a TOTP secret.
 # Usage: totpqrcode ISSUER LABEL SECRET
 totpqrcode() {
+  if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 ISSUER LABEL SECRET"; return
+  fi
   text2qrcode "otpauth://totp/$(echo -n "$2" | jq -sRr @uri)?secret=$3&issuer=$(echo -n "$1" | jq -sRr @uri)"
 }
