@@ -57,6 +57,7 @@
       - pantheon-calculator
       - papirus-icon-theme
       - pavucontrol
+      - pcmanfm
       - polkit-gnome
       - pulseaudio
       - pulseaudio-alsa
@@ -67,10 +68,6 @@
       - rofi
       - seahorse
       - shotwell
-      - thunar
-      - thunar-archive-plugin
-      - thunar-media-tags-plugin
-      - thunar-volman
       - transmission-gtk
       - ttf-arphic-uming
       - ttf-baekmuk
