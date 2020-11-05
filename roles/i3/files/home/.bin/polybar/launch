@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Set color scheme
-wal --theme base16-nord
+wal --theme base16-dracula
+$(dirname "$0")/colors-dark -blue-grey
 
 # Set background image
 nitrogen --restore
