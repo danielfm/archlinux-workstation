@@ -1,3 +1,13 @@
+- name: Ensure the Gopass password store symlink exists
+  become: yes
+  become_user: '{{ user_name }}'
+  file:
+    src: '{{ user_password_store_dir }}'
+    dest: '/home/{{ user_name }}/.password-store'
+    state: link
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+
 - name: Ensure the .gnupg directory exists
   become: yes
   become_user: '{{ user_name }}'
@@ -41,6 +51,16 @@
     - .bash_aliases.d
     - .bash_env.d
     - .config
+
+- name: Create Gopass configuration file
+  become: yes
+  become_user: '{{ user_name }}'
+  template:
+    src: home/.config/gopass/config.yml.j2
+    dest: '/home/{{ user_name }}/.config/gopass/config.yml'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: '0600'
 
 - name: Enable user services
   become: yes

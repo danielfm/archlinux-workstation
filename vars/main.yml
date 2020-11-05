@@ -14,6 +14,9 @@ user_irc_nickname: caninha
 user_create_ssh_keypair: no
 user_gnupg_key_id: '0x7105CE6355472DCA'
 
+# Where the main Gopass password store directory is located
+user_password_store_dir: ''
+
 github_user_email: 29534+danielfm@users.noreply.github.com
 
 # Only use this if you have some sort of security mechanism in place
