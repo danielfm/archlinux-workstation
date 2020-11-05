@@ -7,7 +7,7 @@ Target = usr/lib/fwupd/efi/fwupdx64.efi
 [Action]
 Description = Signing fwupdx64 for SecureBoot
 When = PostTransaction
-Exec = /usr/bin/sbsign --key {{ secure_boot_keys_dir }}/db.key --cert {{ secure_boot_keys_dir }}/db.crt /usr/lib/fwupd/efi/fwupdx64.efi
+Exec = /usr/bin/sbsign --key {{ system_secure_boot_keys_dir }}/db.key --cert {{ system_secure_boot_keys_dir }}/db.crt /usr/lib/fwupd/efi/fwupdx64.efi
 Depends = sbsigntools
 Depends = findutils
 Depends = grep

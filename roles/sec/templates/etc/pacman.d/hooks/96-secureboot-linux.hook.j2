@@ -8,7 +8,7 @@ Target = linux-lts
 [Action]
 Description = Signing Kernel for SecureBoot
 When = PostTransaction
-Exec = /usr/bin/find /boot/ -maxdepth 1 -name 'vmlinuz-*' -exec /usr/bin/sh -c 'if ! /usr/bin/sbverify --list {} 2>/dev/null | /usr/bin/grep -q "signature certificates"; then /usr/bin/sbsign --key {{ secure_boot_keys_dir }}/db.key --cert {{ secure_boot_keys_dir }}/db.crt --output {} {}; fi' \ ;
+Exec = /usr/bin/find /boot/ -maxdepth 1 -name 'vmlinuz-*' -exec /usr/bin/sh -c 'if ! /usr/bin/sbverify --list {} 2>/dev/null | /usr/bin/grep -q "signature certificates"; then /usr/bin/sbsign --key {{ system_secure_boot_keys_dir }}/db.key --cert {{ system_secure_boot_keys_dir }}/db.crt --output {} {}; fi' \ ;
 Depends = sbsigntools
 Depends = findutils
 Depends = grep
