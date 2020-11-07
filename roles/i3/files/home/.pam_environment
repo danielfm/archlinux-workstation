@@ -2,3 +2,5 @@
 # (run ssh-add to store SSH keys in the cache)
 SSH_AGENT_PID	DEFAULT=
 SSH_AUTH_SOCK	DEFAULT="${XDG_RUNTIME_DIR}/gnupg/S.gpg-agent.ssh"
+
+DO_NOT_TRACK    DEFAULT="1"
