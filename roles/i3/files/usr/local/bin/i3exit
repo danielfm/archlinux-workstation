@@ -1,6 +1,15 @@
 #!/bin/sh
 # /usr/bin/i3exit
 
+# do not proceed if pacman is still running; this should avoid prematurely
+# restarting the system before kernel images and other important files were
+# generated
+
+if [ -f /var/lib/pacman/db.lck ]; then
+    notify-send -u critical "Pacman is running, will not proceed with $1"
+    exit 1
+fi
+
 # with openrc use loginctl
 [[ $(cat /proc/1/comm) == "systemd" ]] && logind=systemctl || logind=loginctl
 
