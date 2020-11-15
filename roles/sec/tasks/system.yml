@@ -171,35 +171,6 @@
     group: root
     mode: '0755'
 
-# Ref: https://github.com/i3/i3lock/issues/198
-- name: Add pacman hooks for the i3lock U2F PAM workaround
-  become: yes
-  copy:
-    src: 'etc/pacman.d/hooks/{{ item }}'
-    dest: '/etc/pacman.d/hooks/{{ item }}'
-    owner: root
-    group: root
-    mode: '0644'
-  loop:
-    - 90-i3lock-u2f-pam-workaround.hook
-
-- name: i3lock U2F PAM workaround
-  become: yes
-  file:
-    path: /usr/bin/i3lock
-    mode: u+s
-
-- name: Enable i3lock 2FA with YubiKey
-  become: yes
-  lineinfile:
-    path: /etc/pam.d/i3lock
-    regex: '^auth .+ pam_u2f.so .+'
-    insertbefore: '^auth .+'
-    line: 'auth required pam_u2f.so authfile=/etc/u2f_mappings nouserok'
-  when:
-    - (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
-    - (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
-
 - name: Enable passwordless sudo with YubiKey
   become: yes
   lineinfile:
@@ -232,16 +203,6 @@
   loop:
     - /etc/pam.d/sudo
     - /etc/pam.d/system-local-login
-  when:
-    - not (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
-    - not (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
-
-- name: Disable i3lock 2FA with YubiKey
-  become: yes
-  lineinfile:
-    state: absent
-    regex: '^auth .+ pam_u2f.so .+'
-    path: /etc/pam.d/i3lock
   when:
     - not (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
     - not (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
