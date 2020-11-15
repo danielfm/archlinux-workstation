@@ -79,7 +79,6 @@
       - viewnior
       - vlc
       - w3m
-      - xautolock
       - xfce4-power-manager
       - xorg-apps
       - xorg-xinit
@@ -100,7 +99,7 @@
     skip_installed: yes
     name:
       - i3-scrot
-      - i3lock-color-git
+      - light-locker
       - lightdm-settings
       - lightdm-slick-greeter
       - matcha-gtk-theme

@@ -15,7 +15,7 @@ fi
 
 case "$1" in
     lock)
-        blurlock
+        light-locker-command -l
         ;;
     logout)
         i3-msg exit
@@ -24,10 +24,10 @@ case "$1" in
         dm-tool switch-to-greeter
         ;;
     suspend)
-        blurlock && $logind suspend
+        $logind suspend
         ;;
     hibernate)
-        blurlock && $logind hibernate
+        $logind hibernate
         ;;
     reboot)
         $logind reboot
