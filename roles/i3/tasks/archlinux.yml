@@ -98,7 +98,6 @@
     upgrade: no
     skip_installed: yes
     name:
-      - i3-scrot
       - light-locker
       - lightdm-settings
       - lightdm-slick-greeter
