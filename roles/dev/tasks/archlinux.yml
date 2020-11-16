@@ -19,6 +19,7 @@
       - emacs
       - gcolor3
       - go
+      - inetutils
       - jq
       - jdk8-openjdk
       - k9s
