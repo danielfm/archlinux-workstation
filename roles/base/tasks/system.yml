@@ -25,7 +25,7 @@
     - NetworkManager
     - avahi-daemon
     - ntpd
-    - org.cups.cupsd
+    - cups
 
 - name: Install packages required for bluetooth support
   become: yes
