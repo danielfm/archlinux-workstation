@@ -56,6 +56,7 @@
       - google-cloud-sdk
       - kail
       - kind-bin
+      - ngrok-bin
       - pip-tools
       - pyenv-virtualenv
       - ruby-rubocop
