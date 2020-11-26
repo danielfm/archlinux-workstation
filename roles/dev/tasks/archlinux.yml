@@ -8,6 +8,7 @@
       - aspell
       - aspell-en
       - aspell-pt
+      - aws-vault
       - bridge-utils
       - dmidecode
       - dnsmasq
