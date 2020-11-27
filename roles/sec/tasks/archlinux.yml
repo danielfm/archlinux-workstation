@@ -3,6 +3,7 @@
   pacman:
     state: present
     name:
+      - aws-vault
       - browserpass-chromium
       - browserpass-firefox
       - efitools

@@ -7,3 +7,6 @@ fi
 
 export GPG_TTY=$(tty)
 gpg-connect-agent updatestartuptty /bye >/dev/null
+
+# This allows aws-vault to automatically fetch the OATH code from Yubikey
+export AWS_VAULT_PROMPT=ykman
