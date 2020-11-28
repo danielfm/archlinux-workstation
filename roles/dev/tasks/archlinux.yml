@@ -21,7 +21,6 @@
       - inetutils
       - jq
       - jdk8-openjdk
-      - k9s
       - kubectl
       - kubectx
       - leiningen
