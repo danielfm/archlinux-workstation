@@ -40,6 +40,7 @@
       - terraform
       - tmux
       - vagrant
+      - vault
       - virt-manager
       - wireshark-qt
 
