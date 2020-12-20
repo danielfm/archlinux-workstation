@@ -69,6 +69,7 @@
       - man-db
       - man-pages
       - nano
+      - ncdu
       - neofetch
       - networkmanager
       - nss-mdns
