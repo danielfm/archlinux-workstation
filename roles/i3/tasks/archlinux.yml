@@ -98,7 +98,7 @@
     upgrade: no
     skip_installed: yes
     name:
-      - light-locker
+      - i3lock-fancy-dualmonitors-git
       - lightdm-settings
       - lightdm-slick-greeter
       - matcha-gtk-theme

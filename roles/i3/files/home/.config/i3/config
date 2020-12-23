@@ -232,7 +232,6 @@ exec --no-startup-id /usr/lib/deja-dup/deja-dup-monitor
 exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id nextcloud --background
 exec --no-startup-id xfce4-power-manager
-exec --no-startup-id light-locker
 exec --no-startup-id protonmail-bridge --no-window
 
 # Start polybar

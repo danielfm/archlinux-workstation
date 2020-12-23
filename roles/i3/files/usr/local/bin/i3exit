@@ -15,7 +15,7 @@ fi
 
 case "$1" in
     lock)
-        light-locker-command -l
+        i3lock-fancy-dualmonitor
         ;;
     logout)
         i3-msg exit
