@@ -1,1 +1,0 @@
-SUBSYSTEM=="usb", ACTION=="remove", ENV{PRODUCT}=="1050/*", RUN+="/usr/local/bin/yubikey-lock"
