@@ -98,7 +98,6 @@
     upgrade: no
     skip_installed: yes
     name:
-      - i3lock-color
       - lightdm-settings
       - lightdm-slick-greeter
       - matcha-gtk-theme
