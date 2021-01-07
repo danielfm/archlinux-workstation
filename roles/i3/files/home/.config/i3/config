@@ -59,6 +59,7 @@ bindsym $mod+F2  exec emacs
 bindsym $mod+F3  exec firefox
 bindsym $mod+F4  exec --no-startup-id slack
 bindsym $mod+F5  exec --no-startup-id spotify
+bindsym $mod+F8  exec $HOME/.bin/polybar/menu_xrandr
 bindsym $mod+F9  exec gsimplecal
 bindsym $mod+F10 exec io.elementary.calculator
 bindsym $mod+F11 exec $term -e 'nmtui'

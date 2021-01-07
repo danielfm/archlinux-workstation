@@ -22,13 +22,13 @@
     regexp: '^greeter-session='
     line: greeter-session=lightdm-slick-greeter
 
-- name: Run setup-displays script in lightdm
+- name: Run display setup script
   become: yes
   lineinfile:
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
     regexp: '^display-setup-script='
-    line: display-setup-script=/usr/local/bin/setup-displays
+    line: display-setup-script=/usr/local/bin/xrandr-auto
 
 - name: Hide the user list in lightdm
   become: yes
