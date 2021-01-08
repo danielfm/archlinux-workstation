@@ -82,6 +82,7 @@
       - xfce4-power-manager
       - xorg-apps
       - xorg-xinit
+      - xss-lock
 
 - name: Install packages required for bluetooth support
   become: yes
@@ -104,6 +105,7 @@
       - nerd-fonts-terminus
       - pamac-aur
       - pamac-zsh-completions
+      - pm-utils
       - polybar
       - slack-desktop
       - spotify

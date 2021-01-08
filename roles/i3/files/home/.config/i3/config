@@ -234,6 +234,7 @@ exec --no-startup-id nvidia-settings --load-config-only
 exec --no-startup-id nextcloud --background
 exec --no-startup-id xfce4-power-manager
 exec --no-startup-id protonmail-bridge --no-window
+exec --no-startup-id xss-lock i3exit lock
 
 # Start polybar
 exec_always --no-startup-id ~/.bin/polybar/launch
