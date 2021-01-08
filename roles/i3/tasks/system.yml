@@ -85,6 +85,17 @@
   when:
     - not (user_autologin|bool)
 
+- name: Add systemd units
+  become: yes
+  copy:
+    src: '{{ item }}'
+    dest: '/{{ item }}'
+    owner: root
+    group: root
+    mode: '0644'
+  loop:
+    - etc/systemd/system/
+
 - name: Add X11 configuration files
   become: yes
   copy:

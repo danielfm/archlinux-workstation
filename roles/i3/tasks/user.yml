@@ -14,16 +14,6 @@
     - .dmrc
     - .gtkrc-2.0
 
-- name: Add user-specific application launchers
-  become: yes
-  become_user: '{{ user_name }}'
-  copy:
-    src: 'home/.local/share/applications/'
-    dest: '/home/{{ user_name }}/.local/share/applications/'
-    owner: '{{ user_name }}'
-    group: '{{ user_group }}'
-    mode: '0755'
-
 - name: Add user to autologin group
   become: yes
   user:
@@ -132,3 +122,10 @@
   command:
     chdir: '/home/{{ user_name }}/.mozilla/firefox/default'
     cmd: './updater.sh -s'
+
+- name: Enable suspend service for user
+  become: yes
+  systemd:
+    name: 'suspend@{{ user_name }}'
+    daemon_reload: yes
+    enabled: yes
