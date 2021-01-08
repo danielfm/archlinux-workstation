@@ -28,7 +28,7 @@
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
     regexp: '^display-setup-script='
-    line: display-setup-script=/usr/local/bin/xrandr-auto
+    line: display-setup-script=/usr/bin/xrandr --auto
 
 - name: Hide the user list in lightdm
   become: yes
