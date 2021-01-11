@@ -54,10 +54,53 @@ MENU="$(rofi -no-lazy-grab -sep "|" -dmenu -i -p 'Xrandr :' \
 <<< "Auto|eDP1(*)|HDMI2(*)|DP1(RL) + HDMI2(*)|eDP1 + DP1(RL) + HDMI2(*)")"
 case "$MENU" in
   "Auto") xrandr --auto ;;
-  "eDP1(*)") xrandr --output eDP1 --mode 1366x768 --pos 0x0 --rotate normal --output eDP-1-1 --mode 1366x768 --pos 0x0 --rotate normal --output DP1 --off --output DP-1-1 --off  --output DP2 --off --output DP-1-2 --off --output HDMI1 --off --output HDMI-1-1 --off --output HDMI2 --off --output HDMI-1-2 --off --output VIRTUAL1 --off ;;
-  "HDMI2(*)") xrandr --output eDP1 --off --output eDP-1-1 --off --output DP1 --off --output DP-1-1 --off --output DP2 --off --output DP-1-2 --off --output HDMI1 --off --output HDMI-1-1 --off --output HDMI2 --primary --mode 2560x1080 --pos 0x0 --rotate normal --output HDMI-1-2 --primary --mode 2560x1080 --pos 0x0 --rotate normal --output VIRTUAL1 --off ;;
-  "DP1(RL) + HDMI2(*)") xrandr --output eDP1 --off --output eDP-1-1 --off --output DP1 --mode 1920x1200 --pos 0x0 --rotate left --output DP-1-1 --mode 1920x1200 --pos 0x0 --rotate left --output DP2 --off --output DP-1-2 --off --output HDMI1 --off --output HDMI-1-2 --off --output HDMI2 --primary --mode 2560x1080 --right-of DP1 --rotate normal --output HDMI-1-2 --primary --mode 2560x1080 --right-of DP-1-1 --rotate normal --output VIRTUAL1 --off ;;
-  "eDP1 + DP1(RL) + HDMI2(*)") xrandr --output eDP1 --mode 1366x768 --pos 0x0 --rotate normal --output eDP-1-1 --mode 1366x768 --pos 0x0 --rotate normal --output DP1 --mode 1920x1200 --right-of eDP1 --rotate left --output DP-1-1 --mode 1920x1200 --right-of eDP-1-1 --rotate left --output DP2 --off --output DP-1-2 --off --output HDMI1 --off --output HDMI-1-1 --off --output HDMI2 --primary --mode 2560x1080 --right-of DP1 --rotate normal --output HDMI-1-2 --primary --mode 2560x1080 --right-of DP-1-1 --rotate normal --output VIRTUAL1 --off ;;
+  "eDP1(*)") xrandr --output eDP1    --mode 1366x768 --pos 0x0 --rotate normal \
+                    --output eDP-1-1 --mode 1366x768 --pos 0x0 --rotate normal \
+                    --output DP1    --off \
+                    --output DP-1-1 --off  \
+                    --output DP2    --off \
+                    --output DP-1-2 --off \
+                    --output HDMI1    --off \
+                    --output HDMI-1-1 --off \
+                    --output HDMI2    --off \
+                    --output HDMI-1-2 --off \
+                    --output VIRTUAL1 --off ;;
+
+  "HDMI2(*)") xrandr --output eDP1    --off \
+                     --output eDP-1-1 --off \
+                     --output DP1    --off \
+                     --output DP-1-1 --off \
+                     --output DP2    --off \
+                     --output DP-1-2 --off \
+                     --output HDMI1    --off \
+                     --output HDMI-1-1 --off \
+                     --output HDMI2    --primary --mode 2560x1080 --pos 0x0 --rotate normal \
+                     --output HDMI-1-2 --primary --mode 2560x1080 --pos 0x0 --rotate normal \
+                     --output VIRTUAL1 --off ;;
+
+  "DP1(RL) + HDMI2(*)") xrandr --output eDP1    --off \
+                               --output eDP-1-1 --off \
+                               --output DP1    --mode 1920x1200 --pos 0x0 --rotate left \
+                               --output DP-1-1 --mode 1920x1200 --pos 0x0 --rotate left \
+                               --output DP2    --off \
+                               --output DP-1-2 --off \
+                               --output HDMI1    --off \
+                               --output HDMI-1-2 --off \
+                               --output HDMI2    --primary --mode 2560x1080 --right-of DP1    --rotate normal \
+                               --output HDMI-1-2 --primary --mode 2560x1080 --right-of DP-1-1 --rotate normal \
+                               --output VIRTUAL1 --off ;;
+
+  "eDP1 + DP1(RL) + HDMI2(*)") xrandr --output eDP1    --mode 1366x768 --pos 0x0 --rotate normal \
+                                      --output eDP-1-1 --mode 1366x768 --pos 0x0 --rotate normal \
+                                      --output DP1    --mode 1920x1200 --right-of eDP1    --rotate left \
+                                      --output DP-1-1 --mode 1920x1200 --right-of eDP-1-1 --rotate left \
+                                      --output DP2    --off \
+                                      --output DP-1-2 --off \
+                                      --output HDMI1    --off \
+                                      --output HDMI-1-1 --off \
+                                      --output HDMI2    --primary --mode 2560x1080 --right-of DP1    --rotate normal \
+                                      --output HDMI-1-2 --primary --mode 2560x1080 --right-of DP-1-1 --rotate normal \
+                                      --output VIRTUAL1 --off ;;
 esac
 
 # More Options
