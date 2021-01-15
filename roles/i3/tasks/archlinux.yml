@@ -82,6 +82,7 @@
       - xfce4-power-manager
       - xorg-apps
       - xorg-xinit
+      - xournalpp
       - xss-lock
 
 - name: Install packages required for bluetooth support
