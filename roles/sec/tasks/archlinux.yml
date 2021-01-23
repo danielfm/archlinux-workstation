@@ -11,6 +11,7 @@
       - gnupg
       - gopass
       - hopenpgp-tools
+      - mullvad-vpn-bin
       - networkmanager-openvpn
       - nmap
       - opensc
