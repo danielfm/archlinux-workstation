@@ -122,10 +122,3 @@
   command:
     chdir: '/home/{{ user_name }}/.mozilla/firefox/default'
     cmd: './updater.sh -s'
-
-- name: Enable suspend service for user
-  become: yes
-  systemd:
-    name: 'suspend@{{ user_name }}'
-    daemon_reload: yes
-    enabled: yes
