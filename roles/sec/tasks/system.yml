@@ -224,3 +224,12 @@
   when:
     - not (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
     - not (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
+
+- name: Setup OpenVPN client configuration
+  become: yes
+  copy:
+    src: 'etc/openvpn/client/client.conf'
+    dest: '/etc/openvpn/client/client.conf'
+    owner: 'root'
+    group: 'root'
+    mode: '0600'
