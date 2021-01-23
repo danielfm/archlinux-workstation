@@ -110,6 +110,14 @@
     proto: tcp
     direction: out
 
+- name: Allow Git protocol traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '9418'
+    proto: tcp
+    direction: out
+
 - name: Allow Mullvad OpenVPN outgoing traffic
   become: yes
   ufw:
