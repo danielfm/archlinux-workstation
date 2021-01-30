@@ -39,6 +39,7 @@
       - smartmontools
       - terraform
       - tmux
+      - traceroute
       - vagrant
       - vault
       - virt-manager
