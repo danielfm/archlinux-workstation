@@ -15,4 +15,3 @@
     enabled: yes
   loop:
     - docker
-    - iptables

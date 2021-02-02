@@ -12,6 +12,8 @@
     state: started
     enabled: yes
   loop:
+    - iptables
+    - ip6tables
     - parcimonie.sh@all-users
     - pcscd
     - tor
