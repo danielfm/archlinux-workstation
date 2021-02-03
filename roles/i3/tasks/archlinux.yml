@@ -37,6 +37,7 @@
       - hsetroot
       - htop
       - i3-gaps
+      - ipp-usb
       - libappindicator-gtk2
       - libappindicator-gtk3
       - lightdm
@@ -66,6 +67,8 @@
       - ranger
       - rhythmbox
       - rofi
+      - sane
+      - sane-airscan
       - seahorse
       - shotwell
       - transmission-gtk

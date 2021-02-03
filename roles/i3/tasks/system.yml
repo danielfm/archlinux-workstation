@@ -124,15 +124,12 @@
     regexp: '^load-module module-echo-cancel'
     line: load-module module-echo-cancel
 
-- name: Enable lightdm service
+- name: Enable services service
   become: true
   systemd:
-    name: lightdm
+    name: '{{ item }}'
     enabled: yes
-
-- name: Enable bluetooth service
-  become: yes
-  service:
-    name: bluetooth
-    state: started
-    enabled: yes
+  loop:
+    - bluetooth
+    - ipp-usb
+    - lightdm
