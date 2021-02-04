@@ -80,7 +80,9 @@ cp vars/main.yml vars/custom.yml
 nano vars/custom.yml
 
 # Run the playbook:
-ansible-playbook playbook.yml -e "@vars/custom.yml"
+ansible-playbook playbook.yml \
+   --vault-id archlinux-workstation@gopass-client.py \
+   --extra-vars "@vars/custom.yml"
 ```
 
 Don't leave the machine unattended as you'll might have to re-enter the user
