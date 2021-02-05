@@ -12,6 +12,9 @@ user_gnupg_key_id: '0x7105CE6355472DCA'
 # prior to the login, i.e., disk encryption password prompt
 user_autologin: no
 
+# Other directories to create inside the user home
+user_extra_home_dirs: []
+
 # System data
 
 system_timezone: America/Sao_Paulo

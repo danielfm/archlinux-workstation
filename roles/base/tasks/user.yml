@@ -45,6 +45,17 @@
   when:
     - user_create_ssh_keypair|bool
 
+- name: Add extra home directories
+  become: yes
+  become_user: '{{ user_name }}'
+  file:
+    path: '/home/{{ user_name }}/{{ item }}'
+    state: directory
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: '0755'
+  loop: '{{ user_extra_home_dirs }}'
+
 - name: Ensure bash directories exist for {{ user_name }}
   become: yes
   become_user: '{{ user_name }}'

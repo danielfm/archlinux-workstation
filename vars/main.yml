@@ -28,6 +28,10 @@ user_autologin: no
 user_pam_u2f_main_key: ''
 user_pam_u2f_backup_key: ''
 
+user_extra_home_dirs:
+  - Projects
+
+
 #
 # System data
 #

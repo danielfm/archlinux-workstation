@@ -40,18 +40,6 @@
       - vboxusers
     append: yes
 
-- name: Add extra directories
-  become: yes
-  become_user: '{{ user_name }}'
-  file:
-    path: '/home/{{ user_name }}/{{ item }}'
-    state: directory
-    owner: '{{ user_name }}'
-    group: '{{ user_group }}'
-    mode: '0755'
-  loop:
-    - Projects
-
 - name: Install oh-my-zsh
   become: yes
   become_user: '{{ user_name }}'
