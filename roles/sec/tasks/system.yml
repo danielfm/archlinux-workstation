@@ -19,6 +19,16 @@
     - tor
     - ufw
 
+- name: Allow outgoing ICMP traffic (IPv4) in ufw
+  become: yes
+  lineinfile:
+    path: /etc/ufw/before.rules
+    insertbefore: '^COMMIT'
+    line: '{{ item }}'
+  loop:
+    - '-A ufw-before-input  -p icmp -m state --state ESTABLISHED,RELATED     -j ACCEPT'
+    - '-A ufw-before-output -p icmp -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT'
+
 - name: Allow mDNS outgoing traffic
   become: yes
   ufw:
