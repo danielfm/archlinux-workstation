@@ -255,8 +255,7 @@ blacklist-2 = caps lock
 type = internal/date
 interval = 30
 label =  %time%
-time =  %H:%M %p
-time-alt =  %Y-%m-%d
+time =  %Y-%m-%d %H:%M %p
 
 [module/powermenu]
 type = custom/text
