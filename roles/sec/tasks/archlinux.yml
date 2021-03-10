@@ -34,5 +34,6 @@
     upgrade: no
     skip_installed: yes
     name:
+      - nextdns
       - parcimonie-sh-git
       - protonmail-bridge-bin

@@ -17,3 +17,6 @@ user_pam_u2f_backup_key: ''
 
 system_secure_boot: no
 system_secure_boot_keys_dir: /root/.secure-boot-keys
+
+# Nextdns config
+nextdns_config_id: ''

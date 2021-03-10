@@ -5,6 +5,15 @@
     regex: '^DEFAULT_FORWARD_POLICY='
     line: 'DEFAULT_FORWARD_POLICY="ACCEPT"'
 
+- name: Ensure nextdns configuration exists
+  become: yes
+  template:
+    src: etc/nextdns.conf.j2
+    dest: /etc/nextdns.conf
+    owner: root
+    group: root
+    mode: '0600'
+
 - name: Enable services
   become: yes
   service:
@@ -14,6 +23,7 @@
   loop:
     - iptables
     - ip6tables
+    - nextdns
     - parcimonie.sh@all-users
     - pcscd
     - tor
@@ -237,7 +247,7 @@
     - not (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
     - not (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
 
-- name: Setup OpenVPN client configuration
+- name: Setup OpenVPN client configuration exists
   become: yes
   copy:
     src: 'etc/openvpn/client/client.conf'
