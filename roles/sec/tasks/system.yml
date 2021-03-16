@@ -153,6 +153,7 @@
     - {port: 1195, proto: udp}
     - {port: 1196, proto: udp}
     - {port: 1197, proto: udp}
+    - {port: 1198, proto: udp}
     - {port: 1301, proto: udp}
     - {port: 1301, proto: udp}
     - {port: 1302, proto: udp}
