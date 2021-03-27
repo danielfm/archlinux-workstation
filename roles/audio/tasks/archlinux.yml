@@ -8,6 +8,7 @@
       - cadence
       - calf
       - carla
+      - dbus-python
       - guitarix
       - jack2
       - lv2-plugins
@@ -15,4 +16,3 @@
       - dssi-plugins
       - vst-plugins
       - pulseaudio-jack
-      - python-dbus
