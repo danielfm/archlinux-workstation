@@ -14,7 +14,7 @@ def main():
         print('Necessary argument "--vault-id" missing')
         sys.exit(1)
     result = run(
-        ["gopass", VAULT_PASSWORD_LOCATION + sys.argv[2]],
+        ["gopass", "-u", VAULT_PASSWORD_LOCATION + sys.argv[2]],
         text=True,
         stderr=STDOUT,
         stdout=PIPE,
