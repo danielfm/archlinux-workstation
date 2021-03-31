@@ -5,15 +5,6 @@
     regex: '^DEFAULT_FORWARD_POLICY='
     line: 'DEFAULT_FORWARD_POLICY="ACCEPT"'
 
-- name: Ensure nextdns configuration exists
-  become: yes
-  template:
-    src: etc/nextdns.conf.j2
-    dest: /etc/nextdns.conf
-    owner: root
-    group: root
-    mode: '0600'
-
 - name: Enable services
   become: yes
   service:
