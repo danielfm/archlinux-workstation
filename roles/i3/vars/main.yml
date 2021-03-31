@@ -11,23 +11,20 @@ user_autologin: no
 
 system_bluetooth: yes
 
-# Application data
-
-# Deja Dup settings
-backup_backend: remote      # Options: remote, google, local
+# Backup settings
+backup_systemd_schedule: '18:00'
 backup_retention_days: 30
 backup_period_days: 1
 backup_full_period_days: 7
 
-backup_local_folder: ''
+backup_source_dir: ''
+backup_source_exclude: ''
 
-backup_google_folder: ''
+backup_s3_bucket_name: ''
+backup_s3_gopass_secret_dir: ''
 
-backup_remote_storage_uri: ''
-backup_remote_storage_folder: '$HOSTNAME'
-
-backup_include: []
-backup_exclude: []
+backup_encrypt_key_id: ''
+backup_sign_key_id: ''
 
 # Directories to be displayed as bookmarks in file managers, such as Thunar
 gtk_bookmarks:

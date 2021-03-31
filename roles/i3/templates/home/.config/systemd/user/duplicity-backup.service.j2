@@ -1,0 +1,10 @@
+[Unit]
+Description=Duplicity backup
+Wants=duplicity-backup.timer
+
+[Service]
+Type=oneshot
+ExecStart=/home/{{ user_name }}/.bin/duplicity-backup.sh
+
+[Install]
+WantedBy=multi-user.target

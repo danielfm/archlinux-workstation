@@ -84,7 +84,7 @@ scroll-down = i3wm-wsprev
 ;== Module Location ========================================================
 
 modules-left = menu workspaces
-modules-right = keyboard presentation-mode volume bat0 bat1 network date powermenu
+modules-right = backup keyboard presentation-mode volume bat0 bat1 network date powermenu
  
 ;== Modules ========================================================
 
@@ -234,6 +234,11 @@ ramp-volume-6 = 
 type = custom/script
 exec = $HOME/.bin/polybar/power-manager-presentation-mode
 click-left = $HOME/.bin/polybar/power-manager-toggle-presentation-mode
+tail = true
+
+[module/backup]
+type = custom/script
+exec = $HOME/.bin/polybar/check-backup
 tail = true
 
 [module/network]

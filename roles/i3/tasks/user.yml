@@ -14,6 +14,16 @@
     - .dmrc
     - .gtkrc-2.0
 
+- name: Set duplicity backup exclusion list
+  become: yes
+  become_user: '{{ user_name }}'
+  copy:
+    content: '{{ backup_exclude }}'
+    dest: '/home/{{ user_name }}/.config/duplicity-backup-exclude'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: '0644'
+
 - name: Add user to autologin group
   become: yes
   user:
@@ -32,6 +42,45 @@
     group: '{{ user_group }}'
     mode: '0755'
 
+- name: Write duplicity backup script
+  become: yes
+  become_user: '{{ user_name }}'
+  template:
+    src: 'home/.bin/duplicity-backup.sh.j2'
+    dest: '/home/{{ user_name }}/.bin/duplicity-backup.sh'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: '0755'
+
+- name: Ensure user systemd directory exists
+  become: yes
+  become_user: '{{ user_name }}'
+  file:
+    path: '/home/{{ user_name }}/.config/systemd/user'
+    mode: '0755'
+    state: directory
+
+- name: Write duplicity systemd unit files
+  become: yes
+  become_user: '{{ user_name }}'
+  template:
+    src: 'home/.config/systemd/user/{{ item }}.j2'
+    dest: '/home/{{ user_name }}/.config/systemd/user/{{ item }}'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: '0644'
+  loop:
+    - duplicity-backup.service
+    - duplicity-backup.timer
+
+- name: Enable duplicity backup timer
+  systemd:
+    scope: user
+    name: duplicity-backup.timer
+    state: started
+    daemon_reload: true
+    enabled: true
+
 - name: Add templated user config files
   become: yes
   become_user: '{{ user_name }}'
@@ -44,39 +93,6 @@
   loop:
     - .gtk-bookmarks
     - .config/gtk-3.0/bookmarks
-
-- name: Set DejaDup configuration
-  become: yes
-  become_user: '{{ user_name }}'
-  dconf:
-    key: '/org/gnome/deja-dup/{{ item.key }}'
-    value: '{{ item.value | string }}'
-    state: present
-  loop:
-    - key: allow-metered
-      value: 'false'
-    - key: periodic
-      value: 'true'
-    - key: backend
-      value: "'{{ backup_backend }}'"
-    - key: delete-after
-      value: '{{ backup_retention_days }}'
-    - key: periodic-period
-      value: '{{ backup_period_days }}'
-    - key: full-backup-period
-      value: '{{ backup_full_period_days }}'
-    - key: local/folder
-      value: "'{{ backup_local_folder }}'"
-    - key: remote/uri
-      value: "'{{ backup_remote_storage_uri }}'"
-    - key: remote/folder
-      value: "'{{ backup_remote_storage_folder }}'"
-    - key: google/folder
-      value: "'{{ backup_google_folder }}'"
-    - key: include-list
-      value: '{{ backup_include }}'
-    - key: exclude-list
-      value: '{{ backup_exclude }}'
 
 - name: Create Firefox profile directory
   become: yes

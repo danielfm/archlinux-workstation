@@ -1,0 +1,10 @@
+[Unit]
+Description=Duplicity backup
+Requires=duplicity-backup.service
+
+[Timer]
+Unit=duplicity-backup.service
+OnCalendar={{ backup_systemd_schedule }}
+
+[Install]
+WantedBy=timers.target

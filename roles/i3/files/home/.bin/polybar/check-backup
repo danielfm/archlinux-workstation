@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+while true; do
+  if systemctl --user list-unit-files duplicity-backup.timer --state=disabled &> /dev/null ; then
+    echo 'Backup DISABLED'
+  elif [ $(systemctl --user show duplicity-backup.service --property=SubState --value) == 'start' ]; then
+    echo 'Backup RUNNING'
+  elif [ $(systemctl --user show duplicity-backup.service --property=ExecMainStatus --value) -eq 0 ]; then
+    echo 'Backup OK'
+  else
+    echo 'Backup FAILED'
+  fi
+
+  sleep 5
+done

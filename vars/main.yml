@@ -45,30 +45,19 @@ system_secure_boot: no
 system_secure_boot_keys_dir: /root/.secure-boot-keys
 
 #
-# Application settings
+# Backup settings
 #
 
-# DejaDup
-
-backup_backend: remote # Other options: google, local
+backup_systemd_schedule: 18:00
 backup_retention_days: 30
 backup_period_days: 1
 backup_full_period_days: 7
 
-backup_local_folder: ''
+backup_source_dir: '/home/{{ user_name }}'
+backup_exclude: ''
 
-backup_google_folder: ''
-
-backup_remote_storage_uri: ''
-backup_remote_storage_folder: '$HOSTNAME'
-
-backup_include:
-  - '/home/{{ user_name }}'
-
-backup_exclude:
-  - '/home/{{ user_name }}/.bundle'
-  - '/home/{{ user_name }}/.cache'
-  - '/home/{{ user_name }}/Downloads'
+backup_s3_bucket_name: ''
+backup_s3_gopass_secret_dir: ''
 
 
 # Thunar

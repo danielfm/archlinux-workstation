@@ -1,0 +1,23 @@
+#!/bin/env bash
+
+notify-send 'Backup started'
+
+export AWS_ACCESS_KEY_ID=$(gopass -o {{ backup_s3_gopass_secret_dir }}/AWS_ACCESS_KEY_ID)
+export AWS_SECRET_ACCESS_KEY=$(gopass -o {{ backup_s3_gopass_secret_dir }}/AWS_SECRET_ACCESS_KEY)
+
+# GPG-encrypted backups
+duplicity \
+    --encrypt-sign-key {{ user_gnupg_key_id }} --use-agent \
+    --exclude-filelist ${HOME}/.config/duplicity-backup-exclude \
+    --s3-use-new-style --asynchronous-upload \
+    --full-if-older-than {{ backup_full_period_days }}D --progress -v 8 \
+    "{{ backup_source_dir }}" "s3+http://{{ backup_s3_bucket_name }}/${HOSTNAME}"
+
+if [ $? -ne 0 ]; then
+  notify-send -u critical 'Backup started' ; exit 1
+fi
+
+notify-send 'Backup completed'
+
+# Clean up older backups to save storage space/cost
+duplicity remove-older-than {{ backup_retention_days }}D "s3+http://{{ backup_s3_bucket_name }}/${HOSTNAME}"
