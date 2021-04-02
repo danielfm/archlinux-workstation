@@ -59,10 +59,13 @@
       - base-devel
       - cups
       - curl
+      - duplicity
       - exfat-utils
       - foomatic-db-gutenprint-ppds
       - git
       - git-lfs
+      - gnupg
+      - gopass
       - gutenprint
       - linux-headers
       - lshw
@@ -88,3 +91,13 @@
       - xclip
       - xterm
       - zsh
+
+- name: Install packages required for bluetooth support
+  become: yes
+  pacman:
+    state: present
+    name:
+      - blueman
+      - bluez-utils
+  when:
+    - system_bluetooth|bool

@@ -1,23 +1,31 @@
+#
 # User data
+#
 
-user_name: danielfm
-user_group: danielfm
-user_uid: 1000
-user_gid: 1000
+# user_name: danielfm
+# user_group: danielfm
+# user_uid: 1000
+# user_gid: 1000
 
 user_create_ssh_keypair: yes
-user_gnupg_key_id: '0x7105CE6355472DCA'
 
-# Only use this if you have some sort of security mechanism in place
-# prior to the login, i.e., disk encryption password prompt
-user_autologin: no
+# user_gnupg_key_id: '0x9999999999999999'
 
 # Other directories to create inside the user home
 user_extra_home_dirs: []
 
+#
 # System data
+#
 
 system_timezone: America/Sao_Paulo
 system_locale: en_US.UTF-8
 
 system_bluetooth: yes
+
+system_resolvconf: |
+  nameserver 9.9.9.9
+  nameserver 149.112.112.112
+
+system_dns_over_tls: yes
+system_dns_dnssec: yes

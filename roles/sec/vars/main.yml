@@ -1,12 +1,11 @@
+#
 # User data
+#
 
-user_name: john-doe
-user_group: john-doe
+# user_name: john-doe
+# user_group: john-doe
 
-user_gnupg_key_key: '0x123456789'
-
-# Where the main Gopass password store directory is located
-user_password_store_dir: ''
+# user_gnupg_key_id: '0x123456789'
 
 # 2FA support with a U2F security key (i.e. YubiKey)
 # Format: '<key-handle>,<public-key>'
@@ -15,5 +14,4 @@ user_pam_u2f_backup_key: ''
 
 # System data
 
-system_secure_boot: no
 system_secure_boot_keys_dir: /root/.secure-boot-keys

@@ -1,12 +1,26 @@
+- name: Create Gopass password store dir
+  become: yes
+  become_user: '{{ user_name }}'
+  file:
+    path: '{{ user_gopass_store_dir }}'
+    state: directory
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: '0700'
+  when:
+    - user_gopass_store_dir != ''
+
 - name: Ensure the Gopass password store symlink exists
   become: yes
   become_user: '{{ user_name }}'
   file:
-    src: '{{ user_password_store_dir }}'
+    src: '{{ user_gopass_store_dir }}'
     dest: '/home/{{ user_name }}/.password-store'
     state: link
     owner: '{{ user_name }}'
     group: '{{ user_group }}'
+  when:
+    - user_gopass_store_dir != ''
 
 - name: Ensure the .gnupg directory exists
   become: yes
@@ -51,6 +65,16 @@
     - .bash_aliases.d
     - .bash_env.d
     - .config
+
+- name: Create Gopass config dir
+  become: yes
+  become_user: '{{ user_name }}'
+  file:
+    path: '/home/{{ user_name }}/.config/gopass'
+    state: directory
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: '0700'
 
 - name: Create Gopass configuration file
   become: yes

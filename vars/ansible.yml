@@ -1,0 +1,69 @@
+#
+# User data
+#
+
+user_full_name: Vagrant User
+
+user_name: vagrant
+user_group: vagrant
+user_uid: 1000
+user_gid: 1000
+
+user_autologin: yes
+user_create_ssh_keypair: yes
+
+user_github_username: vagrant
+user_github_email: 99999+vagrant@users.noreply.github.com
+user_irc_nickname: vagrant
+
+user_gnupg_key_id: '0x9999999999999999'
+
+user_extra_home_dirs:
+  - Projects
+
+user_gopass_store_dir: /home/{{ user_name}}/Documents/Passwords
+
+# 2FA support with a U2F security key (i.e. YubiKey)
+# Format: '<key-handle>,<public-key>'
+# user_pam_u2f_main_key: 
+# user_pam_u2f_backup_key: 
+
+#
+# System data
+#
+
+system_bluetooth: no
+system_timezone: America/Sao_Paulo
+system_locale: en_US.UTF-8
+
+system_secure_boot_keys_dir: /root/.secure-boot-keys
+
+system_resolvconf: |
+  nameserver 1.1.1.1
+  nameserver 1.0.0.1
+
+system_dns_over_tls: yes
+system_dnssec: yes
+
+#
+# Backup settings
+#
+
+backup_schedule: 'daily'
+backup_retention_days: 30
+backup_period_days: 1
+backup_full_period_days: 7
+
+backup_s3_bucket_name: vagrant-backup
+
+# This Gopass directory must contain two secrets, AWS_ACCESS_KEY_ID and
+# AWS_SECRET_ACCESS_KEY
+backup_s3_gopass_secret_dir: env/aws/duplicity
+
+backup_source_dir: '/home/{{ user_name }}'
+
+backup_exclude: |
+  /home/{{ user_name }}/.cache
+  /home/{{ user_name }}/.local
+  /home/{{ user_name }}/.mozilla
+  /home/{{ user_name }}/.vagrant.d

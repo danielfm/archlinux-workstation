@@ -16,7 +16,6 @@
       - docker-compose
       - ebtables
       - emacs
-      - gcolor3
       - go
       - inetutils
       - jq
@@ -26,6 +25,8 @@
       - leiningen
       - libusb-compat
       - maven
+      - net-tools
+      - ngrep
       - ovmf
       - openbsd-netcat
       - opensc
@@ -33,7 +34,6 @@
       - python-pipenv
       - python-wheel
       - twine
-      - qemu
       - ruby-bundler
       - rubygems
       - smartmontools
@@ -42,7 +42,6 @@
       - traceroute
       - vagrant
       - vault
-      - virt-manager
       - wireshark-qt
 
 - name: Install AUR packages
@@ -50,9 +49,7 @@
     upgrade: no
     skip_installed: yes
     name:
-      - apache-spark
       - aws-cli-v2-bin
-      - cfssl
       - chef-dk
       - google-cloud-sdk
       - kail
@@ -60,7 +57,5 @@
       - ngrok-bin
       - pip-tools
       - pyenv-virtualenv
-      - ruby-rubocop
       - velero-bin
-      - zoom
       - zsa-wally-cli

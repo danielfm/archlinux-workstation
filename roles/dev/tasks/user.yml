@@ -36,8 +36,6 @@
     name: '{{ user_name }}'
     groups:
       - docker
-      - libvirt
-      - vboxusers
     append: yes
 
 - name: Install oh-my-zsh
