@@ -1,3 +1,12 @@
+# Replace jack package with jack2
+- name: Make sure jack package is absent
+  become: yes
+  pacman:
+    state: absent
+    force: yes
+    name:
+      - jack
+
 - name: Install packages
   become: yes
   pacman:
@@ -16,3 +25,4 @@
       - dssi-plugins
       - vst-plugins
       - pulseaudio-jack
+      - realtime-privileges

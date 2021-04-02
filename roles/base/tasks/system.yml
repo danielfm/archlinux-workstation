@@ -15,26 +15,42 @@
     regexp: '^hosts:'
     line: 'hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns'
 
-- name: Enable services
+- name: Do not allow NetworkManager to manage resolv.conf
   become: yes
-  service:
-    name: '{{ item }}'
-    state: started
-    enabled: yes
-  loop:
-    - NetworkManager
-    - avahi-daemon
-    - ntpd
-    - cups
+  ini_file:
+    path: /etc/NetworkManager/NetworkManager.conf
+    section: main
+    option: rc-manager
+    value: unmanaged
 
-- name: Install packages required for bluetooth support
+- name: Set DNS resolvers
   become: yes
-  pacman:
-    state: present
-    name:
-      - bluez-utils
-  when:
-    - system_bluetooth|bool
+  copy:
+    content: '{{ system_resolvconf }}'
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Create systemd-resolvers conf.d dir
+  become: yes
+  file:
+    path: /etc/systemd/resolved.conf.d
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: Set systemd-resolved configuration
+  become: yes
+  template:
+    src: etc/systemd/resolved.conf.d/dns_over_tls.conf.j2
+    dest: /etc/systemd/resolved.conf.d/dns_over_tls.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Restart systemd-resolved
 
 - name: Disable bluetooth Enhanced Retransmission Mode (ERTM)
   become: yes
@@ -44,5 +60,27 @@
     owner: root
     group: root
     mode: 0644
+  when:
+    - system_bluetooth|bool
+
+- name: Enable services
+  become: yes
+  service:
+    name: '{{ item }}'
+    state: started
+    enabled: yes
+  loop:
+    - avahi-daemon
+    - NetworkManager
+    - ntpd
+    - cups
+    - systemd-resolved
+
+- name: Enable bluetooth service
+  become: yes
+  service:
+    name: bluetooth
+    state: started
+    enabled: yes
   when:
     - system_bluetooth|bool

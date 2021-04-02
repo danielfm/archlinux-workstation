@@ -4,18 +4,11 @@
     state: present
     name:
       - aws-vault
-      - browserpass-chromium
-      - browserpass-firefox
       - efitools
       - fwupd
-      - gnupg
-      - gopass
-      - hopenpgp-tools
-      - mullvad-vpn-bin
       - networkmanager-openvpn
       - nmap
       - opensc
-      - openvpn-update-resolv-conf-git
       - pam-u2f
       - pinentry
       - qrencode
@@ -27,12 +20,10 @@
       - yubikey-manager
       - yubikey-personalization-gui
       - yubikey-touch-detector
-      - yubioath-desktop
 
 - name: Install AUR packages
   aur:
     upgrade: no
     skip_installed: yes
     name:
-      - parcimonie-sh-git
       - protonmail-bridge-bin

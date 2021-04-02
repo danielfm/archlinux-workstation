@@ -130,6 +130,5 @@
     name: '{{ item }}'
     enabled: yes
   loop:
-    - bluetooth
     - ipp-usb
     - lightdm

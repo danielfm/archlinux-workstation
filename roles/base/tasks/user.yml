@@ -11,7 +11,6 @@
     name: '{{ user_name }}'
     groups:
       - '{{ user_group }}'
-      - realtime
       - audio
       - lp
       - network
@@ -34,8 +33,6 @@
     owner: '{{ user_name }}'
     group: '{{ user_group }}'
     mode: '0700'
-  when:
-    - user_create_ssh_keypair|bool
 
 - name: Generate SSH keypair for {{ user_name }}
   become: yes
@@ -55,6 +52,19 @@
     group: '{{ user_group }}'
     mode: '0755'
   loop: '{{ user_extra_home_dirs }}'
+
+- name: Add home .config directory
+  become: yes
+  become_user: '{{ user_name }}'
+  file:
+    path: '/home/{{ user_name }}/{{ item }}'
+    state: directory
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: '0755'
+  loop:
+    - .config
+    - .bin
 
 - name: Ensure bash directories exist for {{ user_name }}
   become: yes
@@ -84,20 +94,62 @@
     - .bash_profile
     - .bashrc
 
-- name: Add user to sudoers file
-  become: yes
-  lineinfile:
-    path: '/etc/sudoers.d/{{ user_name }}'
-    line: '{{ user_name }} ALL=(ALL) ALL'
-    state: present
-    mode: '0400'
-    create: yes
-    validate: 'visudo -cf %s'
-
-- name: Add flathub remote to the user flatpak installation
+- name: Set duplicity backup exclusion list
   become: yes
   become_user: '{{ user_name }}'
-  flatpak_remote:
-    name: flathub
-    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-    method: user
+  copy:
+    content: '{{ backup_exclude }}'
+    dest: '/home/{{ user_name }}/.config/duplicity-backup-exclude'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: '0644'
+
+- name: Write duplicity backup script
+  become: yes
+  become_user: '{{ user_name }}'
+  template:
+    src: 'home/.bin/duplicity-backup.sh.j2'
+    dest: '/home/{{ user_name }}/.bin/duplicity-backup.sh'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: '0755'
+
+- name: Ensure user systemd directory exists
+  become: yes
+  become_user: '{{ user_name }}'
+  file:
+    path: '/home/{{ user_name }}/.config/systemd/user'
+    mode: '0755'
+    state: directory
+
+- name: Write duplicity systemd unit files
+  become: yes
+  become_user: '{{ user_name }}'
+  template:
+    src: 'home/.config/systemd/user/{{ item }}.j2'
+    dest: '/home/{{ user_name }}/.config/systemd/user/{{ item }}'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: '0644'
+  loop:
+    - duplicity-backup.service
+    - duplicity-backup.timer
+
+- name: Enable duplicity backup timer
+  systemd:
+    scope: user
+    name: duplicity-backup.timer
+    state: started
+    daemon_reload: true
+    enabled: true
+  when:
+    - backup_enabled == true
+
+- name: Disable duplicity backup timer
+  systemd:
+    scope: user
+    name: duplicity-backup.timer
+    state: stopped
+    enabled: false
+  when:
+    - backup_enabled == false

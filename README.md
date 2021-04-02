@@ -138,7 +138,7 @@ on each key in order to output a key:
 
 ```sh
 # Run this command and press the blinking key, if asked:
-pamu2fcfg | cut -d ':' -f 2
+pamu2fcfg | cut -d ':' -f 2 | cut -d ',' -f 1,2
 ```
 
 Copy the output for this command, for each key (main and backup), to the

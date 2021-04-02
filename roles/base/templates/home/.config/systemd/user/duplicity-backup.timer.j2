@@ -4,7 +4,9 @@ Requires=duplicity-backup.service
 
 [Timer]
 Unit=duplicity-backup.service
-OnCalendar={{ backup_systemd_schedule }}
+OnCalendar={{ backup_schedule }}
+AccuracySec=12h
+Persistent=true
 
 [Install]
 WantedBy=timers.target

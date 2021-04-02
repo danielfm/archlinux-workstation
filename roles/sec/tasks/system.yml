@@ -12,10 +12,6 @@
     state: started
     enabled: yes
   loop:
-    - iptables
-    - ip6tables
-    - nextdns
-    - parcimonie.sh@all-users
     - pcscd
     - tor
     - ufw
@@ -88,16 +84,15 @@
     - 7000
     - 7070
 
-- name: Allow DNS outgoing traffic
+- name: Allow DNS-over-TLS outgoing traffic
   become: yes
   ufw:
     rule: allow
-    port: '53'
+    port: '853'
     proto: '{{ item }}'
     direction: out
   loop:
     - tcp
-    - udp
 
 - name: Allow HTTP outgoing traffic
   become: yes
@@ -115,6 +110,16 @@
     proto: tcp
     direction: out
 
+- name: Allow SSH incoming traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '22'
+    proto: tcp
+    direction: in
+  when:
+    - user_name == "vagrant"
+
 - name: Allow SSH outgoing traffic
   become: yes
   ufw:
@@ -131,7 +136,7 @@
     proto: tcp
     direction: out
 
-- name: Allow Mullvad OpenVPN outgoing traffic
+- name: Allow OpenVPN outgoing traffic
   become: yes
   ufw:
     rule: allow

@@ -15,3 +15,9 @@
     owner: 'root'
     group: 'root'
     mode: '0644'
+
+- name: Make sure the realtime group exists
+  become: yes
+  group:
+    name: realtime
+    state: present
