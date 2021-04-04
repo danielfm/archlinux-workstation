@@ -75,8 +75,7 @@ and then run the following command to apply the Ansible playbook:
 git clone https://github.com/danielfm/archlinux-workstation.git
 cd archlinux-workstation
 
-# Change some variables (i.e. the user password hash):
-cp vars/main.yml vars/custom.yml
+# Edit some variables
 nano vars/custom.yml
 
 # Run the playbook:
