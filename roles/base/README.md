@@ -6,6 +6,7 @@ Some of the features provided by this role:
 
 - Enable `multilib` repository
 - Set up `yay` for an easy way of using the AUR
+- System-wide DNSSEC and DNS-over-TLS support
 - Periodic backup with [Duplicity](http://duplicity.nongnu.org/) and Amazon S3
 
 ## Variables
