@@ -26,6 +26,14 @@
     - '-A ufw-before-input  -p icmp -m state --state ESTABLISHED,RELATED     -j ACCEPT'
     - '-A ufw-before-output -p icmp -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT'
 
+- name: Allow DNS outgoing traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '53'
+    proto: udp
+    direction: out
+
 - name: Allow mDNS outgoing traffic
   become: yes
   ufw:
@@ -155,6 +163,29 @@
     - {port: 1302, proto: udp}
     - {port: 1303, proto: udp}
     - {port: 1400, proto: udp}
+
+- name: Allow syncthing input traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '{{ item.port }}'
+    proto: '{{ item.proto }}'
+    direction: in
+  loop:
+    - {port: 22000, proto: tcp}
+    - {port: 21027, proto: udp}
+
+- name: Allow syncthing output traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '{{ item.port }}'
+    proto: '{{ item.proto }}'
+    direction: out
+  loop:
+    - {port: 8384,  proto: tcp}
+    - {port: 22000, proto: tcp}
+    - {port: 21027, proto: udp}
 
 - name: Enable ufw logging
   become: yes

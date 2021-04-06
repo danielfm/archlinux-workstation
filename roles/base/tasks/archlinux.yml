@@ -82,6 +82,7 @@
       - playerctl
       - realtime-privileges
       - sudo
+      - syncthing
       - time
       - tree
       - vim

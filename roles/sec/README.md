@@ -24,6 +24,12 @@ Group name of the main user of the system.
 
 GPG key id used as the default GPG key for encryption and signing operations.
 
+### `user_gnupg_keyserver`
+
+**Default value:** `hkp://zkaan2xfbuxia2wpf7ofnkbz6r5zdbbvxbunvp5g2iebopbfc4iqmbad.onion`
+
+Default GPG Keyserver used to fetch and publish keys.
+
 ### `user_pam_u2f_main_key`
 
 **Default value:** `None`

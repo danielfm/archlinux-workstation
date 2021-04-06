@@ -136,6 +136,8 @@
     - duplicity-backup.timer
 
 - name: Enable duplicity backup timer
+  become: yes
+  become_user: '{{ user_name }}'
   systemd:
     scope: user
     name: duplicity-backup.timer
@@ -145,7 +147,18 @@
   when:
     - backup_enabled == true
 
+- name: Enable syncthing daemon
+  become: yes
+  become_user: '{{ user_name }}'
+  systemd:
+    scope: user
+    name: syncthing
+    state: started
+    enabled: true
+
 - name: Disable duplicity backup timer
+  become: yes
+  become_user: '{{ user_name }}'
   systemd:
     scope: user
     name: duplicity-backup.timer
