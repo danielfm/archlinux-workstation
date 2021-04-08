@@ -7,7 +7,7 @@
 
 # user_gnupg_key_id: '0x123456789'
 
-user_gnupg_keyserver: hkp://zkaan2xfbuxia2wpf7ofnkbz6r5zdbbvxbunvp5g2iebopbfc4iqmbad.onion
+user_gnupg_keyserver: hkp://pool.sks-keyservers.net
 
 # 2FA support with a U2F security key (i.e. YubiKey)
 # Format: '<key-handle>,<public-key>'
