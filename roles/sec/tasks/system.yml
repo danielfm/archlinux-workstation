@@ -173,6 +173,7 @@
     direction: in
   loop:
     - {port: 22000, proto: tcp}
+    - {port: 22000, proto: udp}
     - {port: 21027, proto: udp}
 
 - name: Allow syncthing output traffic
@@ -185,6 +186,7 @@
   loop:
     - {port: 8384,  proto: tcp}
     - {port: 22000, proto: tcp}
+    - {port: 22000, proto: udp}
     - {port: 21027, proto: udp}
 
 - name: Enable ufw logging
