@@ -70,6 +70,10 @@
       - sane-airscan
       - seahorse
       - shotwell
+      - thunar
+      - thunar-archive-plugin
+      - thunar-media-tags-plugin
+      - thunar-volman
       - transmission-gtk
       - ttf-arphic-uming
       - ttf-baekmuk
