@@ -58,4 +58,4 @@
       - pip-tools
       - pyenv-virtualenv
       - velero-bin
-      - zsa-wally-cli
+      - zsa-wally-cli-bin
