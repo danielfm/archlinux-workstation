@@ -115,6 +115,7 @@
       - pm-utils
       - polybar
       - slack-desktop
+      - spotify
       - terminess-powerline-font-git
       - timeshift
       - ttf-font-icons
