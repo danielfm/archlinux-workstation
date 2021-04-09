@@ -10,6 +10,7 @@
 user_create_ssh_keypair: yes
 
 # user_gnupg_key_id: '0x9999999999999999'
+# user_gnupg_signing_key_id: '0x9999999999999999'
 
 # Other directories to create inside the user home
 user_extra_home_dirs: []

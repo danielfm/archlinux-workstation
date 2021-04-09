@@ -22,7 +22,7 @@ Group name of the main user of the system.
 
 **Default value:** `None`
 
-GPG key id used as the default GPG key for encryption and signing operations.
+GPG key id used as the default GPG key for encrypt operations.
 
 ### `user_gnupg_keyserver`
 

@@ -7,7 +7,7 @@ export AWS_SECRET_ACCESS_KEY=$(gopass -o {{ backup_s3_gopass_secret_dir }}/AWS_S
 
 # GPG-encrypted backups
 duplicity \
-    --encrypt-sign-key {{ user_gnupg_key_id }} --use-agent \
+    --encrypt-key {{ user_gnupg_key_id }} --sign-key {{ user_gnupg_signing_key_id }} --use-agent \
     --exclude-filelist ${HOME}/.config/duplicity-backup-exclude \
     --s3-use-new-style --asynchronous-upload \
     --full-if-older-than {{ backup_full_period_days }}D --progress -v 8 \

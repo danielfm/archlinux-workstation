@@ -45,7 +45,13 @@ Whether to create a SSH keypair for the main user of the system.
 
 **Default value:** `None`
 
-GPG key id used as the default GPG key for encryption and signing operations.
+GPG key id used as the default GPG key for encrypt operations.
+
+### `user_gnupg_signing_key_id`
+
+**Default value:** `None`
+
+GPG key id used as the default GPG key for signing operations.
 
 ### `user_extra_home_dirs`
 
