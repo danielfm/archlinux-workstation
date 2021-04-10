@@ -10,10 +10,34 @@
 user_create_ssh_keypair: yes
 
 # user_gnupg_key_id: '0x9999999999999999'
-# user_gnupg_signing_key_id: '0x9999999999999999'
 
 # Other directories to create inside the user home
 user_extra_home_dirs: []
+
+#
+# Backup
+#
+
+backup_enabled: true
+backup_schedule: 'daily'
+backup_retention_days: 30
+backup_full_period_days: 7
+
+backup_source_dir: '/home/{{ user_name }}'
+backup_source_exclude: ''
+
+# backup_s3_bucket_name: john-doe-backups
+
+# This Gopass directory must contain two secrets, AWS_ACCESS_KEY_ID and
+# AWS_SECRET_ACCESS_KEY
+# backup_s3_gopass_secret_dir: env/aws/duplicity
+
+# backup_gnupg_encrypt_key_id: '0x9999999999999999'
+# backup_gnupg_signing_key_id: '0x9999999999999999'
+
+# backup_source_dir: ''
+
+backup_exclude: ''
 
 #
 # System data

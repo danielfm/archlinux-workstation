@@ -9,31 +9,13 @@
 # prior to the login, i.e., disk encryption password prompt
 user_autologin: no
 
+# Directories to be displayed as bookmarks in file managers, such as Thunar
+gtk_bookmarks:
+  - name: Downloads
+    path: "/home/{{ user_name }}/Downloads"
+
 #
 # System data
 #
 
 system_bluetooth: yes
-
-#
-# Backup settings
-#
-backup_enabled: false
-backup_systemd_schedule: '0:00'
-backup_retention_days: 30
-backup_period_days: 1
-backup_full_period_days: 7
-
-backup_source_dir: '/home/{{ user_name }}'
-backup_source_exclude: ''
-
-# backup_s3_bucket_name: john-doe-backups
-
-# This Gopass directory must contain two secrets, AWS_ACCESS_KEY_ID and
-# AWS_SECRET_ACCESS_KEY
-# backup_s3_gopass_secret_dir: env/aws/duplicity
-
-# Directories to be displayed as bookmarks in file managers, such as Thunar
-gtk_bookmarks:
-  - name: Downloads
-    path: "/home/{{ user_name }}/Downloads"

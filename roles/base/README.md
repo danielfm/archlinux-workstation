@@ -47,11 +47,65 @@ Whether to create a SSH keypair for the main user of the system.
 
 GPG key id used as the default GPG key for encrypt operations.
 
-### `user_gnupg_signing_key_id`
+### `backup_enabled`
+
+**Default value:** `true`
+
+Whether to enable the Duplicity backup service.
+
+### `backup_schedule`
+
+**Default value:** `daily`
+
+Backup schedule.
+
+### `backup_retention_days`
+
+**Default value:** `30`
+
+Maximum days to keep each backup version.
+
+### `backup_full_period_days`
+
+**Default value:** `7`
+
+Force a full backup after that period, and use incremental backups otherwise.
+
+### `backup_s3_bucket_name`
 
 **Default value:** `None`
 
-GPG key id used as the default GPG key for signing operations.
+S3 bucket name in which to upload the backups.
+
+### `backup_s3_gopass_secret_dir`
+
+**Default value:** `None`
+
+Directory in your `gopass` store which contains two secrets, `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
+
+### `backup_source_dir`
+
+**Default value:** `$HOME`
+
+Main directory to include in the backups.
+
+### `backup_exclude`
+
+**Default value:** `""`
+
+Multi-line string containing file patterns to exclude from the backup.
+
+### `backup_gnupg_signing_key_id`
+
+**Default value:** `None`
+
+GPG key id used to sign Duplicity backups.
+
+### `backup_gnupg_encrypt_key_id`
+
+**Default value:** `None`
+
+GPG key id used to encrypt Duplicity backups.
 
 ### `user_extra_home_dirs`
 
