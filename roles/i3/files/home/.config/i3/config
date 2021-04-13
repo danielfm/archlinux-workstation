@@ -68,7 +68,7 @@ bindsym $mod+F12 exec arandr
 bindsym $mod+backslash exec --no-startup-id $HOME/.bin/polybar/menu_gopass
 
 # Screenshot shortcuts
-bindsym $mod+Control+p --release exec --no-startup-id "flameshot gui -c"
+bindsym $mod+Control+p --release exec --no-startup-id "flameshot gui"
 
 focus_follows_mouse no
 
