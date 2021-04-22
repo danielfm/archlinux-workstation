@@ -31,6 +31,7 @@
       - openbsd-netcat
       - opensc
       - packer
+      - popeye
       - python-pipenv
       - python-wheel
       - twine
