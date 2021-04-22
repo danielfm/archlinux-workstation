@@ -8,6 +8,20 @@
   locale_gen:
     name: '{{ system_locale }}'
 
+- name: Set maximum size for persistent journal
+  become: yes
+  ini_file:
+    path: /etc/systemd/journald.conf
+    section: Journal
+    option: SystemMaxUse
+    value: 100M
+
+- name: Restart systemd-journald service
+  become: yes
+  systemd:
+    name: systemd-journald.service
+    state: restarted
+
 - name: Set up avahi local hostname resolution
   become: yes
   lineinfile:
