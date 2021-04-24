@@ -55,7 +55,6 @@
       - google-cloud-sdk
       - kail
       - kind-bin
-      - ngrok-bin
       - pip-tools
       - pyenv-virtualenv
       - velero-bin
