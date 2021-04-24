@@ -19,7 +19,7 @@
       - go
       - inetutils
       - jq
-      - jdk8-openjdk
+      - jdk11-openjdk
       - kubectl
       - kubectx
       - leiningen
