@@ -144,6 +144,14 @@
     proto: tcp
     direction: out
 
+- name: Allow Tor outgoing traffic
+  become: yes
+  ufw:
+    rule: allow
+    port: '9001'
+    proto: tcp
+    direction: out
+
 - name: Allow OpenVPN outgoing traffic
   become: yes
   ufw:
