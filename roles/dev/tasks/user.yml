@@ -30,14 +30,6 @@
     - .bash_env.d/11-emacs.sh
     - .gitconfig
 
-- name: Ensure {{ user_name }} is in the required groups
-  become: yes
-  user:
-    name: '{{ user_name }}'
-    groups:
-      - docker
-    append: yes
-
 - name: Install oh-my-zsh
   become: yes
   become_user: '{{ user_name }}'

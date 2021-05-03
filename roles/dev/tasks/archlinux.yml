@@ -12,7 +12,6 @@
       - dmidecode
       - dnsmasq
       - dnsutils
-      - docker
       - docker-compose
       - ebtables
       - emacs
@@ -31,6 +30,8 @@
       - openbsd-netcat
       - opensc
       - packer
+      - podman
+      - podman-docker
       - popeye
       - python-pipenv
       - python-wheel

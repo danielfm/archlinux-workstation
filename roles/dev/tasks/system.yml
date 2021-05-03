@@ -1,17 +1,20 @@
-- name: Ensure groups exist
+- name: Add subuid and subgid files
   become: yes
-  group:
-    name: '{{ item }}'
-    state: present
+  template:
+    src: etc/{{ item }}.j2
+    dest: '/etc/{{ item }}'
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
   loop:
-    - docker
-    - libvirt
+    - subuid
+    - subgid
 
-- name: Enable services
+- name: Set podman container configuration
   become: yes
-  service:
-    name: '{{ item }}'
-    state: started
-    enabled: yes
-  loop:
-    - docker
+  copy:
+    src: etc/containers/registries.conf
+    dest: /etc/containers/registries.conf
+    owner: 'root'
+    group: 'root'
+    mode: '0644'
