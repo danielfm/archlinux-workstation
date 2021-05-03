@@ -12,6 +12,9 @@
   become: yes
   ini_file:
     path: /etc/systemd/journald.conf
+    owner: root
+    group: root
+    mode: 0644
     section: Journal
     option: SystemMaxUse
     value: 100M
@@ -26,6 +29,9 @@
   become: yes
   lineinfile:
     path: /etc/nsswitch.conf
+    owner: root
+    group: root
+    mode: 0644
     regexp: '^hosts:'
     line: 'hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns'
 
@@ -33,6 +39,9 @@
   become: yes
   ini_file:
     path: /etc/NetworkManager/NetworkManager.conf
+    owner: root
+    group: root
+    mode: 0644
     section: main
     option: rc-manager
     value: unmanaged

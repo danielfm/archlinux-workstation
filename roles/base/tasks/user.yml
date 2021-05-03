@@ -145,7 +145,7 @@
     daemon_reload: true
     enabled: true
   when:
-    - backup_enabled == true
+    - backup_enabled
 
 - name: Enable syncthing daemon
   become: yes
@@ -165,4 +165,4 @@
     state: stopped
     enabled: false
   when:
-    - backup_enabled == false
+    - not backup_enabled
