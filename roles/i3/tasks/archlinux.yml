@@ -18,6 +18,7 @@
       - chromium
       - dunst
       - evince
+      - evolution
       - feh
       - file-roller
       - firefox
