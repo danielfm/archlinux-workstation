@@ -3,7 +3,7 @@
 prime-offload
 
 # Set color scheme
-wal --theme base16-dracula
+wal --theme base16-google
 $(dirname "$0")/colors-dark -blue-grey
 
 # Set background image

@@ -5,8 +5,8 @@
 set $mod Mod4
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
-default_border pixel 1
-default_floating_border pixel 1
+default_border pixel 2
+default_floating_border pixel 2
 
 # Hide borders
 hide_edge_borders smart
@@ -270,13 +270,13 @@ set_from_resource $term_color13 color13    #C82CC4
 set_from_resource $term_color14 color14    #EA5BD1
 set_from_resource $term_color15 color15    #8bbabb
 
-# class                 border       backgr.      text        indicator     child_border
-client.focused          $bg          $bg          $foreground $term_color1  $fg
-client.focused_inactive $bg          $bg          $foreground $bg           $bg
-client.unfocused        $fg          $fg          $foreground $bg           $bg
-client.urgent           $fg          $fg          $foreground $fg           $fg
-client.placeholder      $fg          $fg          $foreground $fg           $fg
-client.background       $bg
+# class                 border     backgr.    text       indicator  child_border
+client.focused          #666666    #666666    #FFFFFF    #000000    #999999
+client.focused_inactive #666666    #666666    #FFFFFF    #999999    #999999
+client.unfocused        #FFFFFF    #FFFFFF    #000000    #999999    #999999
+client.urgent           #FFFFFF    #FFFFFF    #000000    #999999    #999999
+client.placeholder      #FFFFFF    #FFFFFF    #000000    #999999    #999999
+client.background       #FFFFFF
 
 # Start program launcher
 bindsym $mod+d exec --no-startup-id $HOME/.bin/polybar/menu
