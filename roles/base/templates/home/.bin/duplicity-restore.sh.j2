@@ -5,6 +5,7 @@
 
 FILE_TO_RESTORE=${1:-.}
 TIME=${2:-1D}
+DIR=${3:-.}
 
 # GPG-encrypted backups
 gopass env {{ backup_s3_gopass_secret_dir }} \
@@ -12,4 +13,4 @@ gopass env {{ backup_s3_gopass_secret_dir }} \
     --encrypt-key {{ backup_gnupg_encrypt_key_id }} --sign-key {{ backup_gnupg_signing_key_id }} --use-agent \
     --file-to-restore "${FILE_TO_RESTORE}" --time "${TIME}" \
     --progress -v 8 \
-    "{{ backup_source_dir }}" "s3+http://{{ backup_s3_bucket_name }}/$(hostname)"
+    "s3+http://danielfm-backups/$(hostname)" "${DIR}"
