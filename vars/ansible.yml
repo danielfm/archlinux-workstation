@@ -21,8 +21,6 @@ user_gnupg_key_id: '0x9999999999999999'
 user_extra_home_dirs:
   - Projects
 
-user_gopass_store_dir: /home/{{ user_name}}/Documents/Passwords
-
 # 2FA support with a U2F security key (i.e. YubiKey)
 # Format: '<key-handle>,<public-key>'
 # user_pam_u2f_main_key: 
