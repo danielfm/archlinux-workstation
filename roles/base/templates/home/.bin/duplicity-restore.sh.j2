@@ -1,16 +1,38 @@
 #!/bin/env bash
 
-# Usage:
-# duplicity-restore.sh <file-to-restore=.> <time=1D>
+print_usage() {
+  echo "Usage: $0 [-t <time>] [-f <file-to-restore>] [-o <ouput-file>]"
+}
 
-FILE_TO_RESTORE=${1:-.}
-TIME=${2:-1D}
-DIR=${3:-.}
+time=''
+file=''
+output=''
 
-# GPG-encrypted backups
+while getopts t:f:o:h flag; do
+  case "${flag}" in
+    t) time="${OPTARG}";;
+    f) file="${OPTARG}";;
+    o) output="${OPTARG}";;
+    h) print_usage $0; exit 1;;
+    *) print_usage $0; exit 1;;
+  esac
+done
+
+output="${output:-.}"
+
+time_arg=""
+if [ ! -z "${time}" ]; then
+  time_arg="--time ${time}"
+fi
+
+file_to_restore_arg=""
+if [ ! -z "${file}" ]; then
+  file_to_restore_arg="--file-to-restore ${file}"
+fi
+
 gopass env {{ backup_s3_gopass_secret_dir }} \
     duplicity restore \
     --encrypt-key {{ backup_gnupg_encrypt_key_id }} --sign-key {{ backup_gnupg_signing_key_id }} --use-agent \
-    --file-to-restore "${FILE_TO_RESTORE}" --time "${TIME}" \
+    ${file_to_restore_arg} ${time_arg} \
     --progress -v 8 \
-    "s3+http://danielfm-backups/$(hostname)" "${DIR}"
+    "s3+http://danielfm-backups/$(hostname)" "${output}"
