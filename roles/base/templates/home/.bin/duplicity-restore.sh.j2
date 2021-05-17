@@ -1,0 +1,15 @@
+#!/bin/env bash
+
+# Usage:
+# duplicity-restore.sh <file-to-restore=.> <time=1D>
+
+FILE_TO_RESTORE=${1:-.}
+TIME=${2:-1D}
+
+# GPG-encrypted backups
+gopass env {{ backup_s3_gopass_secret_dir }} \
+    duplicity restore \
+    --encrypt-key {{ backup_gnupg_encrypt_key_id }} --sign-key {{ backup_gnupg_signing_key_id }} --use-agent \
+    --file-to-restore "${FILE_TO_RESTORE}" --time "${TIME}" \
+    --progress -v 8 \
+    "{{ backup_source_dir }}" "s3+http://{{ backup_s3_bucket_name }}/$(hostname)"

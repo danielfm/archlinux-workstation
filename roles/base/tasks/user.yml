@@ -104,15 +104,18 @@
     group: '{{ user_group }}'
     mode: '0644'
 
-- name: Write duplicity backup script
+- name: Write duplicity backup and restore scripts
   become: yes
   become_user: '{{ user_name }}'
   template:
-    src: 'home/.bin/duplicity-backup.sh.j2'
-    dest: '/home/{{ user_name }}/.bin/duplicity-backup.sh'
+    src: 'home/.bin/duplicity-{{ item }}.sh.j2'
+    dest: '/home/{{ user_name }}/.bin/duplicity-{{ item }}.sh'
     owner: '{{ user_name }}'
     group: '{{ user_group }}'
     mode: '0755'
+  loop:
+    - backup
+    - restore
 
 - name: Ensure user systemd directory exists
   become: yes

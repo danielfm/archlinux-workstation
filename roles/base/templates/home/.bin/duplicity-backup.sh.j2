@@ -2,16 +2,14 @@
 
 notify-send 'Backup started'
 
-export AWS_ACCESS_KEY_ID=$(gopass -o {{ backup_s3_gopass_secret_dir }}/AWS_ACCESS_KEY_ID)
-export AWS_SECRET_ACCESS_KEY=$(gopass -o {{ backup_s3_gopass_secret_dir }}/AWS_SECRET_ACCESS_KEY)
-
 # GPG-encrypted backups
-duplicity \
+gopass env {{ backup_s3_gopass_secret_dir }} \
+    duplicity \
     --encrypt-key {{ backup_gnupg_encrypt_key_id }} --sign-key {{ backup_gnupg_signing_key_id }} --use-agent \
     --exclude-filelist ${HOME}/.config/duplicity-backup-exclude \
     --s3-use-new-style --asynchronous-upload \
     --full-if-older-than {{ backup_full_period_days }}D --progress -v 8 \
-    "{{ backup_source_dir }}" "s3+http://{{ backup_s3_bucket_name }}/${HOSTNAME}"
+    "{{ backup_source_dir }}" "s3+http://{{ backup_s3_bucket_name }}/$(hostname)"
 
 if [ $? -ne 0 ]; then
   notify-send -u critical 'Backup started' ; exit 1
@@ -20,4 +18,7 @@ fi
 notify-send 'Backup completed'
 
 # Clean up older backups to save storage space/cost
-duplicity remove-older-than {{ backup_retention_days }}D "s3+http://{{ backup_s3_bucket_name }}/${HOSTNAME}"
+gopass env {{ backup_s3_gopass_secret_dir }} \
+    duplicity \
+    remove-older-than {{ backup_retention_days }}D \
+    "s3+http://{{ backup_s3_bucket_name }}/$(hostname)"
