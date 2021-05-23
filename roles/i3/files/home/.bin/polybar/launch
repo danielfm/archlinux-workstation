@@ -6,6 +6,11 @@ prime-offload
 wal -l --theme base16-google
 $(dirname "$0")/colors-dark -blue-grey
 
+# Update configuration file and reload dunst
+mkdir -p $HOME/.config/dunst
+ln -fs $HOME/.cache/wal/dunstrc $HOME/.config/dunst/dunstrc
+killall -q dunst ; dunst &
+
 # Set background image
 nitrogen --restore
 

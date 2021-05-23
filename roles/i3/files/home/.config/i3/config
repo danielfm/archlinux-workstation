@@ -231,12 +231,11 @@ exec --no-startup-id protonmail-bridge --no-window
 exec --no-startup-id xss-lock i3exit lock
 exec --no-startup-id flameshot
 
-# Start polybar
+# Start polybar and other auxiliary stuff
 exec_always --no-startup-id ~/.bin/polybar/launch
-bindsym $mod+p exec --no-startup-id polybar-msg cmd toggle
 
-# Start notification daemon
-exec_always --no-startup-id dunst
+# Shoftcut for showing/hiding polybars
+bindsym $mod+p exec --no-startup-id polybar-msg cmd toggle
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
