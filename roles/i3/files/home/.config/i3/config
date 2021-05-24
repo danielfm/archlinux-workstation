@@ -270,12 +270,12 @@ set_from_resource $term_color14 color14    #EA5BD1
 set_from_resource $term_color15 color15    #8bbabb
 
 # class                 border     backgr.    text       indicator  child_border
-client.focused          #666666    #666666    #FFFFFF    #000000    #999999
-client.focused_inactive #666666    #666666    #FFFFFF    #999999    #999999
-client.unfocused        #FFFFFF    #FFFFFF    #000000    #999999    #999999
-client.urgent           #FFFFFF    #FFFFFF    #000000    #999999    #999999
-client.placeholder      #FFFFFF    #FFFFFF    #000000    #999999    #999999
-client.background       #FFFFFF
+client.focused          #FFFFFF    #FFFFFF    #555555    #000000    #555555
+client.focused_inactive #FFFFFF    #FFFFFF    #555555    #555555    #999999
+client.unfocused        #555555    #555555    #FFFFFF    #999999    #999999
+client.urgent           #555555    #555555    #FFFFFF    #999999    #999999
+client.placeholder      #555555    #555555    #FFFFFF    #999999    #999999
+client.background       #555555
 
 # Start program launcher
 bindsym $mod+d exec --no-startup-id $HOME/.bin/polybar/menu
