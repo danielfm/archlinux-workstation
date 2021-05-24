@@ -20,5 +20,5 @@ notify-send 'Backup completed'
 # Clean up older backups to save storage space/cost
 gopass env {{ backup_s3_gopass_secret_dir }} \
     duplicity \
-    remove-older-than {{ backup_retention_days }}D \
+    remove-older-than {{ backup_retention_days }}D --force \
     "s3+http://{{ backup_s3_bucket_name }}/$(hostname)"
