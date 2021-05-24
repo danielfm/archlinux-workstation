@@ -190,6 +190,7 @@ bindsym $mod+Ctrl+semicolon move workspace to output right
 for_window [title="alsamixer"] floating enable
 for_window [class="Nitrogen"] floating enable sticky enable
 for_window [class="Gcolor[2|3]"] floating enable sticky enable
+for_window [class="flameshot"] floating enable sticky enable
 
 # Switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
