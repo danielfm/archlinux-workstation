@@ -1,2 +1,12 @@
+galaxy_info:
+  author: Daniel Martins
+  description: Configuration for real-time audio work
+  license: BSD
+  min_ansible_version: 2.11
+  platforms:
+    - name: ArchLinux
+      versions:
+        - any
+
 dependencies:
   - role: i3

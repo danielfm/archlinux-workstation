@@ -83,7 +83,7 @@
     group: '{{ user_group }}'
     mode: '0644'
 
-- name: Generate user.js file
+- name: Generate user.js file   # noqa no-changed-when
   become: yes
   become_user: '{{ user_name }}'
   command:

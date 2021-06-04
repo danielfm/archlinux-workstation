@@ -167,3 +167,9 @@ More information:
 
 If the `ansible-playbook` command finishes successfully, reboot the system to
 access your new environment!
+
+## License
+
+Copyright (C) Daniel Fernandes Martins
+
+Distributed under the New BSD License. See LICENSE for further details.
