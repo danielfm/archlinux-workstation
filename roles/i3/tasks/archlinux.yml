@@ -1,10 +1,3 @@
-- name: Install rxvt-unicode-pixbuf from AUR
-  aur:
-    upgrade: no
-    skip_installed: yes
-    name:
-      - rxvt-unicode-pixbuf
-
 - name: Install packages
   become: yes
   pacman:
@@ -66,6 +59,7 @@
       - ranger
       - rhythmbox
       - rofi
+      - rxvt-unicode
       - sane
       - sane-airscan
       - seahorse
@@ -123,6 +117,5 @@
       - ttf-ms-fonts
       - urxvt-font-size
       - urxvt-resize-font-git
-      - urxvt-unicode
       - xcursor-breeze
       - zoom
