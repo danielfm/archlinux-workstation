@@ -5,6 +5,8 @@ Wants=duplicity-backup.timer
 [Service]
 Type=oneshot
 ExecStart=/home/{{ user_name }}/.bin/duplicity-backup.sh
+Restart=on-failure
+RestartSec=300
 
 [Install]
 WantedBy=multi-user.target
