@@ -13,7 +13,6 @@
     state: present
     name:
       - ardour
-      - audacity
       - cadence
       - calf
       - carla
