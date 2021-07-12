@@ -26,6 +26,7 @@
       - fakeroot
       - git
       - gnupg
+      - inxi
 
 - name: Clone yay AUR helper repository
   git:
