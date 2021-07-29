@@ -16,5 +16,5 @@ alias l='ls -CF'
 # Starts a local HTTP server using Python in working dir
 alias httpserver='python -m http.server'
 
-# Usage: cat file.json | asjson
-alias json_pp='python -mjson.tool'
+# Print external IP address
+alias myip='curl icanhazip.com'
