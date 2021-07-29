@@ -17,4 +17,5 @@ alias l='ls -CF'
 alias httpserver='python -m http.server'
 
 # Print external IP address
-alias myip='curl icanhazip.com'
+alias ipv4='curl -4 icanhazip.com'
+alias ipv6='curl -6 icanhazip.com'
