@@ -58,6 +58,9 @@ backup_s3_bucket_name: vagrant-backup
 # AWS_SECRET_ACCESS_KEY
 backup_s3_gopass_secret_dir: env/aws/duplicity
 
+backup_gnupg_encrypt_key_id: '0x9999999999999999'
+backup_gnupg_signing_key_id: '0x9999999999999999'
+
 backup_source_dir: '/home/{{ user_name }}'
 
 backup_exclude: |
