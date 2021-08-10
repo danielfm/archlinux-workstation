@@ -26,7 +26,6 @@
       - fakeroot
       - git
       - gnupg
-      - inxi
 
 - name: Clone yay AUR helper repository
   git:
@@ -93,6 +92,11 @@
       - xclip
       - xterm
       - zsh
+
+- name: Install AUR packages
+  aur:
+    name:
+      - inxi
 
 - name: Install packages required for bluetooth support
   become: yes
