@@ -2,6 +2,8 @@ Vagrant.configure("2") do |config|
   config.vm.box = "archlinux/archlinux"
 
   config.vm.provider "virtualbox" do |v|
+    v.customize ["modifyvm", :id, "--vram", "64"]
+
     v.memory = 4096
     v.cpus = 4
   end
