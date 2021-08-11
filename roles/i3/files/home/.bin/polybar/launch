@@ -3,7 +3,7 @@
 prime-offload
 
 # Set color scheme
-wal -l --theme base16-dracula
+wal --theme base16-dracula
 $(dirname "$0")/colors-dark -blue-grey
 
 # Update configuration file and reload dunst
