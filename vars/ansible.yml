@@ -17,6 +17,7 @@ user_github_email: 99999+vagrant@users.noreply.github.com
 user_irc_nickname: vagrant
 
 user_gnupg_key_id: '0x9999999999999999'
+user_gnupg_keyserver: hkps://keyserver.ubuntu.com
 
 user_extra_home_dirs:
   - Projects

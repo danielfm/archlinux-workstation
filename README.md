@@ -39,6 +39,27 @@ I also use
 as I always need to keep some private information stored in the local disk. This
 protects my files from being accessed in case my work machine gets stolen.
 
+### Running the Linter
+
+Run `make lint` to run the Ansible linter to detect common issues with the
+configuration.
+
+### Provisioning a VM with Vagrant
+
+To bootstrap a VM with this configuration, make sure you have
+[Vagrant](https://www.vagrantup.com/) installed and then run
+`make vagrant`.
+
+If you get errors like the following while trying to apply the `ufw`
+configuration, try running `make vagrant-up` again:
+
+```
+fatal: [default]: FAILED! => {"changed": false, "commands": ["/usr/bin/ufw status verbose"], "msg": "ERROR: problem running iptables: iptables v1.8.7 (legacy): can't initialize iptables table `filter': Table does not exist (do you need to insmod?)\nPerhaps iptables or your kernel needs to be upgraded.\n\n\n"}
+```
+
+If the playbook runs to completion, you should be able to restart the vm
+with `make reboot` and you should be able to use it.
+
 ### Pre-Installation
 
 #### Install the Required Packages
@@ -79,9 +100,7 @@ cd archlinux-workstation
 nano vars/custom.yml
 
 # Run the playbook:
-ansible-playbook playbook.yml \
-   --vault-id archlinux-workstation@gopass-client.py \
-   --extra-vars "@vars/custom.yml"
+make run
 ```
 
 Don't leave the machine unattended as you'll might have to re-enter the user
@@ -90,11 +109,12 @@ password a few times throughout the process when installing the required package
 #### Troubleshooting: AUR Issues
 
 The AUR is community-maintained, so it's not that uncommon to find outdated
-packages that cannot be installed (i.e. due to having mismatching validation
-hash).
+packages or packages that cannot be installed without manual intervention
+(i.e. due to having mismatching validation hash).
 
-If you encounter any issues, you'll have to fix the affected packages by hand
-before retrying the `ansible-playbook` command.
+If you encounter any issues, you might have to remove the affected packages from
+the configuration or fix the affected packages by hand before retrying the
+Ansible playbook again.
 
 Some commands that might be useful:
 
