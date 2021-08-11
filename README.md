@@ -20,13 +20,13 @@ be outdated.
 
 This installation contains the following roles:
 
-| Role    | Description                                                         |
-|---------|---------------------------------------------------------------------|
-| `base`  | Sets up the base system configuration                               |
-| `i3`    | Sets up i3 window manager desktop environment                       |
-| `dev`   | Sets up necessary packages for my current software engineering role |
-| `sec`   | Sets up security-related packages and configuration                 |
-| `audio` | Sets up the software I use for audio recording, my current hobby :) |
+| Role     | Description                                                         |
+|----------|---------------------------------------------------------------------|
+| `base`   | Sets up the base system configuration                               |
+| `i3`     | Sets up i3 window manager desktop environment                       |
+| `dev`    | Sets up necessary packages for my current software engineering role |
+| `sec`    | Sets up security-related packages and configuration                 |
+| `studio` | Sets up the software I use for audio/video recording and processing |
 
 ## Instructions
 

@@ -1,4 +1,4 @@
-# Audio Recording
+# Studio
 
 This module configures some kernel parameters/limits and install software
 required for audio recording and processing workstations.

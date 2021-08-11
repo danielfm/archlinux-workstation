@@ -17,11 +17,12 @@
       - calf
       - carla
       - dbus-python
+      - dssi-plugins
       - guitarix
       - jack2
-      - lv2-plugins
       - ladspa-plugins
-      - dssi-plugins
-      - vst-plugins
+      - lv2-plugins
+      - obs-studio
       - pulseaudio-jack
       - realtime-privileges
+      - vst-plugins

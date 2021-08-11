@@ -1,8 +1,8 @@
 ---
 - hosts: all
   roles:
-    - audio
     - base
     - dev
     - i3
     - sec
+    - studio
