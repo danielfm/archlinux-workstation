@@ -50,16 +50,8 @@ To bootstrap a VM with this configuration, make sure you have
 [Vagrant](https://www.vagrantup.com/) installed and then run
 `make vagrant`.
 
-If you get errors like the following while trying to apply the `ufw`
-configuration, try running `make vagrant` again to reboot the VM
-and retry the provisioning:
-
-```
-fatal: [default]: FAILED! => {"changed": false, "commands": ["/usr/bin/ufw status verbose"], "msg": "ERROR: problem running iptables: iptables v1.8.7 (legacy): can't initialize iptables table `filter': Table does not exist (do you need to insmod?)\nPerhaps iptables or your kernel needs to be upgraded.\n\n\n"}
-```
-
-If the playbook runs to completion, you should be able to restart the vm
-with `make reboot` and you should be able to use it.
+Check the troubleshooting section below if you find any errors
+when applying the configuration.
 
 ### Pre-Installation
 
@@ -107,7 +99,22 @@ make run
 Don't leave the machine unattended as you'll might have to re-enter the user
 password a few times throughout the process when installing the required packages.
 
-#### Troubleshooting: AUR Issues
+### Troubleshooting
+
+#### Issues When Applying `ufw` Rules
+
+If you get errors like the following while trying to apply the `ufw`
+configuration:
+
+```
+fatal: [default]: FAILED! => {"changed": false, "commands": ["/usr/bin/ufw status verbose"], "msg": "ERROR: problem running iptables: iptables v1.8.7 (legacy): can't initialize iptables table `filter': Table does not exist (do you need to insmod?)\nPerhaps iptables or your kernel needs to be upgraded.\n\n\n"}
+```
+
+- If you are provisioning a VM with Vagrant, try running `make vagrant` to reboot
+  the VM and retry the provisioning.
+- If you are provisioning in your machine, try reboting and retrying.
+
+#### Issues When Installing AUR Packages
 
 The AUR is community-maintained, so it's not that uncommon to find outdated
 packages or packages that cannot be installed without manual intervention
