@@ -112,7 +112,7 @@ fatal: [default]: FAILED! => {"changed": false, "commands": ["/usr/bin/ufw statu
 
 - If you are provisioning a VM with Vagrant, try running `make vagrant` to reboot
   the VM and retry the provisioning.
-- If you are provisioning in your machine, try reboting and retrying.
+- If you are provisioning in your machine, try rebooting and retrying.
 
 #### Issues When Installing AUR Packages
 
