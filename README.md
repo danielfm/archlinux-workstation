@@ -51,7 +51,8 @@ To bootstrap a VM with this configuration, make sure you have
 `make vagrant`.
 
 If you get errors like the following while trying to apply the `ufw`
-configuration, try running `make vagrant-up` again:
+configuration, try running `make vagrant` again to reboot the VM
+and retry the provisioning:
 
 ```
 fatal: [default]: FAILED! => {"changed": false, "commands": ["/usr/bin/ufw status verbose"], "msg": "ERROR: problem running iptables: iptables v1.8.7 (legacy): can't initialize iptables table `filter': Table does not exist (do you need to insmod?)\nPerhaps iptables or your kernel needs to be upgraded.\n\n\n"}
