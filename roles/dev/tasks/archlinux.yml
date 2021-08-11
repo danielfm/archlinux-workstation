@@ -13,7 +13,6 @@
       - dnsmasq
       - dnsutils
       - docker-compose
-      - ebtables
       - emacs
       - go
       - inetutils
