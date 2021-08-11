@@ -124,6 +124,9 @@ If you encounter any issues, you might have to remove the affected packages from
 the configuration or fix the affected packages by hand before retrying the
 Ansible playbook again.
 
+If you are provisioning a VM with Vagrant, run `vagrant ssh` to log into the
+VM and try to fix the situation.
+
 Some commands that might be useful:
 
 ```sh
