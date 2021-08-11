@@ -64,7 +64,7 @@ complete the rest of the installation:
 pacman -S ansible git git-lfs base-devel sudo nano openssh
 ```
 
-### Create User
+#### Create User
 
 Run the following commands as root to create a new user:
 
