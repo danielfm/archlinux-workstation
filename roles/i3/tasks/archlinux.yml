@@ -106,6 +106,7 @@
       - nerd-fonts-terminus
       - pamac-aur
       - pamac-zsh-completions
+      - picom-tryone-git
       - pm-utils
       - polybar
       - slack-desktop

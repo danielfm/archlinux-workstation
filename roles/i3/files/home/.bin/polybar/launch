@@ -17,10 +17,13 @@ nitrogen --restore
 
 # Terminate already running bar instances
 killall -q polybar
+killall -q picom
 
 # Wait until the processes have been shut down
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 while pgrep -u $UID -x picom >/dev/null; do sleep 1; done
+
+picom -b --experimental-backends
 
 # Launch polybar on all monitors
 if type "xrandr"; then
