@@ -187,6 +187,7 @@ bindsym $mod+Ctrl+l move workspace to output up
 bindsym $mod+Ctrl+semicolon move workspace to output right
 
 # Open specific applications in floating mode
+for_window [title="Picture-in-Picture"] sticky enable
 for_window [title="alsamixer"] floating enable
 for_window [class="Gufw.py"] floating enable
 for_window [class="zoom"] floating enable
