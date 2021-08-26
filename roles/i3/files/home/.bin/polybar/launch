@@ -27,7 +27,7 @@ while pgrep -u $UID -x picom >/dev/null; do sleep 1; done
 picom -b --experimental-backends
 
 # Set polybar theme
-$HOME/.bin/polybar/colors-dark -grey
+$HOME/.bin/polybar/colors-dark -blue-grey
 
 # Launch polybar on all monitors
 if type "xrandr"; then
