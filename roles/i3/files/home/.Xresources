@@ -11,4 +11,4 @@ Xcursor.size:  0
 
 #include ".Xresources.d/xautolock"
 #include ".Xresources.d/urxvt"
-
+#include ".cache/wal/colors.Xresources"

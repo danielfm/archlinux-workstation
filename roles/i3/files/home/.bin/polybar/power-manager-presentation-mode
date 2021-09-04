@@ -4,9 +4,9 @@ prop="/xfce4-power-manager/presentation-mode"
 
 while true; do
   if [ $(xfconf-query -c xfce4-power-manager -p "$prop") = "true" ]; then
-    echo ""
+    echo "Caffeine On"
   else
-    echo ""
+    echo "Caffeine Off"
   fi
-  sleep 0.2
+  sleep 0.5
 done

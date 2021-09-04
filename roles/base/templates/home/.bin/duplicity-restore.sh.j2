@@ -35,4 +35,4 @@ gopass env {{ backup_s3_gopass_secret_dir }} \
     --encrypt-key {{ backup_gnupg_encrypt_key_id }} --sign-key {{ backup_gnupg_signing_key_id }} --use-agent \
     ${file_to_restore_arg} ${time_arg} \
     --progress -v 8 \
-    "s3+http://danielfm-backups/$(hostname)" "${output}"
+    "s3+http://{{ backup_s3_bucket_name }}/$(hostname)" "${output}"

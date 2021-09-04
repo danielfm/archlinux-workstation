@@ -1,3 +1,29 @@
+- name: Install polybar-themes installer
+  become: yes
+  become_user: '{{ user_name }}'
+  git:
+    repo: https://github.com/danielfm/polybar-themes.git
+    version: fix-rofi
+    dest: '/home/{{ user_name }}/.polybar-themes'
+    remote: origin
+    accept_hostkey: yes
+
+- name: Run polybar-themes installer
+  become: yes
+  become_user: '{{ user_name }}'
+  command:
+    chdir: '/home/{{ user_name }}/.polybar-themes'
+    cmd: 'echo "1" | ./setup.sh'
+
+- name: Create base polybar theme directory
+  become: yes
+  become_user: '{{ user_name }}'
+  copy:
+    src: '/home/{{ user_name }}/.config/polybar/{{ polybar_base_theme }}'
+    dest: '/home/{{ user_name }}/.config/polybar/active'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+
 - name: Add user config files
   become: yes
   become_user: '{{ user_name }}'
@@ -44,6 +70,7 @@
   loop:
     - .gtk-bookmarks
     - .config/gtk-3.0/bookmarks
+    - .config/mopidy/mopidy.conf
 
 - name: Create Firefox profile directory
   become: yes

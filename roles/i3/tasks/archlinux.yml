@@ -34,11 +34,13 @@
       - ipp-usb
       - libappindicator-gtk2
       - libappindicator-gtk3
+      - libmpdclient
       - lightdm
       - lightdm-gtk-greeter
       - lxappearance
       - mediainfo
       - mesa-demos
+      - mopidy
       - mousepad
       - nitrogen
       - nm-connection-editor
@@ -100,17 +102,21 @@
     upgrade: no
     skip_installed: yes
     name:
+      - cava
       - lightdm-settings
       - lightdm-slick-greeter
       - matcha-gtk-theme
+      - mopidy-mpd
+      - mopidy-mpris
+      - mopidy-spotify
       - nerd-fonts-terminus
+      - networkmanager-dmenu-git
       - pamac-aur
       - pamac-zsh-completions
       - picom-tryone-git
       - pm-utils
       - polybar
       - slack-desktop
-      - spotify
       - terminess-powerline-font-git
       - timeshift
       - ttf-font-icons

@@ -69,3 +69,16 @@ backup_exclude: |
   /home/{{ user_name }}/.local
   /home/{{ user_name }}/.mozilla
   /home/{{ user_name }}/.vagrant.d
+
+#
+# App settings
+#
+
+# Mopidy
+mopidy_spotify_username: ""
+mopidy_spotify_password: ""
+mopidy_spotify_client_id: ""
+mopidy_spotify_client_secret: ""
+
+# Polybar
+polybar_base_theme: forest

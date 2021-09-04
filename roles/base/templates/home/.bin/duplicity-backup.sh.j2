@@ -12,7 +12,7 @@ gopass env {{ backup_s3_gopass_secret_dir }} \
     "{{ backup_source_dir }}" "s3+http://{{ backup_s3_bucket_name }}/$(hostname)"
 
 if [ $? -ne 0 ]; then
-  notify-send -u critical 'Backup started' ; exit 1
+  notify-send -u critical 'Backup failed' ; exit 1
 fi
 
 notify-send 'Backup completed'

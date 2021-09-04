@@ -26,9 +26,6 @@ bindsym $mod+Return exec $HOME/.bin/term.sh $term
 bindsym $mod+Shift+q kill
 bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
 
-# Launch categorized menu
-bindsym $mod+z exec --no-startup-id morc_menu
-
 # Sound setup
 bindsym $mod+m exec pavucontrol
 bindsym $mod+Shift+m exec $term -e 'alsamixer'
@@ -57,15 +54,12 @@ bindsym $mod+Shift+F1 exec xdg-open ~
 bindsym $mod+F1  exec $term -e 'ranger'
 bindsym $mod+F2  exec emacs
 bindsym $mod+F3  exec firefox
-bindsym $mod+F4  exec --no-startup-id slack
-bindsym $mod+F5  exec --no-startup-id spotify
-bindsym $mod+F8  exec $HOME/.bin/polybar/menu_xrandr
+bindsym $mod+F4  exec slack
+bindsym $mod+F5  exec $term -e 'ncmpcpp'
 bindsym $mod+F9  exec gsimplecal
 bindsym $mod+F10 exec io.elementary.calculator
 bindsym $mod+F11 exec $term -e 'nmtui'
 bindsym $mod+F12 exec arandr
-
-bindsym $mod+backslash exec --no-startup-id $HOME/.bin/polybar/menu_gopass
 
 # Screenshot shortcuts
 bindsym $mod+Control+p --release exec --no-startup-id "flameshot gui"
@@ -205,7 +199,7 @@ bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
 
 # Set shut down, restart and locking features
-bindsym $mod+0 exec --no-startup-id $HOME/.bin/polybar/sysmenu
+bindsym $mod+0 exec --no-startup-id $HOME/.config/polybar/active/scripts/powermenu.sh
 
 # Resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -234,9 +228,10 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id protonmail-bridge --no-window
 exec --no-startup-id xss-lock i3exit lock
 exec --no-startup-id flameshot
+exec --no-startup-id mopidy
 
 # Start polybar and other auxiliary stuff
-exec_always --no-startup-id ~/.bin/polybar/launch
+exec_always --no-startup-id $HOME/.bin/polybar/launch
 
 # Shoftcut for showing/hiding polybars
 bindsym $mod+p exec --no-startup-id polybar-msg cmd toggle
@@ -281,8 +276,8 @@ client.urgent           #494b65    #43455b    #EEEEEE    #777cb6    #494b65
 client.placeholder      #494b65    #43455b    #EEEEEE    #777cb6    #494b65
 client.background       #282936
 
-# Start program launcher
-bindsym $mod+d exec --no-startup-id $HOME/.bin/polybar/menu
+# Start program launcehr
+bindsym $mod+d exec --no-startup-id $HOME/.config/polybar/active/scripts/launcher.sh
 
 #############################
 ### settings for i3-gaps: ###
