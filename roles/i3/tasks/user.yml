@@ -38,7 +38,6 @@
     - .Xresources.d
     - .config
     - .dmrc
-    - .gtkrc-2.0
 
 - name: Add user to autologin group
   become: yes
@@ -71,6 +70,19 @@
     - .gtk-bookmarks
     - .config/gtk-3.0/bookmarks
     - .config/mopidy/mopidy.conf
+
+- name: Set GTK config
+  become: yes
+  become_user: '{{ user_name }}'
+  template:
+    src: 'home/{{ item }}.j2'
+    dest: '/home/{{ user_name }}/{{ item }}'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: '0644'
+  loop:
+    - .gtkrc-2.0
+    - .config/gtk-3.0/settings.ini
 
 - name: Create Firefox profile directory
   become: yes

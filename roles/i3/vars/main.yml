@@ -24,6 +24,11 @@ system_bluetooth: yes
 # App data
 #
 
+# GTK
+gtk_theme: Matcha-azul
+gtk_icon_theme: Papirus
+gtk_cursor_theme: Breeze
+
 # Mopidy
 mopidy_spotify_username: ""
 mopidy_spotify_password: ""
