@@ -14,7 +14,6 @@
       - evolution
       - feh
       - file-roller
-      - firefox
       - flameshot
       - gcolor3
       - gimp
@@ -102,6 +101,7 @@
     skip_installed: yes
     name:
       - cava
+      - librewolf-bin
       - lightdm-settings
       - lightdm-slick-greeter
       - matcha-gtk-theme

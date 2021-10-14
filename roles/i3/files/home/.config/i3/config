@@ -53,7 +53,7 @@ bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle
 bindsym $mod+Shift+F1 exec xdg-open ~
 bindsym $mod+F1  exec $term -e 'ranger'
 bindsym $mod+F2  exec emacs
-bindsym $mod+F3  exec firefox
+bindsym $mod+F3  exec librewolf --ProfileManager
 bindsym $mod+F4  exec slack
 bindsym $mod+F5  exec $term -e 'ncmpcpp'
 bindsym $mod+F9  exec gsimplecal

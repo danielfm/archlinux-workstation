@@ -84,11 +84,19 @@
     - .gtkrc-2.0
     - .config/gtk-3.0/settings.ini
 
-- name: Create Firefox profile directory
+- name: Create Librewolf profile directory
   become: yes
   become_user: '{{ user_name }}'
   file:
-    path: '/home/{{ user_name }}/.mozilla/firefox/default'
+    path: '/home/{{ user_name }}/.librewolf/default'
+    mode: '0755'
+    state: directory
+
+- name: Create Librewolf native-messaging-hosts directory
+  become: yes
+  become_user: '{{ user_name }}'
+  file:
+    path: '/home/{{ user_name }}/.librewolf/native-messaging-hosts'
     mode: '0755'
     state: directory
 
@@ -97,7 +105,7 @@
   become_user: '{{ user_name }}'
   get_url:
     url: https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.sh
-    dest: '/home/{{ user_name }}/.mozilla/firefox/default/updater.sh'
+    dest: '/home/{{ user_name }}/.librewolf/default/updater.sh'
     owner: '{{ user_name }}'
     group: '{{ user_group }}'
     mode: '0755'
@@ -106,18 +114,18 @@
   become: yes
   become_user: '{{ user_name }}'
   copy:
-    src: home/.mozilla/firefox/user-overrides.js
-    dest: '/home/{{ user_name }}/.mozilla/firefox/default/user-overrides.js'
+    src: home/.librewolf/user-overrides.js
+    dest: '/home/{{ user_name }}/.librewolf/default/user-overrides.js'
     owner: '{{ user_name }}'
     group: '{{ user_group }}'
     mode: '0644'
 
-- name: Create Firefox profiles.ini file
+- name: Create Librewolf profiles.ini file
   become: yes
   become_user: '{{ user_name }}'
   copy:
-    src: home/.mozilla/firefox/profiles.ini
-    dest: '/home/{{ user_name }}/.mozilla/firefox/profiles.ini'
+    src: home/.librewolf/profiles.ini
+    dest: '/home/{{ user_name }}/.librewolf/profiles.ini'
     owner: '{{ user_name }}'
     group: '{{ user_group }}'
     mode: '0644'
@@ -126,5 +134,13 @@
   become: yes
   become_user: '{{ user_name }}'
   command:
-    chdir: '/home/{{ user_name }}/.mozilla/firefox/default'
+    chdir: '/home/{{ user_name }}/.librewolf/default'
     cmd: './updater.sh -s'
+
+- name: Setup browserpass for librewolf
+  become: yes
+  become_user: '{{ user_name }}'
+  file:
+    src: '/usr/lib/browserpass/hosts/firefox/com.github.browserpass.native.json'
+    dest: '/home/{{ user_name }}/.librewolf/native-messaging-hosts/com.github.browserpass.native.json'
+    state: link
