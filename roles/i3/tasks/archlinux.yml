@@ -85,7 +85,6 @@
       - xorg-apps
       - xorg-xinit
       - xournalpp
-      - xss-lock
       - yubioath-desktop
 
 - name: Install packages required for bluetooth support
