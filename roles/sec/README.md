@@ -30,28 +30,25 @@ GPG key id used as the default GPG key for encrypt operations.
 
 Default GPG Keyserver used to fetch and publish keys.
 
-### `user_pam_u2f_main_key`
+### `user_pam_u2f_key_handles`
 
 **Default value:** `None`
 
-Main U2F key used to perform 2FA during login and for authenticating `sudo`
+U2F key used to perform 2FA during login and for authenticating `sudo`
 commands.
 
-The value must follow the format `<key-handle>,<public-key>`.
+The value must follow the format:
 
-Run the following command and touch the key in order to obtain the string
-to set to this variable:
-
-```sh
-pamu2fcfg | cut -d ':' -f 2 | cut -d ',' -f 1,2
+```
+<key-handle>,<public-key>:<key-handle-2>,<public-key-2>:...
 ```
 
-### `user_pam_u2f_backup_key`
+Run the following command and touch each key in order to obtain the strings
+to concatenate using the format above and set to this variable:
 
-**Default value:** `None`
-
-Same as `user_pam_u2f_main_key`, but obtained from a backup U2F key, so you
-don't lose access to the system in case the main key is lost.
+```sh
+pamu2fcfg | cut -d ':' -f 2 | cut -d ',' -f 1-
+```
 
 ### `system_secure_boot_keys_dir`
 

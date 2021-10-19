@@ -168,12 +168,11 @@ on each key in order to output a key:
 
 ```sh
 # Run this command and press the blinking key, if asked:
-pamu2fcfg | cut -d ':' -f 2 | cut -d ',' -f 1,2
+pamu2fcfg | cut -d ':' -f 2 | cut -d ',' -f 1-
 ```
 
-Copy the output for this command, for each key (main and backup), to the
-`{{ user_pam_u2f_main_key }}` and `{{ user_pam_u2f_backup_key }}` variables,
-respectively.
+Join the output from all `pamu2fcfg` commands separating them by a `:` character
+and put the provide the string via the `{{ user_pam_u2f_key_handles }}` variable.
 
 Then, re-run the playbook to apply the configuration.
 

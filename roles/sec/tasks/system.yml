@@ -247,19 +247,18 @@
     regex: '^auth .+ pam_u2f.so .+'
     line: 'auth sufficient pam_u2f.so authfile=/etc/u2f_mappings'
   when:
-    - (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
-    - (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
+    - (user_pam_u2f_key_handles is defined) and (user_pam_u2f_key_handles|length > 0)
 
 - name: Add U2F key mapping for user
   become: yes
   lineinfile:
     path: /etc/u2f_mappings
-    line: '{{ user_name }}:{{ user_pam_u2f_main_key }}:{{ user_pam_u2f_backup_key }}'
+    line: '{{ user_name }}:{{ user_pam_u2f_key_handles }}'
+    regexp: '^{{ user_name }}:.+'
     mode: '0400'
     create: yes
   when:
-    - (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
-    - (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
+    - (user_pam_u2f_key_handles is defined) and (user_pam_u2f_key_handles|length > 0)
 
 - name: Disable YubiKey support for system-auth
   become: yes
@@ -271,8 +270,7 @@
     - /etc/pam.d/sudo
     - /etc/pam.d/system-local-login
   when:
-    - not (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
-    - not (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
+    - not (user_pam_u2f_key_handles is defined) and (user_pam_u2f_key_handles|length > 0)
 
 - name: Remove U2F key mapping file for user
   become: yes
@@ -281,8 +279,7 @@
     regex: '^{{ user_name }}:.+'
     path: /etc/u2f_mappings
   when:
-    - not (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
-    - not (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
+    - not (user_pam_u2f_key_handles is defined) and (user_pam_u2f_key_handles|length > 0)
 
 - name: Setup OpenVPN client configuration exists
   become: yes
