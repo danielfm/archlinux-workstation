@@ -163,16 +163,24 @@ via the use of U2F keys, such as YubiKeys:
 - Allowing U2F key to authenticate `sudo` commands instead of typing a
   password
 
-To proceed with this configuration, run `pam2fcfg` and press the blinking button
-on each key in order to output a key:
+To proceed with this configuration, run `pam2fcfg -n` and press the blinking
+button on each key:
 
 ```sh
 # Run this command and press the blinking key, if asked:
-pamu2fcfg | cut -d ':' -f 2 | cut -d ',' -f 1-
+pamu2fcfg -n
+
+# Sample output:
+:<key-handle>,<public-key>
 ```
 
-Join the output from all `pamu2fcfg` commands separating them by a `:` character
-and put the provide the string via the `{{ user_pam_u2f_key_handles }}` variable.
+Run this command for each key you want to register and concatenate the output
+for all commands into the `{{ user_pam_u2f_key_handles }}` variable:
+
+```yaml
+user_pam_u2f_key_handles: |
+  :<key-handle>,<public-key>:<key-handle-2>,<public-key-2>:...
+```
 
 Then, re-run the playbook to apply the configuration.
 

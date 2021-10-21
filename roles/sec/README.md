@@ -34,20 +34,23 @@ Default GPG Keyserver used to fetch and publish keys.
 
 **Default value:** `None`
 
-U2F key used to perform 2FA during login and for authenticating `sudo`
-commands.
-
-The value must follow the format:
-
-```
-<key-handle>,<public-key>:<key-handle-2>,<public-key-2>:...
-```
-
-Run the following command and touch each key in order to obtain the strings
-to concatenate using the format above and set to this variable:
+To proceed with this configuration, run `pam2fcfg -n` and press the blinking
+button on each key:
 
 ```sh
-pamu2fcfg | cut -d ':' -f 2 | cut -d ',' -f 1-
+# Run this command and press the blinking key, if asked:
+pamu2fcfg -n
+
+# Sample output:
+:<key-handle>,<public-key>
+```
+
+Run this command for each key you want to register and concatenate the output
+for all commands into the `{{ user_pam_u2f_key_handles }}` variable:
+
+```yaml
+user_pam_u2f_key_handles: |
+  :<key-handle>,<public-key>:<key-handle-2>,<public-key-2>:...
 ```
 
 ### `system_secure_boot_keys_dir`

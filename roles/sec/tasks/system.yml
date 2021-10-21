@@ -253,8 +253,8 @@
   become: yes
   lineinfile:
     path: /etc/u2f_mappings
-    line: '{{ user_name }}:{{ user_pam_u2f_key_handles }}'
-    regexp: '^{{ user_name }}:.+'
+    line: '{{ user_name }}{{ user_pam_u2f_key_handles }}'
+    regexp: '^{{ user_name }}.+'
     mode: '0400'
     create: yes
   when:
@@ -276,7 +276,7 @@
   become: yes
   lineinfile:
     state: absent
-    regex: '^{{ user_name }}:.+'
+    regex: '^{{ user_name }}.+'
     path: /etc/u2f_mappings
   when:
     - not (user_pam_u2f_key_handles is defined) and (user_pam_u2f_key_handles|length > 0)
