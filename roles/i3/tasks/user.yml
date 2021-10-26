@@ -21,7 +21,7 @@
   become: true
   become_user: '{{ user_name }}'
   copy:
-    src: '/home/{{ user_name }}/.config/polybar/{{ polybar_base_theme }}'
+    src: '/home/{{ user_name }}/.config/polybar/{{ polybar_base_theme }}/'
     dest: '/home/{{ user_name }}/.config/polybar/active'
     owner: '{{ user_name }}'
     group: '{{ user_group }}'
