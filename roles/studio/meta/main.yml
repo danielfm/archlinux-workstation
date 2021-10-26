@@ -1,3 +1,5 @@
+---
+
 galaxy_info:
   author: Daniel Martins
   description: Configuration for real-time audio work
@@ -10,3 +12,6 @@ galaxy_info:
 
 dependencies:
   - role: i3
+
+collections:
+  - kewlfft.aur

@@ -1,5 +1,7 @@
+---
+
 - name: Install packages
-  become: yes
+  become: true
   pacman:
     state: present
     name:
@@ -23,7 +25,5 @@
 
 - name: Install AUR packages
   aur:
-    upgrade: no
-    skip_installed: yes
     name:
       - protonmail-bridge-bin

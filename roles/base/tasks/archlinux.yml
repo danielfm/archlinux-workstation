@@ -1,17 +1,19 @@
+---
+
 - name: Enable multilib repository
-  become: yes
+  become: true
   ini_file:
     path: /etc/pacman.conf
-    create: no
+    create: false
     section: multilib
     option: Include
     value: /etc/pacman.d/mirrorlist
 
 - name: Update system package definition
-  become: yes
+  become: true
   pacman:
-    update_cache: yes
-    upgrade: no
+    update_cache: true
+    upgrade: false
 
 - name: Check if yay AUR helper is available
   stat:
@@ -19,7 +21,7 @@
   register: yay_stat_result
 
 - name: Add AUR dependencies
-  become: yes
+  become: true
   pacman:
     state: present
     name:
@@ -47,7 +49,7 @@
   when: yay_stat_result.stat.exists
 
 - name: Install packages
-  become: yes
+  become: true
   pacman:
     state: present
     name:
@@ -101,7 +103,7 @@
       - inxi
 
 - name: Install packages required for bluetooth support
-  become: yes
+  become: true
   pacman:
     state: present
     name:

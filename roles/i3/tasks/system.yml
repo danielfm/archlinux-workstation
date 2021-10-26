@@ -1,5 +1,7 @@
+---
+
 - name: Add system bin scripts
-  become: yes
+  become: true
   copy:
     src: usr/local/bin/
     dest: /usr/local/bin/
@@ -8,14 +10,14 @@
     mode: '0755'
 
 - name: Change default cursor
-  become: yes
+  become: true
   lineinfile:
     path: /usr/share/icons/default/index.theme
     regexp: '^Inherits='
     line: Inherits=Breeze
 
 - name: Switch to lightdm-slick-greeter
-  become: yes
+  become: true
   lineinfile:
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
@@ -23,7 +25,7 @@
     line: greeter-session=lightdm-slick-greeter
 
 - name: Run display setup script
-  become: yes
+  become: true
   lineinfile:
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
@@ -31,7 +33,7 @@
     line: display-setup-script=/usr/bin/xrandr --auto
 
 - name: Hide the user list in lightdm
-  become: yes
+  become: true
   lineinfile:
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
@@ -39,18 +41,18 @@
     line: greeter-hide-users=true
 
 - name: Copy background images
-  become: yes
+  become: true
   copy:
     src: '{{ item }}'
     dest: "/{{ item }}"
     owner: root
     group: root
     mode: '0644'
-  loop: 
+  loop:
     - usr/share/backgrounds/
 
 - name: Add lightdm-slick-greeter configuration file
-  become: yes
+  become: true
   copy:
     src: '{{ item }}'
     dest: '/{{ item }}'
@@ -61,13 +63,13 @@
     - etc/lightdm/slick-greeter.conf
 
 - name: Ensure the group autologin exists
-  become: yes
+  become: true
   group:
     name: autologin
     state: present
 
 - name: Enable auto-login in lightdm
-  become: yes
+  become: true
   lineinfile:
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
@@ -77,7 +79,7 @@
     - user_autologin|bool
 
 - name: Disable auto-login in lightdm
-  become: yes
+  become: true
   lineinfile:
     path: /etc/lightdm/lightdm.conf
     state: absent
@@ -86,7 +88,7 @@
     - not (user_autologin|bool)
 
 - name: Add X11 configuration files
-  become: yes
+  become: true
   copy:
     src: '{{ item }}'
     dest: '/{{ item }}'
@@ -97,7 +99,7 @@
     - etc/X11/xorg.conf.d/
 
 - name: Disable internal speaker beep by default
-  become: yes
+  become: true
   copy:
     content: blacklist pcspkr
     dest: /etc/modprobe.d/nobeep.conf
@@ -106,7 +108,7 @@
     mode: '0644'
 
 - name: Ensure pulseaudio supports bluetooth
-  become: yes
+  become: true
   lineinfile:
     path: /etc/pulse/system.pa
     regexp: '^load-module {{ item }}'
@@ -118,7 +120,7 @@
     - system_bluetooth|bool
 
 - name: Load module-echo-cancel PulseAudio module by default
-  become: yes
+  become: true
   lineinfile:
     path: /etc/pulse/default.pa
     regexp: '^load-module module-echo-cancel'
@@ -128,7 +130,7 @@
   become: true
   systemd:
     name: '{{ item }}'
-    enabled: yes
+    enabled: true
   loop:
     - ipp-usb
     - lightdm

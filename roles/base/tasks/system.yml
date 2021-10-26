@@ -1,15 +1,17 @@
+---
+
 - name: Set timezone to {{ system_timezone }}
-  become: yes
+  become: true
   timezone:
     name: '{{ system_timezone }}'
 
 - name: Ensure the locale {{ system_locale }} exists
-  become: yes
+  become: true
   locale_gen:
     name: '{{ system_locale }}'
 
 - name: Set maximum size for persistent journal
-  become: yes
+  become: true
   ini_file:
     path: /etc/systemd/journald.conf
     owner: root
@@ -18,25 +20,22 @@
     section: Journal
     option: SystemMaxUse
     value: 100M
-
-- name: Restart systemd-journald service
-  become: yes
-  systemd:
-    name: systemd-journald.service
-    state: restarted
+  notify:
+    - Restart systemd-resolved
 
 - name: Set up avahi local hostname resolution
-  become: yes
+  become: true
   lineinfile:
     path: /etc/nsswitch.conf
     owner: root
     group: root
     mode: 0644
     regexp: '^hosts:'
+    # yamllint disable-line rule:line-length
     line: 'hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns'
 
 - name: Do not allow NetworkManager to manage resolv.conf
-  become: yes
+  become: true
   ini_file:
     path: /etc/NetworkManager/NetworkManager.conf
     owner: root
@@ -47,7 +46,7 @@
     value: unmanaged
 
 - name: Set DNS resolvers
-  become: yes
+  become: true
   copy:
     content: '{{ system_resolvconf }}'
     dest: /etc/resolv.conf
@@ -56,7 +55,7 @@
     mode: 0644
 
 - name: Create systemd-resolvers conf.d dir
-  become: yes
+  become: true
   file:
     path: /etc/systemd/resolved.conf.d
     state: directory
@@ -65,7 +64,7 @@
     mode: '0755'
 
 - name: Set systemd-resolved configuration
-  become: yes
+  become: true
   template:
     src: etc/systemd/resolved.conf.d/dns_over_tls.conf.j2
     dest: /etc/systemd/resolved.conf.d/dns_over_tls.conf
@@ -76,7 +75,7 @@
     - Restart systemd-resolved
 
 - name: Disable bluetooth Enhanced Retransmission Mode (ERTM)
-  become: yes
+  become: true
   copy:
     src: etc/modprobe.d/xbox_bt.conf
     dest: /etc/modprobe.d/xbox_bt.conf
@@ -87,11 +86,11 @@
     - system_bluetooth|bool
 
 - name: Enable services
-  become: yes
+  become: true
   service:
     name: '{{ item }}'
     state: started
-    enabled: yes
+    enabled: true
   loop:
     - avahi-daemon
     - NetworkManager
@@ -100,10 +99,10 @@
     - systemd-resolved
 
 - name: Enable bluetooth service
-  become: yes
+  become: true
   service:
     name: bluetooth
     state: started
-    enabled: yes
+    enabled: true
   when:
     - system_bluetooth|bool

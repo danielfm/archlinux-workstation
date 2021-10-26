@@ -1,3 +1,5 @@
+---
+
 #
 # User data
 #
@@ -7,7 +9,7 @@
 
 # Only use this if you have some sort of security mechanism in place
 # prior to the login, i.e., disk encryption password prompt
-user_autologin: no
+user_autologin: false
 
 # Directories to be displayed as bookmarks in file managers, such as Thunar
 gtk_bookmarks:
@@ -18,7 +20,7 @@ gtk_bookmarks:
 # System data
 #
 
-system_bluetooth: yes
+system_bluetooth: true
 
 #
 # App data

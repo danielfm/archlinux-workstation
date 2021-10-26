@@ -1,23 +1,26 @@
+---
+
 - name: Set ufw default forward policy
-  become: yes
+  become: true
   lineinfile:
     path: /etc/default/ufw
     regex: '^DEFAULT_FORWARD_POLICY='
     line: 'DEFAULT_FORWARD_POLICY="ACCEPT"'
 
 - name: Enable services
-  become: yes
+  become: true
   service:
     name: '{{ item }}'
     state: started
-    enabled: yes
+    enabled: true
   loop:
     - pcscd
     - tor
     - ufw
 
+# yamllint disable rule:line-length
 - name: Allow outgoing ICMP traffic (IPv4) in ufw
-  become: yes
+  become: true
   lineinfile:
     path: /etc/ufw/before.rules
     insertbefore: '^COMMIT'
@@ -25,9 +28,10 @@
   loop:
     - '-A ufw-before-input  -p icmp -m state --state ESTABLISHED,RELATED     -j ACCEPT'
     - '-A ufw-before-output -p icmp -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT'
+# yamllint enable rule:line-length
 
 - name: Allow DNS outgoing traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '53'
@@ -35,7 +39,7 @@
     direction: out
 
 - name: Allow mDNS outgoing traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '5353'
@@ -43,7 +47,7 @@
     direction: out
 
 - name: Allow mDNS incoming traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '5353'
@@ -51,7 +55,7 @@
     direction: in
 
 - name: Allow WHOIS outgoing traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '43'
@@ -59,7 +63,7 @@
     direction: out
 
 - name: Allow NTP incoming/outgoing traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '123'
@@ -70,7 +74,7 @@
     - out
 
 - name: Allow DHCP incoming/outgoing traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '68'
@@ -81,7 +85,7 @@
     - out
 
 - name: Allow IRC SSL outgoing traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '"{{ item }}"'
@@ -93,7 +97,7 @@
     - 7070
 
 - name: Allow DNS-over-TLS outgoing traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '853'
@@ -103,7 +107,7 @@
     - tcp
 
 - name: Allow HTTP outgoing traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '80'
@@ -111,7 +115,7 @@
     direction: out
 
 - name: Allow HTTPS outgoing traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '443'
@@ -119,7 +123,7 @@
     direction: out
 
 - name: Allow SSH incoming traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '22'
@@ -129,7 +133,7 @@
     - user_name == "vagrant"
 
 - name: Allow SSH outgoing traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '22'
@@ -137,7 +141,7 @@
     direction: out
 
 - name: Allow Git protocol traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '9418'
@@ -145,7 +149,7 @@
     direction: out
 
 - name: Allow Tor outgoing traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '9001'
@@ -153,7 +157,7 @@
     direction: out
 
 - name: Allow OpenVPN outgoing traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '{{ item.port }}'
@@ -172,7 +176,7 @@
     - {port: 1400, proto: udp}
 
 - name: Allow syncthing input traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '{{ item.port }}'
@@ -184,53 +188,53 @@
     - {port: 21027, proto: udp}
 
 - name: Allow syncthing output traffic
-  become: yes
+  become: true
   ufw:
     rule: allow
     port: '{{ item.port }}'
     proto: '{{ item.proto }}'
     direction: out
   loop:
-    - {port: 8384,  proto: tcp}
+    - {port: 8384, proto: tcp}
     - {port: 22000, proto: tcp}
     - {port: 22000, proto: udp}
     - {port: 21027, proto: udp}
 
 - name: Enable ufw logging
-  become: yes
+  become: true
   ufw:
     logging: low
 
 - name: Enable ufw with default incoming deny policy
-  become: yes
+  become: true
   ufw:
     state: enabled
     policy: deny
     direction: incoming
 
 - name: Enable ufw with default outgoing deny policy
-  become: yes
+  become: true
   ufw:
     state: enabled
     policy: deny
     direction: outgoing
 
 - name: Enable login 2FA with YubiKey
-  become: yes
+  become: true
   lineinfile:
     path: '{{ item }}'
     regex: '^auth .+ pam_u2f.so .+'
     insertafter: '^auth .+'
     line: 'auth required pam_u2f.so authfile=/etc/u2f_mappings nouserok'
-  when:
-    - (user_pam_u2f_main_key is defined) and (user_pam_u2f_main_key|length > 0)
-    - (user_pam_u2f_backup_key is defined) and (user_pam_u2f_backup_key|length > 0)
+  when: |
+    (user_pam_u2f_key_handles is defined) and
+    (user_pam_u2f_key_handles|length > 0)
   loop:
     - /etc/pam.d/system-local-login
     - /etc/pam.d/lightdm
 
 - name: Ensure pacman hooks directory exist
-  become: yes    
+  become: true
   file:
     path: /etc/pacman.d/hooks
     state: directory
@@ -239,29 +243,31 @@
     mode: '0755'
 
 - name: Enable passwordless sudo with YubiKey
-  become: yes
+  become: true
   lineinfile:
     path: /etc/pam.d/sudo
-    firstmatch: yes
+    firstmatch: true
     insertbefore: '^auth'
     regex: '^auth .+ pam_u2f.so .+'
     line: 'auth sufficient pam_u2f.so authfile=/etc/u2f_mappings'
-  when:
-    - (user_pam_u2f_key_handles is defined) and (user_pam_u2f_key_handles|length > 0)
+  when: |
+    (user_pam_u2f_key_handles is defined) and
+    (user_pam_u2f_key_handles|length > 0)
 
 - name: Add U2F key mapping for user
-  become: yes
+  become: true
   lineinfile:
     path: /etc/u2f_mappings
     line: '{{ user_name }}{{ user_pam_u2f_key_handles }}'
     regexp: '^{{ user_name }}.+'
     mode: '0400'
-    create: yes
-  when:
-    - (user_pam_u2f_key_handles is defined) and (user_pam_u2f_key_handles|length > 0)
+    create: true
+  when: |
+    (user_pam_u2f_key_handles is defined) and
+    (user_pam_u2f_key_handles|length > 0)
 
 - name: Disable YubiKey support for system-auth
-  become: yes
+  become: true
   lineinfile:
     state: absent
     path: '{{ item }}'
@@ -269,20 +275,22 @@
   loop:
     - /etc/pam.d/sudo
     - /etc/pam.d/system-local-login
-  when:
-    - not (user_pam_u2f_key_handles is defined) and (user_pam_u2f_key_handles|length > 0)
+  when: |
+    not (user_pam_u2f_key_handles is defined) and
+    (user_pam_u2f_key_handles|length > 0)
 
 - name: Remove U2F key mapping file for user
-  become: yes
+  become: true
   lineinfile:
     state: absent
     regex: '^{{ user_name }}.+'
     path: /etc/u2f_mappings
-  when:
-    - not (user_pam_u2f_key_handles is defined) and (user_pam_u2f_key_handles|length > 0)
+  when: |
+    not (user_pam_u2f_key_handles is defined) and
+    (user_pam_u2f_key_handles|length > 0)
 
 - name: Setup OpenVPN client configuration exists
-  become: yes
+  become: true
   copy:
     src: 'etc/openvpn/client/client.conf'
     dest: '/etc/openvpn/client/client.conf'

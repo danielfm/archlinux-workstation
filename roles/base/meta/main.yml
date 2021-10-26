@@ -1,3 +1,5 @@
+---
+
 galaxy_info:
   author: Daniel Martins
   description: Arch Linux base system configuration
@@ -7,3 +9,6 @@ galaxy_info:
     - name: ArchLinux
       versions:
         - any
+
+collections:
+  - kewlfft.aur

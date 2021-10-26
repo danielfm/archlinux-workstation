@@ -1,5 +1,7 @@
+---
+
 - name: Add user configuration files
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   copy:
     src: 'home/{{ item }}'
@@ -18,7 +20,7 @@
     - .zshrc
 
 - name: Add user configuration templates
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   template:
     src: home/{{ item }}.j2
@@ -31,41 +33,41 @@
     - .gitconfig
 
 - name: Install oh-my-zsh
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     version: master
     dest: '/home/{{ user_name }}/.oh-my-zsh'
     remote: readonly
-    accept_hostkey: yes
+    accept_hostkey: true
 
 - name: Install tmux plugin manager
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   git:
     repo: https://github.com/tmux-plugins/tpm
     version: master
     dest: '/home/{{ user_name }}/.tmux/plugins/tpm'
     remote: readonly
-    accept_hostkey: yes
+    accept_hostkey: true
 
 - name: Install vundle plugin manager
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   git:
     repo: https://github.com/VundleVim/Vundle.vim.git
     version: master
     dest: '/home/{{ user_name }}/.vim/bundle/vundle'
     remote: readonly
-    accept_hostkey: yes
+    accept_hostkey: true
 
 - name: Install emacs configuration
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   git:
     repo: https://github.com/danielfm/dotfiles-emacs.git
     version: master
     dest: '/home/{{ user_name }}/.emacs.d'
     remote: readonly
-    accept_hostkey: yes
+    accept_hostkey: true

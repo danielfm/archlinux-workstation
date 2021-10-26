@@ -1,5 +1,7 @@
+---
+
 - name: Ensure the .gnupg directory exists
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   file:
     path: '/home/{{ user_name }}/.gnupg'
@@ -9,7 +11,7 @@
     mode: '0700'
 
 - name: Add GPG configuration file
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   template:
     src: home/.gnupg/gpg.conf.j2
@@ -19,7 +21,7 @@
     mode: '0600'
 
 - name: Add Dirmngr configuration file
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   copy:
     src: home/.gnupg/dirmngr.conf
@@ -29,7 +31,7 @@
     mode: '0600'
 
 - name: Add user configuration files
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   copy:
     src: 'home/{{ item }}'
@@ -43,7 +45,7 @@
     - .config
 
 - name: Create Gopass config dir
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   file:
     path: '/home/{{ user_name }}/.config/gopass'
@@ -53,7 +55,7 @@
     mode: '0700'
 
 - name: Create Gopass configuration file
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   template:
     src: home/.config/gopass/config.yml.j2
@@ -63,12 +65,12 @@
     mode: '0600'
 
 - name: Enable user services
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   systemd:
     name: '{{ item }}'
     state: started
     scope: user
-    enabled: yes
+    enabled: true
   loop:
     - yubikey-touch-detector

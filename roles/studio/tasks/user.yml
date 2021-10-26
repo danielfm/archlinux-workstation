@@ -1,7 +1,9 @@
+---
+
 - name: Ensure {{ user_name }} is in the required groups
-  become: yes
+  become: true
   user:
     name: '{{ user_name }}'
     groups:
       - realtime
-    append: yes
+    append: true

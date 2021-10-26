@@ -1,5 +1,7 @@
+---
+
 - name: Add subuid and subgid files
-  become: yes
+  become: true
   template:
     src: etc/{{ item }}.j2
     dest: '/etc/{{ item }}'
@@ -11,7 +13,7 @@
     - subgid
 
 - name: Set podman container configuration
-  become: yes
+  become: true
   copy:
     src: etc/containers/registries.conf
     dest: /etc/containers/registries.conf

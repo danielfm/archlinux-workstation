@@ -1,12 +1,14 @@
+---
+
 - name: Ensure {{ user_group }} group exists
-  become: yes
+  become: true
   group:
     name: '{{ user_group }}'
     state: present
     gid: '{{ user_gid }}'
 
 - name: Ensure {{ user_name }} user exists
-  become: yes
+  become: true
   user:
     name: '{{ user_name }}'
     groups:
@@ -19,13 +21,13 @@
       - sys
       - video
       - wheel
-    append: yes
+    append: true
     group: '{{ user_group }}'
     uid: '{{ user_uid }}'
     shell: '/bin/zsh'
 
 - name: Ensure the ~/.ssh directory exists for {{ user_name }}
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   file:
     path: '/home/{{ user_name }}/.ssh'
@@ -35,7 +37,7 @@
     mode: '0700'
 
 - name: Generate SSH keypair for {{ user_name }}
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   openssh_keypair:
     path: '/home/{{ user_name }}/.ssh/id_rsa'
@@ -43,7 +45,7 @@
     - user_create_ssh_keypair|bool
 
 - name: Add extra home directories
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   file:
     path: '/home/{{ user_name }}/{{ item }}'
@@ -54,7 +56,7 @@
   loop: '{{ user_extra_home_dirs }}'
 
 - name: Add home .config directory
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   file:
     path: '/home/{{ user_name }}/{{ item }}'
@@ -67,7 +69,7 @@
     - .bin
 
 - name: Ensure bash directories exist for {{ user_name }}
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   file:
     path: '/home/{{ user_name }}/{{ item }}'
@@ -81,7 +83,7 @@
     - .bash_completions.d
 
 - name: Add user configuration files
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   copy:
     src: 'home/{{ item }}'
@@ -95,7 +97,7 @@
     - .bashrc
 
 - name: Set duplicity backup exclusion list
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   copy:
     content: '{{ backup_exclude }}'
@@ -105,7 +107,7 @@
     mode: '0644'
 
 - name: Write duplicity backup and restore scripts
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   template:
     src: 'home/.bin/duplicity-{{ item }}.sh.j2'
@@ -118,7 +120,7 @@
     - restore
 
 - name: Ensure user systemd directory exists
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   file:
     path: '/home/{{ user_name }}/.config/systemd/user'
@@ -126,7 +128,7 @@
     state: directory
 
 - name: Write duplicity systemd unit files
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   template:
     src: 'home/.config/systemd/user/{{ item }}.j2'
@@ -139,7 +141,7 @@
     - duplicity-backup.timer
 
 - name: Enable duplicity backup timer
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   systemd:
     scope: user
@@ -151,7 +153,7 @@
     - backup_enabled
 
 - name: Enable syncthing daemon
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   systemd:
     scope: user
@@ -160,7 +162,7 @@
     enabled: true
 
 - name: Disable duplicity backup timer
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   systemd:
     scope: user

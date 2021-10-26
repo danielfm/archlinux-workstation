@@ -1,14 +1,16 @@
+---
+
 # Replace jack package with jack2
 - name: Make sure jack package is absent
-  become: yes
+  become: true
   pacman:
     state: absent
-    force: yes
+    force: true
     name:
       - jack
 
 - name: Install packages
-  become: yes
+  become: true
   pacman:
     state: present
     name:
@@ -29,7 +31,5 @@
 
 - name: Install AUR packages
   aur:
-    upgrade: no
-    skip_installed: yes
     name:
       - cadence-claudia

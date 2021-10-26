@@ -57,6 +57,12 @@ when applying the configuration.
 
 #### Install the Required Packages
 
+Install the required Ansible roles:
+
+```sh
+ansible-galaxy install -r requirements.yml
+```
+
 Run the following command as `root` to install the packages required to
 complete the rest of the installation:
 

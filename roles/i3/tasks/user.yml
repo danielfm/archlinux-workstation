@@ -1,22 +1,24 @@
+---
+
 - name: Install polybar-themes installer
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   git:
     repo: https://github.com/danielfm/polybar-themes.git
     version: fix-rofi
     dest: '/home/{{ user_name }}/.polybar-themes'
     remote: origin
-    accept_hostkey: yes
+    accept_hostkey: true
 
-- name: Run polybar-themes installer
-  become: yes
+- name: Run polybar-themes installer   # noqa no-changed-when
+  become: true
   become_user: '{{ user_name }}'
-  command:
+  shell:
     chdir: '/home/{{ user_name }}/.polybar-themes'
     cmd: 'echo "1" | ./setup.sh'
 
 - name: Create base polybar theme directory
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   copy:
     src: '/home/{{ user_name }}/.config/polybar/{{ polybar_base_theme }}'
@@ -25,7 +27,7 @@
     group: '{{ user_group }}'
 
 - name: Add user config files
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   copy:
     src: 'home/{{ item }}'
@@ -40,15 +42,15 @@
     - .dmrc
 
 - name: Add user to autologin group
-  become: yes
+  become: true
   user:
     name: '{{ user_name }}'
     groups:
       - autologin
-    append: yes
+    append: true
 
 - name: Add user bin scripts
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   copy:
     src: home/.bin/
@@ -58,7 +60,7 @@
     mode: '0755'
 
 - name: Add templated user config files
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   template:
     src: 'home/{{ item }}.j2'
@@ -72,7 +74,7 @@
     - .config/mopidy/mopidy.conf
 
 - name: Set GTK config
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   template:
     src: 'home/{{ item }}.j2'
@@ -85,7 +87,7 @@
     - .config/gtk-3.0/settings.ini
 
 - name: Create Librewolf profile directory
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   file:
     path: '/home/{{ user_name }}/.librewolf/default'
@@ -93,7 +95,7 @@
     state: directory
 
 - name: Create Librewolf native-messaging-hosts directory
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   file:
     path: '/home/{{ user_name }}/.librewolf/native-messaging-hosts'
@@ -101,7 +103,7 @@
     state: directory
 
 - name: Get latest version of ghacks-user.js updater script
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   get_url:
     url: https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.sh
@@ -111,7 +113,7 @@
     mode: '0755'
 
 - name: Copy user-overrides.js file
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   copy:
     src: home/.librewolf/user-overrides.js
@@ -121,7 +123,7 @@
     mode: '0644'
 
 - name: Create Librewolf profiles.ini file
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   copy:
     src: home/.librewolf/profiles.ini
@@ -130,17 +132,20 @@
     group: '{{ user_group }}'
     mode: '0644'
 
-- name: Generate user.js file   # noqa no-changed-when
-  become: yes
+- name: Generate user.js file
+  become: true
   become_user: '{{ user_name }}'
-  command:
+  shell:
     chdir: '/home/{{ user_name }}/.librewolf/default'
-    cmd: './updater.sh -s'
+    cmd: './updater.sh -dsc'
+  register: userjs_output
+  changed_when: "'No diff file was created' in userjs_output.stdout"
 
 - name: Setup browserpass for librewolf
-  become: yes
+  become: true
   become_user: '{{ user_name }}'
   file:
     src: '/usr/lib/browserpass/hosts/firefox/com.github.browserpass.native.json'
+    # yamllint disable-line rule:line-length
     dest: '/home/{{ user_name }}/.librewolf/native-messaging-hosts/com.github.browserpass.native.json'
     state: link

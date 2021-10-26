@@ -1,5 +1,7 @@
+---
+
 - name: Install packages
-  become: yes
+  become: true
   pacman:
     state: present
     name:
@@ -44,11 +46,10 @@
       - vagrant
       - vault
       - wireshark-qt
+      - yamllint
 
 - name: Install AUR packages
   aur:
-    upgrade: no
-    skip_installed: yes
     name:
       - aws-cli-v2-bin
       - chef-dk

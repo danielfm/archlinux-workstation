@@ -1,3 +1,10 @@
+---
+
+- name: Restart systemd-journald service
+  systemd:
+    name: systemd-journald.service
+    state: restarted
+
 - name: Restart systemd-resolved
   systemd:
     name: systemd-resolved
