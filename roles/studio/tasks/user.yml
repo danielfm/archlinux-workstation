@@ -2,7 +2,7 @@
 
 - name: Ensure {{ user_name }} is in the required groups
   become: true
-  user:
+  ansible.builtin.user:
     name: '{{ user_name }}'
     groups:
       - realtime

@@ -1,11 +1,11 @@
 ---
 
 - name: Restart systemd-journald service
-  systemd:
+  ansible.builtin.systemd:
     name: systemd-journald.service
     state: restarted
 
 - name: Restart systemd-resolved
-  systemd:
+  ansible.builtin.systemd:
     name: systemd-resolved
     state: restarted

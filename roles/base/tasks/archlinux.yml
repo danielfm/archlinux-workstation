@@ -2,7 +2,7 @@
 
 - name: Enable multilib repository
   become: true
-  ini_file:
+  community.general.ini_file:
     path: /etc/pacman.conf
     create: false
     section: multilib
@@ -11,18 +11,18 @@
 
 - name: Update system package definition
   become: true
-  pacman:
+  community.general.pacman:
     update_cache: true
     upgrade: false
 
 - name: Check if yay AUR helper is available
-  stat:
+  ansible.builtin.stat:
     path: /usr/bin/yay
   register: yay_stat_result
 
 - name: Add AUR dependencies
   become: true
-  pacman:
+  community.general.pacman:
     state: present
     name:
       - fakeroot
@@ -30,27 +30,27 @@
       - gnupg
 
 - name: Clone yay AUR helper repository
-  git:
+  ansible.builtin.git:
     repo: https://aur.archlinux.org/yay.git
     version: master
     dest: /tmp/yay
   when: not yay_stat_result.stat.exists
 
 - name: Install yay AUR helper package
-  command:
+  ansible.builtin.command:
     chdir: /tmp/yay
     cmd: makepkg -si --noconfirm
   when: not yay_stat_result.stat.exists
 
 - name: Ensure yay AUR helper package is up to date
-  aur:
+  kewlfft.aur.aur:
     name:
       - yay
   when: yay_stat_result.stat.exists
 
 - name: Install packages
   become: true
-  pacman:
+  community.general.pacman:
     state: present
     name:
       - acpid
@@ -98,13 +98,13 @@
       - zsh
 
 - name: Install AUR packages
-  aur:
+  kewlfft.aur.aur:
     name:
       - inxi
 
 - name: Install packages required for bluetooth support
   become: true
-  pacman:
+  community.general.pacman:
     state: present
     name:
       - blueman

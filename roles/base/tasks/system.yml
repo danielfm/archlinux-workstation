@@ -2,17 +2,17 @@
 
 - name: Set timezone to {{ system_timezone }}
   become: true
-  timezone:
+  community.general.timezone:
     name: '{{ system_timezone }}'
 
 - name: Ensure the locale {{ system_locale }} exists
   become: true
-  locale_gen:
+  community.general.locale_gen:
     name: '{{ system_locale }}'
 
 - name: Set maximum size for persistent journal
   become: true
-  ini_file:
+  community.general.ini_file:
     path: /etc/systemd/journald.conf
     owner: root
     group: root
@@ -25,7 +25,7 @@
 
 - name: Set up avahi local hostname resolution
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/nsswitch.conf
     owner: root
     group: root
@@ -36,7 +36,7 @@
 
 - name: Do not allow NetworkManager to manage resolv.conf
   become: true
-  ini_file:
+  community.general.ini_file:
     path: /etc/NetworkManager/NetworkManager.conf
     owner: root
     group: root
@@ -47,7 +47,7 @@
 
 - name: Set DNS resolvers
   become: true
-  copy:
+  ansible.builtin.copy:
     content: '{{ system_resolvconf }}'
     dest: /etc/resolv.conf
     owner: root
@@ -56,7 +56,7 @@
 
 - name: Create systemd-resolvers conf.d dir
   become: true
-  file:
+  ansible.builtin.file:
     path: /etc/systemd/resolved.conf.d
     state: directory
     owner: root
@@ -65,7 +65,7 @@
 
 - name: Set systemd-resolved configuration
   become: true
-  template:
+  ansible.builtin.template:
     src: etc/systemd/resolved.conf.d/dns_over_tls.conf.j2
     dest: /etc/systemd/resolved.conf.d/dns_over_tls.conf
     owner: root
@@ -76,7 +76,7 @@
 
 - name: Disable bluetooth Enhanced Retransmission Mode (ERTM)
   become: true
-  copy:
+  ansible.builtin.copy:
     src: etc/modprobe.d/xbox_bt.conf
     dest: /etc/modprobe.d/xbox_bt.conf
     owner: root
@@ -87,7 +87,7 @@
 
 - name: Enable services
   become: true
-  service:
+  ansible.builtin.service:
     name: '{{ item }}'
     state: started
     enabled: true
@@ -100,7 +100,7 @@
 
 - name: Enable bluetooth service
   become: true
-  service:
+  ansible.builtin.service:
     name: bluetooth
     state: started
     enabled: true

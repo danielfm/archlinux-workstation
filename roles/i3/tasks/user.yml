@@ -3,7 +3,7 @@
 - name: Install polybar-themes installer
   become: true
   become_user: '{{ user_name }}'
-  git:
+  ansible.builtin.git:
     repo: https://github.com/danielfm/polybar-themes.git
     version: fix-rofi
     dest: '/home/{{ user_name }}/.polybar-themes'
@@ -13,14 +13,14 @@
 - name: Run polybar-themes installer   # noqa no-changed-when
   become: true
   become_user: '{{ user_name }}'
-  shell:
+  ansible.builtin.shell:
     chdir: '/home/{{ user_name }}/.polybar-themes'
     cmd: 'echo "1" | ./setup.sh'
 
 - name: Create base polybar theme directory
   become: true
   become_user: '{{ user_name }}'
-  copy:
+  ansible.builtin.copy:
     src: '/home/{{ user_name }}/.config/polybar/{{ polybar_base_theme }}/'
     dest: '/home/{{ user_name }}/.config/polybar/active'
     owner: '{{ user_name }}'
@@ -29,7 +29,7 @@
 - name: Add user config files
   become: true
   become_user: '{{ user_name }}'
-  copy:
+  ansible.builtin.copy:
     src: 'home/{{ item }}'
     dest: '/home/{{ user_name }}/'
     owner: '{{ user_name }}'
@@ -43,7 +43,7 @@
 
 - name: Add user to autologin group
   become: true
-  user:
+  ansible.builtin.user:
     name: '{{ user_name }}'
     groups:
       - autologin
@@ -52,7 +52,7 @@
 - name: Add user bin scripts
   become: true
   become_user: '{{ user_name }}'
-  copy:
+  ansible.builtin.copy:
     src: home/.bin/
     dest: '/home/{{ user_name }}/.bin/'
     owner: '{{ user_name }}'
@@ -62,7 +62,7 @@
 - name: Add templated user config files
   become: true
   become_user: '{{ user_name }}'
-  template:
+  ansible.builtin.template:
     src: 'home/{{ item }}.j2'
     dest: '/home/{{ user_name }}/{{ item }}'
     owner: '{{ user_name }}'
@@ -76,7 +76,7 @@
 - name: Set GTK config
   become: true
   become_user: '{{ user_name }}'
-  template:
+  ansible.builtin.template:
     src: 'home/{{ item }}.j2'
     dest: '/home/{{ user_name }}/{{ item }}'
     owner: '{{ user_name }}'
@@ -89,7 +89,7 @@
 - name: Create Librewolf profile directory
   become: true
   become_user: '{{ user_name }}'
-  file:
+  ansible.builtin.file:
     path: '/home/{{ user_name }}/.librewolf/default'
     mode: '0755'
     state: directory
@@ -97,7 +97,7 @@
 - name: Create Librewolf native-messaging-hosts directory
   become: true
   become_user: '{{ user_name }}'
-  file:
+  ansible.builtin.file:
     path: '/home/{{ user_name }}/.librewolf/native-messaging-hosts'
     mode: '0755'
     state: directory
@@ -105,7 +105,7 @@
 - name: Get latest version of ghacks-user.js updater script
   become: true
   become_user: '{{ user_name }}'
-  get_url:
+  ansible.builtin.get_url:
     url: https://github.com/ghacksuserjs/ghacks-user.js/raw/master/updater.sh
     dest: '/home/{{ user_name }}/.librewolf/default/updater.sh'
     owner: '{{ user_name }}'
@@ -115,7 +115,7 @@
 - name: Copy user-overrides.js file
   become: true
   become_user: '{{ user_name }}'
-  copy:
+  ansible.builtin.copy:
     src: home/.librewolf/user-overrides.js
     dest: '/home/{{ user_name }}/.librewolf/default/user-overrides.js'
     owner: '{{ user_name }}'
@@ -125,7 +125,7 @@
 - name: Create Librewolf profiles.ini file
   become: true
   become_user: '{{ user_name }}'
-  copy:
+  ansible.builtin.copy:
     src: home/.librewolf/profiles.ini
     dest: '/home/{{ user_name }}/.librewolf/profiles.ini'
     owner: '{{ user_name }}'
@@ -135,7 +135,7 @@
 - name: Generate user.js file
   become: true
   become_user: '{{ user_name }}'
-  shell:
+  ansible.builtin.shell:
     chdir: '/home/{{ user_name }}/.librewolf/default'
     cmd: './updater.sh -dsc'
   register: userjs_output
@@ -144,7 +144,7 @@
 - name: Setup browserpass for librewolf
   become: true
   become_user: '{{ user_name }}'
-  file:
+  ansible.builtin.file:
     src: '/usr/lib/browserpass/hosts/firefox/com.github.browserpass.native.json'
     # yamllint disable-line rule:line-length
     dest: '/home/{{ user_name }}/.librewolf/native-messaging-hosts/com.github.browserpass.native.json'

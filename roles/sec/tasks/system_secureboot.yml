@@ -2,7 +2,7 @@
 
 - name: Ensure the secure boot keys directory exists
   become: true
-  file:
+  ansible.builtin.file:
     path: '{{ system_secure_boot_keys_dir }}'
     state: directory
     owner: root
@@ -11,7 +11,7 @@
 
 - name: Generate secure boot GUID.txt file
   become: true
-  copy:
+  ansible.builtin.copy:
     content: '{{ 999999999999999999999 | random | to_uuid }}'
     dest: '{{ system_secure_boot_keys_dir }}/GUID.txt'
     force: false
@@ -21,7 +21,7 @@
 
 - name: Generate secure boot .key and .crt files
   become: true
-  command:
+  ansible.builtin.command:
     chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: |
       openssl req -newkey rsa:4096 -nodes -keyout {{ item }}.key \
@@ -35,7 +35,7 @@
 
 - name: Generate secure boot .cer files
   become: true
-  command:
+  ansible.builtin.command:
     chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: 'openssl x509 -outform DER -in {{ item }}.crt -out {{ item }}.cer'
     creates: '{{ item }}.cer'
@@ -46,7 +46,7 @@
 
 - name: Generate secure boot .esl files
   become: true
-  command:
+  ansible.builtin.command:
     chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: 'cert-to-efi-sig-list -g "$(< GUID.txt)" {{ item }}.crt {{ item }}.esl'
     creates: '{{ item }}.esl'
@@ -57,7 +57,7 @@
 
 - name: Generate secure boot .auth files
   become: true
-  command:
+  ansible.builtin.command:
     chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: |
       sign-efi-sig-list -g "$(< GUID.txt)" -k {{ item }}.key -c {{ item }}.crt \
@@ -70,7 +70,7 @@
 
 - name: Sign empty file to allow removing the secure boot key when in User Mode
   become: true
-  command:
+  ansible.builtin.command:
     chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: |
       sign-efi-sig-list -g "$(< GUID.txt)" -c PK.crt \
@@ -79,7 +79,7 @@
 
 - name: Ensure pacman hooks directory exist
   become: true
-  file:
+  ansible.builtin.file:
     path: /etc/pacman.d/hooks
     state: directory
     owner: root
@@ -88,7 +88,7 @@
 
 - name: Add pacman hooks for secure boot signing
   become: true
-  template:
+  ansible.builtin.template:
     src: 'etc/pacman.d/hooks/{{ item }}.j2'
     dest: '/etc/pacman.d/hooks/{{ item }}'
     owner: root
@@ -101,7 +101,7 @@
 
 - name: Instruct fwupd to use own keys for secure boot
   become: true
-  ini_file:
+  community.general.ini_file:
     path: /etc/fwupd/uefi.conf
     section: uefi
     option: DisableShimForSecureBoot

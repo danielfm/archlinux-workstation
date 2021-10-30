@@ -2,7 +2,7 @@
 
 - name: Add system bin scripts
   become: true
-  copy:
+  ansible.builtin.copy:
     src: usr/local/bin/
     dest: /usr/local/bin/
     owner: root
@@ -11,14 +11,14 @@
 
 - name: Change default cursor
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /usr/share/icons/default/index.theme
     regexp: '^Inherits='
     line: Inherits=Breeze
 
 - name: Switch to lightdm-slick-greeter
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
     regexp: '^greeter-session='
@@ -26,7 +26,7 @@
 
 - name: Run display setup script
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
     regexp: '^display-setup-script='
@@ -34,7 +34,7 @@
 
 - name: Hide the user list in lightdm
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
     regexp: '^greeter-hide-users='
@@ -42,7 +42,7 @@
 
 - name: Copy background images
   become: true
-  copy:
+  ansible.builtin.copy:
     src: '{{ item }}'
     dest: "/{{ item }}"
     owner: root
@@ -53,7 +53,7 @@
 
 - name: Add lightdm-slick-greeter configuration file
   become: true
-  copy:
+  ansible.builtin.copy:
     src: '{{ item }}'
     dest: '/{{ item }}'
     owner: root
@@ -64,13 +64,13 @@
 
 - name: Ensure the group autologin exists
   become: true
-  group:
+  ansible.builtin.group:
     name: autologin
     state: present
 
 - name: Enable auto-login in lightdm
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
     regexp: '^autologin-user='
@@ -80,7 +80,7 @@
 
 - name: Disable auto-login in lightdm
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/lightdm/lightdm.conf
     state: absent
     regexp: '^autologin-user='
@@ -89,7 +89,7 @@
 
 - name: Add X11 configuration files
   become: true
-  copy:
+  ansible.builtin.copy:
     src: '{{ item }}'
     dest: '/{{ item }}'
     owner: root
@@ -100,7 +100,7 @@
 
 - name: Disable internal speaker beep by default
   become: true
-  copy:
+  ansible.builtin.copy:
     content: blacklist pcspkr
     dest: /etc/modprobe.d/nobeep.conf
     owner: root
@@ -109,7 +109,7 @@
 
 - name: Ensure pulseaudio supports bluetooth
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/pulse/system.pa
     regexp: '^load-module {{ item }}'
     line: 'load-module {{ item }}'
@@ -121,14 +121,14 @@
 
 - name: Load module-echo-cancel PulseAudio module by default
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/pulse/default.pa
     regexp: '^load-module module-echo-cancel'
     line: load-module module-echo-cancel
 
 - name: Enable services service
   become: true
-  systemd:
+  ansible.builtin.systemd:
     name: '{{ item }}'
     enabled: true
   loop:

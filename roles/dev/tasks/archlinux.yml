@@ -2,7 +2,7 @@
 
 - name: Install packages
   become: true
-  pacman:
+  community.general.pacman:
     state: present
     name:
       - android-tools
@@ -49,7 +49,7 @@
       - yamllint
 
 - name: Install AUR packages
-  aur:
+  kewlfft.aur.aur:
     name:
       - aws-cli-v2-bin
       - chef-dk

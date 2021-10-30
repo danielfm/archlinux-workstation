@@ -2,14 +2,14 @@
 
 - name: Set ufw default forward policy
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/default/ufw
     regex: '^DEFAULT_FORWARD_POLICY='
     line: 'DEFAULT_FORWARD_POLICY="ACCEPT"'
 
 - name: Enable services
   become: true
-  service:
+  ansible.builtin.service:
     name: '{{ item }}'
     state: started
     enabled: true
@@ -21,7 +21,7 @@
 # yamllint disable rule:line-length
 - name: Allow outgoing ICMP traffic (IPv4) in ufw
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/ufw/before.rules
     insertbefore: '^COMMIT'
     line: '{{ item }}'
@@ -32,7 +32,7 @@
 
 - name: Allow DNS outgoing traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '53'
     proto: udp
@@ -40,7 +40,7 @@
 
 - name: Allow mDNS outgoing traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '5353'
     proto: udp
@@ -48,7 +48,7 @@
 
 - name: Allow mDNS incoming traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '5353'
     proto: udp
@@ -56,7 +56,7 @@
 
 - name: Allow WHOIS outgoing traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '43'
     proto: tcp
@@ -64,7 +64,7 @@
 
 - name: Allow NTP incoming/outgoing traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '123'
     proto: udp
@@ -75,7 +75,7 @@
 
 - name: Allow DHCP incoming/outgoing traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '68'
     proto: udp
@@ -86,7 +86,7 @@
 
 - name: Allow IRC SSL outgoing traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '"{{ item }}"'
     proto: tcp
@@ -98,7 +98,7 @@
 
 - name: Allow DNS-over-TLS outgoing traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '853'
     proto: '{{ item }}'
@@ -108,7 +108,7 @@
 
 - name: Allow HTTP outgoing traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '80'
     proto: tcp
@@ -116,7 +116,7 @@
 
 - name: Allow HTTPS outgoing traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '443'
     proto: tcp
@@ -124,7 +124,7 @@
 
 - name: Allow SSH incoming traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '22'
     proto: tcp
@@ -134,7 +134,7 @@
 
 - name: Allow SSH outgoing traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '22'
     proto: tcp
@@ -142,7 +142,7 @@
 
 - name: Allow Git protocol traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '9418'
     proto: tcp
@@ -150,7 +150,7 @@
 
 - name: Allow Tor outgoing traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '9001'
     proto: tcp
@@ -158,7 +158,7 @@
 
 - name: Allow OpenVPN outgoing traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '{{ item.port }}'
     proto: '{{ item.proto }}'
@@ -177,7 +177,7 @@
 
 - name: Allow syncthing input traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '{{ item.port }}'
     proto: '{{ item.proto }}'
@@ -189,7 +189,7 @@
 
 - name: Allow syncthing output traffic
   become: true
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '{{ item.port }}'
     proto: '{{ item.proto }}'
@@ -202,26 +202,26 @@
 
 - name: Enable ufw logging
   become: true
-  ufw:
+  community.general.ufw:
     logging: low
 
 - name: Enable ufw with default incoming deny policy
   become: true
-  ufw:
+  community.general.ufw:
     state: enabled
     policy: deny
     direction: incoming
 
 - name: Enable ufw with default outgoing deny policy
   become: true
-  ufw:
+  community.general.ufw:
     state: enabled
     policy: deny
     direction: outgoing
 
 - name: Enable login 2FA with YubiKey
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: '{{ item }}'
     regex: '^auth .+ pam_u2f.so .+'
     insertafter: '^auth .+'
@@ -235,7 +235,7 @@
 
 - name: Ensure pacman hooks directory exist
   become: true
-  file:
+  ansible.builtin.file:
     path: /etc/pacman.d/hooks
     state: directory
     owner: root
@@ -244,7 +244,7 @@
 
 - name: Enable passwordless sudo with YubiKey
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/pam.d/sudo
     firstmatch: true
     insertbefore: '^auth'
@@ -256,7 +256,7 @@
 
 - name: Add U2F key mapping for user
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/u2f_mappings
     line: '{{ user_name }}{{ user_pam_u2f_key_handles }}'
     regexp: '^{{ user_name }}.+'
@@ -268,7 +268,7 @@
 
 - name: Disable YubiKey support for system-auth
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     state: absent
     path: '{{ item }}'
     regex: '^auth .+ pam_u2f.so'
@@ -281,7 +281,7 @@
 
 - name: Remove U2F key mapping file for user
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     state: absent
     regex: '^{{ user_name }}.+'
     path: /etc/u2f_mappings
@@ -291,7 +291,7 @@
 
 - name: Setup OpenVPN client configuration exists
   become: true
-  copy:
+  ansible.builtin.copy:
     src: 'etc/openvpn/client/client.conf'
     dest: '/etc/openvpn/client/client.conf'
     owner: 'root'

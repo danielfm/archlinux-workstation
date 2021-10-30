@@ -2,7 +2,7 @@
 
 - name: Install packages
   become: true
-  pacman:
+  community.general.pacman:
     state: present
     name:
       - arandr
@@ -90,7 +90,7 @@
 
 - name: Install packages required for bluetooth support
   become: true
-  pacman:
+  community.general.pacman:
     state: present
     name:
       - pulseaudio-bluetooth
@@ -98,7 +98,7 @@
     - system_bluetooth|bool
 
 - name: Install AUR packages
-  aur:
+  kewlfft.aur.aur:
     name:
       - cava
       - librewolf-bin

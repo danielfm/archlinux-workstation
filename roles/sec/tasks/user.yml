@@ -3,7 +3,7 @@
 - name: Ensure the .gnupg directory exists
   become: true
   become_user: '{{ user_name }}'
-  file:
+  ansible.builtin.file:
     path: '/home/{{ user_name }}/.gnupg'
     state: directory
     owner: '{{ user_name }}'
@@ -13,7 +13,7 @@
 - name: Add GPG configuration file
   become: true
   become_user: '{{ user_name }}'
-  template:
+  ansible.builtin.template:
     src: home/.gnupg/gpg.conf.j2
     dest: '/home/{{ user_name }}/.gnupg/gpg.conf'
     owner: '{{ user_name }}'
@@ -23,7 +23,7 @@
 - name: Add Dirmngr configuration file
   become: true
   become_user: '{{ user_name }}'
-  copy:
+  ansible.builtin.copy:
     src: home/.gnupg/dirmngr.conf
     dest: '/home/{{ user_name }}/.gnupg/dirmngr.conf'
     owner: '{{ user_name }}'
@@ -33,7 +33,7 @@
 - name: Add user configuration files
   become: true
   become_user: '{{ user_name }}'
-  copy:
+  ansible.builtin.copy:
     src: 'home/{{ item }}'
     dest: '/home/{{ user_name }}/'
     owner: '{{ user_name }}'
@@ -47,7 +47,7 @@
 - name: Create Gopass config dir
   become: true
   become_user: '{{ user_name }}'
-  file:
+  ansible.builtin.file:
     path: '/home/{{ user_name }}/.config/gopass'
     state: directory
     owner: '{{ user_name }}'
@@ -57,7 +57,7 @@
 - name: Create Gopass configuration file
   become: true
   become_user: '{{ user_name }}'
-  template:
+  ansible.builtin.template:
     src: home/.config/gopass/config.yml.j2
     dest: '/home/{{ user_name }}/.config/gopass/config.yml'
     owner: '{{ user_name }}'
@@ -67,7 +67,7 @@
 - name: Enable user services
   become: true
   become_user: '{{ user_name }}'
-  systemd:
+  ansible.builtin.systemd:
     name: '{{ item }}'
     state: started
     scope: user
