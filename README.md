@@ -193,10 +193,6 @@ Then, re-run the playbook to apply the configuration.
 **Note:** This setup will only be activated if you provide data for both
 security keys, so you have a backup in case you lose your main key.
 
-More information:
-
-- https://infosec-handbook.eu/blog/yubikey-2fa-pam/
-
 #### YubiKey + GnuPG Setup
 
 Some YubiKeys can be used as a GPG smart card, allowing us to store GPG
