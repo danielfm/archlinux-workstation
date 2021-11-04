@@ -21,7 +21,7 @@
     option: SystemMaxUse
     value: 100M
   notify:
-    - Restart systemd-resolved
+    - Restart systemd-journald service
 
 - name: Set up avahi local hostname resolution
   become: true
