@@ -10,12 +10,13 @@
     remote: origin
     accept_hostkey: true
 
-- name: Run polybar-themes installer   # noqa no-changed-when
+- name: Run polybar-themes installer
   become: true
   become_user: '{{ user_name }}'
   ansible.builtin.shell:
     chdir: '/home/{{ user_name }}/.polybar-themes'
     cmd: 'echo "1" | ./setup.sh'
+    creates: '/home/{{ user_name }}/.config/polybar/{{ polybar_base_theme }}'
 
 - name: Create base polybar theme directory
   become: true
@@ -135,11 +136,10 @@
 - name: Generate user.js file
   become: true
   become_user: '{{ user_name }}'
-  ansible.builtin.shell:
+  ansible.builtin.command:
     chdir: '/home/{{ user_name }}/.librewolf/default'
     cmd: './updater.sh -dsc'
-  register: userjs_output
-  changed_when: "'No diff file was created' in userjs_output.stdout"
+    creates: '/home/{{ user_name }}/.librewolf/default/user.js'
 
 - name: Setup browserpass for librewolf
   become: true
