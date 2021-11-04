@@ -10,23 +10,23 @@ This configuration sets up a desktop environment based on
 ![screenshot](./screenshot.png)
 
 **Note:** Since this is used in different machines with different hardware, it
-does not try to set up hardware-specific drivers and configuration; these should
-be done manually in each machine.
+does not try to set up hardware-specific drivers and configuration (i.e.
+graphics card); these should be done manually in each machine.
 
 **Note:** This setup is constantly evolving, so the screenshot will most likely
 be outdated.
 
-## Roles
+## Ansible Roles
 
-This installation contains the following roles:
+This installation contains the following Ansible roles:
 
-| Role     | Description                                                         |
-|----------|---------------------------------------------------------------------|
-| `base`   | Sets up the base system configuration                               |
-| `i3`     | Sets up i3 window manager desktop environment                       |
-| `dev`    | Sets up necessary packages for my current software engineering role |
-| `sec`    | Sets up security-related packages and configuration                 |
-| `studio` | Sets up the software I use for audio/video recording and processing |
+| Role     | Description                                                          |
+|----------|----------------------------------------------------------------------|
+| `base`   | Sets up the base system configuration                                |
+| `i3`     | Sets up i3 window manager desktop environment                        |
+| `dev`    | Sets up necessary packages for my current job as a software engineer |
+| `sec`    | Sets up security-related packages and configuration                  |
+| `studio` | Sets up the software I use for audio/video recording and processing  |
 
 ## Instructions
 
@@ -144,6 +144,13 @@ The installation of AUR packages might also fail when packages try to check
 PGP-signed packages when you don't have the corresponding public keys in your
 keyring.
 
+You might have better luck in this regard if you use Ubuntu keyserver:
+
+```yaml
+# In your vars/custom.yml file:
+user_gnupg_keyserver: hkps://keyserver.ubuntu.com
+```
+
 Check the comments for the package in the AUR website to see what do to.
 
 ### Post-Installation
@@ -190,8 +197,8 @@ user_pam_u2f_key_handles: |
 
 Then, re-run the playbook to apply the configuration.
 
-**Note:** This setup will only be activated if you provide data for both
-security keys, so you have a backup in case you lose your main key.
+**Note:** Make sure to enable more than one key, so you have a way to log back
+in with a backup key in case you lose your main key.
 
 #### YubiKey + GnuPG Setup
 
