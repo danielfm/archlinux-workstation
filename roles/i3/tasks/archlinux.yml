@@ -10,6 +10,7 @@
       - bookworm
       - browserpass-chromium
       - browserpass-firefox
+      - calibre
       - cheese
       - chromium
       - dunst
