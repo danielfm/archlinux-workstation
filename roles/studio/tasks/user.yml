@@ -1,7 +1,6 @@
 ---
 
 - name: Ensure {{ user_name }} is in the required groups
-  become: true
   ansible.builtin.user:
     name: '{{ user_name }}'
     groups:

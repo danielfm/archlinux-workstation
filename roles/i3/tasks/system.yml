@@ -1,7 +1,6 @@
 ---
 
 - name: Add system bin scripts
-  become: true
   ansible.builtin.copy:
     src: usr/local/bin/
     dest: /usr/local/bin/
@@ -10,14 +9,12 @@
     mode: '0755'
 
 - name: Change default cursor
-  become: true
   ansible.builtin.lineinfile:
     path: /usr/share/icons/default/index.theme
     regexp: '^Inherits='
     line: Inherits=Breeze
 
 - name: Switch to lightdm-slick-greeter
-  become: true
   ansible.builtin.lineinfile:
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
@@ -25,7 +22,6 @@
     line: greeter-session=lightdm-slick-greeter
 
 - name: Run display setup script
-  become: true
   ansible.builtin.lineinfile:
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
@@ -33,7 +29,6 @@
     line: display-setup-script=/usr/bin/xrandr --auto
 
 - name: Hide the user list in lightdm
-  become: true
   ansible.builtin.lineinfile:
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
@@ -41,7 +36,6 @@
     line: greeter-hide-users=true
 
 - name: Copy background images
-  become: true
   ansible.builtin.copy:
     src: '{{ item }}'
     dest: "/{{ item }}"
@@ -52,7 +46,6 @@
     - usr/share/backgrounds/
 
 - name: Add lightdm-slick-greeter configuration file
-  become: true
   ansible.builtin.copy:
     src: '{{ item }}'
     dest: '/{{ item }}'
@@ -63,13 +56,11 @@
     - etc/lightdm/slick-greeter.conf
 
 - name: Ensure the group autologin exists
-  become: true
   ansible.builtin.group:
     name: autologin
     state: present
 
 - name: Enable auto-login in lightdm
-  become: true
   ansible.builtin.lineinfile:
     path: /etc/lightdm/lightdm.conf
     insertafter: '\[Seat:\*\]'
@@ -79,7 +70,6 @@
     - user_autologin|bool
 
 - name: Disable auto-login in lightdm
-  become: true
   ansible.builtin.lineinfile:
     path: /etc/lightdm/lightdm.conf
     state: absent
@@ -88,7 +78,6 @@
     - not (user_autologin|bool)
 
 - name: Add X11 configuration files
-  become: true
   ansible.builtin.copy:
     src: '{{ item }}'
     dest: '/{{ item }}'
@@ -99,7 +88,6 @@
     - etc/X11/xorg.conf.d/
 
 - name: Disable internal speaker beep by default
-  become: true
   ansible.builtin.copy:
     content: blacklist pcspkr
     dest: /etc/modprobe.d/nobeep.conf
@@ -108,7 +96,6 @@
     mode: '0644'
 
 - name: Ensure pulseaudio supports bluetooth
-  become: true
   ansible.builtin.lineinfile:
     path: /etc/pulse/system.pa
     regexp: '^load-module {{ item }}'
@@ -120,14 +107,12 @@
     - system_bluetooth|bool
 
 - name: Load module-echo-cancel PulseAudio module by default
-  become: true
   ansible.builtin.lineinfile:
     path: /etc/pulse/default.pa
     regexp: '^load-module module-echo-cancel'
     line: load-module module-echo-cancel
 
 - name: Enable services service
-  become: true
   ansible.builtin.systemd:
     name: '{{ item }}'
     enabled: true

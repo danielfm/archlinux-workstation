@@ -2,7 +2,6 @@
 
 # Replace jack package with jack2
 - name: Make sure jack package is absent
-  become: true
   community.general.pacman:
     state: absent
     force: true
@@ -10,7 +9,6 @@
       - jack
 
 - name: Install packages
-  become: true
   community.general.pacman:
     state: present
     name:

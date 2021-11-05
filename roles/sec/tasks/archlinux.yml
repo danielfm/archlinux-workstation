@@ -1,7 +1,6 @@
 ---
 
 - name: Install packages
-  become: true
   community.general.pacman:
     state: present
     name:

@@ -1,7 +1,6 @@
 ---
 
 - name: Enable multilib repository
-  become: true
   community.general.ini_file:
     path: /etc/pacman.conf
     create: false
@@ -10,7 +9,6 @@
     value: /etc/pacman.d/mirrorlist
 
 - name: Update system package definition
-  become: true
   community.general.pacman:
     update_cache: true
     upgrade: false
@@ -21,7 +19,6 @@
   register: yay_stat_result
 
 - name: Add AUR dependencies
-  become: true
   community.general.pacman:
     state: present
     name:
@@ -49,7 +46,6 @@
   when: yay_stat_result.stat.exists
 
 - name: Install packages
-  become: true
   community.general.pacman:
     state: present
     name:
@@ -103,7 +99,6 @@
       - inxi
 
 - name: Install packages required for bluetooth support
-  become: true
   community.general.pacman:
     state: present
     name:

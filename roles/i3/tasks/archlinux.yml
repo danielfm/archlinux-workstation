@@ -1,7 +1,6 @@
 ---
 
 - name: Install packages
-  become: true
   community.general.pacman:
     state: present
     name:
@@ -91,7 +90,6 @@
       - yubioath-desktop
 
 - name: Install packages required for bluetooth support
-  become: true
   community.general.pacman:
     state: present
     name:

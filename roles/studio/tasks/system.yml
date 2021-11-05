@@ -1,7 +1,6 @@
 ---
 
 - name: Add security limits file
-  become: true
   ansible.builtin.copy:
     src: 'etc/security/limits.d/'
     dest: '/etc/security/limits.d/'
@@ -10,7 +9,6 @@
     mode: '0644'
 
 - name: Add sysctl files
-  become: true
   ansible.builtin.copy:
     src: 'etc/sysctl.d/'
     dest: '/etc/sysctl.d/'
@@ -19,7 +17,6 @@
     mode: '0644'
 
 - name: Make sure the realtime group exists
-  become: true
   ansible.builtin.group:
     name: realtime
     state: present

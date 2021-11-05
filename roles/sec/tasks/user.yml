@@ -1,7 +1,6 @@
 ---
 
 - name: Ensure the .gnupg directory exists
-  become: true
   become_user: '{{ user_name }}'
   ansible.builtin.file:
     path: '/home/{{ user_name }}/.gnupg'
@@ -11,7 +10,6 @@
     mode: '0700'
 
 - name: Add GPG configuration file
-  become: true
   become_user: '{{ user_name }}'
   ansible.builtin.template:
     src: home/.gnupg/gpg.conf.j2
@@ -21,7 +19,6 @@
     mode: '0600'
 
 - name: Add Dirmngr configuration file
-  become: true
   become_user: '{{ user_name }}'
   ansible.builtin.copy:
     src: home/.gnupg/dirmngr.conf
@@ -31,7 +28,6 @@
     mode: '0600'
 
 - name: Add user configuration files
-  become: true
   become_user: '{{ user_name }}'
   ansible.builtin.copy:
     src: 'home/{{ item }}'
@@ -45,7 +41,6 @@
     - .config
 
 - name: Create Gopass config dir
-  become: true
   become_user: '{{ user_name }}'
   ansible.builtin.file:
     path: '/home/{{ user_name }}/.config/gopass'
@@ -55,7 +50,6 @@
     mode: '0700'
 
 - name: Create Gopass configuration file
-  become: true
   become_user: '{{ user_name }}'
   ansible.builtin.template:
     src: home/.config/gopass/config.yml.j2
@@ -65,7 +59,6 @@
     mode: '0600'
 
 - name: Enable user services
-  become: true
   become_user: '{{ user_name }}'
   ansible.builtin.systemd:
     name: '{{ item }}'

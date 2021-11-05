@@ -1,7 +1,6 @@
 ---
 
 - name: Ensure the secure boot keys directory exists
-  become: true
   ansible.builtin.file:
     path: '{{ system_secure_boot_keys_dir }}'
     state: directory
@@ -10,7 +9,6 @@
     mode: '0600'
 
 - name: Generate secure boot GUID.txt file
-  become: true
   ansible.builtin.copy:
     content: '{{ 999999999999999999999 | random | to_uuid }}'
     dest: '{{ system_secure_boot_keys_dir }}/GUID.txt'
@@ -20,7 +18,6 @@
     mode: '0600'
 
 - name: Generate secure boot .key and .crt files
-  become: true
   ansible.builtin.command:
     chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: |
@@ -34,7 +31,6 @@
     - db
 
 - name: Generate secure boot .cer files
-  become: true
   ansible.builtin.command:
     chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: 'openssl x509 -outform DER -in {{ item }}.crt -out {{ item }}.cer'
@@ -45,7 +41,6 @@
     - db
 
 - name: Generate secure boot .esl files
-  become: true
   ansible.builtin.command:
     chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: 'cert-to-efi-sig-list -g "$(< GUID.txt)" {{ item }}.crt {{ item }}.esl'
@@ -56,7 +51,6 @@
     - db
 
 - name: Generate secure boot .auth files
-  become: true
   ansible.builtin.command:
     chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: |
@@ -69,7 +63,6 @@
     - db
 
 - name: Sign empty file to allow removing the secure boot key when in User Mode
-  become: true
   ansible.builtin.command:
     chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: |
@@ -78,7 +71,6 @@
     creates: rm_PK.auth
 
 - name: Ensure pacman hooks directory exist
-  become: true
   ansible.builtin.file:
     path: /etc/pacman.d/hooks
     state: directory
@@ -87,7 +79,6 @@
     mode: '0755'
 
 - name: Add pacman hooks for secure boot signing
-  become: true
   ansible.builtin.template:
     src: 'etc/pacman.d/hooks/{{ item }}.j2'
     dest: '/etc/pacman.d/hooks/{{ item }}'
@@ -100,7 +91,6 @@
     - 97-secureboot-fwupd.hook
 
 - name: Instruct fwupd to use own keys for secure boot
-  become: true
   community.general.ini_file:
     path: /etc/fwupd/uefi.conf
     section: uefi

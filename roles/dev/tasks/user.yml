@@ -1,7 +1,6 @@
 ---
 
 - name: Add user configuration files
-  become: true
   become_user: '{{ user_name }}'
   ansible.builtin.copy:
     src: 'home/{{ item }}'
@@ -20,7 +19,6 @@
     - .zshrc
 
 - name: Add user configuration templates
-  become: true
   become_user: '{{ user_name }}'
   ansible.builtin.template:
     src: home/{{ item }}.j2
@@ -33,7 +31,6 @@
     - .gitconfig
 
 - name: Install oh-my-zsh
-  become: true
   become_user: '{{ user_name }}'
   ansible.builtin.git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
@@ -43,7 +40,6 @@
     accept_hostkey: true
 
 - name: Install tmux plugin manager
-  become: true
   become_user: '{{ user_name }}'
   ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
@@ -53,7 +49,6 @@
     accept_hostkey: true
 
 - name: Install vundle plugin manager
-  become: true
   become_user: '{{ user_name }}'
   ansible.builtin.git:
     repo: https://github.com/VundleVim/Vundle.vim.git
@@ -63,7 +58,6 @@
     accept_hostkey: true
 
 - name: Install emacs configuration
-  become: true
   become_user: '{{ user_name }}'
   ansible.builtin.git:
     repo: https://github.com/danielfm/dotfiles-emacs.git

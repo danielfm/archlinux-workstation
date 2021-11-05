@@ -1,7 +1,6 @@
 ---
 
 - name: Add subuid and subgid files
-  become: true
   ansible.builtin.template:
     src: etc/{{ item }}.j2
     dest: '/etc/{{ item }}'
@@ -13,7 +12,6 @@
     - subgid
 
 - name: Set podman container configuration
-  become: true
   ansible.builtin.copy:
     src: etc/containers/registries.conf
     dest: /etc/containers/registries.conf
