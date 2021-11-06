@@ -98,6 +98,7 @@
     - system_bluetooth|bool
 
 - name: Install AUR packages
+  become_user: aur_builder
   kewlfft.aur.aur:
     name:
       - cava

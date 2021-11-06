@@ -1,5 +1,18 @@
 ---
 
+- name: Create the 'aur_builder' user
+  ansible.builtin.user:
+    name: aur_builder
+    create_home: yes
+    group: wheel
+
+- name: Allow the 'aur_builder' user to run 'sudo pacman' without a password
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    create: yes
+    validate: 'visudo -cf %s'
+
 - name: Enable multilib repository
   community.general.ini_file:
     path: /etc/pacman.conf
@@ -27,6 +40,7 @@
       - gnupg
 
 - name: Clone yay AUR helper repository
+  become_user: aur_builder
   ansible.builtin.git:
     repo: https://aur.archlinux.org/yay.git
     version: master
@@ -34,12 +48,14 @@
   when: not yay_stat_result.stat.exists
 
 - name: Install yay AUR helper package
+  become_user: aur_builder
   ansible.builtin.command:
     chdir: /tmp/yay
     cmd: makepkg -si --noconfirm
   when: not yay_stat_result.stat.exists
 
 - name: Ensure yay AUR helper package is up to date
+  become_user: aur_builder
   kewlfft.aur.aur:
     name:
       - yay
@@ -94,6 +110,7 @@
       - zsh
 
 - name: Install AUR packages
+  become_user: aur_builder
   kewlfft.aur.aur:
     name:
       - inxi

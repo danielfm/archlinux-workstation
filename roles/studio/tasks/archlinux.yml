@@ -1,12 +1,18 @@
 ---
 
 # Replace jack package with jack2
+
 - name: Make sure jack package is absent
   community.general.pacman:
     state: absent
     force: true
     name:
       - jack
+
+- name: Ensure the jack2 package is present
+  community.general.pacman:
+    name:
+      - jack2
 
 - name: Install packages
   community.general.pacman:
@@ -18,7 +24,6 @@
       - dbus-python
       - dssi-plugins
       - guitarix
-      - jack2
       - kdenlive
       - ladspa-plugins
       - lv2-plugins
@@ -28,6 +33,7 @@
       - vst-plugins
 
 - name: Install AUR packages
+  become_user: aur_builder
   kewlfft.aur.aur:
     name:
       - cadence-claudia

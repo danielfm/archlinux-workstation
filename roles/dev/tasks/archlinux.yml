@@ -48,6 +48,7 @@
       - yamllint
 
 - name: Install AUR packages
+  become_user: aur_builder
   kewlfft.aur.aur:
     name:
       - aws-cli-v2-bin
