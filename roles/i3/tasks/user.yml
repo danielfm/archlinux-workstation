@@ -132,6 +132,5 @@
   become_user: '{{ user_name }}'
   ansible.builtin.file:
     src: '/usr/lib/browserpass/hosts/firefox/com.github.browserpass.native.json'
-    # yamllint disable-line rule:line-length
     dest: '/home/{{ user_name }}/.librewolf/native-messaging-hosts/com.github.browserpass.native.json'
     state: link

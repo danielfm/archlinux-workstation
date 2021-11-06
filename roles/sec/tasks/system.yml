@@ -16,7 +16,6 @@
     - tor
     - ufw
 
-# yamllint disable rule:line-length
 - name: Allow outgoing ICMP traffic (IPv4) in ufw
   ansible.builtin.lineinfile:
     path: /etc/ufw/before.rules
@@ -25,7 +24,6 @@
   loop:
     - '-A ufw-before-input  -p icmp -m state --state ESTABLISHED,RELATED     -j ACCEPT'
     - '-A ufw-before-output -p icmp -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT'
-# yamllint enable rule:line-length
 
 - name: Allow DNS outgoing traffic
   community.general.ufw:

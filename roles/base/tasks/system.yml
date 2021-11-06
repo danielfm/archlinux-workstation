@@ -31,7 +31,6 @@
     group: root
     mode: 0644
     regexp: '^hosts:'
-    # yamllint disable-line rule:line-length
     line: 'hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns'
 
 - name: Do not allow NetworkManager to manage resolv.conf
