@@ -42,4 +42,4 @@ polybar_base_theme: forest
 
 # User.js
 userjs_version: 91.1
-userjs_checksum: c622a876bb0fc9069341154319e237edf0808ff5b5fd041cb30f610da1f3f0f4
+userjs_checksum: sha256:c622a876bb0fc9069341154319e237edf0808ff5b5fd041cb30f610da1f3f0f4
