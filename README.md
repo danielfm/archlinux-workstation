@@ -76,7 +76,7 @@ Run the following commands as root to create a new user:
 
 ```sh
 # Create a group and user (replace <user>/<group> by the desired values):
-groupadd <user>
+groupadd <group>
 useradd -m -g <group> -G wheel <user>
 passwd <user>
 
