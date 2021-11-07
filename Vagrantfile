@@ -1,6 +1,6 @@
 $script = <<-SCRIPT
 pacman -Sy --noconfirm ansible base-devel git-lfs nano openssh sudo
-sudo -u vagrant ansible-galaxy install -r /vagrant/requirements.yml;
+sudo -u vagrant ansible-galaxy install -r /vagrant/requirements.yml
 SCRIPT
 
 Vagrant.configure("2") do |config|
