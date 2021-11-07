@@ -1,17 +1,14 @@
 ---
 
 - name: Set timezone to {{ system_timezone }}
-  become: true
   community.general.timezone:
     name: '{{ system_timezone }}'
 
 - name: Ensure the locale {{ system_locale }} exists
-  become: true
   community.general.locale_gen:
     name: '{{ system_locale }}'
 
 - name: Set maximum size for persistent journal
-  become: true
   community.general.ini_file:
     path: /etc/systemd/journald.conf
     owner: root
@@ -24,7 +21,6 @@
     - Restart systemd-journald service
 
 - name: Set up avahi local hostname resolution
-  become: true
   ansible.builtin.lineinfile:
     path: /etc/nsswitch.conf
     owner: root
@@ -34,7 +30,6 @@
     line: 'hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns'
 
 - name: Do not allow NetworkManager to manage resolv.conf
-  become: true
   community.general.ini_file:
     path: /etc/NetworkManager/NetworkManager.conf
     owner: root
@@ -45,7 +40,6 @@
     value: unmanaged
 
 - name: Set DNS resolvers
-  become: true
   ansible.builtin.copy:
     content: '{{ system_resolvconf }}'
     dest: /etc/resolv.conf
@@ -54,7 +48,6 @@
     mode: 0644
 
 - name: Create systemd-resolvers conf.d dir
-  become: true
   ansible.builtin.file:
     path: /etc/systemd/resolved.conf.d
     state: directory
@@ -63,7 +56,6 @@
     mode: '0755'
 
 - name: Set systemd-resolved configuration
-  become: true
   ansible.builtin.template:
     src: etc/systemd/resolved.conf.d/dns_over_tls.conf.j2
     dest: /etc/systemd/resolved.conf.d/dns_over_tls.conf
@@ -74,7 +66,6 @@
     - Restart systemd-resolved
 
 - name: Disable bluetooth Enhanced Retransmission Mode (ERTM)
-  become: true
   ansible.builtin.copy:
     src: etc/modprobe.d/xbox_bt.conf
     dest: /etc/modprobe.d/xbox_bt.conf
@@ -85,7 +76,6 @@
     - system_bluetooth|bool
 
 - name: Enable services
-  become: true
   ansible.builtin.service:
     name: '{{ item }}'
     state: started
@@ -98,7 +88,6 @@
     - systemd-resolved
 
 - name: Enable bluetooth service
-  become: true
   ansible.builtin.service:
     name: bluetooth
     state: started
