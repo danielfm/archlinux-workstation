@@ -1,5 +1,21 @@
 ---
 
+- name: Ensure config directories exist in $HOME
+  become_user: '{{ user_name }}'
+  ansible.builtin.file:
+    path: '/home/{{ user_name }}/{{ item }}'
+    mode: '0755'
+    state: directory
+  loop:
+    - .bin
+    - .config
+    - .config/gtk-3.0
+    - .config/mopidy
+    - .config/polybar
+    - .librewolf
+    - .librewolf/default
+    - .librewolf/native-messaging-hosts
+
 - name: Install polybar-themes installer
   become_user: '{{ user_name }}'
   ansible.builtin.git:
@@ -78,20 +94,6 @@
   loop:
     - .gtkrc-2.0
     - .config/gtk-3.0/settings.ini
-
-- name: Create Librewolf profile directory
-  become_user: '{{ user_name }}'
-  ansible.builtin.file:
-    path: '/home/{{ user_name }}/.librewolf/default'
-    mode: '0755'
-    state: directory
-
-- name: Create Librewolf native-messaging-hosts directory
-  become_user: '{{ user_name }}'
-  ansible.builtin.file:
-    path: '/home/{{ user_name }}/.librewolf/native-messaging-hosts'
-    mode: '0755'
-    state: directory
 
 - name: Download ghacks-user.js updater script
   become_user: '{{ user_name }}'
