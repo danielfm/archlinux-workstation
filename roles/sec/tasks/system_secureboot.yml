@@ -17,18 +17,29 @@
     group: root
     mode: '0600'
 
-- name: Generate secure boot .key and .crt files
-  ansible.builtin.command:
-    chdir: '{{ system_secure_boot_keys_dir }}'
-    cmd: |
-      openssl req -newkey rsa:4096 -nodes -keyout {{ item }}.key \
-        -new -x509 -sha256 -days 3650 -subj "/CN=Danielfm Platform Key/" \
-        -out {{ item }}.crt
-    creates: '{{ item }}.crt'
+- name: Generate secure boot private keys (RSA, 4096 bits)
+  community.crypto.openssl_privatekey:
+    path: '{{ system_secure_boot_keys_dir }}/{{ item }}.key'
   loop:
     - PK
     - KEK
     - db
+
+- name: Generate secure boot .key and .crt files
+  community.crypto.x509_certificate:
+    path: '{{ system_secure_boot_keys_dir }}/{{ item.name }}.crt'
+    privatekey_path: '{{ system_secure_boot_keys_dir }}/{{ item.name }}.key'
+    provider: selfsigned
+    selfsigned_not_after: "+3650d"
+    subject:
+      commonName: '{{ item.cn }}'
+  loop:
+    - name: PK
+      cn: Platform Key
+    - name: KEK
+      cn: Key Exchange Key
+    - name: db
+      cn: Signature Database Key
 
 - name: Generate secure boot .cer files
   ansible.builtin.command:
@@ -54,20 +65,21 @@
   ansible.builtin.command:
     chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: |
-      sign-efi-sig-list -g "$(< GUID.txt)" -k {{ item }}.key -c {{ item }}.crt \
-        {{ item }} {{ item }}.esl {{ item }}.auth
-    creates: '{{ item }}.auth'
+      sign-efi-sig-list -g "$(< GUID.txt)" -k {{ item.name }}.key -c {{ item.name }}.crt {{ item.out }} {{ item.out }}.esl {{ item.out }}.auth
+    creates: '{{ item.out }}.auth'
   loop:
-    - PK
-    - KEK
-    - db
+    - name: PK
+      out: PK
+    - name: PK
+      out: KEK
+    - name: KEK
+      out: db
 
 - name: Sign empty file to allow removing the secure boot key when in User Mode
   ansible.builtin.command:
     chdir: '{{ system_secure_boot_keys_dir }}'
     cmd: |
-      sign-efi-sig-list -g "$(< GUID.txt)" -c PK.crt \
-        -k PK.key PK /dev/null rm_PK.auth
+      sign-efi-sig-list -g "$(< GUID.txt)" -c PK.crt -k PK.key PK /dev/null rm_PK.auth
     creates: rm_PK.auth
 
 - name: Ensure pacman hooks directory exist
