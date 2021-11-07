@@ -57,17 +57,17 @@ when applying the configuration.
 
 #### Install the Required Packages
 
-Install the required Ansible roles:
-
-```sh
-ansible-galaxy install -r requirements.yml
-```
-
 Run the following command as `root` to install the packages required to
 complete the rest of the installation:
 
 ```sh
-pacman -S ansible git git-lfs base-devel sudo nano openssh
+pacman -Sy ansible base-devel git-lfs nano openssh sudo
+```
+
+Install the required Ansible roles:
+
+```sh
+ansible-galaxy install -r requirements.yml
 ```
 
 #### Create User
