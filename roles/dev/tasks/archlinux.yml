@@ -34,6 +34,7 @@
       - podman-docker
       - popeye
       - python-pipenv
+      - python-poetry
       - python-wheel
       - twine
       - ruby-bundler
