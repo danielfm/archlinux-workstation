@@ -1,6 +1,7 @@
 ---
-lint:
-  name: yamllint
-  options:
-    config-data:
-      line-length: disable
+extends: default
+
+rules:
+  line-length:
+    max: 180
+    level: warning
