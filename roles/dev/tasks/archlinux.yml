@@ -40,6 +40,7 @@
       - ruby-bundler
       - rubygems
       - smartmontools
+      - sops
       - terraform
       - tmux
       - traceroute
