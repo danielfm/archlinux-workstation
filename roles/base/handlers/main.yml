@@ -1,11 +1,21 @@
 ---
 
-- name: Restart systemd-journald service
+- name: restart systemd-journald service
   ansible.builtin.systemd:
     name: systemd-journald.service
     state: restarted
 
-- name: Restart systemd-resolved
+- name: restart systemd-resolved service
   ansible.builtin.systemd:
-    name: systemd-resolved
+    name: systemd-resolved.service
+    state: restarted
+
+- name: restart avahi-daemon service
+  ansible.builtin.systemd:
+    name: avahi-daemon.service
+    state: restarted
+
+- name: restart NetworkManager service
+  ansible.builtin.systemd:
+    name: NetworkManager.service
     state: restarted

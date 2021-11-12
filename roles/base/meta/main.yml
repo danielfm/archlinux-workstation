@@ -1,10 +1,12 @@
 ---
 
 galaxy_info:
+  role_name: base
   author: Daniel Martins
   description: Arch Linux base system configuration
   license: BSD
   min_ansible_version: 2.11
+  namespace: danielfm
   platforms:
     - name: ArchLinux
       versions:

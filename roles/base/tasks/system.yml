@@ -1,14 +1,14 @@
 ---
 
-- name: Set timezone to {{ system_timezone }}
+- name: Ensure the correct timezone is set
   community.general.timezone:
     name: '{{ system_timezone }}'
 
-- name: Ensure the locale {{ system_locale }} exists
+- name: Ensure the correct locale is set
   community.general.locale_gen:
     name: '{{ system_locale }}'
 
-- name: Set maximum size for persistent journal
+- name: Ensure the maximum size for persistent journal is set
   community.general.ini_file:
     path: /etc/systemd/journald.conf
     owner: root
@@ -17,8 +17,7 @@
     section: Journal
     option: SystemMaxUse
     value: 100M
-  notify:
-    - Restart systemd-journald service
+  notify: restart systemd-journald service
 
 - name: Set up avahi local hostname resolution
   ansible.builtin.lineinfile:
@@ -28,8 +27,9 @@
     mode: 0644
     regexp: '^hosts:'
     line: 'hosts: files mymachines myhostname mdns_minimal [NOTFOUND=return] resolve [!UNAVAIL=return] dns'
+  notify: restart avahi-daemon service
 
-- name: Do not allow NetworkManager to manage resolv.conf
+- name: Ensure NetworkManager is not allowed to manage resolv.conf
   community.general.ini_file:
     path: /etc/NetworkManager/NetworkManager.conf
     owner: root
@@ -38,8 +38,9 @@
     section: main
     option: rc-manager
     value: unmanaged
+  notify: restart NetworkManager service
 
-- name: Set DNS resolvers
+- name: Ensure the correct DNS resolvers are set
   ansible.builtin.copy:
     content: '{{ system_resolvconf }}'
     dest: /etc/resolv.conf
@@ -47,7 +48,7 @@
     group: root
     mode: 0644
 
-- name: Create systemd-resolvers conf.d dir
+- name: Ensure the systemd-resolvers configuration directory exists
   ansible.builtin.file:
     path: /etc/systemd/resolved.conf.d
     state: directory
@@ -55,17 +56,16 @@
     group: root
     mode: '0755'
 
-- name: Set systemd-resolved configuration
+- name: Ensure the systemd-resolved configuration is set
   ansible.builtin.template:
     src: etc/systemd/resolved.conf.d/dns_over_tls.conf.j2
     dest: /etc/systemd/resolved.conf.d/dns_over_tls.conf
     owner: root
     group: root
     mode: 0644
-  notify:
-    - Restart systemd-resolved
+  notify: restart systemd-resolved service
 
-- name: Disable bluetooth Enhanced Retransmission Mode (ERTM)
+- name: Ensure the bluetooth Enhanced Retransmission Mode (ERTM) is disabled
   ansible.builtin.copy:
     src: etc/modprobe.d/xbox_bt.conf
     dest: /etc/modprobe.d/xbox_bt.conf
@@ -75,7 +75,7 @@
   when:
     - system_bluetooth|bool
 
-- name: Enable services
+- name: Ensure the desired system services are enabled and started
   ansible.builtin.service:
     name: '{{ item }}'
     state: started
@@ -87,7 +87,7 @@
     - cups
     - systemd-resolved
 
-- name: Enable bluetooth service
+- name: Ensure the bluetooth service is enabled and started
   ansible.builtin.service:
     name: bluetooth
     state: started

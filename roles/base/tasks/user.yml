@@ -24,7 +24,7 @@
     uid: '{{ user_uid }}'
     shell: '/bin/zsh'
 
-- name: Ensure the ~/.ssh directory exists for {{ user_name }}
+- name: Ensure the .ssh directory exists
   become_user: '{{ user_name }}'
   ansible.builtin.file:
     path: '/home/{{ user_name }}/.ssh'
@@ -33,14 +33,14 @@
     group: '{{ user_group }}'
     mode: '0700'
 
-- name: Generate SSH keypair for {{ user_name }}
+- name: Ensure the existence of a SSH keypair
   become_user: '{{ user_name }}'
   community.crypto.openssh_keypair:
     path: '/home/{{ user_name }}/.ssh/id_rsa'
   when:
     - user_create_ssh_keypair|bool
 
-- name: Add extra home directories
+- name: Ensure extra home directories exist
   become_user: '{{ user_name }}'
   ansible.builtin.file:
     path: '/home/{{ user_name }}/{{ item }}'
@@ -50,7 +50,7 @@
     mode: '0755'
   loop: '{{ user_extra_home_dirs }}'
 
-- name: Add home .config directory
+- name: Ensure the required hidden directories exist
   become_user: '{{ user_name }}'
   ansible.builtin.file:
     path: '/home/{{ user_name }}/{{ item }}'
@@ -62,7 +62,7 @@
     - .config
     - .bin
 
-- name: Ensure bash directories exist for {{ user_name }}
+- name: Ensure bash directories exist
   become_user: '{{ user_name }}'
   ansible.builtin.file:
     path: '/home/{{ user_name }}/{{ item }}'
@@ -75,7 +75,7 @@
     - .bash_env.d
     - .bash_completions.d
 
-- name: Add user configuration files
+- name: Ensure bash configuration files exist
   become_user: '{{ user_name }}'
   ansible.builtin.copy:
     src: 'home/{{ item }}'
@@ -88,7 +88,7 @@
     - .bash_profile
     - .bashrc
 
-- name: Set duplicity backup exclusion list
+- name: Ensure duplicity backup exclusion list is set
   become_user: '{{ user_name }}'
   ansible.builtin.copy:
     content: '{{ backup_exclude }}'
@@ -97,7 +97,7 @@
     group: '{{ user_group }}'
     mode: '0644'
 
-- name: Write duplicity backup and restore scripts
+- name: Ensure duplicity backup and restore scripts exist
   become_user: '{{ user_name }}'
   ansible.builtin.template:
     src: 'home/.bin/duplicity-{{ item }}.sh.j2'
@@ -116,7 +116,7 @@
     mode: '0755'
     state: directory
 
-- name: Write duplicity systemd unit files
+- name: Ensure duplicity systemd unit files exist
   become_user: '{{ user_name }}'
   ansible.builtin.template:
     src: 'home/.config/systemd/user/{{ item }}.j2'
@@ -128,7 +128,7 @@
     - duplicity-backup.service
     - duplicity-backup.timer
 
-- name: Enable duplicity backup timer
+- name: Ensure duplicity backup timer is enabled and started
   become_user: '{{ user_name }}'
   ansible.builtin.systemd:
     scope: user
@@ -139,7 +139,7 @@
   when:
     - backup_enabled
 
-- name: Enable syncthing daemon
+- name: Ensure syncthing daemon is enabled and started
   become_user: '{{ user_name }}'
   ansible.builtin.systemd:
     scope: user
@@ -147,7 +147,7 @@
     state: started
     enabled: true
 
-- name: Disable duplicity backup timer
+- name: Ensure duplicity backup timer is disabled and stopped
   become_user: '{{ user_name }}'
   ansible.builtin.systemd:
     scope: user

@@ -1,19 +1,19 @@
 ---
 
-- name: Create the 'aur_builder' user
+- name: Ensure the 'aur_builder' user exists
   ansible.builtin.user:
     name: aur_builder
     create_home: true
     group: wheel
 
-- name: Allow the 'aur_builder' user to run 'sudo pacman' without a password
+- name: Ensure the 'aur_builder' user can run 'sudo pacman' without a password
   ansible.builtin.lineinfile:
     path: /etc/sudoers.d/11-install-aur_builder
     line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
     create: true
     validate: 'visudo -cf %s'
 
-- name: Enable multilib repository
+- name: Ensure multilib repository is enabled
   community.general.ini_file:
     path: /etc/pacman.conf
     create: false
@@ -21,7 +21,7 @@
     option: Include
     value: /etc/pacman.d/mirrorlist
 
-- name: Update system package definition
+- name: Ensure the system package definition is up to date
   community.general.pacman:
     update_cache: true
     upgrade: false
@@ -31,7 +31,7 @@
     path: /usr/bin/yay
   register: yay_stat_result
 
-- name: Add AUR dependencies
+- name: Ensure the packages for building AUR packages are installed
   community.general.pacman:
     state: present
     name:
@@ -61,7 +61,7 @@
       - yay
   when: yay_stat_result.stat.exists
 
-- name: Install packages
+- name: Ensure the desired packages are installed
   community.general.pacman:
     state: present
     name:
@@ -109,13 +109,13 @@
       - xterm
       - zsh
 
-- name: Install AUR packages
+- name: Ensure the desired AUR packages are installed
   become_user: aur_builder
   kewlfft.aur.aur:
     name:
       - inxi
 
-- name: Install packages required for bluetooth support
+- name: Ensure bluetooth packages are installed
   community.general.pacman:
     state: present
     name:

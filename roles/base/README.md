@@ -1,4 +1,4 @@
-# Base Configuration
+# Archlinux Base System Configuration
 
 This is the base configuration for setting up the base system.
 
@@ -9,7 +9,17 @@ Some of the features provided by this role:
 - System-wide DNSSEC and DNS-over-TLS support
 - Periodic backup with [Duplicity](http://duplicity.nongnu.org/) and Amazon S3
 
-## Variables
+## Requirements
+
+For the S3-backed backup storage to work, you'll need:
+
+- AWS account and an S3 bucket.
+- GnuPG key for encrypting the backup files before uploading them to S3.
+- GoPass password store with a directory containing two secrets,
+  `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`, with a valid AWS access key,
+  and that key must have read/write access to files in the target S3 bucket.
+
+## Role Variables
 
 ### `user_name`
 
@@ -156,7 +166,6 @@ Whether to enforce communication with the DNS servers via TLS.
 Whether systemd-resolved must fail to resolve domains without DNSSEC enabled.
 Change this to `no` if you are experiencing issues with sites you need to use.
 
-## References
+## Dependencies
 
-- <https://wiki.archlinux.org/index.php/Bluetooth>
-- <https://wiki.archlinux.org/index.php/Systemd-resolved>
+This role doesn't have any dependencies.
