@@ -24,6 +24,9 @@
       - leiningen
       - libusb-compat
       - maven
+      - molecule
+      - molecule-podman
+      - molecule-vagrant
       - net-tools
       - ngrep
       - ovmf
