@@ -12,5 +12,5 @@
   when:
     - system_secure_boot_keys_dir != ""
 
-- name: 'Configuration for {{ user_name }} user'
+- name: User configuration
   import_tasks: user.yml
