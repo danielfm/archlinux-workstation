@@ -1,0 +1,24 @@
+---
+
+- name: Ensure the desired packages are installed
+  community.general.pacman:
+    state: present
+    name:
+      - dnsmasq
+      - docker
+      - docker-compose
+      - emacs
+      - go
+      - jq
+      - net-tools
+      - ngrep
+      - openbsd-netcat
+      - python-pipenv
+      - python-poetry
+      - python-wheel
+      - twine
+      - ruby-bundler
+      - rubygems
+      - smartmontools
+      - tmux
+      - traceroute

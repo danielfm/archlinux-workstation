@@ -1,5 +1,14 @@
 ---
 
+- name: Ensure grub configuration is up to date
+  ansible.builtin.template:
+    src: etc/default/grub.j2
+    dest: /etc/default/grub
+    owner: root
+    group: root
+    mode: 0644
+  notify: regenerate grub config
+
 - name: Ensure the correct timezone is set
   community.general.timezone:
     name: '{{ system_timezone }}'
@@ -40,14 +49,6 @@
     value: unmanaged
   notify: restart NetworkManager service
 
-- name: Ensure the correct DNS resolvers are set
-  ansible.builtin.copy:
-    content: '{{ system_resolvconf }}'
-    dest: /etc/resolv.conf
-    owner: root
-    group: root
-    mode: 0644
-
 - name: Ensure the systemd-resolvers configuration directory exists
   ansible.builtin.file:
     path: /etc/systemd/resolved.conf.d
@@ -65,32 +66,61 @@
     mode: 0644
   notify: restart systemd-resolved service
 
-- name: Ensure the bluetooth Enhanced Retransmission Mode (ERTM) is disabled
-  ansible.builtin.copy:
-    src: etc/modprobe.d/xbox_bt.conf
-    dest: /etc/modprobe.d/xbox_bt.conf
-    owner: root
-    group: root
-    mode: 0644
-  when:
-    - system_bluetooth|bool
-
 - name: Ensure the desired system services are enabled and started
-  ansible.builtin.service:
+  ansible.builtin.systemd:
     name: '{{ item }}'
     state: started
     enabled: true
   loop:
-    - avahi-daemon
-    - NetworkManager
-    - ntpd
-    - cups
-    - systemd-resolved
+    - NetworkManager.service
+    - avahi-daemon.service
+    - cups.service
+    - ntpd.service
+    - systemd-resolved.service
+
+- name: Ensure /etc/resolv.conf points to the systemd-resolved stub
+  ansible.builtin.file:
+    src: /run/systemd/resolve/stub-resolv.conf
+    dest: /etc/resolv.conf
+    state: link
+
+- name: Ensure the user is a member of the lp group
+  ansible.builtin.user:
+    name: '{{ user_name }}'
+    groups: lp
+    state: present
+    append: true
+  when:
+    - system_bluetooth|bool
 
 - name: Ensure the bluetooth service is enabled and started
-  ansible.builtin.service:
+  ansible.builtin.systemd:
     name: bluetooth
     state: started
     enabled: true
   when:
     - system_bluetooth|bool
+
+- name: Ensure the fstrim timer is enabled
+  ansible.builtin.systemd:
+    name: fstrim.timer
+    state: started
+    enabled: true
+  when:
+    - system_has_ssd|bool
+
+- name: Ensure the fstrim timer is disabled
+  ansible.builtin.systemd:
+    name: fstrim.timer
+    state: stopped
+    enabled: false
+  when:
+    - not system_has_ssd|bool
+
+- name: Ensure extra system services are enabled and started
+  ansible.builtin.systemd:
+    name: '{{ item.name }}'
+    state: started
+    enabled: true
+  loop: '{{ extra_enabled_system_services }}'
+  when: extra_enabled_system_services|length > 0

@@ -22,7 +22,9 @@ This installation contains the following Ansible roles:
 
 | Role     | Description                                                          |
 |----------|----------------------------------------------------------------------|
+| `aur`    | Sets up AUR and multilib repos                                       |
 | `base`   | Sets up the base system configuration                                |
+| `backup` | Sets up automatic periodic backups with Duplicity and S3             |
 | `i3`     | Sets up i3 window manager desktop environment                        |
 | `dev`    | Sets up necessary packages for my current job as a software engineer |
 | `sec`    | Sets up security-related packages and configuration                  |
@@ -48,7 +50,7 @@ configuration.
 
 To bootstrap a VM with this configuration, make sure you have
 [Vagrant](https://www.vagrantup.com/) installed and then run
-`make vagrant`.
+`vagrant up`.
 
 Check the troubleshooting section below if you find any errors
 when applying the configuration.
@@ -87,8 +89,8 @@ EDITOR=nano visudo -f /etc/sudoers.d/<user>
 ### Running the Ansible Playbook
 
 Clone this playbook in your home directory, override the desired variables
-in a new file `vars/custom.yml` (see the available vars in `vars/main.yml`)
-and then run the following command to apply the Ansible playbook:
+in a new file `vars/custom.yml` and then run the following command to apply
+the Ansible playbook:
 
 ```sh
 # Clone the repository:
@@ -99,11 +101,24 @@ cd archlinux-workstation
 nano vars/custom.yml
 
 # Run the playbook:
-make run
+ansible-playbook main.yml
 ```
 
 Don't leave the machine unattended as you'll might have to re-enter the user
-password a few times throughout the process when installing the required packages.
+password a few times throughout the process when installing the required
+packages.
+
+#### Tags
+
+I want to run some tasks more frequently than others, such as installing
+packages.
+
+To avoid wasting time executing the whole playbook for specific tasks, you can
+specify the corresponding tags to run:
+
+```sh
+ansible-playbook main.yml -t pacman
+```
 
 ### Troubleshooting
 
@@ -116,8 +131,8 @@ configuration:
 fatal: [default]: FAILED! => {"changed": false, "commands": ["/usr/bin/ufw status verbose"], "msg": "ERROR: problem running iptables: iptables v1.8.7 (legacy): can't initialize iptables table `filter': Table does not exist (do you need to insmod?)\nPerhaps iptables or your kernel needs to be upgraded.\n\n\n"}
 ```
 
-- If you are provisioning a VM with Vagrant, try running `make vagrant` to reboot
-  the VM and retry the provisioning.
+- If you are provisioning a VM with Vagrant, try running
+  `vagrant reload --provision` to reboot the VM and retry the provisioning.
 - If you are provisioning in your machine, try rebooting and retrying.
 
 #### Issues When Installing AUR Packages

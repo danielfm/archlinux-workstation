@@ -6,7 +6,7 @@
     dest: /usr/local/bin/
     owner: root
     group: root
-    mode: '0755'
+    mode: 0755
 
 - name: Change default cursor
   ansible.builtin.lineinfile:
@@ -41,7 +41,7 @@
     dest: "/{{ item }}"
     owner: root
     group: root
-    mode: '0644'
+    mode: 0644
   loop:
     - usr/share/backgrounds/
 
@@ -51,7 +51,7 @@
     dest: '/{{ item }}'
     owner: root
     group: root
-    mode: '0644'
+    mode: 0644
   loop:
     - etc/lightdm/slick-greeter.conf
 
@@ -83,7 +83,7 @@
     dest: '/{{ item }}'
     owner: root
     group: root
-    mode: '0644'
+    mode: 0644
   loop:
     - etc/X11/xorg.conf.d/
 
@@ -93,24 +93,7 @@
     dest: /etc/modprobe.d/nobeep.conf
     owner: root
     group: root
-    mode: '0644'
-
-- name: Ensure pulseaudio supports bluetooth
-  ansible.builtin.lineinfile:
-    path: /etc/pulse/system.pa
-    regexp: '^load-module {{ item }}'
-    line: 'load-module {{ item }}'
-  loop:
-    - module-bluetooth-policy
-    - module-bluetooth-discover
-  when:
-    - system_bluetooth|bool
-
-- name: Load module-echo-cancel PulseAudio module by default
-  ansible.builtin.lineinfile:
-    path: /etc/pulse/default.pa
-    regexp: '^load-module module-echo-cancel'
-    line: load-module module-echo-cancel
+    mode: 0644
 
 - name: Enable services service
   ansible.builtin.systemd:
@@ -119,3 +102,13 @@
   loop:
     - ipp-usb
     - lightdm
+
+- name: Ensure the existence of /usr/bin/i3lock
+  ansible.builtin.copy:
+    dest: /usr/bin/i3lock
+    content: |
+      #!/bin/bash
+      light-locker-command -l
+    owner: root
+    group: root
+    mode: 0755

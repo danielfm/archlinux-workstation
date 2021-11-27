@@ -1,171 +1,122 @@
-# Archlinux Base System Configuration
+# Arch Linux Base System Configuration
 
-This is the base configuration for setting up the base system.
+This is the base configuration for setting up a base Arch Linux system.
 
 Some of the features provided by this role:
 
-- Enable `multilib` repository
-- Set up `yay` for an easy way of using the AUR
+- General system configuration, such as timezone and locale
 - System-wide DNSSEC and DNS-over-TLS support
-- Periodic backup with [Duplicity](http://duplicity.nongnu.org/) and Amazon S3
+- Grub setup for booting from dmcrypt-encrypted volume
+- Support for custom kernel parameters
+- Allow the installation of extra packages
+- Auto-generation of a SSH key for the main user
+- Creation of custom directories in user `$HOME`
+- Installation of extra aspell dictionaries (e.g. for emacs users)
 
 ## Requirements
 
-For the S3-backed backup storage to work, you'll need:
+This role only supports Arch Linux systems with:
 
-- AWS account and an S3 bucket.
-- GnuPG key for encrypting the backup files before uploading them to S3.
-- GoPass password store with a directory containing two secrets,
-  `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`, with a valid AWS access key,
-  and that key must have read/write access to files in the target S3 bucket.
+- AUR enabled
+- GRUB bootloader
 
 ## Role Variables
 
-### `user_name`
+```yaml
+# Username of the main user of the system.
+user_name:
 
-**Default value:** `None`
+# Group name of the main user of the system.
+user_group:
 
-Username of the main user of the system.
+# UID of the main user of the system.
+user_uid: 1000
 
-### `user_group`
+# GID of the main user of the system.
+user_gid: 1000
 
-**Default value:** `None`
+# Whether to create a SSH keypair for the main user of the system.
+user_create_ssh_keypair: true
 
-Group name of the main user of the system.
+# Additional directories to create in the main user's home directory.
+user_extra_home_dirs: []
 
-### `user_uid`
+# System timezone.
+system_timezone: UTC
 
-**Default value:** `None`
+# System locale.
+system_locale: en_US.UTF-8
 
-UID of the main user of the system.
+# If the system have bluetooth support, enable this to install the required packages.
+system_bluetooth: false
 
-### `user_gid`
+# DNS servers to be used by the system.
+system_dns_main: 9.9.9.9 149.112.112.112
+system_dns_fallback: 1.1.1.1 1.0.0.1
 
-**Default value:** `None`
+# Whether to enforce communication with the DNS servers via TLS.
+system_dns_over_tls: true
 
-GID of the main user of the system.
+# Whether systemd-resolved must fail to resolve domains without DNSSEC enabled.
+system_dns_dnssec: true
 
-### `user_create_ssh_keypair`
+# Whether to enable optimizations for SSD-based systems.
+system_has_ssd: true
 
-**Default value:** `yes`
+# Whetner the disk has full disk encryption with dmcrypt in place.
+system_dmcrypt_enabled: true
+system_dmcrypt_cryptdevice: ''
+system_dmcrypt_cryptkey: ''
+system_dmcrypt_root: ''
+system_dmcrypt_resume: ''
 
-Whether to create a SSH keypair for the main user of the system.
+# Grub options.
+system_grub_default: Advanced options for Arch Linux>Arch Linux, with Linux linux-lts
+system_grub_timeout_secs: 5
 
-### `user_gnupg_key_id`
+# Extra arguments to pass to the kernel line in the bootloader.
+system_kernel_extra_args: ''
 
-**Default value:** `None`
+# Extra kernel variants to install.
+system_extra_kernel_variants: []
 
-GPG key id used as the default GPG key for encrypt operations.
+# Extra aspell dictionaries to install.
+aspell_extra_dictionaries: ['pt']
 
-### `backup_enabled`
+# Extra packages to install.
+extra_packages_pacman: []
+extra_packages_aur: []
 
-**Default value:** `true`
-
-Whether to enable the Duplicity backup service.
-
-### `backup_schedule`
-
-**Default value:** `daily`
-
-Backup schedule.
-
-### `backup_retention_days`
-
-**Default value:** `30`
-
-Maximum days to keep each backup version.
-
-### `backup_full_period_days`
-
-**Default value:** `7`
-
-Force a full backup after that period, and use incremental backups otherwise.
-
-### `backup_s3_bucket_name`
-
-**Default value:** `None`
-
-S3 bucket name in which to upload the backups.
-
-### `backup_s3_gopass_secret_dir`
-
-**Default value:** `None`
-
-Directory in your `gopass` store which contains two secrets, `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY`.
-
-### `backup_source_dir`
-
-**Default value:** `$HOME`
-
-Main directory to include in the backups.
-
-### `backup_exclude`
-
-**Default value:** `""`
-
-Multi-line string containing file patterns to exclude from the backup.
-
-### `backup_gnupg_signing_key_id`
-
-**Default value:** `None`
-
-GPG key id used to sign Duplicity backups.
-
-### `backup_gnupg_encrypt_key_id`
-
-**Default value:** `None`
-
-GPG key id used to encrypt Duplicity backups.
-
-### `user_extra_home_dirs`
-
-**Default value:** `[]`
-
-Additional directories to create in the main user's home directory.
-
-### `system_timezone`
-
-**Default value:** `America/Sao_Paulo`
-
-System timezone.
-
-### `system_locale`
-
-**Default value:** `en_US.UTF-8`
-
-System locale.
-
-### `system_bluetooth`
-
-**Default value:** `yes`
-
-If the system have bluetooth support, enable this to install the required packages.
-
-### `system_resolvconf`
-
-**Default value:** [Quad9 DNS servers](https://www.quad9.net/)
-
+# Extra systemd services to enable.
+extra_enabled_user_services: []
+extra_enabled_system_services: []
 ```
-nameserver 9.9.9.9
-nameserver 149.112.112.112
-```
-
-DNS servers to be used by the system. The configuration sets up systemd-resolved
-to require DNSSEC and DNS-over-TLS for increased security and privacy.
-
-### `system_dns_over_tls`
-
-**Default value:** `yes`
-
-Whether to enforce communication with the DNS servers via TLS.
-
-### `system_dns_dnssec`
-
-**Default value:** `yes`
-
-Whether systemd-resolved must fail to resolve domains without DNSSEC enabled.
-Change this to `no` if you are experiencing issues with sites you need to use.
 
 ## Dependencies
 
-This role doesn't have any dependencies.
+Roles:
+
+- `danielfm.aur`
+
+## Example Playbook
+
+```yaml
+---
+
+- hosts: all
+  gather_facts: false
+  become: true
+
+  vars:
+    user_name: danielfm
+    user_group: danielfm
+
+  roles:
+    - base
+```
+
+## License
+
+Copyright (C) Daniel Fernandes Martins
+
+Distributed under the New BSD License. See LICENSE for further details.

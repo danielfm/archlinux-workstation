@@ -1,0 +1,49 @@
+---
+# This is an example playbook to execute Ansible tests.
+
+- name: Verify
+  hosts: all
+  gather_facts: false
+
+  vars:
+    aws_access_key_id: "{{ lookup('env', 'AWS_ACCESS_KEY_ID') }}"
+    aws_secret_access_key: "{{ lookup('env', 'AWS_SECRET_ACCESS_KEY') }}"
+    backup_s3_gopass_secret_dir: duplicity/aws
+
+  tasks:
+    - name: Create PGP key
+      ansible.builtin.command:
+        cmd: |
+          gpg --batch --passphrase '' --quick-gen-key ansible default default
+        creates: ~/.gnupg/private-keys-v1.d
+
+    - name: Initialize gopass store
+      ansible.builtin.shell:
+        cmd: |
+          echo '' | gopass init ansible
+        creates: ~/.config/gopass/config.yml
+
+    - name: Add AWS credentials to gopass store
+      ansible.builtin.shell:
+        cmd: |
+          mkdir -p ~/.local/share/gopass/stores/root/{{ backup_s3_gopass_secret_dir }}
+          cd ~/.local/share/gopass/stores/root/{{ backup_s3_gopass_secret_dir }}
+          echo {{ aws_access_key_id }}     | gpg --encrypt -r ansible > AWS_ACCESS_KEY_ID.gpg
+          echo {{ aws_secret_access_key }} | gpg --encrypt -r ansible > AWS_SECRET_ACCESS_KEY.gpg
+        creates: ~/.local/share/gopass/stores/root/{{ backup_s3_gopass_secret_dir }}
+
+    - name: Run backup script
+      ansible.builtin.command:
+        cmd: |
+          ~/.bin/duplicity-backup.sh
+
+    - name: Run restore script
+      ansible.builtin.command:
+        cmd: |
+          ~/.bin/duplicity-restore.sh -o ~/backup-restore
+
+  post_tasks:
+    - name: Remove restored files
+      ansible.builtin.file:
+        path: ~/backup-restore
+        state: absent

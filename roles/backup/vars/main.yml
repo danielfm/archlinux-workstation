@@ -1,0 +1,10 @@
+---
+
+# Username of the main user of the system.
+# user_name:
+
+# Group name of the main user of the system.
+# user_group:
+
+# S3 bucket name in which to upload the backups.
+# backup_s3_bucket_name: john-doe-backups

@@ -1,17 +1,19 @@
 ---
 
 galaxy_info:
+  role_name: sec
   author: Daniel Martins
   description: Installation and configuration of security tools
   license: BSD
   min_ansible_version: 2.11
+  namespace: danielfm
   platforms:
     - name: ArchLinux
       versions:
         - any
 
 dependencies:
-  - role: base
+  - aur
 
 collections:
   - kewlfft.aur

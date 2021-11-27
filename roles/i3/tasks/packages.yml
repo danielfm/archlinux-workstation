@@ -1,0 +1,108 @@
+---
+
+- name: Ensure the desired packages are installed
+  community.general.pacman:
+    state: present
+    name:
+      - arandr
+      - archlinux-wallpaper
+      - browserpass-chromium
+      - browserpass-firefox
+      - cheese
+      - chromium
+      - dunst
+      - feh
+      - file-roller
+      - gcolor3
+      - gsimplecal
+      - gst-libav
+      - gst-plugins-bad
+      - gst-plugins-good
+      - gst-plugins-ugly
+      - gufw
+      - gvfs
+      - highlight
+      - hsetroot
+      - i3-gaps
+      - ipp-usb
+      - libappindicator-gtk2
+      - libappindicator-gtk3
+      - libmpdclient
+      - light-locker
+      - lightdm
+      - lightdm-gtk-greeter
+      - lxappearance
+      - mediainfo
+      - mesa-demos
+      - mousepad
+      - nitrogen
+      - nm-connection-editor
+      - noto-fonts
+      - noto-fonts-cjk
+      - noto-fonts-emoji
+      - noto-fonts-extra
+      - otf-ipafont
+      - pantheon-calculator
+      - papirus-icon-theme
+      - pavucontrol
+      - pcmanfm
+      - playerctl
+      - polkit-gnome
+      - pulseaudio
+      - pulseaudio-alsa
+      - python-pywal
+      - qt5ct
+      - ranger
+      - rofi
+      - rxvt-unicode
+      - sane
+      - sane-airscan
+      - seahorse
+      - thunar
+      - thunar-archive-plugin
+      - thunar-media-tags-plugin
+      - thunar-volman
+      - ttf-arphic-uming
+      - ttf-baekmuk
+      - ttf-fantasque-sans-mono
+      - ttf-freefont
+      - ttf-indic-otf
+      - tumbler
+      - urxvt-perls
+      - viewnior
+      - w3m
+      - xfce4-power-manager
+      - xorg-apps
+      - xorg-xinit
+      - xournalpp
+
+- name: Ensure packages required for bluetooth support are installed
+  community.general.pacman:
+    state: present
+    name:
+      - pulseaudio-bluetooth
+  when:
+    - system_bluetooth|bool
+
+- name: Ensure the desired AUR packages are installed
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    state: present
+    name:
+      - librewolf-bin
+      - lightdm-settings
+      - lightdm-slick-greeter
+      - nerd-fonts-terminus
+      - networkmanager-dmenu-git
+      - pamac-aur
+      - picom-tryone-git
+      - pm-utils
+      - polybar
+      - terminess-powerline-font-git
+      - timeshift
+      - ttf-font-icons
+      - ttf-material-design-icons
+      - ttf-ms-fonts
+      - urxvt-font-size
+      - urxvt-resize-font-git
+      - xcursor-breeze

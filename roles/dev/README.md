@@ -2,46 +2,63 @@
 
 This role installs and configures the software I use for working.
 
-## Variables
+## Requirements
 
-### `user_name`
+This role only supports Arch Linux systems.
 
-**Default value:** `None`
+## Role Variables
 
-Username of the main user of the system.
+```yaml
+# Username of the main user of the system.
+user_name:
 
-### `user_group`
+# Group name of the main user of the system.
+user_group:
 
-**Default value:** `None`
+# GPG key id used as the default GPG key for encryption and signing operations.
+user_gnupg_key_id:
 
-Group name of the main user of the system.
+# User full name. Used to populate the author name in Git commits, among other things.
+user_full_name:
 
-### `user_gnupg_key_id`
+# Author information to be used with GitHub.
+user_github_username:
+user_github_email:
 
-**Default value:** `None`
+# IRC server and username, used by emacs erc.
+user_irc_nickname: ''
+user_irc_server: ''
+```
 
-GPG key id used as the default GPG key for encryption and signing operations.
+## Dependencies
 
-### `user_full_name`
+Roles:
 
-**Default value:** `None`
+- `danielfm.aur`
 
-User full name. Used to populate the author name in Git commits, among other things.
+## Example Playbook
 
-### `user_github_username`
+```yaml
+---
 
-**Default value:** `None`
+- hosts: all
+  gather_facts: false
+  become: true
 
-GitHub username.
+  vars:
+    user_name: jdoe
+    user_group: jdoe
+    user_gnupg_key_id: '0x123456789'
+    user_full_name: John Doe
+    user_github_username: jdoe
+    user_github_email: john.doe@email.com
 
-### `user_github_email`
+  roles:
+    - dev
+```
 
-**Default value:** `None`
+## License
 
-Email used to populate the author e-mail in Git commit.
+Copyright (C) Daniel Fernandes Martins
 
-### `user_irc_nickname`
-
-**Default value:** `None`
-
-IRC nickname.
+Distributed under the New BSD License. See LICENSE for further details.

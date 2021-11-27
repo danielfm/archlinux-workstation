@@ -1,0 +1,18 @@
+---
+
+galaxy_info:
+  role_name: aur
+  author: Daniel Martins
+  description: Enables the usage of the AUR package repository
+  license: BSD
+  min_ansible_version: 2.11
+  namespace: danielfm
+  platforms:
+    - name: ArchLinux
+      versions:
+        - any
+
+collections:
+  - kewlfft.aur
+
+dependencies: []

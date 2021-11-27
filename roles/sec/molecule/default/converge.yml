@@ -1,0 +1,14 @@
+---
+
+- name: Converge
+  hosts: all
+  gather_facts: false
+  become: true
+
+  vars:
+    user_name: vagrant
+    user_group: vagrant
+    user_gnupg_key_id: '0x12345678'
+
+  roles:
+    - danielfm.sec

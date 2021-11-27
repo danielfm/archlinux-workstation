@@ -1,4 +1,5 @@
 [Resolve]
-FallbackDNS=
+DNS={{ system_dns_main }}
+FallbackDNS={{ system_dns_fallback }}
 DNSOverTLS={{ 'yes' if system_dns_over_tls else 'false' }}
 DNSSEC={{ 'true' if system_dns_dnssec else 'false' }}

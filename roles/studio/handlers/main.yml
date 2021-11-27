@@ -1,0 +1,9 @@
+---
+
+- name: restart PulseAudio
+  become: true
+  become_user: '{{ user_name }}'
+  ansible.builtin.command:
+    cmd: |
+      pulseaudio -k
+      pulseaudio --start

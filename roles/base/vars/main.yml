@@ -1,10 +1,7 @@
 ---
 
-# User data
-# user_gnupg_key_id: '0x9999999999999999'
+# Username of the main user of the system.
+# user_name:
 
-# Backup
-# backup_s3_bucket_name: john-doe-backups
-# backup_s3_gopass_secret_dir: env/aws/duplicity
-# backup_gnupg_encrypt_key_id: '0x9999999999999999'
-# backup_gnupg_signing_key_id: '0x9999999999999999'
+# Group name of the main user of the system.
+# user_group:

@@ -1,0 +1,23 @@
+---
+# Based on ansible-lint config
+extends: default
+
+rules:
+  braces:
+    max-spaces-inside: 1
+    level: error
+  brackets:
+    max-spaces-inside: 1
+    level: error
+  colons:
+    max-spaces-after: -1
+    level: error
+  commas:
+    max-spaces-after: -1
+    level: error
+  hyphens:
+    level: error
+  key-duplicates: enable
+  line-length: disable
+  new-lines:
+    type: unix

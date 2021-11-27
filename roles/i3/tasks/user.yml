@@ -4,14 +4,13 @@
   become_user: '{{ user_name }}'
   ansible.builtin.file:
     path: '/home/{{ user_name }}/{{ item }}'
-    mode: '0755'
+    mode: 0755
     state: directory
   loop:
     - .bin
     - .config
     - .config/gtk-3.0
-    - .config/mopidy
-    - .config/polybar
+    - .config/i3
     - .librewolf
     - .librewolf/default
     - .librewolf/native-messaging-hosts
@@ -32,13 +31,12 @@
     cmd: 'echo "1" | ./setup.sh'
     creates: '/home/{{ user_name }}/.config/polybar/{{ polybar_base_theme }}'
 
-- name: Create base polybar theme directory
-  become_user: '{{ user_name }}'
-  ansible.builtin.copy:
+- name: Create link to chosen polybar theme
+  ansible.builtin.file:
     src: '/home/{{ user_name }}/.config/polybar/{{ polybar_base_theme }}/'
     dest: '/home/{{ user_name }}/.config/polybar/active'
-    owner: '{{ user_name }}'
-    group: '{{ user_group }}'
+    state: link
+    mode: 0755
 
 - name: Add user config files
   become_user: '{{ user_name }}'
@@ -47,7 +45,7 @@
     dest: '/home/{{ user_name }}/'
     owner: '{{ user_name }}'
     group: '{{ user_group }}'
-    mode: '0644'
+    mode: 0644
   loop:
     - .Xresources
     - .Xresources.d
@@ -68,7 +66,15 @@
     dest: '/home/{{ user_name }}/.bin/'
     owner: '{{ user_name }}'
     group: '{{ user_group }}'
-    mode: '0755'
+    mode: 0755
+
+- name: Ensure directories set as GTK bookmarks exist
+  become_user: '{{ user_name }}'
+  ansible.builtin.file:
+    path: '{{ item.path }}'
+    state: directory
+    mode: 0755
+  loop: '{{ gtk_bookmarks }}'
 
 - name: Add templated user config files
   become_user: '{{ user_name }}'
@@ -77,11 +83,11 @@
     dest: '/home/{{ user_name }}/{{ item }}'
     owner: '{{ user_name }}'
     group: '{{ user_group }}'
-    mode: '0644'
+    mode: 0644
   loop:
     - .gtk-bookmarks
     - .config/gtk-3.0/bookmarks
-    - .config/mopidy/mopidy.conf
+    - .config/i3/config
 
 - name: Set GTK config
   become_user: '{{ user_name }}'
@@ -90,7 +96,7 @@
     dest: '/home/{{ user_name }}/{{ item }}'
     owner: '{{ user_name }}'
     group: '{{ user_group }}'
-    mode: '0644'
+    mode: 0644
   loop:
     - .gtkrc-2.0
     - .config/gtk-3.0/settings.ini
@@ -103,7 +109,7 @@
     checksum: '{{ userjs_checksum }}'
     owner: '{{ user_name }}'
     group: '{{ user_group }}'
-    mode: '0755'
+    mode: 0755
 
 - name: Copy user-overrides.js file
   become_user: '{{ user_name }}'
@@ -112,7 +118,7 @@
     dest: '/home/{{ user_name }}/.librewolf/default/user-overrides.js'
     owner: '{{ user_name }}'
     group: '{{ user_group }}'
-    mode: '0644'
+    mode: 0644
 
 - name: Create Librewolf profiles.ini file
   become_user: '{{ user_name }}'
@@ -121,7 +127,7 @@
     dest: '/home/{{ user_name }}/.librewolf/profiles.ini'
     owner: '{{ user_name }}'
     group: '{{ user_group }}'
-    mode: '0644'
+    mode: 0644
 
 - name: Generate user.js file
   become_user: '{{ user_name }}'

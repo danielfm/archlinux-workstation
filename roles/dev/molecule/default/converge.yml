@@ -1,0 +1,17 @@
+---
+
+- name: Converge
+  hosts: all
+  gather_facts: false
+  become: true
+
+  vars:
+    user_name: vagrant
+    user_group: vagrant
+    user_full_name: Vagrant User
+    user_github_username: jdoe
+    user_github_email: john.doe@email.com
+    user_gnupg_key_id: '0x123456789'
+
+  roles:
+    - danielfm.dev

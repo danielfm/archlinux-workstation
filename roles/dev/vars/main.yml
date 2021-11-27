@@ -1,15 +1,17 @@
-#
-# User data
-#
+---
 
-# user_name: john-doe
-# user_group: john-doe
+# Username of the main user of the system.
+# user_name:
 
-# user_full_name: John Doe
+# Group name of the main user of the system.
+# user_group:
 
-# user_github_username: jdoe
-# user_github_email: john.doe@email.com
+# User full name. Used to populate the author name in Git commits, among other things.
+# user_full_name:
 
-# user_irc_nickname: jdoe
+# Author information to be used with GitHub.
+# user_github_username:
+# user_github_email:
 
-# user_gnupg_key_id: '0x123456789'
+# GPG key id used as the default GPG key for encryption and signing operations.
+# user_gnupg_key_id:

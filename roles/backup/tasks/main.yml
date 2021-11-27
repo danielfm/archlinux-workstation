@@ -1,0 +1,8 @@
+---
+
+- name: Software installation
+  import_tasks: packages.yml
+  tags: ['pacman']
+
+- name: User configuration
+  import_tasks: user.yml

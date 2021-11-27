@@ -1,6 +1,5 @@
 $script = <<-SCRIPT
-pacman -Sy --noconfirm ansible base-devel git-lfs nano openssh sudo
-sudo -u vagrant ansible-galaxy install -r /vagrant/requirements.yml
+pacman -Sy --noconfirm base-devel git-lfs nano openssh sudo
 SCRIPT
 
 Vagrant.configure("2") do |config|
@@ -15,9 +14,11 @@ Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: $script
 
   config.vm.provision "ansible_local" do |ansible|
-    ansible.playbook = "playbook.yml"
-    ansible.raw_arguments = [
-      '--extra-vars', '@vars/ansible.yml'
-    ]
+    ansible.config_file = "vagrant-ansible.cfg"
+
+    ansible.playbook = "main.yml"
+    ansible.extra_vars = "vars/vagrant.yml"
+
+    ansible.galaxy_role_file = "requirements.yml"
   end
 end

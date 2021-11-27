@@ -1,28 +1,52 @@
 ---
 
 # User data
-user_name: danielfm
-user_group: danielfm
 user_uid: 1000
 user_gid: 1000
 user_create_ssh_keypair: true
 user_extra_home_dirs: []
 
-# Backup
-backup_enabled: true
-backup_schedule: 'daily'
-backup_retention_days: 30
-backup_full_period_days: 7
-backup_source_dir: '/home/{{ user_name }}'
-backup_source_exclude: ''
-backup_exclude: ''
-
 # System data
-system_timezone: America/Sao_Paulo
+system_timezone: UTC
 system_locale: en_US.UTF-8
-system_bluetooth: true
+
+# Whether to setup bluetooth
+system_bluetooth: false
+
+# DNS options
 system_dns_over_tls: true
 system_dns_dnssec: true
-system_resolvconf: |
-  nameserver 9.9.9.9
-  nameserver 149.112.112.112
+system_dns_main: 9.9.9.9 149.112.112.112
+system_dns_fallback: 1.1.1.1 1.0.0.1
+
+# Whether to enable optimizations for SSDs
+system_has_ssd: true
+
+# Whether full disk encryption with dmcrypt is in place
+system_dmcrypt_enabled: true
+system_dmcrypt_cryptdevice: ''
+system_dmcrypt_cryptkey: ''
+system_dmcrypt_root: ''
+system_dmcrypt_resume: ''
+
+# Grub options
+system_grub_default: Advanced options for Arch Linux>Arch Linux, with Linux linux-lts
+system_grub_timeout_secs: 5
+
+# Extra arguments to pass to the kernel line in the bootloader.
+system_kernel_extra_args: ''
+
+# Extra kernel variants to install
+system_extra_kernel_variants: []
+
+# Extra aspell dictionaries to install
+aspell_extra_dictionaries:
+  - pt
+
+# Other extra packages to install
+extra_packages: []
+extra_aur_packages: []
+
+# Extra systemd services to enable.
+extra_enabled_user_services: []
+extra_enabled_system_services: []

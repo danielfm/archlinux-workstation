@@ -1,0 +1,13 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: false
+  become: true
+
+  vars:
+    user_name: vagrant
+    user_group: vagrant
+    backup_s3_bucket_name: danielfm-backups
+
+  roles:
+    - danielfm.backup

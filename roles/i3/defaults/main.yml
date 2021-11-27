@@ -1,0 +1,31 @@
+---
+
+# Whether to enable autologin in lightdm.
+user_autologin: false
+
+# Whether to enable bluetooth.
+system_bluetooth: false
+
+# Bookmarks in file managers.
+gtk_bookmarks:
+  - name: Downloads
+    path: '/home/{{ user_name }}/Downloads'
+
+# GTK look and feel.
+gtk_theme: Matcha-azul
+gtk_icon_theme: Papirus
+gtk_cursor_theme: Breeze
+
+# Polybar theme used as basis for my own polybar config.
+polybar_base_theme: forest
+
+# User.js version to download.
+# Ref: https://github.com/arkenfox/user.js/releases
+userjs_version: 94.1
+userjs_checksum: sha256:10cec4238bc2fbab4c988cb4c2faeea3e27a3d2634f2137ec9cbfe3cce8304de
+
+# Terminal emulator to use in i3 commands.
+i3_term: urxvt
+
+# Extra commands to append to i3 config.
+extra_i3_config: ''

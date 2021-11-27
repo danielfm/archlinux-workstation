@@ -1,0 +1,191 @@
+---
+
+- name: Set ufw default forward policy
+  ansible.builtin.lineinfile:
+    path: /etc/default/ufw
+    regex: '^DEFAULT_FORWARD_POLICY='
+    line: 'DEFAULT_FORWARD_POLICY="ACCEPT"'
+
+- name: Ensure ufw service is enabled
+  ansible.builtin.systemd:
+    name: ufw.service
+    state: started
+    enabled: true
+
+- name: Allow outgoing ICMP traffic (IPv4) in ufw
+  ansible.builtin.lineinfile:
+    path: /etc/ufw/before.rules
+    insertbefore: '^COMMIT'
+    line: '{{ item }}'
+  loop:
+    - '-A ufw-before-input  -p icmp -m state --state ESTABLISHED,RELATED     -j ACCEPT'
+    - '-A ufw-before-output -p icmp -m state --state NEW,ESTABLISHED,RELATED -j ACCEPT'
+
+- name: Allow DNS outgoing traffic
+  community.general.ufw:
+    rule: allow
+    port: '53'
+    proto: udp
+    direction: out
+
+- name: Allow mDNS outgoing traffic
+  community.general.ufw:
+    rule: allow
+    port: '5353'
+    proto: udp
+    direction: out
+
+- name: Allow mDNS incoming traffic
+  community.general.ufw:
+    rule: allow
+    port: '5353'
+    proto: udp
+    direction: in
+
+- name: Allow WHOIS outgoing traffic
+  community.general.ufw:
+    rule: allow
+    port: '43'
+    proto: tcp
+    direction: out
+
+- name: Allow NTP incoming/outgoing traffic
+  community.general.ufw:
+    rule: allow
+    port: '123'
+    proto: udp
+    direction: '{{ item }}'
+  loop:
+    - in
+    - out
+
+- name: Allow DHCP incoming/outgoing traffic
+  community.general.ufw:
+    rule: allow
+    port: '68'
+    proto: udp
+    direction: '{{ item }}'
+  loop:
+    - in
+    - out
+
+- name: Allow IRC SSL outgoing traffic
+  community.general.ufw:
+    rule: allow
+    port: '"{{ item }}"'
+    proto: tcp
+    direction: out
+  loop:
+    - 6697
+    - 7000
+    - 7070
+
+- name: Allow DNS-over-TLS outgoing traffic
+  community.general.ufw:
+    rule: allow
+    port: '853'
+    proto: '{{ item }}'
+    direction: out
+  loop:
+    - tcp
+
+- name: Allow HTTP outgoing traffic
+  community.general.ufw:
+    rule: allow
+    port: '80'
+    proto: tcp
+    direction: out
+
+- name: Allow HTTPS outgoing traffic
+  community.general.ufw:
+    rule: allow
+    port: '443'
+    proto: tcp
+    direction: out
+
+- name: Allow SSH incoming traffic
+  community.general.ufw:
+    rule: allow
+    port: '22'
+    proto: tcp
+    direction: in
+  when:
+    - user_name == "vagrant"
+
+- name: Allow SSH outgoing traffic
+  community.general.ufw:
+    rule: allow
+    port: '22'
+    proto: tcp
+    direction: out
+
+- name: Allow Git protocol traffic
+  community.general.ufw:
+    rule: allow
+    port: '9418'
+    proto: tcp
+    direction: out
+
+- name: Allow Tor outgoing traffic
+  community.general.ufw:
+    rule: allow
+    port: '9001'
+    proto: tcp
+    direction: out
+
+- name: Allow OpenVPN outgoing traffic
+  community.general.ufw:
+    rule: allow
+    port: '{{ item.port }}'
+    proto: '{{ item.proto }}'
+    direction: out
+  loop:
+    - {port: 1401, proto: tcp}
+    - {port: 1194, proto: udp}
+    - {port: 1195, proto: udp}
+    - {port: 1196, proto: udp}
+    - {port: 1197, proto: udp}
+    - {port: 1198, proto: udp}
+    - {port: 1301, proto: udp}
+    - {port: 1302, proto: udp}
+    - {port: 1303, proto: udp}
+    - {port: 1400, proto: udp}
+
+- name: Allow syncthing input traffic
+  community.general.ufw:
+    rule: allow
+    port: '{{ item.port }}'
+    proto: '{{ item.proto }}'
+    direction: in
+  loop:
+    - {port: 22000, proto: tcp}
+    - {port: 22000, proto: udp}
+    - {port: 21027, proto: udp}
+
+- name: Allow syncthing output traffic
+  community.general.ufw:
+    rule: allow
+    port: '{{ item.port }}'
+    proto: '{{ item.proto }}'
+    direction: out
+  loop:
+    - {port: 8384, proto: tcp}
+    - {port: 22000, proto: tcp}
+    - {port: 22000, proto: udp}
+    - {port: 21027, proto: udp}
+
+- name: Enable ufw logging
+  community.general.ufw:
+    logging: low
+
+- name: Enable ufw with default incoming deny policy
+  community.general.ufw:
+    state: enabled
+    policy: deny
+    direction: incoming
+
+- name: Enable ufw with default outgoing deny policy
+  community.general.ufw:
+    state: enabled
+    policy: deny
+    direction: outgoing

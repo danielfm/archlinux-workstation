@@ -1,0 +1,80 @@
+---
+
+- name: Ensure multilib repository is enabled
+  community.general.ini_file:
+    path: /etc/pacman.conf
+    create: false
+    section: multilib
+    option: Include
+    value: /etc/pacman.d/mirrorlist
+
+- name: Check package database last sync
+  ansible.builtin.stat:
+    path: /var/lib/pacman/sync/multilib.db
+  register: multilib_db
+
+- name: Ensure the system package database is present
+  community.general.pacman:
+    update_cache: true
+    upgrade: false
+  when: not multilib_db.stat.exists
+
+- name: Ensure the required packages are present
+  community.general.pacman:
+    state: present
+    name:
+      - base-devel
+      - binutils
+      - fakeroot
+      - git
+      - git-lfs
+      - gnupg
+      - openssh
+      - pacman-contrib
+
+- name: Ensure the 'aur_builder' user exists
+  ansible.builtin.user:
+    name: aur_builder
+    create_home: true
+    uid: '{{ aur_builder_uid }}'
+    group: wheel
+
+- name: Ensure the 'aur_builder' user can run 'sudo pacman' without a password
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/11-install-aur_builder
+    line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+    create: true
+    validate: 'visudo -cf %s'
+
+- name: Check if yay AUR helper is available
+  ansible.builtin.stat:
+    path: /usr/bin/yay
+  register: yay_stat_result
+
+- name: Clone yay AUR helper repository
+  become_user: aur_builder
+  ansible.builtin.git:
+    repo: https://aur.archlinux.org/yay.git
+    version: master
+    dest: /tmp/yay
+  when: not yay_stat_result.stat.exists
+
+- name: Install yay AUR helper package
+  become_user: aur_builder
+  ansible.builtin.command:
+    chdir: /tmp/yay
+    cmd: makepkg -si --noconfirm
+  when: not yay_stat_result.stat.exists
+
+- name: Ensure yay AUR helper package is up to date
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name:
+      - yay
+  when: yay_stat_result.stat.exists
+
+- name: Ensure the paccache.timer is enabled
+  ansible.builtin.systemd:
+    name: paccache.timer
+    state: started
+    enabled: true

@@ -1,20 +1,17 @@
 ---
 
-- name: Add subuid and subgid files
-  ansible.builtin.template:
-    src: etc/{{ item }}.j2
-    dest: '/etc/{{ item }}'
-    owner: 'root'
-    group: 'root'
-    mode: '0644'
-  loop:
-    - subuid
-    - subgid
-
-- name: Set podman container configuration
+- name: Ensure subuid settings are set
   ansible.builtin.copy:
-    src: etc/containers/registries.conf
-    dest: /etc/containers/registries.conf
-    owner: 'root'
-    group: 'root'
-    mode: '0644'
+    content: '{{ user_name }}:100000:65537'
+    dest: /etc/subuid
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Ensure subgid settings are set
+  ansible.builtin.copy:
+    content: '{{ user_group }}:100000:65537'
+    dest: /etc/subgid
+    owner: root
+    group: root
+    mode: 0644

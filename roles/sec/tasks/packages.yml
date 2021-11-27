@@ -1,0 +1,21 @@
+---
+
+- name: Ensure the desired packages are installed
+  community.general.pacman:
+    state: present
+    name:
+      - efitools
+      - fwupd
+      - networkmanager-openvpn
+      - nmap
+      - opensc
+      - pam-u2f
+      - pinentry
+      - sbsigntools
+      - tor
+      - torbrowser-launcher
+      - torsocks
+      - ufw
+      - yubikey-manager
+      - yubikey-personalization-gui
+      - yubikey-touch-detector

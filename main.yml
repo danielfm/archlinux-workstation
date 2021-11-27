@@ -1,0 +1,26 @@
+---
+- hosts: all
+  gather_facts: false
+  become: true
+
+  pre_tasks:
+    - name: Include playbook configuration
+      include_vars: '{{ item }}'
+      with_fileglob:
+        - '{{ playbook_dir }}/vars/custom.yml'
+      tags:
+        - always
+
+    - name: Make sure package definitions are up to date
+      community.general.pacman:
+        update_cache: true
+        upgrade: false
+
+  roles:
+    - aur
+    - base
+    - backup
+    - i3
+    - dev
+    - sec
+    - studio

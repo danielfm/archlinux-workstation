@@ -1,6 +1,11 @@
 ---
 
-- name: Add security limits file
+- name: Ensure the realtime group exists
+  ansible.builtin.group:
+    name: realtime
+    state: present
+
+- name: Ensure security limits are set
   ansible.builtin.copy:
     src: 'etc/security/limits.d/'
     dest: '/etc/security/limits.d/'
@@ -8,7 +13,7 @@
     group: 'root'
     mode: '0644'
 
-- name: Add sysctl files
+- name: Ensure sysctl overrides are set
   ansible.builtin.copy:
     src: 'etc/sysctl.d/'
     dest: '/etc/sysctl.d/'
@@ -16,7 +21,12 @@
     group: 'root'
     mode: '0644'
 
-- name: Make sure the realtime group exists
-  ansible.builtin.group:
-    name: realtime
-    state: present
+- name: Ensure PulseAudio configuration is up to date
+  ansible.builtin.copy:
+    src: etc/pulse/
+    dest: /etc/pulse/
+    owner: root
+    group: root
+    mode: '0644'
+  notify:
+    - restart PulseAudio

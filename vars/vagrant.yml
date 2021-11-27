@@ -1,0 +1,85 @@
+---
+
+#
+# User data
+#
+
+user_full_name: Vagrant User
+
+user_name: vagrant
+user_group: vagrant
+user_uid: 1000
+user_gid: 1000
+
+user_autologin: true
+user_create_ssh_keypair: true
+
+user_github_username: vagrant
+user_github_email: 99999+vagrant@users.noreply.github.com
+user_irc_nickname: vagrant
+
+user_gnupg_key_id: '0x9999999999999999'
+user_gnupg_keyserver: hkps://keyserver.ubuntu.com
+
+user_extra_home_dirs:
+  - Projects
+
+# 2FA support with a U2F security key (i.e. YubiKey)
+# Format: ':<key-handle>,<public-key>:<key-handle-2>,<public-key-2>:...'
+user_pam_u2f_key_handles: ''
+
+#
+# System data
+#
+
+system_bluetooth: false
+system_timezone: America/Sao_Paulo
+system_locale: en_US.UTF-8
+
+system_secure_boot_keys_dir: /root/.secure-boot-keys
+
+system_resolvconf: |
+  nameserver 1.1.1.1
+  nameserver 1.0.0.1
+
+system_dns_over_tls: true
+system_dnssec: true
+
+#
+# Backup settings
+#
+
+backup_schedule: 'daily'
+backup_retention_days: 30
+backup_period_days: 1
+backup_full_period_days: 7
+
+backup_s3_bucket_name: vagrant-backup
+
+# This Gopass directory must contain two secrets, AWS_ACCESS_KEY_ID and
+# AWS_SECRET_ACCESS_KEY
+backup_s3_gopass_secret_dir: env/aws/duplicity
+
+backup_gnupg_encrypt_key_id: '0x9999999999999999'
+backup_gnupg_signing_key_id: '0x9999999999999999'
+
+backup_source_dir: '/home/{{ user_name }}'
+
+backup_exclude: |
+  /home/{{ user_name }}/.cache
+  /home/{{ user_name }}/.local
+  /home/{{ user_name }}/.mozilla
+  /home/{{ user_name }}/.vagrant.d
+
+#
+# App settings
+#
+
+# Mopidy
+mopidy_spotify_username: ""
+mopidy_spotify_password: ""
+mopidy_spotify_client_id: ""
+mopidy_spotify_client_secret: ""
+
+# Polybar
+polybar_base_theme: forest

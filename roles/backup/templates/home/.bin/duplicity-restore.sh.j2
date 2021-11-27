@@ -1,0 +1,51 @@
+#!/bin/env bash
+
+print_usage() {
+  echo "Usage: $0 [-t <time>] [-f <file-to-restore>] [-o <ouput-file>]"
+}
+
+time=''
+file=''
+output=''
+
+while getopts t:f:o:h flag; do
+  case "${flag}" in
+    t) time="${OPTARG}";;
+    f) file="${OPTARG}";;
+    o) output="${OPTARG}";;
+    h) print_usage $0; exit 1;;
+    *) print_usage $0; exit 1;;
+  esac
+done
+
+output="${output:-.}"
+
+time_arg=""
+if [ ! -z "${time}" ]; then
+  time_arg="--time ${time}"
+fi
+
+file_to_restore_arg=""
+if [ ! -z "${file}" ]; then
+  file_to_restore_arg="--file-to-restore ${file}"
+fi
+
+{% if backup_gnupg_encrypt_key_id %}
+encrypt_subkey='{{ backup_gnupg_encrypt_key_id }}'
+{%- else %}
+encrypt_subkey=$(gpg --keyid-format LONG -k --with-colons | awk -F: '/^pub:/ { print $5 }' | head -1)
+{%- endif %}
+
+{% if backup_gnupg_signing_key_id %}
+sign_subkey='{{ backup_gnupg_signing_key_id }}'
+{% else %}
+sign_subkey=$(gpg --keyid-format LONG -k --with-colons | awk -F: '/^pub:/ { print $5 }' | head -1)
+{% endif %}
+
+gopass env {{ backup_s3_gopass_secret_dir }} \
+    duplicity restore \
+    --encrypt-key "${encrypt_subkey}" --sign-key "${sign_subkey}" --use-agent \
+    ${file_to_restore_arg} ${time_arg} \
+    --tempdir {{ backup_temp_dir }} \
+    --progress -v 8 \
+    "s3+http://{{ backup_s3_bucket_name }}/${HOSTNAME}" "${output}"

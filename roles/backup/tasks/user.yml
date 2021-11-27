@@ -1,0 +1,91 @@
+---
+
+- name: Ensure duplicity tempdir exists
+  become_user: '{{ user_name }}'
+  ansible.builtin.file:
+    path: '{{ backup_temp_dir }}'
+    state: directory
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: 0755
+
+- name: Ensure the required hidden directories exist
+  become_user: '{{ user_name }}'
+  ansible.builtin.file:
+    path: '/home/{{ user_name }}/{{ item }}'
+    state: directory
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: 0755
+  loop:
+    - .config
+    - .bin
+
+- name: Ensure duplicity backup exclusion list is set
+  become_user: '{{ user_name }}'
+  ansible.builtin.copy:
+    content: |
+      {{ backup_temp_dir }}
+      {{ backup_exclude }}
+    dest: '/home/{{ user_name }}/.config/duplicity-backup-exclude'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: 0644
+
+- name: Ensure duplicity backup and restore scripts exist
+  become_user: '{{ user_name }}'
+  ansible.builtin.template:
+    src: 'home/.bin/duplicity-{{ item }}.sh.j2'
+    dest: '/home/{{ user_name }}/.bin/duplicity-{{ item }}.sh'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: 0755
+  loop:
+    - backup
+    - restore
+
+- name: Ensure user systemd directory exists
+  become_user: '{{ user_name }}'
+  ansible.builtin.file:
+    path: '/home/{{ user_name }}/.config/systemd/user'
+    mode: 0755
+    state: directory
+
+- name: Ensure duplicity systemd unit files exist
+  become_user: '{{ user_name }}'
+  ansible.builtin.template:
+    src: 'home/.config/systemd/user/{{ item }}.j2'
+    dest: '/home/{{ user_name }}/.config/systemd/user/{{ item }}'
+    owner: '{{ user_name }}'
+    group: '{{ user_group }}'
+    mode: 0644
+  loop:
+    - duplicity-backup.service
+    - duplicity-backup.timer
+
+- name: Ensure user systemd units are up to date
+  become_user: '{{ user_name }}'
+  ansible.builtin.systemd:
+    scope: user
+    daemon_reload: true
+
+- name: Ensure duplicity backup timer is enabled and started
+  become_user: '{{ user_name }}'
+  ansible.builtin.systemd:
+    scope: user
+    name: duplicity-backup.timer
+    state: started
+    daemon_reload: true
+    enabled: true
+  when:
+    - backup_enabled
+
+- name: Ensure duplicity backup timer is disabled and stopped
+  become_user: '{{ user_name }}'
+  ansible.builtin.systemd:
+    scope: user
+    name: duplicity-backup.timer
+    state: stopped
+    enabled: false
+  when:
+    - not backup_enabled

@@ -1,0 +1,5 @@
+---
+
+# IRC server and username, used by emacs erc.
+user_irc_nickname: ''
+user_irc_server: ''

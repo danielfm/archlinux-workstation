@@ -2,13 +2,13 @@
 
 while true; do
   if systemctl --user list-unit-files duplicity-backup.timer --state=disabled &> /dev/null ; then
-    echo 'Backup DISABLED'
+    echo 'Disabled'
   elif [ $(systemctl --user show duplicity-backup.service --property=SubState --value) == 'start' ]; then
-    echo 'Backup RUNNING'
+    echo 'Running'
   elif [ $(systemctl --user show duplicity-backup.service --property=ExecMainStatus --value) -eq 0 ]; then
-    echo 'Backup OK'
+    echo 'OK'
   else
-    echo 'Backup FAILED'
+    echo 'Failed'
   fi
 
   sleep 5

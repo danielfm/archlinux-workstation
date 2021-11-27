@@ -1,0 +1,89 @@
+---
+
+- name: Ensure the default kernel versions are installed
+  community.general.pacman:
+    state: present
+    name:
+      - linux
+      - linux-headers
+      - linux-lts
+      - linux-lts-headers
+
+- name: Ensure the extra kernel versions are installed
+  community.general.pacman:
+    state: present
+    name: '{{ system_extra_kernel_variants }}'
+  when: system_extra_kernel_variants|length > 0
+
+- name: Ensure the desired packages are installed
+  community.general.pacman:
+    state: present
+    name:
+      - acpid
+      - alsa-lib
+      - alsa-plugins
+      - alsa-utils
+      - aspell
+      - aspell-en
+      - avahi
+      - bridge-utils
+      - calc
+      - cups
+      - curl
+      - dmidecode
+      - exfat-utils
+      - foomatic-db-gutenprint-ppds
+      - grub
+      - gutenprint
+      - inetutils
+      - iw
+      - libusb-compat
+      - lshw
+      - man-db
+      - man-pages
+      - nano
+      - ncdu
+      - networkmanager
+      - nss-mdns
+      - ntfs-3g
+      - ntp
+      - opensc
+      - realtime-privileges
+      - time
+      - tree
+      - util-linux
+      - vim
+      - wget
+      - which
+      - whois
+      - xclip
+      - xterm
+      - zsh
+
+- name: Ensure the desired extra aspell dictionaries are present
+  community.general.pacman:
+    state: present
+    name: 'aspell-{{ item }}'
+  loop: '{{ aspell_extra_dictionaries }}'
+
+- name: Ensure bluetooth packages are installed
+  community.general.pacman:
+    state: present
+    name:
+      - blueman
+      - bluez
+      - bluez-utils
+  when: system_bluetooth|bool
+
+- name: Ensure extra packages are installed
+  community.general.pacman:
+    state: present
+    name: '{{ extra_packages }}'
+  when: extra_packages|length > 0
+
+- name: Ensure extra AUR packages are installed
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    state: present
+    name: '{{ extra_aur_packages }}'
+  when: extra_aur_packages|length > 0

@@ -1,0 +1,12 @@
+---
+
+- name: Prepare
+  hosts: all
+  gather_facts: false
+  become: true
+
+  tasks:
+    - name: Ensure the base system is up to date
+      community.general.pacman:
+        update_cache: true
+        upgrade: true

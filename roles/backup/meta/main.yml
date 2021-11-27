@@ -1,0 +1,18 @@
+---
+
+galaxy_info:
+  role_name: backup
+  author: Daniel Martins
+  description: Simple backup strategy implemented on top of Duplicity and Amazon S3
+  license: BSD
+  min_ansible_version: 2.11
+  namespace: danielfm
+  platforms:
+    - name: ArchLinux
+      versions:
+        - any
+
+collections:
+  - kewlfft.aur
+
+dependencies: []

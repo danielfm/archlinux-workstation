@@ -1,16 +1,20 @@
 ---
 
-- name: Archlinux-specific setup
-  import_tasks: archlinux.yml
-  when: ansible_facts['os_family']|lower == 'archlinux'
+- name: Software installation
+  import_tasks: packages.yml
+  tags: ['pacman']
+
+- name: UFW rules
+  import_tasks: ufw.yml
+  tags: ['ufw']
+
+- name: Secure boot configuration
+  import_tasks: secureboot.yml
+  when: system_secure_boot_keys_dir != ""
+  tags: ['secureboot']
 
 - name: System-wide configuration
   import_tasks: system.yml
-
-- name: Secure boot configuration
-  import_tasks: system_secureboot.yml
-  when:
-    - system_secure_boot_keys_dir != ""
 
 - name: User configuration
   import_tasks: user.yml

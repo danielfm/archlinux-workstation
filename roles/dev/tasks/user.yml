@@ -1,6 +1,13 @@
 ---
 
-- name: Add user configuration files
+- name: Ensure user is in the desired group
+  ansible.builtin.user:
+    name: '{{ user_name }}'
+    append: true
+    groups:
+      - docker
+
+- name: Ensure user configuration files exist
   become_user: '{{ user_name }}'
   ansible.builtin.copy:
     src: 'home/{{ item }}'
@@ -18,7 +25,7 @@
     - .vimrc
     - .zshrc
 
-- name: Add user configuration templates
+- name: Ensure templated user configuration files exist
   become_user: '{{ user_name }}'
   ansible.builtin.template:
     src: home/{{ item }}.j2
@@ -30,7 +37,7 @@
     - .bash_env.d/11-emacs.sh
     - .gitconfig
 
-- name: Install oh-my-zsh
+- name: Ensure oh-my-zsh is installed
   become_user: '{{ user_name }}'
   ansible.builtin.git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
@@ -39,7 +46,7 @@
     remote: readonly
     accept_hostkey: true
 
-- name: Install tmux plugin manager
+- name: Ensure tmux plugin manager is installed
   become_user: '{{ user_name }}'
   ansible.builtin.git:
     repo: https://github.com/tmux-plugins/tpm
@@ -48,7 +55,7 @@
     remote: readonly
     accept_hostkey: true
 
-- name: Install vundle plugin manager
+- name: Ensure vundle plugin manager is installed
   become_user: '{{ user_name }}'
   ansible.builtin.git:
     repo: https://github.com/VundleVim/Vundle.vim.git
@@ -57,7 +64,7 @@
     remote: readonly
     accept_hostkey: true
 
-- name: Install emacs configuration
+- name: Ensure my personal emacs configuration is installed
   become_user: '{{ user_name }}'
   ansible.builtin.git:
     repo: https://github.com/danielfm/dotfiles-emacs.git

@@ -1,17 +1,19 @@
 ---
 
 galaxy_info:
+  role_name: audio
   author: Daniel Martins
   description: Configuration for real-time audio work
   license: BSD
   min_ansible_version: 2.11
+  namespace: danielfm
   platforms:
     - name: ArchLinux
       versions:
         - any
 
-dependencies:
-  - role: i3
-
 collections:
   - kewlfft.aur
+
+dependencies:
+  - aur

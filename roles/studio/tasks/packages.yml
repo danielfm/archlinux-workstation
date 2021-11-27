@@ -1,0 +1,31 @@
+---
+
+- name: Ensure the jack package is absent
+  community.general.pacman:
+    state: absent
+    force: true
+    name:
+      - jack
+
+- name: Ensure the jack2 package is present
+  community.general.pacman:
+    name:
+      - jack2
+
+- name: Ensure the desired packages are installed
+  community.general.pacman:
+    state: present
+    name:
+      - dbus-python
+      - dssi-plugins
+      - ladspa-plugins
+      - lv2-plugins
+      - pulseaudio-jack
+      - realtime-privileges
+      - vst-plugins
+
+- name: Ensure the desired AUR packages are installed
+  become_user: aur_builder
+  kewlfft.aur.aur:
+    name:
+      - cadence-claudia

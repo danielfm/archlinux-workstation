@@ -1,0 +1,11 @@
+---
+
+- name: Ensure the desired packages are installed
+  community.general.pacman:
+    state: present
+    name:
+      - duplicity
+      - gnupg
+      - gopass
+      - openssh
+      - python-boto

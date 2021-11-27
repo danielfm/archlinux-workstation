@@ -19,3 +19,7 @@
   ansible.builtin.systemd:
     name: NetworkManager.service
     state: restarted
+
+- name: regenerate grub config
+  ansible.builtin.command:
+    cmd: grub-mkconfig -o /boot/grub/grub.cfg

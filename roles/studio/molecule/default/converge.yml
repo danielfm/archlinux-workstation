@@ -1,0 +1,12 @@
+---
+
+- name: Converge
+  hosts: all
+  gather_facts: false
+  become: true
+
+  vars:
+    user_name: vagrant
+
+  roles:
+    - danielfm.studio

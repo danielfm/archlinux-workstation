@@ -1,20 +1,6 @@
 ---
 
-#
-# User data
-#
-
 # user_name: john-doe
 # user_group: john-doe
 
 # user_gnupg_key_id: '0x123456789'
-
-user_gnupg_keyserver: hkp://pool.sks-keyservers.net
-
-# 2FA support with a U2F security key (i.e. YubiKey)
-# Format: ':<key-handle>,<public-key>:<key-handle-2>,<public-key-2>:...'
-user_pam_u2f_key_handles: ''
-
-# System data
-
-system_secure_boot_keys_dir: /root/.secure-boot-keys

@@ -1,0 +1,45 @@
+#!/bin/env bash
+
+# Usage: notify urgency message
+function _notify {
+  if command -v notify-send &> /dev/null; then
+    notify-send -u "$1" "$2"
+  fi
+}
+
+{% if backup_gnupg_encrypt_key_id %}
+encrypt_subkey='{{ backup_gnupg_encrypt_key_id }}'
+{%- else %}
+encrypt_subkey=$(gpg --keyid-format LONG -k --with-colons | awk -F: '/^pub:/ { print $5 }' | head -1)
+{%- endif %}
+
+{% if backup_gnupg_signing_key_id %}
+sign_subkey='{{ backup_gnupg_signing_key_id }}'
+{% else %}
+sign_subkey=$(gpg --keyid-format LONG -k --with-colons | awk -F: '/^pub:/ { print $5 }' | head -1)
+{% endif %}
+
+_notify normal 'Backup started'
+
+# GPG-encrypted backups
+gopass env {{ backup_s3_gopass_secret_dir }} \
+    duplicity \
+    --encrypt-key "${encrypt_subkey}" --sign-key "${sign_subkey}" --use-agent \
+    --exclude-filelist ${HOME}/.config/duplicity-backup-exclude \
+    --s3-use-new-style --asynchronous-upload \
+    --full-if-older-than {{ backup_full_period_days }}D --progress -v 8 \
+    --tempdir {{ backup_temp_dir }} \
+    "{{ backup_source_dir }}" "s3+http://{{ backup_s3_bucket_name }}/${HOSTNAME}"
+
+if [ $? -ne 0 ]; then
+  _notify critical 'Backup failed'
+  exit 1
+fi
+
+_notify normal 'Backup completed'
+
+# Clean up older backups to save storage space/cost
+gopass env {{ backup_s3_gopass_secret_dir }} \
+    duplicity \
+    remove-older-than {{ backup_retention_days }}D --force \
+    "s3+http://{{ backup_s3_bucket_name }}/${HOSTNAME}"
